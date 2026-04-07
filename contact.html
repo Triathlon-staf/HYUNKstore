@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - HyunkkCloud</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#0b1220] text-white">
+
+<!-- Navbar -->
+<nav class="fixed w-full z-50 bg-[#0f172a]/80 backdrop-blur border-b border-slate-800">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+    <h1 class="font-bold text-lg">HyunkkCloud</h1>
+    <div class="hidden md:flex gap-6 text-sm text-gray-300">
+      <a href="index.html" class="hover:text-blue-400">Home</a>
+      <a href="store.html" class="hover:text-blue-400">Store</a>
+      <a href="contact.html" class="text-blue-400">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Header -->
+<section class="pt-32 pb-16 text-center">
+  <h2 class="text-4xl font-bold">Contact Us</h2>
+  <p class="text-gray-400 mt-2">Hubungi kami untuk pemesanan atau pertanyaan</p>
+</section>
+
+<!-- Contact Form -->
+<section class="max-w-4xl mx-auto px-6 pb-20">
+  <div class="bg-[#0f172a] p-8 rounded-2xl border border-slate-800 shadow-lg">
+
+    <form onsubmit="kirimWA(event)" class="space-y-5">
+
+      <input type="text" id="nama" placeholder="Nama"
+        class="w-full p-3 rounded-xl bg-[#020617] border border-slate-700 focus:border-blue-500 outline-none">
+
+      <input type="email" id="email" placeholder="Email"
+        class="w-full p-3 rounded-xl bg-[#020617] border border-slate-700 focus:border-blue-500 outline-none">
+
+      <textarea id="pesan" placeholder="Pesan" rows="5"
+        class="w-full p-3 rounded-xl bg-[#020617] border border-slate-700 focus:border-blue-500 outline-none"></textarea>
+
+      <button type="submit"
+        class="w-full bg-blue-500 py-3 rounded-xl font-semibold hover:bg-blue-600 transition">
+        Kirim Pesan
+      </button>
+
+    </form>
+
+  </div>
+</section>
+
+<!-- Info Kontak -->
+<section class="max-w-5xl mx-auto px-6 pb-20">
+  <div class="grid md:grid-cols-3 gap-6 text-center">
+
+    <div class="bg-[#0f172a] p-6 rounded-xl border border-slate-800 hover:scale-105 transition">
+      <p class="text-gray-400">WhatsApp</p>
+      <p class="font-bold mt-2">082189822272</p>
+    </div>
+
+    <div class="bg-[#0f172a] p-6 rounded-xl border border-slate-800 hover:scale-105 transition">
+      <p class="text-gray-400">Email</p>
+      <p class="font-bold mt-2">cahyobagaskoro03@gmail.com</p>
+    </div>
+
+    <div class="bg-[#0f172a] p-6 rounded-xl border border-slate-800 hover:scale-105 transition">
+      <p class="text-gray-400">Lokasi</p>
+      <p class="font-bold mt-2">Indonesia</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-[#0f172a] border-t border-slate-800 p-6 text-center text-gray-500">
+  © 2026 HyunkkCloud
+</footer>
+
+<script>
+function kirimWA(e) {
+  e.preventDefault();
+
+  let nama = document.getElementById("nama").value;
+  let email = document.getElementById("email").value;
+  let pesan = document.getElementById("pesan").value;
+
+  let nomor = "6282189822272";
+
+  let text = `Halo, saya ${nama}%0AEmail: ${email}%0APesan: ${pesan}`;
+
+  window.open(`https://wa.me/${nomor}?text=${text}`);
+}
+</script>
+
+</body>
+</html>

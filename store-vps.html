@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>VPS Server - HyunkkCloud</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#0b1220] text-white">
+
+<!-- Navbar -->
+<nav class="p-5 bg-[#0f172a] border-b border-slate-800">
+  <div class="max-w-7xl mx-auto flex justify-between">
+    <h1 class="font-bold">HyunkkCloud</h1>
+    <a href="store.html" class="text-gray-400 hover:text-blue-400">← Kembali</a>
+  </div>
+</nav>
+
+<!-- Header -->
+<section class="text-center py-16">
+  <h2 class="text-4xl font-bold">VPS Server</h2>
+  <p class="text-gray-400 mt-2">Performa tinggi untuk kebutuhan serius</p>
+</section>
+
+<!-- VPS LIST -->
+<section class="max-w-7xl mx-auto px-6 pb-20 grid md:grid-cols-3 gap-6">
+
+  <!-- VPS 2GB -->
+  <div class="bg-[#0f172a] p-6 rounded-xl border border-slate-800 hover:scale-105 transition">
+    <h3 class="text-xl font-bold">VPS 2GB</h3>
+    <p class="text-gray-400 mt-2">1 Core • SSD • Singapore</p>
+    <p class="text-green-400 mt-4 text-2xl">Rp55.000</p>
+
+    <ul class="text-sm text-gray-400 mt-4 space-y-1">
+      <li>✔ 40GB SSD</li>
+      <li>✔ 0.5 TB Bandwidth</li>
+      <li>✔ Full Root Access</li>
+    </ul>
+
+    <button onclick="beli('VPS 2GB - 55k')" 
+      class="mt-6 w-full bg-blue-500 py-2 rounded-lg font-semibold hover:bg-blue-600">
+      Beli Sekarang
+    </button>
+  </div>
+
+  <!-- VPS 4GB -->
+  <div class="bg-[#0f172a] p-6 rounded-xl border border-blue-500 scale-105">
+    <h3 class="text-xl font-bold">VPS 4GB</h3>
+    <p class="text-gray-400 mt-2">2 Core • SSD • Singapore</p>
+    <p class="text-green-400 mt-4 text-2xl">Rp95.000</p>
+
+    <ul class="text-sm text-gray-400 mt-4 space-y-1">
+      <li>✔ 80GB SSD</li>
+      <li>✔ 1 TB Bandwidth</li>
+      <li>✔ Full Root Access</li>
+    </ul>
+
+    <button onclick="beli('VPS 4GB - 95k')" 
+      class="mt-6 w-full bg-blue-500 py-2 rounded-lg font-semibold hover:bg-blue-600">
+      Beli Sekarang
+    </button>
+  </div>
+
+  <!-- VPS 8GB -->
+  <div class="bg-[#0f172a] p-6 rounded-xl border border-slate-800 hover:scale-105 transition">
+    <h3 class="text-xl font-bold">VPS 8GB</h3>
+    <p class="text-gray-400 mt-2">4 Core • SSD • Singapore</p>
+    <p class="text-green-400 mt-4 text-2xl">Rp160.000</p>
+
+    <ul class="text-sm text-gray-400 mt-4 space-y-1">
+      <li>✔ 160GB SSD</li>
+      <li>✔ 2 TB Bandwidth</li>
+      <li>✔ Full Root Access</li>
+    </ul>
+
+    <button onclick="beli('VPS 8GB - 160k')" 
+      class="mt-6 w-full bg-blue-500 py-2 rounded-lg font-semibold hover:bg-blue-600">
+      Beli Sekarang
+    </button>
+  </div>
+
+</section>
+
+<!-- Footer -->
+<footer class="text-center p-6 text-gray-500 border-t border-slate-800">
+  © 2026 HyunkkCloud
+</footer>
+
+<script>
+function beli(produk) {
+  let nomor = "6282189822272";
+  let pesan = `Halo, saya mau beli ${produk}`;
+  window.open(`https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`);
+}
+</script>
+
+</body>
+</html>

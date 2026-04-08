@@ -28,7 +28,6 @@
     #particles{position:fixed;inset:0;z-index:0;pointer-events:none;}
     .mouse-glow{position:fixed;width:450px;height:450px;border-radius:50%;background:radial-gradient(circle,rgba(0,196,255,0.05),transparent 60%);pointer-events:none;z-index:1;transform:translate(-50%,-50%);transition:left .35s ease-out,top .35s ease-out;}
 
-    /* NAVBAR */
     .navbar{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px);background:rgba(6,10,16,0.82);border-bottom:1px solid var(--border);transition:box-shadow .3s;}
     .navbar.scrolled{box-shadow:0 4px 30px rgba(0,0,0,0.5);}
     .nav-link{position:relative;color:var(--muted);transition:color .3s;text-decoration:none;font-size:.9rem;}
@@ -43,7 +42,6 @@
     .mobile-menu a:last-child{border-bottom:none;}
     .mobile-menu a:hover{color:var(--accent);}
 
-    /* BLOG HERO */
     .blog-hero{position:relative;padding:140px 24px 40px;text-align:center;overflow:hidden;}
     .blog-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center top,rgba(0,196,255,0.06) 0%,transparent 60%);pointer-events:none;}
     .blog-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:999px;border:1px solid rgba(0,196,255,0.2);background:rgba(0,196,255,0.05);font-size:.8rem;color:var(--accent);}
@@ -54,10 +52,8 @@
     .blog-meta span{display:flex;align-items:center;gap:6px;}
     .blog-meta i{font-size:.75rem;}
 
-    /* PROGRESS BAR */
     .reading-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:200;width:0;transition:width .1s linear;}
 
-    /* TOC */
     .toc{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:24px;position:sticky;top:100px;}
     .toc-title{font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
     .toc-title i{font-size:.75rem;}
@@ -66,19 +62,16 @@
     .toc-link.active{color:var(--accent);border-left-color:var(--accent);background:rgba(0,196,255,0.06);}
     .toc-num{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#2a3a4e;min-width:18px;}
 
-    /* ARTICLE */
     .article-body{font-size:1rem;line-height:1.85;color:#a0aec0;}
     .article-body p{margin-bottom:24px;}
     .article-body h2{font-size:1.5rem;font-weight:700;color:var(--fg);margin-top:48px;margin-bottom:16px;display:flex;align-items:center;gap:14px;}
     .article-body h2 .num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:rgba(0,196,255,0.1);color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:.85rem;font-weight:700;flex-shrink:0;}
     .article-body strong{color:var(--fg);font-weight:600;}
 
-    /* HIGHLIGHT BOX */
     .highlight-box{background:rgba(0,196,255,0.05);border:1px solid rgba(0,196,255,0.15);border-radius:14px;padding:24px;margin:28px 0;}
     .highlight-box p{color:var(--fg);margin-bottom:0!important;font-size:.95rem;line-height:1.7;}
     .highlight-box i{color:var(--accent);margin-right:8px;}
 
-    /* COMPARISON TABLE */
     .comp-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin:32px 0;}
     .comp-table thead th{padding:16px 18px;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:rgba(0,0,0,0.3);border-bottom:1px solid var(--border);text-align:left;}
     .comp-table thead th:not(:first-child){text-align:center;}
@@ -93,7 +86,6 @@
     .comp-table .partial{color:var(--amber);}
     .comp-table .win{background:rgba(0,196,255,0.04);}
 
-    /* DIAGRAM */
     .diagram{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:32px 0;}
     .diag-box{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center;transition:all .35s;position:relative;overflow:hidden;}
     .diag-box:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,0.25);}
@@ -111,14 +103,12 @@
     .diag-meter-fill{height:100%;border-radius:4px;transition:width 1.2s ease-out;width:0;}
     .diag-meter-val{font-family:'JetBrains Mono',monospace;font-size:.78rem;min-width:38px;text-align:right;}
 
-    /* KEY TAKEAWAY */
     .takeaway{display:flex;align-items:flex-start;gap:14px;padding:18px;border-radius:12px;background:rgba(0,196,255,0.04);border:1px solid rgba(0,196,255,0.1);margin-bottom:12px;}
     .takeaway:last-child{margin-bottom:0;}
     .takeaway-num{width:28px;height:28px;border-radius:8px;background:rgba(0,196,255,0.15);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--accent);flex-shrink:0;font-weight:700;}
     .takeaway-text{font-size:.9rem;color:#a0aec0;line-height:1.6;}
     .takeaway-text strong{color:var(--fg);}
 
-    /* RELATED */
     .related-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .4s;text-decoration:none;color:inherit;display:block;}
     .related-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,0.3);border-color:rgba(255,255,255,0.08);}
     .related-card:hover .related-img img{transform:scale(1.05);}
@@ -128,7 +118,6 @@
     .related-title{font-size:1rem;font-weight:600;margin-bottom:6px;}
     .related-desc{font-size:.82rem;color:var(--muted);line-height:1.6;}
 
-    /* CTA */
     .cta-box{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--border);background:var(--bg-card);}
     .cta-box::before{content:'';position:absolute;inset:0;background:linear-gradient(170deg,rgba(0,196,255,0.04) 0%,transparent 50%,rgba(0,232,157,0.03) 100%);pointer-events:none;}
 
@@ -163,7 +152,6 @@
 <div class="mouse-glow" id="mouseGlow"></div>
 <div class="reading-progress" id="readProgress"></div>
 
-<!-- Navbar -->
 <nav class="navbar" id="navbar">
   <div style="max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;">
     <a href="index.html" style="text-decoration:none;display:flex;align-items:center;gap:10px;">
@@ -194,7 +182,6 @@
 
 <main style="position:relative;z-index:2;">
 
-  <!-- Blog Hero -->
   <section class="blog-hero">
     <div class="reveal">
       <div class="blog-tag"><i class="fas fa-bolt"></i> VPS Guide</div>
@@ -211,11 +198,9 @@
     </div>
   </section>
 
-  <!-- Content -->
   <section style="max-width:1100px;margin:0 auto;padding:0 24px 72px;">
     <div class="blog-layout reveal" style="display:grid;grid-template-columns:220px 1fr;gap:32px;align-items:start;">
 
-      <!-- TOC Sidebar -->
       <aside class="toc" id="toc">
         <div class="toc-title"><i class="fas fa-list"></i> Daftar Isi</div>
         <a href="#pendahuluan" class="toc-link" data-section="pendahuluan"><span class="toc-num">01</span>Pendahuluan</a>
@@ -228,9 +213,7 @@
         <a href="#kesimpulan" class="toc-link" data-section="kesimpulan"><span class="toc-num">08</span>Kesimpulan</a>
       </aside>
 
-      <!-- Article -->
       <article id="article">
-
         <div class="article-body">
 
           <p id="pendahuluan">
@@ -281,7 +264,6 @@
             Di shared hosting, upgrade sering berarti pindah ke paket yang lebih mahal secara keseluruhan — dan proses migrasi bisa memakan waktu berjam-jam dengan risiko data hilang.
           </p>
 
-          <!-- Visual Diagram -->
           <div class="diagram reveal">
             <div class="diag-box vps">
               <div class="diag-label">VPS Server</div>
@@ -329,7 +311,6 @@
             </div>
           </div>
 
-          <!-- Comparison Table -->
           <h2 id="perbandingan"><span class="num">07</span>Perbandingan Lengkap</h2>
           <div class="comp-wrap">
             <table class="comp-table">
@@ -408,14 +389,12 @@
     </div>
   </section>
 
-  <!-- Related Articles -->
   <section style="max-width:1100px;margin:0 auto;padding:0 24px 72px;">
     <div class="reveal" style="margin-bottom:32px;">
       <div class="section-tag">Artikel Terkait</div>
       <h2 style="font-size:1.5rem;font-weight:700;margin-top:8px;">Baca Juga</h2>
     </div>
     <div class="related-grid reveal" style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
-
       <a href="blog-minecraft.html" class="related-card">
         <div class="related-img"><img src="https://www.minecraft.net/content/dam/minecraftnet/franchise/component-library/redeemheroa/Redeem-Hero_Mobile_576x324.png" alt="Minecraft" loading="lazy"></div>
         <div style="padding:20px;">
@@ -424,7 +403,6 @@
           <p class="related-desc">Panduan lengkap dari nol sampai server siap pakai.</p>
         </div>
       </a>
-
       <a href="blog-optimasi.html" class="related-card">
         <div class="related-img"><img src="https://i.pinimg.com/736x/62/3d/82/623d829e13c1bff04bad5943533baab2.jpg" alt="Optimasi" loading="lazy"></div>
         <div style="padding:20px;">
@@ -433,11 +411,9 @@
           <p class="related-desc">Tingkatkan performa tanpa harus upgrade mahal.</p>
         </div>
       </a>
-
     </div>
   </section>
 
-  <!-- CTA -->
   <section style="max-width:900px;margin:0 auto;padding:0 24px 80px;">
     <div class="reveal cta-box" style="text-align:center;padding:56px 40px;">
       <div style="position:relative;">
@@ -463,7 +439,6 @@
 
 </main>
 
-<!-- Footer -->
 <footer style="position:relative;z-index:2;border-top:1px solid var(--border);background:rgba(6,10,16,0.92);">
   <div style="max-width:1200px;margin:0 auto;padding:48px 24px 32px;">
     <div class="footer-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;">
@@ -498,87 +473,187 @@
 
 <script>
   /* === PARTICLES === */
-  const canvas=document.getElementById('particles'),ctx=canvas.getContext('2d');
-  let pArr=[];
-  function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  var canvas = document.getElementById('particles');
+  var ctx = canvas.getContext('2d');
+  var pArr = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
   resizeCanvas();
-  window.addEventListener('resize',resizeCanvas);
-  for(let i=0;i<40;i++){pArr.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,size:Math.random()*1.1+0.3,speedX:(Math.random()-0.5)*0.18,speedY:(Math.random()-0.5)*0.18,opacity:Math.random()*0.25+0.06});}
-  function animP(){ctx.clearRect(0,0,canvas.width,canvas.height);pArr.forEach(p=>{p.x+=p.speedX;p.y+=p.speedY;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,Math.max(0.1,p.size),0,Math.PI*2);ctx.fillStyle=`rgba(0,196,255,${p.opacity})`;ctx.fill();});requestAnimationFrame(animP);}
+  window.addEventListener('resize', resizeCanvas);
+
+  for (var i = 0; i < 40; i++) {
+    pArr.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 1.1 + 0.3,
+      speedX: (Math.random() - 0.5) * 0.18,
+      speedY: (Math.random() - 0.5) * 0.18,
+      opacity: Math.random() * 0.25 + 0.06
+    });
+  }
+
+  function animP() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (var i = 0; i < pArr.length; i++) {
+      var p = pArr[i];
+      p.x += p.speedX;
+      p.y += p.speedY;
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, Math.max(0.1, p.size), 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0,196,255,' + p.opacity + ')';
+      ctx.fill();
+    }
+    requestAnimationFrame(animP);
+  }
   animP();
 
   /* === MOUSE GLOW === */
-  const mg=document.getElementById('mouseGlow');
-  document.addEventListener('mousemove',e=>{mg.style.left=e.clientX+'px';mg.style.top=e.clientY+'px';});
+  var mg = document.getElementById('mouseGlow');
+  document.addEventListener('mousemove', function(e) {
+    mg.style.left = e.clientX + 'px';
+    mg.style.top = e.clientY + 'px';
+  });
 
-  /* === NAVBAR === */
-  const navbar=document.getElementById('navbar');
-  window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>50));
+  /* === NAVBAR SCROLL === */
+  var navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
 
   /* === MOBILE MENU === */
-  const menuBtn=document.getElementById('menuBtn'),mobileMenu=document.getElementById('mobileMenu'),mOpen=document.getElementById('menuIconOpen'),mClose=document.getElementById('menuIconClose');
-  menuBtn.addEventListener('click',()=>{const o=mobileMenu.classList.toggle('open');mOpen.style.display=o?'none':'inline';mClose.style.display=o?'inline':'none';});
+  var menuBtn = document.getElementById('menuBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var mOpen = document.getElementById('menuIconOpen');
+  var mClose = document.getElementById('menuIconClose');
+
+  menuBtn.addEventListener('click', function() {
+    var isOpen = mobileMenu.classList.toggle('open');
+    mOpen.style.display = isOpen ? 'none' : 'inline';
+    mClose.style.display = isOpen ? 'inline' : 'none';
+  });
 
   /* === READING PROGRESS === */
-  const readProgress=document.getElementById('readProgress');
-  window.addEventListener('scroll',()=>{
-    const h=document.documentElement.scrollHeight-window.innerHeight;
-    const s=window.scrollY;
-    const p=h>0?(s/h)*100:0;
-    readProgress.style.width=p+'%';
+  var readProgress = document.getElementById('readProgress');
+  window.addEventListener('scroll', function() {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    var s = window.scrollY;
+    var p = h > 0 ? (s / h) * 100 : 0;
+    readProgress.style.width = p + '%';
   });
 
   /* === TOC ACTIVE STATE === */
-  const sections=document.querySelectorAll('[id^="pendahuluan"],[id^="dedicated"],[id^="stabil"],[id^="root"],[id^="fleksibel"],[id^="skalabilitas"],[id^="perbandingan"],[id^="kesimpulan"]');
-  const tocLinks=document.querySelectorAll('.toc-link');
+  var sectionIds = ['pendahuluan', 'dedicated', 'stabil', 'root', 'fleksibel', 'skalabilitas', 'perbandingan', 'kesimpulan'];
+  var sectionEls = [];
+  for (var i = 0; i < sectionIds.length; i++) {
+    var el = document.getElementById(sectionIds[i]);
+    if (el) sectionEls.push(el);
+  }
+  var tocLinks = document.querySelectorAll('.toc-link');
 
-  const tocObs=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        const id=entry.target.id;
-        tocLinks.forEach(l=>{l.classList.toggle('active',l.dataset.section===id);});
+  var tocObs = new IntersectionObserver(function(entries) {
+    for (var i = 0; i < entries.length; i++) {
+      if (entries[i].isIntersecting) {
+        var id = entries[i].target.id;
+        for (var j = 0; j < tocLinks.length; j++) {
+          if (tocLinks[j].dataset.section === id) {
+            tocLinks[j].classList.add('active');
+          } else {
+            tocLinks[j].classList.remove('active');
+          }
+        }
       }
-    },{threshold:0.2,rootMargin:'-80px 0px -60% 0px'});
-  sections.forEach(s=>tocObs.observe(s));
+    }
+  }, { threshold: 0.2, rootMargin: '-80px 0px -60% 0px' });
+
+  for (var i = 0; i < sectionEls.length; i++) {
+    tocObs.observe(sectionEls[i]);
+  }
 
   /* === SMOOTH SCROLL FOR TOC === */
-  tocLinks.forEach(link=>{
-    link.addEventListener('click',e=>{
-      e.preventDefault();
-      const target=document.getElementById(link.dataset.section);
-      if(target){
-        const y=target.getBoundingClientRect().top+window.scrollY-120;
-        window.scrollTo({top:y,behavior:'smooth'});
-      }
-    });
-  });
+  for (var i = 0; i < tocLinks.length; i++) {
+    (function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.getElementById(link.dataset.section);
+        if (target) {
+          var y = target.getBoundingClientRect().top + window.scrollY - 120;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      });
+    })(tocLinks[i]);
+  }
 
   /* === DIAGRAM BAR ANIMATION === */
-  const meterObs=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.querySelectorAll('.diag-meter-fill').forEach(fill=>{
-          fill.style.width=fill.dataset.width+'%';
-        });
-        meterObs.unobserve(entry.target);
+  var diagrams = document.querySelectorAll('.diagram');
+  var meterObs = new IntersectionObserver(function(entries) {
+    for (var i = 0; i < entries.length; i++) {
+      if (entries[i].isIntersecting) {
+        var fills = entries[i].target.querySelectorAll('.diag-meter-fill');
+        for (var j = 0; j < fills.length; j++) {
+          fills[j].style.width = fills[j].dataset.width + '%';
+        }
+        meterObs.unobserve(entries[i].target);
       }
-    },{threshold:0.3});
-  document.querySelectorAll('.diagram').forEach(d=>meterObs.observe(d));
+    }
+  }, { threshold: 0.3 });
+
+  for (var i = 0; i < diagrams.length; i++) {
+    meterObs.observe(diagrams[i]);
+  }
 
   /* === SCROLL REVEAL === */
-  const rObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('vis');}),{threshold:0.08});
-  document.querySelectorAll('.reveal').forEach(el=>rObs.observe(el));
+  var reveals = document.querySelectorAll('.reveal');
+  var rObs = new IntersectionObserver(function(entries) {
+    for (var i = 0; i < entries.length; i++) {
+      if (entries[i].isIntersecting) {
+        entries[i].target.classList.add('vis');
+      }
+    }
+  }, { threshold: 0.08 });
+
+  for (var i = 0; i < reveals.length; i++) {
+    rObs.observe(reveals[i]);
+  }
 </script>
 
-<!-- Firebase Auth -->
 <script type="module">
-  import{initializeApp}from"https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-  import{getAuth,onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
-  const firebaseConfig={apiKey:"AIzaSyB2YKgC5EdKYFPaU-4uavFABtYEupvang4",authDomain:"loginpage-2e5aa.firebaseapp.com",projectId:"loginpage-2e5aa",appId:"1:676993662276:web:d8e12ca898fb4c0364eb11"};
-  const app=initializeApp(firebaseConfig),auth=getAuth(app);
-  onAuthStateChanged(auth,(user)=>{if(!user)window.location.href="login.html";});
-  function handleLogout(){signOut(auth).then(()=>{window.location.href="login.html";}).catch(()=>{});}
-  document.getElementById('logoutBtn').addEventListener('click',handleLogout);
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyB2YKgC5EdKYFPaU-4uavFABtYEupvang4",
+    authDomain: "loginpage-2e5aa.firebaseapp.com",
+    projectId: "loginpage-2e5aa",
+    appId: "1:676993662276:web:d8e12ca898fb4c0364eb11"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  onAuthStateChanged(auth, function(user) {
+    if (!user) {
+      window.location.href = "login.html";
+    }
+  });
+
+  function handleLogout() {
+    signOut(auth).then(function() {
+      window.location.href = "login.html";
+    }).catch(function() {});
+  }
+
+  document.getElementById('logoutBtn').addEventListener('click', handleLogout);
 </script>
 
 </body>

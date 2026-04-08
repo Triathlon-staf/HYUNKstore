@@ -3,97 +3,1269 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HYUNK STORE - HOME</title>
+  <title>HYUNK STORE - VPS Server</title>
   <link rel="icon" type="image/png" href="images/icon.png">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #060a10;
+      --bg-card: #0c1220;
+      --fg: #e8ecf2;
+      --muted: #5a6a80;
+      --accent: #00e89d;
+      --accent2: #00c4ff;
+      --border: #152035;
+      --glow: rgba(0, 232, 157, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      overflow-x: hidden;
+    }
+
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* === GRID BACKGROUND === */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0, 232, 157, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 232, 157, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* === FLOATING ORBS === */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      animation: orbFloat 12s ease-in-out infinite alternate;
+    }
+    .orb-1 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(0,232,157,0.12), transparent 70%);
+      top: -100px; left: -100px;
+    }
+    .orb-2 {
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(0,196,255,0.1), transparent 70%);
+      bottom: -80px; right: -80px;
+      animation-delay: -4s;
+    }
+    .orb-3 {
+      width: 250px; height: 250px;
+      background: radial-gradient(circle, rgba(0,232,157,0.08), transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation-delay: -8s;
+    }
+
+    @keyframes orbFloat {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -40px) scale(1.1); }
+      66% { transform: translate(-20px, 30px) scale(0.95); }
+      100% { transform: translate(15px, -15px) scale(1.05); }
+    }
+
+    /* === MOUSE GLOW === */
+    .mouse-glow {
+      position: fixed;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,232,157,0.06), transparent 60%);
+      pointer-events: none;
+      z-index: 1;
+      transform: translate(-50%, -50%);
+      transition: left 0.3s ease-out, top 0.3s ease-out;
+    }
+
+    /* === PARTICLES CANVAS === */
+    #particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* === SCANLINE === */
+    .scanline {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.03) 2px,
+        rgba(0,0,0,0.03) 4px
+      );
+    }
+
+    /* === NAVBAR === */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      background: rgba(6, 10, 16, 0.8);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    .navbar.scrolled {
+      box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    }
+    .nav-link {
+      position: relative;
+      color: var(--muted);
+      transition: color 0.3s;
+    }
+    .nav-link:hover { color: var(--accent); }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    /* === HERO === */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,232,157,0.25);
+      background: rgba(0,232,157,0.06);
+      font-size: 0.8rem;
+      color: var(--accent);
+      animation: fadeSlideUp 0.8s ease-out both;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      animation: fadeSlideUp 0.8s 0.15s ease-out both;
+    }
+    .hero-title .accent-text {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 500px;
+      line-height: 1.7;
+      animation: fadeSlideUp 0.8s 0.3s ease-out both;
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* === STATS BAR === */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      animation: fadeSlideUp 0.8s 0.45s ease-out both;
+    }
+    .stat-item {
+      background: var(--bg-card);
+      padding: 20px 16px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+    .stat-item:hover {
+      background: rgba(0,232,157,0.04);
+    }
+    .stat-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* === SERVER TERMINAL === */
+    .terminal {
+      background: #080c14;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      animation: fadeSlideUp 0.8s 0.5s ease-out both;
+    }
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+    }
+    .terminal-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .terminal-body {
+      padding: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      line-height: 1.8;
+      color: var(--muted);
+      min-height: 200px;
+    }
+    .terminal-body .prompt { color: var(--accent); }
+    .terminal-body .cmd { color: #e8ecf2; }
+    .terminal-body .output { color: #5a6a80; }
+    .terminal-body .success { color: #00e89d; }
+    .terminal-cursor {
+      display: inline-block;
+      width: 8px; height: 16px;
+      background: var(--accent);
+      animation: blink-cursor 1s step-end infinite;
+      vertical-align: text-bottom;
+      margin-left: 2px;
+    }
+    @keyframes blink-cursor {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* === SECTION HEADERS === */
+    .section-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-tag::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--accent);
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-top: 12px;
+    }
+
+    /* === VPS CARDS === */
+    .vps-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+    .vps-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 1px;
+      background: linear-gradient(135deg, transparent 40%, rgba(0,232,157,0.15) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .vps-card:hover::before { opacity: 1; }
+    .vps-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px var(--glow);
+    }
+
+    .vps-card.featured {
+      border-color: rgba(0,232,157,0.3);
+      background: linear-gradient(170deg, rgba(0,232,157,0.05), var(--bg-card) 40%);
+    }
+    .vps-card.featured::before {
+      background: linear-gradient(135deg, rgba(0,232,157,0.3), rgba(0,196,255,0.15));
+      opacity: 1;
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: -1px; right: 24px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #060a10;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 0 0 8px 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .vps-tier {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .vps-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+    .vps-location {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 8px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .vps-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 24px;
+      padding: 16px;
+      background: rgba(0,0,0,0.25);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .spec-item .spec-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--fg);
+    }
+    .spec-item .spec-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .vps-price {
+      margin-top: 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+    .vps-price .currency {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .vps-price .amount {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .vps-price .period {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .vps-features {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .vps-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: #8a96a8;
+    }
+    .vps-features li i {
+      color: var(--accent);
+      font-size: 0.7rem;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,232,157,0.1);
+      border-radius: 50%;
+    }
+
+    .btn-buy {
+      width: 100%;
+      margin-top: 24px;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-buy.default {
+      background: rgba(0,232,157,0.1);
+      color: var(--accent);
+      border: 1px solid rgba(0,232,157,0.2);
+    }
+    .btn-buy.default:hover {
+      background: rgba(0,232,157,0.18);
+      box-shadow: 0 0 25px rgba(0,232,157,0.15);
+    }
+    .btn-buy.primary {
+      background: linear-gradient(135deg, var(--accent), #00c4a0);
+      color: #060a10;
+    }
+    .btn-buy.primary:hover {
+      box-shadow: 0 0 30px rgba(0,232,157,0.3);
+      transform: translateY(-2px);
+    }
+    .btn-buy:active { transform: scale(0.97); }
+
+    /* === FEATURES SECTION === */
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: all 0.3s;
+    }
+    .feature-card:hover {
+      border-color: rgba(0,232,157,0.15);
+      background: rgba(0,232,157,0.02);
+      transform: translateY(-4px);
+    }
+    .feature-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+    }
+
+    /* === FAQ === */
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .faq-item:hover { border-color: rgba(0,232,157,0.2); }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 20px;
+      cursor: pointer;
+      font-weight: 500;
+      background: var(--bg-card);
+      transition: background 0.3s;
+      user-select: none;
+    }
+    .faq-question:hover { background: rgba(0,232,157,0.03); }
+    .faq-question i {
+      transition: transform 0.3s;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    .faq-item.open .faq-question i { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s;
+      padding: 0 20px;
+      background: var(--bg-card);
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+      padding: 0 20px 18px;
+    }
+
+    /* === TOAST === */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--bg-card);
+      border: 1px solid rgba(0,232,157,0.3);
+      color: var(--fg);
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      z-index: 9999;
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* === SCROLL REVEAL === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* === FOOTER === */
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+      .hero-grid { grid-template-columns: 1fr !important; }
+      .terminal { display: none; }
+    }
+
+    /* === SCROLLBAR === */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
-<body class="bg-[#0b1220] text-white">
+<body>
 
-<!-- Navbar -->
-<nav class="p-5 bg-[#0f172a] border-b border-slate-800">
-  <div class="max-w-7xl mx-auto flex justify-between">
-    <h1 class="font-bold">HyunkkCloud</h1>
-    <a href="store.html" class="text-gray-400 hover:text-blue-400">← Kembali</a>
-  </div>
-</nav>
+  <!-- Lapisan latar -->
+  <div class="grid-bg"></div>
+  <canvas id="particles"></canvas>
+  <div class="scanline"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="mouse-glow" id="mouseGlow"></div>
 
-<!-- Header -->
-<section class="text-center py-16">
-  <h2 class="text-4xl font-bold">VPS Server</h2>
-  <p class="text-gray-400 mt-2">Performa tinggi untuk kebutuhan serius</p>
-</section>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div style="max-width:1200px; margin:0 auto; padding:16px 24px; display:flex; justify-content:space-between; align-items:center;">
+      <a href="#" style="text-decoration:none; display:flex; align-items:center; gap:10px;">
+        <div style="width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg, var(--accent), var(--accent2)); display:flex; align-items:center; justify-content:center; font-weight:800; color:#060a10; font-size:0.85rem;">H</div>
+        <span style="font-weight:700; font-size:1.05rem; color:var(--fg);">HyunkkCloud</span>
+      </a>
+      <div style="display:flex; align-items:center; gap:28px;">
+        <a href="#vps" class="nav-link" style="text-decoration:none; font-size:0.9rem;">VPS</a>
+        <a href="#fitur" class="nav-link" style="text-decoration:none; font-size:0.9rem;">Fitur</a>
+        <a href="#faq" class="nav-link" style="text-decoration:none; font-size:0.9rem;">FAQ</a>
+        <a href="store.html" class="nav-link" style="text-decoration:none; font-size:0.9rem;"><i class="fas fa-arrow-left" style="margin-right:6px;"></i>Store</a>
+      </div>
+    </div>
+  </nav>
 
-<!-- VPS LIST -->
-<section class="max-w-7xl mx-auto px-6 pb-20 grid md:grid-cols-3 gap-6">
+  <main style="position:relative; z-index:2;">
 
-  <!-- VPS 2GB -->
-  <div class="bg-[#0f172a] p-6 rounded-xl border border-slate-800 hover:scale-105 transition">
-    <h3 class="text-xl font-bold">VPS 2GB</h3>
-    <p class="text-gray-400 mt-2">1 Core • SSD • Singapore</p>
-    <p class="text-green-400 mt-4 text-2xl">Rp55.000</p>
+    <!-- HERO -->
+    <section style="min-height:100vh; display:flex; align-items:center; padding:120px 24px 80px;">
+      <div style="max-width:1200px; margin:0 auto; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;" class="hero-grid">
+        <div>
+          <div class="hero-badge">
+            <span class="dot"></span>
+            Server Online 99.9% Uptime
+          </div>
+          <h1 class="hero-title" style="margin-top:24px;">
+            Power Your<br>Project with<br><span class="accent-text">VPS Server</span>
+          </h1>
+          <p class="hero-desc" style="margin-top:20px;">
+            Infrastruktur cloud performa tinggi dengan lokasi Singapore. Deploy dalam hitungan detik, kelola dengan mudah.
+          </p>
+          <div style="display:flex; gap:14px; margin-top:32px; animation: fadeSlideUp 0.8s 0.45s ease-out both; flex-wrap:wrap;">
+            <a href="#vps" style="text-decoration:none; padding:14px 28px; border-radius:12px; background:linear-gradient(135deg, var(--accent), #00c4a0); color:#060a10; font-weight:600; font-size:0.95rem; transition:all 0.3s; display:inline-flex; align-items:center; gap:8px;"
+               onmouseover="this.style.boxShadow='0 0 30px rgba(0,232,157,0.3)'; this.style.transform='translateY(-2px)'"
+               onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'">
+              Lihat Paket <i class="fas fa-arrow-down" style="font-size:0.8rem;"></i>
+            </a>
+            <button onclick="beli('Konsultasi VPS')" style="padding:14px 28px; border-radius:12px; background:transparent; border:1px solid var(--border); color:var(--fg); font-weight:500; font-size:0.95rem; cursor:pointer; transition:all 0.3s; font-family:inherit; display:inline-flex; align-items:center; gap:8px;"
+               onmouseover="this.style.borderColor='rgba(0,232,157,0.3)'; this.style.background='rgba(0,232,157,0.04)'"
+               onmouseout="this.style.borderColor='var(--border)'; this.style.background='transparent'">
+              <i class="fab fa-whatsapp" style="color:var(--accent);"></i> Hubungi Kami
+            </button>
+          </div>
+        </div>
 
-    <ul class="text-sm text-gray-400 mt-4 space-y-1">
-      <li>✔ 40GB SSD</li>
-      <li>✔ 0.5 TB Bandwidth</li>
-      <li>✔ Full Root Access</li>
-    </ul>
+        <!-- Terminal -->
+        <div class="terminal">
+          <div class="terminal-header">
+            <div class="terminal-dot" style="background:#ff5f57;"></div>
+            <div class="terminal-dot" style="background:#ffbd2e;"></div>
+            <div class="terminal-dot" style="background:#28c840;"></div>
+            <span style="margin-left:10px; font-size:0.75rem; color:var(--muted); font-family:'JetBrains Mono',monospace;">ssh root@sg1.hyunkcloud.com</span>
+          </div>
+          <div class="terminal-body" id="terminalBody">
+            <!-- Diisi oleh JS -->
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <button onclick="beli('VPS 2GB - 55k')" 
-      class="mt-6 w-full bg-blue-500 py-2 rounded-lg font-semibold hover:bg-blue-600">
-      Beli Sekarang
-    </button>
-  </div>
+    <!-- STATS -->
+    <section style="max-width:1200px; margin:0 auto; padding:0 24px 80px;">
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-number" data-target="250">0</div>
+          <div class="stat-label">Active Server</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="99" data-suffix=".9%">0</div>
+          <div class="stat-label">Uptime</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="12">0</div>
+          <div class="stat-label">Data Center</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="24" data-suffix="/7">0</div>
+          <div class="stat-label">Support</div>
+        </div>
+      </div>
+    </section>
 
-  <!-- VPS 4GB -->
-  <div class="bg-[#0f172a] p-6 rounded-xl border border-blue-500 scale-105">
-    <h3 class="text-xl font-bold">VPS 4GB</h3>
-    <p class="text-gray-400 mt-2">2 Core • SSD • Singapore</p>
-    <p class="text-green-400 mt-4 text-2xl">Rp95.000</p>
+    <!-- VPS PACKAGES -->
+    <section id="vps" style="max-width:1200px; margin:0 auto; padding:0 24px 100px;">
+      <div class="reveal" style="text-align:center; margin-bottom:56px;">
+        <div class="section-tag" style="justify-content:center;">Paket Server</div>
+        <h2 class="section-title">Pilih yang Sesuai Kebutuhanmu</h2>
+        <p style="color:var(--muted); margin-top:12px; max-width:500px; margin-left:auto; margin-right:auto; line-height:1.7;">
+          Semua paket sudah termasuk full root access, SSD NVMe, dan dedicated IP address.
+        </p>
+      </div>
 
-    <ul class="text-sm text-gray-400 mt-4 space-y-1">
-      <li>✔ 80GB SSD</li>
-      <li>✔ 1 TB Bandwidth</li>
-      <li>✔ Full Root Access</li>
-    </ul>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;" class="reveal" id="vpsGrid">
 
-    <button onclick="beli('VPS 4GB - 95k')" 
-      class="mt-6 w-full bg-blue-500 py-2 rounded-lg font-semibold hover:bg-blue-600">
-      Beli Sekarang
-    </button>
-  </div>
+        <!-- VPS 2GB -->
+        <div class="vps-card">
+          <div class="vps-tier">Starter</div>
+          <div class="vps-name">VPS 2GB</div>
+          <div class="vps-location">
+            <i class="fas fa-map-marker-alt" style="font-size:0.65rem; color:var(--accent);"></i>
+            Singapore, SG
+          </div>
 
-  <!-- VPS 8GB -->
-  <div class="bg-[#0f172a] p-6 rounded-xl border border-slate-800 hover:scale-105 transition">
-    <h3 class="text-xl font-bold">VPS 8GB</h3>
-    <p class="text-gray-400 mt-2">4 Core • SSD • Singapore</p>
-    <p class="text-green-400 mt-4 text-2xl">Rp160.000</p>
+          <div class="vps-specs">
+            <div class="spec-item">
+              <div class="spec-val">1 vCPU</div>
+              <div class="spec-label">Processor</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-val">2 GB</div>
+              <div class="spec-label">RAM</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-val">40 GB</div>
+              <div class="spec-label">SSD NVMe</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-val">0.5 TB</div>
+              <div class="spec-label">Bandwidth</div>
+            </div>
+          </div>
 
-    <ul class="text-sm text-gray-400 mt-4 space-y-1">
-      <li>✔ 160GB SSD</li>
-      <li>✔ 2 TB Bandwidth</li>
-      <li>✔ Full Root Access</li>
-    </ul>
+          <div class="vps-price">
+            <span class="currency">Rp</span>
+            <span class="amount">55.000</span>
+            <span class="period">/bln</span>
+          </div>
 
-    <button onclick="beli('VPS 8GB - 160k')" 
-      class="mt-6 w-full bg-blue-500 py-2 rounded-lg font-semibold hover:bg-blue-600">
-      Beli Sekarang
-    </button>
-  </div>
+          <ul class="vps-features">
+            <li><i class="fas fa-check"></i> Full Root Access</li>
+            <li><i class="fas fa-check"></i> 1 Dedicated IP</li>
+            <li><i class="fas fa-check"></i> DDoS Protection</li>
+          </ul>
 
-</section>
+          <button class="btn-buy default" onclick="beli('VPS 2GB - 55k')">
+            <i class="fab fa-whatsapp" style="margin-right:6px;"></i> Beli Sekarang
+          </button>
+        </div>
 
-<!-- Footer -->
-<footer class="text-center p-6 text-gray-500 border-t border-slate-800">
-  © 2026 HyunkkCloud
-</footer>
+        <!-- VPS 4GB (Featured) -->
+        <div class="vps-card featured">
+          <div class="featured-badge">Populer</div>
+          <div class="vps-tier">Professional</div>
+          <div class="vps-name">VPS 4GB</div>
+          <div class="vps-location">
+            <i class="fas fa-map-marker-alt" style="font-size:0.65rem; color:var(--accent);"></i>
+            Singapore, SG
+          </div>
 
-<script>
-function beli(produk) {
-  let nomor = "6282189822272";
-  let pesan = `Halo, saya mau beli ${produk}`;
-  window.open(`https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`);
-}
-</script>
+          <div class="vps-specs">
+            <div class="spec-item">
+              <div class="spec-val">2 vCPU</div>
+              <div class="spec-label">Processor</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-val">4 GB</div>
+              <div class="spec-label">RAM</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-val">80 GB</div>
+              <div class="spec-label">SSD NVMe</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-val">1 TB</div>
+              <div class="spec-label">Bandwidth</div>
+            </div>
+          </div>
 
+          <div class="vps-price">
+            <span class="currency">Rp</span>
+            <span class="amount">95.000</span>
+            <span class="period">/bln</span>
+          </div>
+
+          <ul class="vps-features">
+            <li><i class="fas fa-check"></i> Full Root Access</li>
+            <li><i class="fas fa-check"></i> 1 Dedicated IP</li>
+            <li><i class="fas fa-check"></i> DDoS Protection</li>
+            <li><i class="fas fa-check"></i> Auto Backup Mingguan</li>
+          </ul>
+
+          <button class="btn-buy primary" onclick="beli('VPS 4GB - 95k')">
+            <i class="fab fa-whatsapp" style="margin-right:6px;"></i> Beli Sekarang
+          </button>
+        </div>
+
+        <!-- VPS 8GB -->
+        <div class="vps-card">
+          <div class="vps-tier">Enterprise</div>
+          <div class="vps-name">VPS 8GB</div>
+          <div class="vps-location">
+            <i class="fas fa-map-marker-alt" style="font-size:0.65rem; color:var(--accent);"></i>
+            Singapore, SG
+          </div>
+
+          <div class="vps-specs">
+            <div class="spec-item">
+              <div class="spec-val">4 vCPU</div>
+              <div class="spec-label">Processor</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-val">8 GB</div>
+              <div class="spec-label">RAM</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-val">160 GB</div>
+              <div class="spec-label">SSD NVMe</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-val">2 TB</div>
+              <div class="spec-label">Bandwidth</div>
+            </div>
+          </div>
+
+          <div class="vps-price">
+            <span class="currency">Rp</span>
+            <span class="amount">160.000</span>
+            <span class="period">/bln</span>
+          </div>
+
+          <ul class="vps-features">
+            <li><i class="fas fa-check"></i> Full Root Access</li>
+            <li><i class="fas fa-check"></i> 1 Dedicated IP</li>
+            <li><i class="fas fa-check"></i> DDoS Protection</li>
+            <li><i class="fas fa-check"></i> Auto Backup Harian</li>
+            <li><i class="fas fa-check"></i> Priority Support</li>
+          </ul>
+
+          <button class="btn-buy default" onclick="beli('VPS 8GB - 160k')">
+            <i class="fab fa-whatsapp" style="margin-right:6px;"></i> Beli Sekarang
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="fitur" style="max-width:1200px; margin:0 auto; padding:0 24px 100px;">
+      <div class="reveal" style="margin-bottom:56px;">
+        <div class="section-tag">Kenapa Kami</div>
+        <h2 class="section-title">Infrastruktur yang Bisa Diandalkan</h2>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;" class="reveal">
+        <div class="feature-card">
+          <div class="feature-icon" style="background:rgba(0,232,157,0.1); color:var(--accent);">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3 style="font-weight:600; font-size:1.05rem; margin-bottom:8px;">SSD NVMe Storage</h3>
+          <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Baca/tulis hingga 3500 MB/s. Bukan SSD biasa, tapi NVMe generasi terbaru untuk I/O maksimal.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background:rgba(0,196,255,0.1); color:var(--accent2);">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 style="font-weight:600; font-size:1.05rem; margin-bottom:8px;">DDoS Protection</h3>
+          <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Lindungi server dari serangan hingga 1Tbps. Filtering real-time tanpa mengganggu performa.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background:rgba(255,189,46,0.1); color:#ffbd2e;">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h3 style="font-weight:600; font-size:1.05rem; margin-bottom:8px;">Instant Deployment</h3>
+          <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Server siap dalam 60 detik setelah pembayaran. Tidak perlu menunggu provisioning manual.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background:rgba(232,76,61,0.1); color:#e84c3d;">
+            <i class="fas fa-server"></i>
+          </div>
+          <h3 style="font-weight:600; font-size:1.05rem; margin-bottom:8px;">Dedicated Resource</h3>
+          <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">CPU dan RAM tidak dibagi dengan user lain. Performa konsisten 24 jam tanpa gangguan.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background:rgba(155,89,182,0.1); color:#9b59b6;">
+            <i class="fas fa-expand-arrows-alt"></i>
+          </div>
+          <h3 style="font-weight:600; font-size:1.05rem; margin-bottom:8px;">Scalable</h3>
+          <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Upgrade resource kapan saja tanpa downtime. Cukup hubungi support, langsung kita naikkan.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background:rgba(0,232,157,0.1); color:var(--accent);">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3 style="font-weight:600; font-size:1.05rem; margin-bottom:8px;">Support 24/7</h3>
+          <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Tim support siap membantu kapan saja via WhatsApp. Respons rata-rata kurang dari 5 menit.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" style="max-width:720px; margin:0 auto; padding:0 24px 100px;">
+      <div class="reveal" style="text-align:center; margin-bottom:48px;">
+        <div class="section-tag" style="justify-content:center;">FAQ</div>
+        <h2 class="section-title">Pertanyaan Umum</h2>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px;" class="reveal">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Apa bedanya VPS dengan shared hosting?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            VPS memberikan resource yang dedicated (tidak dibagi pengguna lain), full root access untuk konfigurasi bebas, dan performa yang jauh lebih stabil dibanding shared hosting.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Berapa lama proses aktifasi server?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            Setelah pembayaran dikonfirmasi, server akan aktif otomatis dalam waktu kurang dari 60 detik. Detail login akan dikirim via WhatsApp.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Bisa pakai untuk apa saja?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            Bisa untuk hosting website, bot Discord/Telegram, game server, VPN, development environment, dan lainnya. Selama tidak melanggar hukum, bebas digunakan.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Bagaimana cara pembayarannya?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            Pembayaran melalui transfer bank atau e-wallet. Kami akan memberikan instruksi lengkap setelah kamu menghubungi via WhatsApp.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Apakah bisa upgrade paket?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            Tentu bisa. Hubungi support kami dan proses upgrade akan dilakukan tanpa downtime. Selisih biaya akan dihitung prorata.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="max-width:1200px; margin:0 auto; padding:0 24px 100px;">
+      <div class="reveal" style="text-align:center; padding:64px 40px; border-radius:24px; border:1px solid var(--border); background:linear-gradient(170deg, rgba(0,232,157,0.04), var(--bg-card) 50%); position:relative; overflow:hidden;">
+        <div style="position:absolute; top:-80px; right:-80px; width:200px; height:200px; background:radial-gradient(circle, rgba(0,232,157,0.08), transparent 70%); border-radius:50%; pointer-events:none;"></div>
+        <h2 style="font-size:2rem; font-weight:700; margin-bottom:12px;">Masih Ragu?</h2>
+        <p style="color:var(--muted); max-width:420px; margin:0 auto 28px; line-height:1.7;">
+          Hubungi kami sekarang dan tim kami akan membantu memilihkan paket yang paling sesuai dengan kebutuhanmu.
+        </p>
+        <button onclick="beli('Konsultasi VPS')" style="padding:16px 36px; border:none; border-radius:14px; background:linear-gradient(135deg, var(--accent), #00c4a0); color:#060a10; font-weight:700; font-size:1rem; cursor:pointer; font-family:inherit; transition:all 0.3s; display:inline-flex; align-items:center; gap:10px;"
+           onmouseover="this.style.boxShadow='0 0 40px rgba(0,232,157,0.3)'; this.style.transform='translateY(-3px)'"
+           onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'">
+          <i class="fab fa-whatsapp" style="font-size:1.1rem;"></i> Chat via WhatsApp
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer style="position:relative; z-index:2; border-top:1px solid var(--border); background:rgba(6,10,16,0.9);">
+    <div style="max-width:1200px; margin:0 auto; padding:48px 24px 32px;">
+      <div class="footer-grid">
+        <div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
+            <div style="width:32px; height:32px; border-radius:8px; background:linear-gradient(135deg, var(--accent), var(--accent2)); display:flex; align-items:center; justify-content:center; font-weight:800; color:#060a10; font-size:0.75rem;">H</div>
+            <span style="font-weight:700;">HyunkkCloud</span>
+          </div>
+          <p style="font-size:0.85rem; color:var(--muted); line-height:1.7; max-width:320px;">
+            Layanan VPS dan cloud hosting dengan performa tinggi, harga terjangkau, dan support responsif.
+          </p>
+        </div>
+        <div>
+          <h4 style="font-weight:600; margin-bottom:16px; font-size:0.9rem;">Navigasi</h4>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <a href="#vps" style="text-decoration:none; font-size:0.85rem; color:var(--muted); transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">VPS Server</a>
+            <a href="#fitur" style="text-decoration:none; font-size:0.85rem; color:var(--muted); transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Fitur</a>
+            <a href="#faq" style="text-decoration:none; font-size:0.85rem; color:var(--muted); transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">FAQ</a>
+            <a href="store.html" style="text-decoration:none; font-size:0.85rem; color:var(--muted); transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Store</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-weight:600; margin-bottom:16px; font-size:0.9rem;">Kontak</h4>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <a href="#" onclick="beli('Konsultasi'); return false;" style="text-decoration:none; font-size:0.85rem; color:var(--muted); transition:color 0.3s; display:flex; align-items:center; gap:8px;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <span style="font-size:0.85rem; color:var(--muted); display:flex; align-items:center; gap:8px;">
+              <i class="fas fa-envelope"></i> support@hyunkcloud.com
+            </span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:40px; padding-top:24px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+        <span style="font-size:0.8rem; color:var(--muted);">&copy; 2026 HyunkkCloud. All rights reserved.</span>
+        <span class="font-mono" style="font-size:0.7rem; color:rgba(90,106,128,0.6);">v2.0.0</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    /* === PARTIKEL LATAR === */
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Buat partikel
+    for (let i = 0; i < 60; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 1.5 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.3,
+        speedY: (Math.random() - 0.5) * 0.3,
+        opacity: Math.random() * 0.5 + 0.1
+      });
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, Math.max(0.1, p.size), 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 232, 157, ${p.opacity})`;
+        ctx.fill();
+      });
+
+      // Garis penghubung antar partikel yang dekat
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(0, 232, 157, ${0.04 * (1 - dist / 120)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    /* === MOUSE GLOW === */
+    const mouseGlow = document.getElementById('mouseGlow');
+    document.addEventListener('mousemove', (e) => {
+      mouseGlow.style.left = e.clientX + 'px';
+      mouseGlow.style.top = e.clientY + 'px';
+    });
+
+    /* === NAVBAR SCROLL === */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    /* === SMOOTH SCROLL === */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    /* === SCROLL REVEAL === */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    /* === COUNTER ANIMATION === */
+    let counterDone = false;
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !counterDone) {
+          counterDone = true;
+          document.querySelectorAll('.stat-number').forEach(el => {
+            const target = parseInt(el.dataset.target);
+            const suffix = el.dataset.suffix || '';
+            let current = 0;
+            const step = Math.ceil(target / 40);
+            const timer = setInterval(() => {
+              current += step;
+              if (current >= target) {
+                current = target;
+                clearInterval(timer);
+              }
+              el.textContent = current + suffix;
+            }, 30);
+          });
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const statsBar = document.querySelector('.stats-bar');
+    if (statsBar) counterObserver.observe(statsBar);
+
+    /* === TERMINAL ANIMATION === */
+    const terminalLines = [
+      { type: 'prompt', text: '~$ ' },
+      { type: 'cmd', text: 'ssh root@sg1.hyunkcloud.com' },
+      { type: 'output', text: '' },
+      { type: 'output', text: 'Connecting to sg1.hyunkcloud.com...' },
+      { type: 'success', text: 'Authenticated successfully.' },
+      { type: 'output', text: '' },
+      { type: 'prompt', text: 'root@sg1:~$ ' },
+      { type: 'cmd', text: 'neofetch' },
+      { type: 'output', text: '' },
+      { type: 'output', text: '  OS: Ubuntu 22.04 LTS' },
+      { type: 'output', text: '  CPU: AMD EPYC 7763 (2 cores)' },
+      { type: 'output', text: '  RAM: 4096MB / 4096MB' },
+      { type: 'output', text: '  Disk: 80GB / 80GB (SSD NVMe)' },
+      { type: 'output', text: '  Network: 1Gbps | SG-Singapore' },
+      { type: 'output', text: '  Uptime: 47d 12h 33m' },
+      { type: 'output', text: '' },
+      { type: 'prompt', text: 'root@sg1:~$ ' },
+    ];
+
+    const terminalBody = document.getElementById('terminalBody');
+    let lineIndex = 0;
+
+    function typeTerminal() {
+      if (lineIndex >= terminalLines.length) return;
+      const line = terminalLines[lineIndex];
+      const lineEl = document.createElement('div');
+      lineEl.style.minHeight = '1.5em';
+
+      if (line.type === 'prompt') {
+        lineEl.innerHTML = `<span class="prompt">${line.text}</span>`;
+        terminalBody.appendChild(lineEl);
+        lineIndex++;
+        // Ketik per karakter untuk command
+        if (lineIndex < terminalLines.length && terminalLines[lineIndex].type === 'cmd') {
+          typeCommand(lineEl, terminalLines[lineIndex].text);
+        } else {
+          setTimeout(typeTerminal, 200);
+        }
+      } else {
+        lineEl.className = line.type;
+        lineEl.textContent = line.text;
+        terminalBody.appendChild(lineEl);
+        lineIndex++;
+        setTimeout(typeTerminal, line.type === 'output' && line.text === '' ? 100 : 180);
+      }
+
+      // Auto scroll
+      terminalBody.scrollTop = terminalBody.scrollHeight;
+    }
+
+    function typeCommand(container, text) {
+      let i = 0;
+      const cursor = document.createElement('span');
+      cursor.className = 'terminal-cursor';
+      container.appendChild(cursor);
+
+      function typeChar() {
+        if (i < text.length) {
+          // Hapus cursor, tambah huruf, tambah cursor lagi
+          container.removeChild(cursor);
+          container.innerHTML = `<span class="prompt">${terminalLines[lineIndex - 1].text}</span><span class="cmd">${text.substring(0, i + 1)}</span>`;
+          container.appendChild(cursor);
+          i++;
+          setTimeout(typeChar, 35 + Math.random() * 40);
+        } else {
+          container.removeChild(cursor);
+          lineIndex++;
+          setTimeout(typeTerminal, 300);
+        }
+      }
+      typeChar();
+    }
+
+    // Mulai terminal setelah 1 detik
+    setTimeout(typeTerminal, 1000);
+
+    /* === FAQ TOGGLE === */
+    function toggleFaq(el) {
+      const item = el.parentElement;
+      const wasOpen = item.classList.contains('open');
+      // Tutup semua
+      document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
+      // Buka yang diklik jika sebelumnya tertutup
+      if (!wasOpen) item.classList.add('open');
+    }
+
+    /* === BELI (WhatsApp) === */
+    function beli(produk) {
+      const nomor = '6282189822272';
+      const pesan = `Halo, saya mau beli ${produk}`;
+      showToast('Mengarahkan ke WhatsApp...');
+      setTimeout(() => {
+        window.open(`https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`, '_blank');
+      }, 600);
+    }
+
+    /* === TOAST === */
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.innerHTML = `<i class="fas fa-circle-notch fa-spin" style="margin-right:8px; color:var(--accent);"></i>${msg}`;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    /* === RESPONSIVE VPS GRID === */
+    function handleResize() {
+      const grid = document.getElementById('vpsGrid');
+      if (window.innerWidth < 768) {
+        grid.style.gridTemplateColumns = '1fr';
+      } else if (window.innerWidth < 1024) {
+        grid.style.gridTemplateColumns = '1fr 1fr';
+      } else {
+        grid.style.gridTemplateColumns = 'repeat(3, 1fr)';
+      }
+      // Features grid
+      document.querySelectorAll('.reveal').forEach(section => {
+        const featureGrids = section.querySelectorAll('[style*="grid-template-columns:repeat(3"]');
+        featureGrids.forEach(g => {
+          if (window.innerWidth < 768) g.style.gridTemplateColumns = '1fr';
+          else g.style.gridTemplateColumns = 'repeat(3, 1fr)';
+        });
+      });
+    }
+    handleResize();
+    window.addEventListener('resize', handleResize);
+  </script>
 </body>
 </html>

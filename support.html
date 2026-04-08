@@ -3,69 +3,429 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HYUNK STORE - HOME</title>
+  <title>HYUNK STORE - SUPPORT</title>
   <link rel="icon" type="image/png" href="images/icon.png">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body class="bg-[#0b1220] text-white">
+<body class="bg-[#0b1220] text-white min-h-screen">
 
 <!-- Navbar -->
 <nav class="fixed w-full z-50 bg-[#0f172a]/80 backdrop-blur border-b border-slate-800">
   <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-    <h1 class="font-bold text-lg">HyunkkCloud</h1>
-    <div class="hidden md:flex gap-6 text-sm text-gray-300">
-      <a href="index.html" class="hover:text-blue-400">Home</a>
-      <a href="store.html" class="hover:text-blue-400">Store</a>
-      <a href="support.html" class="text-blue-400">Support</a>
-      <a href="contact.html" class="hover:text-blue-400">Contact</a>
+    <a href="index.html" class="font-bold text-lg">HyunkkCloud</a>
+    <div class="flex items-center gap-4">
+      <div class="hidden md:flex gap-6 text-sm text-gray-300">
+        <a href="index.html" class="hover:text-blue-400">Home</a>
+        <a href="store.html" class="hover:text-blue-400">Store</a>
+        <a href="support.html" class="text-blue-400">Support</a>
+        <a href="contact.html" class="hover:text-blue-400">Contact</a>
+      </div>
+      <button id="menuBtn" class="md:hidden text-gray-300">
+        <svg id="menuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
     </div>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden px-6 pb-4 space-y-3 text-sm text-gray-300">
+    <a href="index.html" class="block hover:text-blue-400">Home</a>
+    <a href="store.html" class="block hover:text-blue-400">Store</a>
+    <a href="support.html" class="block text-blue-400">Support</a>
+    <a href="contact.html" class="block hover:text-blue-400">Contact</a>
   </div>
 </nav>
 
 <!-- Header -->
-<section class="pt-32 pb-16 text-center">
-  <h2 class="text-4xl font-bold">Support Center</h2>
-  <p class="text-gray-400 mt-2">Bantuan & pertanyaan seputar layanan kami</p>
+<section class="pt-28 pb-6 text-center relative overflow-hidden">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="relative">
+    <div class="w-16 h-16 rounded-2xl bg-cyan-500/10 flex items-center justify-center mx-auto mb-5">
+      <i class="fas fa-life-ring text-cyan-400 text-3xl"></i>
+    </div>
+    <p class="text-cyan-400 text-sm font-medium tracking-widest uppercase mb-3">Help Center</p>
+    <h2 class="text-4xl md:text-5xl font-bold">Support Center</h2>
+    <p class="text-gray-400 mt-3 max-w-md mx-auto">Bantuan & pertanyaan seputar layanan kami</p>
+  </div>
 </section>
 
-<!-- FAQ -->
-<section class="max-w-4xl mx-auto px-6 pb-20 space-y-4">
+<!-- Search Bar -->
+<section class="max-w-2xl mx-auto px-6 pb-12">
+  <div class="relative">
+    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+    <input id="searchInput" type="text" placeholder="Cari pertanyaan..." 
+      class="w-full bg-[#0f172a] border border-slate-800 rounded-xl pl-12 pr-4 py-4 text-sm focus:outline-none focus:border-cyan-500/50 transition placeholder-gray-600">
+  </div>
+</section>
 
-  <div class="bg-[#0f172a] p-5 rounded-xl border border-slate-800">
-    <h3 class="font-bold">Cara order gimana?</h3>
-    <p class="text-gray-400 mt-2">Klik tombol deploy atau hubungi WhatsApp kami untuk pemesanan.</p>
+<!-- Quick Categories -->
+<section class="max-w-5xl mx-auto px-6 pb-16">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+    <button onclick="filterFaq('order')" class="faq-filter active group bg-[#0f172a] border border-slate-800 rounded-xl p-5 text-center hover:border-cyan-500/40 transition-all" data-category="order">
+      <div class="w-11 h-11 rounded-lg bg-cyan-500/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-cyan-500/20 transition">
+        <i class="fas fa-cart-shopping text-cyan-400"></i>
+      </div>
+      <p class="text-sm font-medium">Pemesanan</p>
+      <p class="text-xs text-gray-500 mt-1">3 FAQ</p>
+    </button>
+
+    <button onclick="filterFaq('payment')" class="faq-filter group bg-[#0f172a] border border-slate-800 rounded-xl p-5 text-center hover:border-green-500/40 transition-all" data-category="payment">
+      <div class="w-11 h-11 rounded-lg bg-green-500/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-green-500/20 transition">
+        <i class="fas fa-wallet text-green-400"></i>
+      </div>
+      <p class="text-sm font-medium">Pembayaran</p>
+      <p class="text-xs text-gray-500 mt-1">2 FAQ</p>
+    </button>
+
+    <button onclick="filterFaq('server')" class="faq-filter group bg-[#0f172a] border border-slate-800 rounded-xl p-5 text-center hover:border-blue-500/40 transition-all" data-category="server">
+      <div class="w-11 h-11 rounded-lg bg-blue-500/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-blue-500/20 transition">
+        <i class="fas fa-server text-blue-400"></i>
+      </div>
+      <p class="text-sm font-medium">Server</p>
+      <p class="text-xs text-gray-500 mt-1">3 FAQ</p>
+    </button>
+
+    <button onclick="filterFaq('other')" class="faq-filter group bg-[#0f172a] border border-slate-800 rounded-xl p-5 text-center hover:border-purple-500/40 transition-all" data-category="other">
+      <div class="w-11 h-11 rounded-lg bg-purple-500/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-purple-500/20 transition">
+        <i class="fas fa-ellipsis text-purple-400"></i>
+      </div>
+      <p class="text-sm font-medium">Lainnya</p>
+      <p class="text-xs text-gray-500 mt-1">2 FAQ</p>
+    </button>
+
+  </div>
+</section>
+
+<!-- FAQ Accordion -->
+<section class="max-w-4xl mx-auto px-6 pb-20">
+  <div class="flex items-center justify-between mb-6">
+    <h3 class="text-xl font-bold">Pertanyaan Umum</h3>
+    <span id="faqCount" class="text-xs text-gray-500 bg-slate-800 px-3 py-1 rounded-full">10 FAQ</span>
   </div>
 
-  <div class="bg-[#0f172a] p-5 rounded-xl border border-slate-800">
-    <h3 class="font-bold">Pembayaran apa saja?</h3>
-    <p class="text-gray-400 mt-2">Mendukung transfer bank, e-wallet, dan QRIS.</p>
+  <div id="faqList" class="space-y-3">
+
+    <!-- Order -->
+    <div class="faq-item bg-[#0f172a] rounded-xl border border-slate-800 overflow-hidden" data-category="order" data-question="cara order gimana pemesanan">
+      <button class="faq-btn w-full text-left px-6 py-4 flex justify-between items-center text-sm font-medium" onclick="toggleFaq(this)">
+        <div class="flex items-center gap-3">
+          <i class="fas fa-cart-shopping text-cyan-400 text-xs"></i>
+          <span>Cara order gimana?</span>
+        </div>
+        <i class="fas fa-chevron-down text-xs text-gray-500 transition-transform duration-200"></i>
+      </button>
+      <div class="faq-answer hidden px-6 pb-4 text-sm text-gray-400 leading-relaxed">
+        Pilih paket yang diinginkan di halaman Store, lalu klik tombol <strong class="text-white">Deploy</strong>. Kamu akan diarahkan ke WhatsApp untuk konfirmasi order dan pembayaran.
+      </div>
+    </div>
+
+    <div class="faq-item bg-[#0f172a] rounded-xl border border-slate-800 overflow-hidden" data-category="order" data-question="bisa request paket custom spesifikasi">
+      <button class="faq-btn w-full text-left px-6 py-4 flex justify-between items-center text-sm font-medium" onclick="toggleFaq(this)">
+        <div class="flex items-center gap-3">
+          <i class="fas fa-cart-shopping text-cyan-400 text-xs"></i>
+          <span>Bisa request paket custom?</span>
+        </div>
+        <i class="fas fa-chevron-down text-xs text-gray-500 transition-transform duration-200"></i>
+      </button>
+      <div class="faq-answer hidden px-6 pb-4 text-sm text-gray-400 leading-relaxed">
+        Bisa! Hubungi kami via WhatsApp, sebutkan spesifikasi yang kamu butuhkan (RAM, CPU, Storage), dan kami akan buatkan paket custom dengan harga terbaik.
+      </div>
+    </div>
+
+    <div class="faq-item bg-[#0f172a] rounded-xl border border-slate-800 overflow-hidden" data-category="order" data-question="berapa lama proses aktifasi aktif pengerjaan">
+      <button class="faq-btn w-full text-left px-6 py-4 flex justify-between items-center text-sm font-medium" onclick="toggleFaq(this)">
+        <div class="flex items-center gap-3">
+          <i class="fas fa-cart-shopping text-cyan-400 text-xs"></i>
+          <span>Berapa lama proses aktifasi?</span>
+        </div>
+        <i class="fas fa-chevron-down text-xs text-gray-500 transition-transform duration-200"></i>
+      </button>
+      <div class="faq-answer hidden px-6 pb-4 text-sm text-gray-400 leading-relaxed">
+        Biasanya <strong class="text-white">1–5 menit</strong> setelah pembayaran dikonfirmasi. Pada saat peak time, bisa memakan waktu maksimal 30 menit.
+      </div>
+    </div>
+
+    <!-- Payment -->
+    <div class="faq-item bg-[#0f172a] rounded-xl border border-slate-800 overflow-hidden" data-category="payment" data-question="pembayaran apa saja metode bayar qris gopay ovo dana">
+      <button class="faq-btn w-full text-left px-6 py-4 flex justify-between items-center text-sm font-medium" onclick="toggleFaq(this)">
+        <div class="flex items-center gap-3">
+          <i class="fas fa-wallet text-green-400 text-xs"></i>
+          <span>Pembayaran apa saja yang diterima?</span>
+        </div>
+        <i class="fas fa-chevron-down text-xs text-gray-500 transition-transform duration-200"></i>
+      </button>
+      <div class="faq-answer hidden px-6 pb-4 text-sm text-gray-400 leading-relaxed">
+        Kami menerima <strong class="text-white">QRIS, GoPay, OVO, Dana, ShopeePay</strong>, transfer bank (BCA, BRI, Mandiri, BNI), dan pulsa (dengan rate tertentu).
+      </div>
+    </div>
+
+    <div class="faq-item bg-[#0f172a] rounded-xl border border-slate-800 overflow-hidden" data-category="payment" data-question="garansi uang kembali refund">
+      <button class="faq-btn w-full text-left px-6 py-4 flex justify-between items-center text-sm font-medium" onclick="toggleFaq(this)">
+        <div class="flex items-center gap-3">
+          <i class="fas fa-wallet text-green-400 text-xs"></i>
+          <span>Ada garansi uang kembali?</span>
+        </div>
+        <i class="fas fa-chevron-down text-xs text-gray-500 transition-transform duration-200"></i>
+      </button>
+      <div class="faq-answer hidden px-6 pb-4 text-sm text-gray-400 leading-relaxed">
+        Ya! Kami memberikan garansi <strong class="text-white">3 hari</strong> setelah aktifasi. Jika ada masalah yang tidak bisa kami selesaikan, kamu berhak minta refund 100%.
+      </div>
+    </div>
+
+    <!-- Server -->
+    <div class="faq-item bg-[#0f172a] rounded-xl border border-slate-800 overflow-hidden" data-category="server" data-question="lokasi server dimana negara indonesia">
+      <button class="faq-btn w-full text-left px-6 py-4 flex justify-between items-center text-sm font-medium" onclick="toggleFaq(this)">
+        <div class="flex items-center gap-3">
+          <i class="fas fa-server text-blue-400 text-xs"></i>
+          <span>Lokasi server dimana?</span>
+        </div>
+        <i class="fas fa-chevron-down text-xs text-gray-500 transition-transform duration-200"></i>
+      </button>
+      <div class="faq-answer hidden px-6 pb-4 text-sm text-gray-400 leading-relaxed">
+        Kami memiliki server di <strong class="text-white">Indonesia (Jakarta)</strong> dan <strong class="text-white">Singapore</strong>. Kamu bisa pilih lokasi saat order sesuai kebutuhan.
+      </div>
+    </div>
+
+    <div class="faq-item bg-[#0f172a] rounded-xl border border-slate-800 overflow-hidden" data-category="server" data-question="kalau error down lag gangguan bantuan">
+      <button class="faq-btn w-full text-left px-6 py-4 flex justify-between items-center text-sm font-medium" onclick="toggleFaq(this)">
+        <div class="flex items-center gap-3">
+          <i class="fas fa-server text-blue-400 text-xs"></i>
+          <span>Kalau server error/down gimana?</span>
+        </div>
+        <i class="fas fa-chevron-down text-xs text-gray-500 transition-transform duration-200"></i>
+      </button>
+      <div class="faq-answer hidden px-6 pb-4 text-sm text-gray-400 leading-relaxed">
+        Langsung hubungi kami via <strong class="text-white">WhatsApp</strong> atau <strong class="text-white">Discord</strong>. Tim support kami standby 24/7 dan akan merespon dalam hitungan menit.
+      </div>
+    </div>
+
+    <div class="faq-item bg-[#0f172a] rounded-xl border border-slate-800 overflow-hidden" data-category="server" data-question="panel apa pterodactyl control panel">
+      <button class="faq-btn w-full text-left px-6 py-4 flex justify-between items-center text-sm font-medium" onclick="toggleFaq(this)">
+        <div class="flex items-center gap-3">
+          <i class="fas fa-server text-blue-400 text-xs"></i>
+          <span>Pakai panel apa?</span>
+        </div>
+        <i class="fas fa-chevron-down text-xs text-gray-500 transition-transform duration-200"></i>
+      </button>
+      <div class="faq-answer hidden px-6 pb-4 text-sm text-gray-400 leading-relaxed">
+        Untuk Minecraft, kami menggunakan <strong class="text-white">Pterodactyl Panel</strong>. Untuk VPS, kamu mendapatkan akses <strong class="text-white">full root</strong> dan bisa install panel sendiri.
+      </div>
+    </div>
+
+    <!-- Other -->
+    <div class="faq-item bg-[#0f172a] rounded-xl border border-slate-800 overflow-hidden" data-category="other" data-question="bisa upgrade downgrade paket">
+      <button class="faq-btn w-full text-left px-6 py-4 flex justify-between items-center text-sm font-medium" onclick="toggleFaq(this)">
+        <div class="flex items-center gap-3">
+          <i class="fas fa-ellipsis text-purple-400 text-xs"></i>
+          <span>Bisa upgrade/downgrade paket?</span>
+        </div>
+        <i class="fas fa-chevron-down text-xs text-gray-500 transition-transform duration-200"></i>
+      </button>
+      <div class="faq-answer hidden px-6 pb-4 text-sm text-gray-400 leading-relaxed">
+        Bisa! Hubungi support untuk request upgrade atau downgrade. Perubahan akan dikenakan biaya selisih atau refund sesuai kebijakan.
+      </div>
+    </div>
+
+    <div class="faq-item bg-[#0f172a] rounded-xl border border-slate-800 overflow-hidden" data-category="other" data-question="syarat ketentuan tos rules aturan">
+      <button class="faq-btn w-full text-left px-6 py-4 flex justify-between items-center text-sm font-medium" onclick="toggleFaq(this)">
+        <div class="flex items-center gap-3">
+          <i class="fas fa-ellipsis text-purple-400 text-xs"></i>
+          <span>Apa syarat & ketentuan berlangganan?</span>
+        </div>
+        <i class="fas fa-chevron-down text-xs text-gray-500 transition-transform duration-200"></i>
+      </button>
+      <div class="faq-answer hidden px-6 pb-4 text-sm text-gray-400 leading-relaxed">
+        Dilarang menggunakan layanan untuk aktivitas ilegal (DDoS, phishing, dll). Jika melanggar, akun akan langsung ditangguhkan tanpa refund. Detail lengkap ada di halaman Terms of Service.
+      </div>
+    </div>
+
   </div>
 
-  <div class="bg-[#0f172a] p-5 rounded-xl border border-slate-800">
-    <h3 class="font-bold">Berapa lama proses aktif?</h3>
-    <p class="text-gray-400 mt-2">Biasanya 1–5 menit setelah pembayaran dikonfirmasi.</p>
+  <!-- No results -->
+  <div id="noResults" class="hidden text-center py-12">
+    <i class="fas fa-search text-3xl text-gray-700 mb-3"></i>
+    <p class="text-gray-500 text-sm">Pertanyaan tidak ditemukan</p>
   </div>
-
-  <div class="bg-[#0f172a] p-5 rounded-xl border border-slate-800">
-    <h3 class="font-bold">Kalau error gimana?</h3>
-    <p class="text-gray-400 mt-2">Silakan hubungi support via WhatsApp atau Discord.</p>
-  </div>
-
 </section>
 
 <!-- CTA Support -->
-<section class="text-center pb-20">
-  <h3 class="text-2xl font-bold mb-4">Masih butuh bantuan?</h3>
-  <a href="https://wa.me/6282189822272"
-     class="bg-blue-500 px-6 py-3 rounded-xl font-semibold hover:bg-blue-600 transition">
-     Hubungi WhatsApp
-  </a>
+<section class="max-w-4xl mx-auto px-6 pb-20">
+  <div class="bg-gradient-to-br from-[#0f172a] to-[#0f172a] rounded-2xl border border-slate-800 overflow-hidden relative">
+    <!-- Background decoration -->
+    <div class="absolute top-0 right-0 w-60 h-60 bg-cyan-500/5 rounded-full blur-[80px] pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-40 h-40 bg-blue-500/5 rounded-full blur-[60px] pointer-events-none"></div>
+    
+    <div class="relative p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
+      <div class="flex-1 text-center md:text-left">
+        <h3 class="text-2xl font-bold mb-2">Masih butuh bantuan?</h3>
+        <p class="text-gray-400 text-sm">Tim support kami siap membantu 24/7 via WhatsApp dan Discord.</p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a href="https://wa.me/6282189822272" target="_blank"
+           class="flex items-center gap-2 bg-green-500 hover:bg-green-600 px-6 py-3 rounded-xl font-semibold text-sm transition">
+          <i class="fab fa-whatsapp text-lg"></i>
+          WhatsApp
+        </a>
+        <a href="#" 
+           class="flex items-center gap-2 bg-[#5865F2] hover:bg-[#4752c4] px-6 py-3 rounded-xl font-semibold text-sm transition">
+          <i class="fab fa-discord text-lg"></i>
+          Discord
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- Footer -->
-<footer class="bg-[#0f172a] border-t border-slate-800 p-6 text-center text-gray-500">
-  © 2026 HyunkkCloud
+<footer class="bg-[#0f172a] border-t border-slate-800 p-10">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 text-gray-400">
+    <div>
+      <h4 class="text-white font-bold mb-3">HyunkkCloud</h4>
+      <p>Hosting modern dengan performa tinggi dan support aktif.</p>
+    </div>
+    <div>
+      <h4 class="text-white font-bold mb-3">Menu</h4>
+      <div class="space-y-2">
+        <a href="store.html" class="block hover:text-blue-400">Store</a>
+        <a href="support.html" class="block hover:text-blue-400">Support</a>
+        <a href="contact.html" class="block hover:text-blue-400">Contact</a>
+      </div>
+    </div>
+    <div>
+      <h4 class="text-white font-bold mb-3">Kontak</h4>
+      <p>Email: cahyobagaskoro03@gmail.com</p>
+      <p>WA: 082189822272</p>
+      <p>Indonesia</p>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto mt-8 pt-6 border-t border-slate-800 text-center text-gray-600 text-sm">
+    © 2026 HyunkkCloud. All rights reserved.
+  </div>
 </footer>
+
+<!-- Hamburger Menu -->
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuIcon = document.getElementById('menuIcon');
+  const closeIcon = document.getElementById('closeIcon');
+
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    menuIcon.classList.toggle('hidden');
+    closeIcon.classList.toggle('hidden');
+  });
+</script>
+
+<!-- FAQ Toggle & Filter & Search -->
+<script>
+  // Toggle FAQ
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const icon = btn.querySelector('.fa-chevron-down');
+    const isOpen = !answer.classList.contains('hidden');
+
+    document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+    document.querySelectorAll('.faq-btn .fa-chevron-down').forEach(i => i.style.transform = 'rotate(0deg)');
+
+    if (!isOpen) {
+      answer.classList.remove('hidden');
+      icon.style.transform = 'rotate(180deg)';
+    }
+  }
+
+  // Filter FAQ by category
+  let activeCategory = 'all';
+
+  function filterFaq(category) {
+    activeCategory = category;
+    const items = document.querySelectorAll('.faq-item');
+    const buttons = document.querySelectorAll('.faq-filter');
+    let visibleCount = 0;
+
+    // Update button styles
+    buttons.forEach(btn => {
+      const cat = btn.dataset.category;
+      if (cat === category) {
+        btn.classList.add('border-cyan-500/40', 'bg-cyan-500/5');
+        btn.classList.remove('border-slate-800');
+      } else {
+        btn.classList.remove('border-cyan-500/40', 'bg-cyan-500/5');
+        btn.classList.add('border-slate-800');
+      }
+    });
+
+    // Filter items
+    items.forEach(item => {
+      if (category === 'all' || item.dataset.category === category) {
+        item.style.display = '';
+        visibleCount++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    document.getElementById('faqCount').textContent = visibleCount + ' FAQ';
+    document.getElementById('noResults').classList.toggle('hidden', visibleCount > 0);
+  }
+
+  // Search FAQ
+  const searchInput = document.getElementById('searchInput');
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+    const items = document.querySelectorAll('.faq-item');
+    let visibleCount = 0;
+
+    // Reset filter buttons
+    document.querySelectorAll('.faq-filter').forEach(btn => {
+      btn.classList.remove('border-cyan-500/40', 'bg-cyan-500/5');
+      btn.classList.add('border-slate-800');
+    });
+
+    items.forEach(item => {
+      const question = item.dataset.question || '';
+      const text = item.textContent.toLowerCase();
+      if (!query || question.includes(query) || text.includes(query)) {
+        item.style.display = '';
+        visibleCount++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    document.getElementById('faqCount').textContent = visibleCount + ' FAQ';
+    document.getElementById('noResults').classList.toggle('hidden', visibleCount > 0);
+  });
+
+  // Initialize
+  filterFaq('order');
+</script>
+
+<!-- Firebase Auth -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyB2YKgC5EdKYFPaU-4uavFABtYEupvang4",
+    authDomain: "loginpage-2e5aa.firebaseapp.com",
+    projectId: "loginpage-2e5aa",
+    appId: "1:676993662276:web:d8e12ca898fb4c0364eb11"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      window.location.href = "login.html";
+    }
+  });
+</script>
 
 </body>
 </html>

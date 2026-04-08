@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HYUNK STORE - VPS Server</title>
+  <title>HYUNK STORE - STORE</title>
   <link rel="icon" type="image/png" href="images/icon.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -17,591 +17,464 @@
       --accent: #00e89d;
       --accent2: #00c4ff;
       --border: #152035;
-      --glow: rgba(0, 232, 157, 0.15);
+      --glow: rgba(0,232,157,0.15);
+      --green: #00e89d;
+      --cyan: #00c4ff;
+      --purple: #a78bfa;
+      --pink: #f472b6;
+      --amber: #fbbf24;
+      --red: #f87171;
     }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: 'Space Grotesk', sans-serif;
-      background: var(--bg);
-      color: var(--fg);
+      background: var(--bg); color: var(--fg);
       overflow-x: hidden;
     }
-
     .font-mono { font-family: 'JetBrains Mono', monospace; }
 
-    /* === GRID BACKGROUND === */
     .grid-bg {
-      position: fixed;
-      inset: 0;
+      position:fixed; inset:0;
       background-image:
-        linear-gradient(rgba(0, 232, 157, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 232, 157, 0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      z-index: 0;
-      pointer-events: none;
+        linear-gradient(rgba(0,232,157,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,232,157,0.025) 1px, transparent 1px);
+      background-size:60px 60px; z-index:0; pointer-events:none;
     }
-
-    /* === FLOATING ORBS === */
-    .orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(80px);
-      pointer-events: none;
-      z-index: 0;
-      animation: orbFloat 12s ease-in-out infinite alternate;
-    }
-    .orb-1 {
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(0,232,157,0.12), transparent 70%);
-      top: -100px; left: -100px;
-    }
-    .orb-2 {
-      width: 350px; height: 350px;
-      background: radial-gradient(circle, rgba(0,196,255,0.1), transparent 70%);
-      bottom: -80px; right: -80px;
-      animation-delay: -4s;
-    }
-    .orb-3 {
-      width: 250px; height: 250px;
-      background: radial-gradient(circle, rgba(0,232,157,0.08), transparent 70%);
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      animation-delay: -8s;
-    }
-
-    @keyframes orbFloat {
-      0% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(30px, -40px) scale(1.1); }
-      66% { transform: translate(-20px, 30px) scale(0.95); }
-      100% { transform: translate(15px, -15px) scale(1.05); }
-    }
-
-    /* === MOUSE GLOW === */
-    .mouse-glow {
-      position: fixed;
-      width: 500px; height: 500px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,232,157,0.06), transparent 60%);
-      pointer-events: none;
-      z-index: 1;
-      transform: translate(-50%, -50%);
-      transition: left 0.3s ease-out, top 0.3s ease-out;
-    }
-
-    /* === PARTICLES CANVAS === */
-    #particles {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    /* === SCANLINE === */
     .scanline {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0,0,0,0.03) 2px,
-        rgba(0,0,0,0.03) 4px
-      );
+      position:fixed; inset:0; z-index:1; pointer-events:none;
+      background: repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px);
+    }
+    .orb {
+      position:fixed; border-radius:50%; filter:blur(90px);
+      pointer-events:none; z-index:0;
+      animation: orbFloat 14s ease-in-out infinite alternate;
+    }
+    .orb-1 { width:420px; height:420px; background:radial-gradient(circle,rgba(0,232,157,0.1),transparent 70%); top:-120px; left:-100px; }
+    .orb-2 { width:380px; height:380px; background:radial-gradient(circle,rgba(0,196,255,0.08),transparent 70%); bottom:5%; right:-100px; animation-delay:-5s; }
+    .orb-3 { width:220px; height:220px; background:radial-gradient(circle,rgba(167,139,250,0.07),transparent 70%); top:45%; left:30%; animation-delay:-9s; }
+    @keyframes orbFloat {
+      0% { transform:translate(0,0) scale(1); }
+      50% { transform:translate(25px,-35px) scale(1.08); }
+      100% { transform:translate(-15px,20px) scale(0.95); }
+    }
+    #particles { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .mouse-glow {
+      position:fixed; width:450px; height:450px; border-radius:50%;
+      background:radial-gradient(circle,rgba(0,232,157,0.05),transparent 60%);
+      pointer-events:none; z-index:1; transform:translate(-50%,-50%);
+      transition:left 0.35s ease-out, top 0.35s ease-out;
     }
 
     /* === NAVBAR === */
     .navbar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      backdrop-filter: blur(20px);
-      background: rgba(6, 10, 16, 0.8);
-      border-bottom: 1px solid var(--border);
-      transition: box-shadow 0.3s;
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      backdrop-filter:blur(20px); background:rgba(6,10,16,0.82);
+      border-bottom:1px solid var(--border); transition:box-shadow 0.3s;
     }
-    .navbar.scrolled {
-      box-shadow: 0 4px 30px rgba(0,0,0,0.5);
-    }
+    .navbar.scrolled { box-shadow:0 4px 30px rgba(0,0,0,0.5); }
     .nav-link {
-      position: relative;
-      color: var(--muted);
-      transition: color 0.3s;
+      position:relative; color:var(--muted); transition:color 0.3s;
+      text-decoration:none; font-size:0.9rem;
     }
-    .nav-link:hover { color: var(--accent); }
+    .nav-link:hover,.nav-link.active { color:var(--accent); }
     .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: 2px;
-      background: var(--accent);
-      transition: width 0.3s;
+      content:''; position:absolute; bottom:-4px; left:0;
+      width:0; height:2px; background:var(--accent); transition:width 0.3s;
     }
-    .nav-link:hover::after { width: 100%; }
+    .nav-link:hover::after,.nav-link.active::after { width:100%; }
 
     /* === HERO === */
     .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(0,232,157,0.25);
-      background: rgba(0,232,157,0.06);
-      font-size: 0.8rem;
-      color: var(--accent);
-      animation: fadeSlideUp 0.8s ease-out both;
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 16px; border-radius:999px;
+      border:1px solid rgba(0,232,157,0.2);
+      background:rgba(0,232,157,0.05);
+      font-size:0.8rem; color:var(--accent);
     }
     .hero-badge .dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      animation: pulse-dot 2s ease-in-out infinite;
+      width:6px; height:6px; border-radius:50%; background:var(--accent);
+      animation:pulse-dot 2s ease-in-out infinite;
     }
     @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.7); }
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:0.3; transform:scale(0.6); }
     }
-
     .hero-title {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      animation: fadeSlideUp 0.8s 0.15s ease-out both;
+      font-size:clamp(2.2rem,5vw,3.8rem);
+      font-weight:700; line-height:1.1; letter-spacing:-0.03em;
     }
     .hero-title .accent-text {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
     }
 
-    .hero-desc {
-      font-size: 1.1rem;
-      color: var(--muted);
-      max-width: 500px;
-      line-height: 1.7;
-      animation: fadeSlideUp 0.8s 0.3s ease-out both;
+    /* === LIVE STATUS BAR === */
+    .status-bar {
+      display:flex; align-items:center; justify-content:center;
+      gap:24px; padding:12px 24px; flex-wrap:wrap;
+    }
+    .status-item {
+      display:flex; align-items:center; gap:8px;
+      font-size:0.78rem; color:var(--muted);
+    }
+    .status-dot-live {
+      width:7px; height:7px; border-radius:50%;
+      animation:pulse-dot 2s ease-in-out infinite;
     }
 
-    @keyframes fadeSlideUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* === STATS BAR === */
+    /* === STATS === */
     .stats-bar {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      animation: fadeSlideUp 0.8s 0.45s ease-out both;
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:1px; background:var(--border);
+      border:1px solid var(--border); border-radius:16px; overflow:hidden;
     }
     .stat-item {
-      background: var(--bg-card);
-      padding: 20px 16px;
-      text-align: center;
-      transition: background 0.3s;
+      background:var(--bg-card); padding:24px 16px;
+      text-align:center; transition:background 0.3s;
     }
-    .stat-item:hover {
-      background: rgba(0,232,157,0.04);
-    }
+    .stat-item:hover { background:rgba(0,232,157,0.03); }
     .stat-number {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--accent);
+      font-family:'JetBrains Mono',monospace;
+      font-size:1.6rem; font-weight:700; color:var(--accent);
     }
     .stat-label {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      font-size:0.72rem; color:var(--muted); margin-top:4px;
+      text-transform:uppercase; letter-spacing:0.06em;
     }
 
-    /* === SERVER TERMINAL === */
-    .terminal {
-      background: #080c14;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      animation: fadeSlideUp 0.8s 0.5s ease-out both;
+    /* === STORE CARDS === */
+    .store-card {
+      position:relative; background:var(--bg-card);
+      border:1px solid var(--border); border-radius:20px;
+      overflow:hidden; transition:all 0.45s cubic-bezier(0.4,0,0.2,1);
+      text-decoration:none; color:inherit; display:block;
     }
-    .terminal-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
+    .store-card::before {
+      content:''; position:absolute; inset:0; border-radius:20px;
+      padding:1px;
+      background:linear-gradient(160deg,transparent 30%,var(--card-accent,rgba(0,232,157,0.2)) 100%);
+      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor; mask-composite:exclude;
+      opacity:0; transition:opacity 0.45s;
     }
-    .terminal-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
+    .store-card:hover::before { opacity:1; }
+    .store-card:hover {
+      transform:translateY(-10px);
+      box-shadow:0 24px 60px rgba(0,0,0,0.4),0 0 50px var(--card-glow,rgba(0,232,157,0.08));
     }
-    .terminal-body {
-      padding: 16px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
-      line-height: 1.8;
-      color: var(--muted);
-      min-height: 200px;
+    .card-accent-bar {
+      height:3px; width:100%;
+      background:var(--card-bar,linear-gradient(90deg,var(--green),var(--cyan)));
+      transform:scaleX(0); transform-origin:left;
+      transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);
     }
-    .terminal-body .prompt { color: var(--accent); }
-    .terminal-body .cmd { color: #e8ecf2; }
-    .terminal-body .output { color: #5a6a80; }
-    .terminal-body .success { color: #00e89d; }
-    .terminal-cursor {
-      display: inline-block;
-      width: 8px; height: 16px;
-      background: var(--accent);
-      animation: blink-cursor 1s step-end infinite;
-      vertical-align: text-bottom;
-      margin-left: 2px;
+    .store-card:hover .card-accent-bar { transform:scaleX(1); }
+    .card-bg-pattern {
+      position:absolute; inset:0; opacity:0;
+      transition:opacity 0.5s; pointer-events:none;
     }
-    @keyframes blink-cursor {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
+    .store-card:hover .card-bg-pattern { opacity:1; }
+    .card-icon-wrap {
+      width:56px; height:56px; border-radius:16px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.4rem; transition:all 0.35s;
     }
-
-    /* === SECTION HEADERS === */
-    .section-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .store-card:hover .card-icon-wrap { transform:scale(1.08); }
+    .card-arrow {
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:600; font-size:0.9rem; transition:gap 0.3s;
     }
-    .section-tag::before {
-      content: '';
-      width: 24px; height: 1px;
-      background: var(--accent);
+    .store-card:hover .card-arrow { gap:14px; }
+    .card-badge {
+      position:absolute; top:20px; right:20px;
+      padding:4px 14px; border-radius:999px;
+      font-size:0.68rem; font-weight:700;
+      text-transform:uppercase; letter-spacing:0.08em;
+      backdrop-filter:blur(8px);
     }
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-top: 12px;
+    .card-tags {
+      display:flex; flex-wrap:wrap; gap:6px; margin-top:16px;
     }
-
-    /* === VPS CARDS === */
-    .vps-card {
-      position: relative;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 32px 28px;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      overflow: hidden;
+    .card-tag {
+      padding:4px 10px; border-radius:6px; font-size:0.72rem;
+      background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.05);
+      color:var(--muted);
     }
-    .vps-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 20px;
-      padding: 1px;
-      background: linear-gradient(135deg, transparent 40%, rgba(0,232,157,0.15) 100%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      opacity: 0;
-      transition: opacity 0.4s;
+    .card-price-hint {
+      margin-top:18px; padding-top:16px;
+      border-top:1px solid rgba(255,255,255,0.04);
+      display:flex; justify-content:space-between; align-items:center;
     }
-    .vps-card:hover::before { opacity: 1; }
-    .vps-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px var(--glow);
+    .card-price-hint .label { font-size:0.75rem; color:var(--muted); }
+    .card-price-hint .price {
+      font-family:'JetBrains Mono',monospace;
+      font-size:0.95rem; font-weight:700;
     }
 
-    .vps-card.featured {
-      border-color: rgba(0,232,157,0.3);
-      background: linear-gradient(170deg, rgba(0,232,157,0.05), var(--bg-card) 40%);
+    /* === DOMAIN STRIP === */
+    .domain-strip {
+      position:relative; background:var(--bg-card);
+      border:1px solid var(--border); border-radius:20px;
+      overflow:hidden; transition:all 0.45s cubic-bezier(0.4,0,0.2,1);
+      text-decoration:none; color:inherit; display:flex;
+      align-items:center; gap:24px; padding:28px 32px;
     }
-    .vps-card.featured::before {
-      background: linear-gradient(135deg, rgba(0,232,157,0.3), rgba(0,196,255,0.15));
-      opacity: 1;
+    .domain-strip::before {
+      content:''; position:absolute; inset:0; border-radius:20px;
+      padding:1px;
+      background:linear-gradient(160deg,transparent 40%,rgba(251,191,36,0.25) 100%);
+      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor; mask-composite:exclude;
+      opacity:0; transition:opacity 0.45s;
     }
-
-    .featured-badge {
-      position: absolute;
-      top: -1px; right: 24px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #060a10;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 5px 14px;
-      border-radius: 0 0 8px 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+    .domain-strip:hover::before { opacity:1; }
+    .domain-strip:hover {
+      transform:translateY(-6px);
+      box-shadow:0 20px 50px rgba(0,0,0,0.35),0 0 40px rgba(251,191,36,0.08);
+      border-color:rgba(251,191,36,0.15);
     }
-
-    .vps-tier {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 4px;
+    .domain-strip .ds-bar {
+      position:absolute; top:0; left:0; right:0; height:3px;
+      background:linear-gradient(90deg,#fbbf24,#f59e0b);
+      transform:scaleX(0); transform-origin:left;
+      transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);
     }
-    .vps-name {
-      font-size: 1.4rem;
-      font-weight: 700;
+    .domain-strip:hover .ds-bar { transform:scaleX(1); }
+    .ds-icon {
+      width:56px; height:56px; border-radius:16px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.4rem; flex-shrink:0;
+      background:rgba(251,191,36,0.1); color:var(--amber);
+      transition:transform 0.35s;
     }
-    .vps-location {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-top: 8px;
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.04);
+    .domain-strip:hover .ds-icon { transform:scale(1.08); }
+    .ds-info { flex:1; min-width:0; }
+    .ds-title { font-size:1.2rem; font-weight:700; margin-bottom:4px; }
+    .ds-desc { font-size:0.82rem; color:var(--muted); line-height:1.6; }
+    .ds-tags {
+      display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;
     }
-
-    .vps-specs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 24px;
-      padding: 16px;
-      background: rgba(0,0,0,0.25);
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.03);
+    .ds-tag {
+      padding:3px 10px; border-radius:6px; font-size:0.7rem;
+      background:rgba(251,191,36,0.06); border:1px solid rgba(251,191,36,0.12);
+      color:var(--amber);
     }
-    .spec-item .spec-val {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--fg);
+    .ds-right {
+      display:flex; flex-direction:column; align-items:flex-end;
+      gap:10px; flex-shrink:0;
     }
-    .spec-item .spec-label {
-      font-size: 0.7rem;
-      color: var(--muted);
-      margin-top: 2px;
+    .ds-price {
+      font-family:'JetBrains Mono',monospace;
+      font-size:1.1rem; font-weight:700; color:var(--amber);
     }
-
-    .vps-price {
-      margin-top: 24px;
-      display: flex;
-      align-items: baseline;
-      gap: 4px;
+    .ds-price small { font-size:0.7rem; color:var(--muted); font-weight:400; }
+    .ds-arrow {
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:600; font-size:0.85rem; color:var(--amber);
+      transition:gap 0.3s;
     }
-    .vps-price .currency {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-    .vps-price .amount {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-    .vps-price .period {
-      font-size: 0.8rem;
-      color: var(--muted);
+    .domain-strip:hover .ds-arrow { gap:14px; }
+    .ds-new {
+      position:absolute; top:18px; right:22px;
+      padding:4px 14px; border-radius:999px;
+      font-size:0.68rem; font-weight:700;
+      text-transform:uppercase; letter-spacing:0.08em;
+      background:rgba(251,191,36,0.12); color:var(--amber);
+      border:1px solid rgba(251,191,36,0.25);
+      backdrop-filter:blur(8px);
     }
 
-    .vps-features {
-      margin-top: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    /* === HOW IT WORKS === */
+    .step-card {
+      position:relative; background:var(--bg-card);
+      border:1px solid var(--border); border-radius:16px;
+      padding:28px; text-align:center; transition:all 0.35s;
     }
-    .vps-features li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.85rem;
-      color: #8a96a8;
+    .step-card:hover {
+      border-color:rgba(0,232,157,0.15);
+      transform:translateY(-4px);
+      box-shadow:0 12px 30px rgba(0,0,0,0.25);
     }
-    .vps-features li i {
-      color: var(--accent);
-      font-size: 0.7rem;
-      width: 18px;
-      height: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0,232,157,0.1);
-      border-radius: 50%;
+    .step-number {
+      width:40px; height:40px; border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#060a10; font-family:'JetBrains Mono',monospace;
+      font-weight:700; font-size:0.9rem;
+      display:flex; align-items:center; justify-content:center;
+      margin:0 auto 16px;
+    }
+    .step-connector {
+      position:absolute; top:50%; right:-24px;
+      color:var(--border); font-size:1.2rem; z-index:2;
     }
 
-    .btn-buy {
-      width: 100%;
-      margin-top: 24px;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
+    /* === TESTIMONIALS === */
+    .testi-card {
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:16px; padding:28px; transition:all 0.35s;
+      position:relative;
     }
-    .btn-buy.default {
-      background: rgba(0,232,157,0.1);
-      color: var(--accent);
-      border: 1px solid rgba(0,232,157,0.2);
+    .testi-card:hover {
+      border-color:rgba(255,255,255,0.08);
+      transform:translateY(-3px);
     }
-    .btn-buy.default:hover {
-      background: rgba(0,232,157,0.18);
-      box-shadow: 0 0 25px rgba(0,232,157,0.15);
+    .testi-quote {
+      position:absolute; top:20px; right:24px;
+      font-size:2rem; color:rgba(0,232,157,0.08);
+      font-family:Georgia,serif; line-height:1;
     }
-    .btn-buy.primary {
-      background: linear-gradient(135deg, var(--accent), #00c4a0);
-      color: #060a10;
+    .testi-stars { display:flex; gap:3px; margin-bottom:12px; }
+    .testi-stars i { font-size:0.7rem; color:var(--amber); }
+    .testi-text {
+      font-size:0.88rem; color:#8a96a8; line-height:1.7;
+      margin-bottom:16px; font-style:italic;
     }
-    .btn-buy.primary:hover {
-      box-shadow: 0 0 30px rgba(0,232,157,0.3);
-      transform: translateY(-2px);
+    .testi-author {
+      display:flex; align-items:center; gap:12px;
     }
-    .btn-buy:active { transform: scale(0.97); }
+    .testi-avatar {
+      width:36px; height:36px; border-radius:10px;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:700; font-size:0.8rem; color:#060a10;
+    }
+    .testi-name { font-size:0.85rem; font-weight:600; }
+    .testi-role { font-size:0.72rem; color:var(--muted); }
 
-    /* === FEATURES SECTION === */
+    /* === FEATURES === */
     .feature-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px;
-      transition: all 0.3s;
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:16px; padding:28px; transition:all 0.35s;
+      text-align:center;
     }
     .feature-card:hover {
-      border-color: rgba(0,232,157,0.15);
-      background: rgba(0,232,157,0.02);
-      transform: translateY(-4px);
+      transform:translateY(-6px);
+      box-shadow:0 16px 40px rgba(0,0,0,0.3);
     }
     .feature-icon {
-      width: 48px; height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      margin-bottom: 16px;
+      width:52px; height:52px; border-radius:14px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.2rem; margin:0 auto 16px; transition:transform 0.3s;
+    }
+    .feature-card:hover .feature-icon { transform:scale(1.1) rotate(-3deg); }
+
+    /* === TRUST CARDS === */
+    .trust-card {
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:16px; padding:28px;
+      display:flex; align-items:center; gap:20px;
+      transition:all 0.35s;
+    }
+    .trust-card:hover {
+      transform:translateY(-3px);
+      box-shadow:0 12px 30px rgba(0,0,0,0.2);
     }
 
     /* === FAQ === */
     .faq-item {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: border-color 0.3s;
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:14px; overflow:hidden; transition:all 0.35s;
     }
-    .faq-item:hover { border-color: rgba(0,232,157,0.2); }
-    .faq-question {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 20px;
-      cursor: pointer;
-      font-weight: 500;
-      background: var(--bg-card);
-      transition: background 0.3s;
-      user-select: none;
+    .faq-item:hover { border-color:rgba(255,255,255,0.08); }
+    .faq-item.open { border-color:rgba(0,232,157,0.2); }
+    .faq-btn {
+      width:100%; text-align:left; padding:18px 22px;
+      display:flex; justify-content:space-between; align-items:center;
+      background:none; border:none; color:var(--fg);
+      font-family:inherit; font-size:0.92rem; font-weight:500;
+      cursor:pointer; transition:background 0.3s;
     }
-    .faq-question:hover { background: rgba(0,232,157,0.03); }
-    .faq-question i {
-      transition: transform 0.3s;
-      color: var(--muted);
-      font-size: 0.8rem;
+    .faq-btn:hover { background:rgba(255,255,255,0.015); }
+    .faq-btn .chevron {
+      color:var(--muted); font-size:0.75rem;
+      transition:transform 0.3s; flex-shrink:0;
     }
-    .faq-item.open .faq-question i { transform: rotate(180deg); }
+    .faq-item.open .chevron { transform:rotate(180deg); }
     .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.4s;
-      padding: 0 20px;
-      background: var(--bg-card);
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.7;
+      max-height:0; overflow:hidden;
+      transition:max-height 0.4s ease, padding 0.4s;
+      padding:0 22px; font-size:0.88rem; color:var(--muted); line-height:1.75;
     }
-    .faq-item.open .faq-answer {
-      max-height: 200px;
-      padding: 0 20px 18px;
+    .faq-item.open .faq-answer { max-height:200px; padding:0 22px 20px; }
+    .faq-answer strong { color:var(--fg); }
+
+    .section-tag {
+      font-family:'JetBrains Mono',monospace;
+      font-size:0.72rem; text-transform:uppercase;
+      letter-spacing:0.12em; color:var(--accent);
+      display:flex; align-items:center; gap:8px;
+    }
+    .section-tag::before {
+      content:''; width:20px; height:1px; background:var(--accent);
     }
 
-    /* === TOAST === */
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: var(--bg-card);
-      border: 1px solid rgba(0,232,157,0.3);
-      color: var(--fg);
-      padding: 14px 24px;
-      border-radius: 12px;
-      font-size: 0.9rem;
-      z-index: 9999;
-      opacity: 0;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    .footer-link {
+      color:var(--muted); text-decoration:none; font-size:0.85rem;
+      transition:color 0.3s; display:block; padding:3px 0;
     }
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-    }
+    .footer-link:hover { color:var(--accent); }
 
-    /* === SCROLL REVEAL === */
+    .mobile-menu {
+      display:none; padding:0 24px 16px;
+      border-top:1px solid var(--border);
+    }
+    .mobile-menu.open { display:block; }
+    .mobile-menu a {
+      display:block; padding:10px 0; color:var(--muted);
+      text-decoration:none; font-size:0.9rem; transition:color 0.3s;
+      border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+    .mobile-menu a:last-child { border-bottom:none; }
+    .mobile-menu a:hover,.mobile-menu a.active { color:var(--accent); }
+
     .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+      opacity:0; transform:translateY(28px);
+      transition:opacity 0.7s ease-out, transform 0.7s ease-out;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .reveal.vis { opacity:1; transform:translateY(0); }
+
+    .stagger > * {
+      opacity:0; transform:translateY(20px);
+      transition:opacity 0.5s ease-out, transform 0.5s ease-out;
     }
+    .stagger.vis > *:nth-child(1) { transition-delay:0s; opacity:1; transform:translateY(0); }
+    .stagger.vis > *:nth-child(2) { transition-delay:0.1s; opacity:1; transform:translateY(0); }
+    .stagger.vis > *:nth-child(3) { transition-delay:0.2s; opacity:1; transform:translateY(0); }
+    .stagger.vis > *:nth-child(4) { transition-delay:0.3s; opacity:1; transform:translateY(0); }
 
-    /* === FOOTER === */
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 40px;
-    }
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background:var(--bg); }
+    ::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+    ::-webkit-scrollbar-thumb:hover { background:var(--muted); }
 
-    /* === RESPONSIVE === */
-    @media (max-width: 768px) {
-      .stats-bar { grid-template-columns: repeat(2, 1fr); }
-      .footer-grid { grid-template-columns: 1fr; gap: 24px; }
-      .hero-grid { grid-template-columns: 1fr !important; }
-      .terminal { display: none; }
-    }
-
-    /* === SCROLLBAR === */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after {
+        animation-duration:0.01ms!important;
+        transition-duration:0.01ms!important;
       }
+    }
+    @media (max-width:768px) {
+      .stats-bar { grid-template-columns:repeat(3,1fr); }
+      .store-grid { grid-template-columns:1fr!important; }
+      .domain-strip { flex-direction:column; text-align:center; gap:16px; padding:24px 20px; }
+      .ds-right { align-items:center; }
+      .ds-tags { justify-content:center; }
+      .ds-new { top:14px; right:14px; }
+      .features-grid { grid-template-columns:repeat(2,1fr)!important; }
+      .steps-grid { grid-template-columns:1fr!important; }
+      .step-connector { display:none!important; }
+      .testi-grid { grid-template-columns:1fr!important; }
+      .trust-grid { grid-template-columns:1fr!important; }
+      .footer-grid { grid-template-columns:1fr!important; gap:24px!important; }
+      .feature-card:last-child { grid-column:span 2; }
+    }
+    @media (max-width:480px) {
+      .features-grid { grid-template-columns:1fr!important; }
+      .feature-card:last-child { grid-column:span 1; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Lapisan latar -->
   <div class="grid-bg"></div>
   <canvas id="particles"></canvas>
   <div class="scanline"></div>
@@ -613,659 +486,617 @@
   <!-- Navbar -->
   <nav class="navbar" id="navbar">
     <div style="max-width:1200px; margin:0 auto; padding:16px 24px; display:flex; justify-content:space-between; align-items:center;">
-      <a href="#" style="text-decoration:none; display:flex; align-items:center; gap:10px;">
-        <div style="width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg, var(--accent), var(--accent2)); display:flex; align-items:center; justify-content:center; font-weight:800; color:#060a10; font-size:0.85rem;">H</div>
+      <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:10px;">
+        <div style="width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg,var(--accent),var(--accent2)); display:flex; align-items:center; justify-content:center; font-weight:800; color:#060a10; font-size:0.85rem;">H</div>
         <span style="font-weight:700; font-size:1.05rem; color:var(--fg);">HyunkkCloud</span>
       </a>
       <div style="display:flex; align-items:center; gap:28px;">
-        <a href="#vps" class="nav-link" style="text-decoration:none; font-size:0.9rem;">VPS</a>
-        <a href="#fitur" class="nav-link" style="text-decoration:none; font-size:0.9rem;">Fitur</a>
-        <a href="#faq" class="nav-link" style="text-decoration:none; font-size:0.9rem;">FAQ</a>
-        <a href="store.html" class="nav-link" style="text-decoration:none; font-size:0.9rem;"><i class="fas fa-arrow-left" style="margin-right:6px;"></i>Store</a>
+        <div class="hidden md:flex items-center gap-7">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="store.html" class="nav-link active">Store</a>
+          <a href="support.html" class="nav-link">Support</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <button id="menuBtn" class="md:hidden" style="background:none; border:none; color:var(--muted); cursor:pointer; padding:4px;" aria-label="Toggle menu">
+          <i class="fas fa-bars" id="menuIconOpen" style="font-size:1.2rem;"></i>
+          <i class="fas fa-xmark" id="menuIconClose" style="font-size:1.2rem; display:none;"></i>
+        </button>
       </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="store.html" class="active">Store</a>
+      <a href="support.html">Support</a>
+      <a href="contact.html">Contact</a>
     </div>
   </nav>
 
   <main style="position:relative; z-index:2;">
 
-    <!-- HERO -->
-    <section style="min-height:100vh; display:flex; align-items:center; padding:120px 24px 80px;">
-      <div style="max-width:1200px; margin:0 auto; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;" class="hero-grid">
-        <div>
-          <div class="hero-badge">
-            <span class="dot"></span>
-            Server Online 99.9% Uptime
-          </div>
-          <h1 class="hero-title" style="margin-top:24px;">
-            Power Your<br>Project with<br><span class="accent-text">VPS Server</span>
-          </h1>
-          <p class="hero-desc" style="margin-top:20px;">
-            Infrastruktur cloud performa tinggi dengan lokasi Singapore. Deploy dalam hitungan detik, kelola dengan mudah.
-          </p>
-          <div style="display:flex; gap:14px; margin-top:32px; animation: fadeSlideUp 0.8s 0.45s ease-out both; flex-wrap:wrap;">
-            <a href="#vps" style="text-decoration:none; padding:14px 28px; border-radius:12px; background:linear-gradient(135deg, var(--accent), #00c4a0); color:#060a10; font-weight:600; font-size:0.95rem; transition:all 0.3s; display:inline-flex; align-items:center; gap:8px;"
-               onmouseover="this.style.boxShadow='0 0 30px rgba(0,232,157,0.3)'; this.style.transform='translateY(-2px)'"
-               onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'">
-              Lihat Paket <i class="fas fa-arrow-down" style="font-size:0.8rem;"></i>
-            </a>
-            <button onclick="beli('Konsultasi VPS')" style="padding:14px 28px; border-radius:12px; background:transparent; border:1px solid var(--border); color:var(--fg); font-weight:500; font-size:0.95rem; cursor:pointer; transition:all 0.3s; font-family:inherit; display:inline-flex; align-items:center; gap:8px;"
-               onmouseover="this.style.borderColor='rgba(0,232,157,0.3)'; this.style.background='rgba(0,232,157,0.04)'"
-               onmouseout="this.style.borderColor='var(--border)'; this.style.background='transparent'">
-              <i class="fab fa-whatsapp" style="color:var(--accent);"></i> Hubungi Kami
-            </button>
-          </div>
+    <!-- Hero -->
+    <section style="padding:140px 24px 20px; text-align:center;">
+      <div class="reveal" style="display:inline-flex; flex-direction:column; align-items:center;">
+        <div class="hero-badge" style="margin-bottom:24px;">
+          <span class="dot"></span>
+          4 Kategori Layanan
         </div>
+        <h1 class="hero-title">
+          Pilih <span class="accent-text">Layanan</span> Kamu
+        </h1>
+        <p style="color:var(--muted); margin-top:16px; max-width:480px; line-height:1.7; font-size:1.05rem;">
+          Temukan solusi yang tepat untuk kebutuhan server, hosting, domain, dan digital kamu.
+        </p>
+      </div>
+    </section>
 
-        <!-- Terminal -->
-        <div class="terminal">
-          <div class="terminal-header">
-            <div class="terminal-dot" style="background:#ff5f57;"></div>
-            <div class="terminal-dot" style="background:#ffbd2e;"></div>
-            <div class="terminal-dot" style="background:#28c840;"></div>
-            <span style="margin-left:10px; font-size:0.75rem; color:var(--muted); font-family:'JetBrains Mono',monospace;">ssh root@sg1.hyunkcloud.com</span>
-          </div>
-          <div class="terminal-body" id="terminalBody">
-            <!-- Diisi oleh JS -->
-          </div>
+    <!-- Live Status -->
+    <section style="padding:24px 24px 0;">
+      <div class="status-bar reveal">
+        <div class="status-item">
+          <span class="status-dot-live" style="background:var(--green);"></span>
+          <span>Semua sistem <strong style="color:var(--green);">operasional</strong></span>
+        </div>
+        <div class="status-item" style="color:#2a3a4e;">|</div>
+        <div class="status-item">
+          <i class="fas fa-server" style="font-size:0.7rem; color:var(--cyan);"></i>
+          <span>SG Server: <strong style="color:var(--cyan);">12ms</strong></span>
+        </div>
+        <div class="status-item" style="color:#2a3a4e;">|</div>
+        <div class="status-item">
+          <i class="fas fa-server" style="font-size:0.7rem; color:var(--green);"></i>
+          <span>ID Server: <strong style="color:var(--green);">8ms</strong></span>
+        </div>
+        <div class="status-item" style="color:#2a3a4e;">|</div>
+        <div class="status-item">
+          <i class="fas fa-clock" style="font-size:0.7rem; color:var(--amber);"></i>
+          <span>Update: <span id="liveTime" class="font-mono" style="font-size:0.75rem;">--:--:--</span></span>
         </div>
       </div>
     </section>
 
-    <!-- STATS -->
-    <section style="max-width:1200px; margin:0 auto; padding:0 24px 80px;">
-      <div class="stats-bar">
-        <div class="stat-item">
-          <div class="stat-number" data-target="250">0</div>
-          <div class="stat-label">Active Server</div>
-        </div>
+    <!-- Stats -->
+    <section style="max-width:640px; margin:0 auto; padding:28px 24px 56px;">
+      <div class="stats-bar reveal">
         <div class="stat-item">
           <div class="stat-number" data-target="99" data-suffix=".9%">0</div>
           <div class="stat-label">Uptime</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number" data-target="12">0</div>
-          <div class="stat-label">Data Center</div>
-        </div>
-        <div class="stat-item">
           <div class="stat-number" data-target="24" data-suffix="/7">0</div>
           <div class="stat-label">Support</div>
         </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="500" data-suffix="+">0</div>
+          <div class="stat-label">User Aktif</div>
+        </div>
       </div>
     </section>
 
-    <!-- VPS PACKAGES -->
-    <section id="vps" style="max-width:1200px; margin:0 auto; padding:0 24px 100px;">
-      <div class="reveal" style="text-align:center; margin-bottom:56px;">
-        <div class="section-tag" style="justify-content:center;">Paket Server</div>
-        <h2 class="section-title">Pilih yang Sesuai Kebutuhanmu</h2>
-        <p style="color:var(--muted); margin-top:12px; max-width:500px; margin-left:auto; margin-right:auto; line-height:1.7;">
-          Semua paket sudah termasuk full root access, SSD NVMe, dan dedicated IP address.
-        </p>
+    <!-- Store Cards -->
+    <section style="max-width:1100px; margin:0 auto; padding:0 24px 24px;">
+      <div class="reveal" style="margin-bottom:40px;">
+        <div class="section-tag">Kategori</div>
+        <h2 style="font-size:1.8rem; font-weight:700; margin-top:8px;">Layanan Tersedia</h2>
       </div>
 
-      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;" class="reveal" id="vpsGrid">
+      <div class="store-grid stagger reveal" style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px;">
 
-        <!-- VPS 2GB -->
-        <div class="vps-card">
-          <div class="vps-tier">Starter</div>
-          <div class="vps-name">VPS 2GB</div>
-          <div class="vps-location">
-            <i class="fas fa-map-marker-alt" style="font-size:0.65rem; color:var(--accent);"></i>
-            Singapore, SG
+        <!-- Minecraft Hosting -->
+        <a href="store-hosting.html" class="store-card"
+           style="--card-accent:rgba(0,232,157,0.25); --card-glow:rgba(0,232,157,0.1); --card-bar:linear-gradient(90deg,#00e89d,#34d399);">
+          <div class="card-accent-bar"></div>
+          <div class="card-bg-pattern">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="opacity:0.04;">
+              <defs><pattern id="mc" width="32" height="32" patternUnits="userSpaceOnUse"><rect width="16" height="16" fill="#00e89d"/><rect x="16" y="16" width="16" height="16" fill="#00e89d"/></pattern></defs>
+              <rect width="100%" height="100%" fill="url(#mc)"/>
+            </svg>
           </div>
-
-          <div class="vps-specs">
-            <div class="spec-item">
-              <div class="spec-val">1 vCPU</div>
-              <div class="spec-label">Processor</div>
+          <div style="position:relative; padding:32px 28px 28px;">
+            <div class="card-icon-wrap" style="background:rgba(0,232,157,0.1); color:var(--green);">
+              <i class="fas fa-cube"></i>
             </div>
-            <div class="spec-item">
-              <div class="spec-val">2 GB</div>
-              <div class="spec-label">RAM</div>
+            <h3 style="font-size:1.3rem; font-weight:700; margin-top:20px;">Minecraft Hosting</h3>
+            <p style="color:var(--muted); font-size:0.85rem; line-height:1.7; margin-top:10px;">
+              Server MC siap pakai dengan panel Pterodactyl. Support Java & Bedrock, performa tinggi tanpa lag.
+            </p>
+            <div class="card-tags">
+              <span class="card-tag">Java</span>
+              <span class="card-tag">Bedrock</span>
+              <span class="card-tag">Pterodactyl</span>
+              <span class="card-tag">DDoS Guard</span>
             </div>
-            <div class="spec-item">
-              <div class="spec-val">40 GB</div>
-              <div class="spec-label">SSD NVMe</div>
+            <div class="card-price-hint">
+              <span class="label">Mulai dari</span>
+              <span class="price" style="color:var(--green);">Rp15.000<span style="font-size:0.7rem; color:var(--muted); font-weight:400;">/bln</span></span>
             </div>
-            <div class="spec-item">
-              <div class="spec-val">0.5 TB</div>
-              <div class="spec-label">Bandwidth</div>
-            </div>
-          </div>
-
-          <div class="vps-price">
-            <span class="currency">Rp</span>
-            <span class="amount">55.000</span>
-            <span class="period">/bln</span>
-          </div>
-
-          <ul class="vps-features">
-            <li><i class="fas fa-check"></i> Full Root Access</li>
-            <li><i class="fas fa-check"></i> 1 Dedicated IP</li>
-            <li><i class="fas fa-check"></i> DDoS Protection</li>
-          </ul>
-
-          <button class="btn-buy default" onclick="beli('VPS 2GB - 55k')">
-            <i class="fab fa-whatsapp" style="margin-right:6px;"></i> Beli Sekarang
-          </button>
-        </div>
-
-        <!-- VPS 4GB (Featured) -->
-        <div class="vps-card featured">
-          <div class="featured-badge">Populer</div>
-          <div class="vps-tier">Professional</div>
-          <div class="vps-name">VPS 4GB</div>
-          <div class="vps-location">
-            <i class="fas fa-map-marker-alt" style="font-size:0.65rem; color:var(--accent);"></i>
-            Singapore, SG
-          </div>
-
-          <div class="vps-specs">
-            <div class="spec-item">
-              <div class="spec-val">2 vCPU</div>
-              <div class="spec-label">Processor</div>
-            </div>
-            <div class="spec-item">
-              <div class="spec-val">4 GB</div>
-              <div class="spec-label">RAM</div>
-            </div>
-            <div class="spec-item">
-              <div class="spec-val">80 GB</div>
-              <div class="spec-label">SSD NVMe</div>
-            </div>
-            <div class="spec-item">
-              <div class="spec-val">1 TB</div>
-              <div class="spec-label">Bandwidth</div>
+            <div style="margin-top:18px;">
+              <span class="card-arrow" style="color:var(--green);">
+                Lihat 6 Paket <i class="fas fa-arrow-right" style="font-size:0.8rem;"></i>
+              </span>
             </div>
           </div>
+        </a>
 
-          <div class="vps-price">
-            <span class="currency">Rp</span>
-            <span class="amount">95.000</span>
-            <span class="period">/bln</span>
+        <!-- VPS Server -->
+        <a href="store-vps.html" class="store-card"
+           style="--card-accent:rgba(0,196,255,0.25); --card-glow:rgba(0,196,255,0.1); --card-bar:linear-gradient(90deg,#00c4ff,#38bdf8);">
+          <div class="card-accent-bar"></div>
+          <div class="card-bg-pattern">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="opacity:0.03;">
+              <defs><pattern id="vps" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="#00c4ff"/></pattern></defs>
+              <rect width="100%" height="100%" fill="url(#vps)"/>
+            </svg>
           </div>
-
-          <ul class="vps-features">
-            <li><i class="fas fa-check"></i> Full Root Access</li>
-            <li><i class="fas fa-check"></i> 1 Dedicated IP</li>
-            <li><i class="fas fa-check"></i> DDoS Protection</li>
-            <li><i class="fas fa-check"></i> Auto Backup Mingguan</li>
-          </ul>
-
-          <button class="btn-buy primary" onclick="beli('VPS 4GB - 95k')">
-            <i class="fab fa-whatsapp" style="margin-right:6px;"></i> Beli Sekarang
-          </button>
-        </div>
-
-        <!-- VPS 8GB -->
-        <div class="vps-card">
-          <div class="vps-tier">Enterprise</div>
-          <div class="vps-name">VPS 8GB</div>
-          <div class="vps-location">
-            <i class="fas fa-map-marker-alt" style="font-size:0.65rem; color:var(--accent);"></i>
-            Singapore, SG
+          <div class="card-badge" style="background:rgba(0,196,255,0.12); color:var(--cyan); border:1px solid rgba(0,196,255,0.25);">
+            <i class="fas fa-fire" style="margin-right:4px;"></i> Populer
           </div>
-
-          <div class="vps-specs">
-            <div class="spec-item">
-              <div class="spec-val">4 vCPU</div>
-              <div class="spec-label">Processor</div>
+          <div style="position:relative; padding:32px 28px 28px;">
+            <div class="card-icon-wrap" style="background:rgba(0,196,255,0.1); color:var(--cyan);">
+              <i class="fas fa-server"></i>
             </div>
-            <div class="spec-item">
-              <div class="spec-val">8 GB</div>
-              <div class="spec-label">RAM</div>
+            <h3 style="font-size:1.3rem; font-weight:700; margin-top:20px;">VPS Server</h3>
+            <p style="color:var(--muted); font-size:0.85rem; line-height:1.7; margin-top:10px;">
+              AMD EPYC performa tinggi dengan full root access, SSD NVMe, dan jaringan Singapore stabil.
+            </p>
+            <div class="card-tags">
+              <span class="card-tag">Full Root</span>
+              <span class="card-tag">SSD NVMe</span>
+              <span class="card-tag">Singapore</span>
+              <span class="card-tag">1Gbps</span>
             </div>
-            <div class="spec-item">
-              <div class="spec-val">160 GB</div>
-              <div class="spec-label">SSD NVMe</div>
+            <div class="card-price-hint">
+              <span class="label">Mulai dari</span>
+              <span class="price" style="color:var(--cyan);">Rp55.000<span style="font-size:0.7rem; color:var(--muted); font-weight:400;">/bln</span></span>
             </div>
-            <div class="spec-item">
-              <div class="spec-val">2 TB</div>
-              <div class="spec-label">Bandwidth</div>
+            <div style="margin-top:18px;">
+              <span class="card-arrow" style="color:var(--cyan);">
+                Lihat 3 Paket <i class="fas fa-arrow-right" style="font-size:0.8rem;"></i>
+              </span>
             </div>
           </div>
+        </a>
 
-          <div class="vps-price">
-            <span class="currency">Rp</span>
-            <span class="amount">160.000</span>
-            <span class="period">/bln</span>
+        <!-- Aplikasi Premium -->
+        <a href="store-aplikasipremium.html" class="store-card"
+           style="--card-accent:rgba(167,139,250,0.25); --card-glow:rgba(167,139,250,0.1); --card-bar:linear-gradient(90deg,#a78bfa,#f472b6);">
+          <div class="card-accent-bar"></div>
+          <div class="card-bg-pattern">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="opacity:0.03;">
+              <defs><pattern id="app" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M24 0L48 24L24 48L0 24Z" fill="none" stroke="#a78bfa" stroke-width="0.5"/></pattern></defs>
+              <rect width="100%" height="100%" fill="url(#app)"/>
+            </svg>
           </div>
-
-          <ul class="vps-features">
-            <li><i class="fas fa-check"></i> Full Root Access</li>
-            <li><i class="fas fa-check"></i> 1 Dedicated IP</li>
-            <li><i class="fas fa-check"></i> DDoS Protection</li>
-            <li><i class="fas fa-check"></i> Auto Backup Harian</li>
-            <li><i class="fas fa-check"></i> Priority Support</li>
-          </ul>
-
-          <button class="btn-buy default" onclick="beli('VPS 8GB - 160k')">
-            <i class="fab fa-whatsapp" style="margin-right:6px;"></i> Beli Sekarang
-          </button>
-        </div>
+          <div style="position:relative; padding:32px 28px 28px;">
+            <div class="card-icon-wrap" style="background:rgba(167,139,250,0.1); color:var(--purple);">
+              <i class="fas fa-gem"></i>
+            </div>
+            <h3 style="font-size:1.3rem; font-weight:700; margin-top:20px;">Aplikasi Premium</h3>
+            <p style="color:var(--muted); font-size:0.85rem; line-height:1.7; margin-top:10px;">
+              Akun premium original untuk berbagai layanan. Streaming, desain, hingga produktivitas.
+            </p>
+            <div class="card-tags">
+              <span class="card-tag">Streaming</span>
+              <span class="card-tag">Desain</span>
+              <span class="card-tag">Produktivitas</span>
+              <span class="card-tag">Original</span>
+            </div>
+            <div class="card-price-hint">
+              <span class="label">Mulai dari</span>
+              <span class="price" style="color:var(--purple);">Rp5.000<span style="font-size:0.7rem; color:var(--muted); font-weight:400;">/bln</span></span>
+            </div>
+            <div style="margin-top:18px;">
+              <span class="card-arrow" style="color:var(--purple);">
+                Lihat Paket <i class="fas fa-arrow-right" style="font-size:0.8rem;"></i>
+              </span>
+            </div>
+          </div>
+        </a>
 
       </div>
     </section>
 
-    <!-- FEATURES -->
-    <section id="fitur" style="max-width:1200px; margin:0 auto; padding:0 24px 100px;">
-      <div class="reveal" style="margin-bottom:56px;">
-        <div class="section-tag">Kenapa Kami</div>
-        <h2 class="section-title">Infrastruktur yang Bisa Diandalkan</h2>
+    <!-- Domain Strip (penghubung ke domain.html) -->
+    <section style="max-width:1100px; margin:0 auto; padding:0 24px 80px;">
+      <a href="domain.html" class="domain-strip reveal">
+        <div class="ds-bar"></div>
+        <span class="ds-new"><i class="fas fa-sparkles" style="margin-right:4px;"></i> Baru</span>
+        <div class="ds-icon">
+          <i class="fas fa-globe"></i>
+        </div>
+        <div class="ds-info">
+          <div class="ds-title">Domain</div>
+          <div class="ds-desc">Domain aktif 1 tahun penuh dengan custom IP, akses Cloudflare, dan siap untuk hosting website. Tersedia .my.id sampai .com.</div>
+          <div class="ds-tags">
+            <span class="ds-tag">.my.id</span>
+            <span class="ds-tag">.biz.id</span>
+            <span class="ds-tag">.cloud</span>
+            <span class="ds-tag">.xyz</span>
+            <span class="ds-tag">.com</span>
+            <span class="ds-tag">.net</span>
+            <span class="ds-tag">.id</span>
+            <span class="ds-tag" style="background:rgba(251,191,36,0.03); border-color:rgba(251,191,36,0.08); color:var(--muted);">+3 lainnya</span>
+          </div>
+        </div>
+        <div class="ds-right">
+          <div class="ds-price">Rp15.000<small>/tahun</small></div>
+          <span class="ds-arrow">Lihat 10 Domain <i class="fas fa-arrow-right" style="font-size:0.8rem;"></i></span>
+        </div>
+      </a>
+    </section>
+
+    <!-- How It Works -->
+    <section style="max-width:900px; margin:0 auto; padding:0 24px 80px;">
+      <div class="reveal" style="text-align:center; margin-bottom:40px;">
+        <div class="section-tag" style="justify-content:center;">Cara Order</div>
+        <h2 style="font-size:1.8rem; font-weight:700; margin-top:8px;">3 Langkah Mudah</h2>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;" class="reveal">
+      <div class="steps-grid stagger reveal" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+        <div class="step-card">
+          <span class="step-connector hidden md:block"><i class="fas fa-chevron-right"></i></span>
+          <div class="step-number">1</div>
+          <div style="font-size:1.6rem; margin-bottom:12px;">
+            <i class="fas fa-hand-pointer" style="color:var(--cyan);"></i>
+          </div>
+          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Pilih Paket</h4>
+          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Browse kategori dan pilih paket yang sesuai kebutuhanmu.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-connector hidden md:block"><i class="fas fa-chevron-right"></i></span>
+          <div class="step-number">2</div>
+          <div style="font-size:1.6rem; margin-bottom:12px;">
+            <i class="fab fa-whatsapp" style="color:var(--green);"></i>
+          </div>
+          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Konfirmasi & Bayar</h4>
+          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Klik beli, konfirmasi via WhatsApp, dan lakukan pembayaran.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div style="font-size:1.6rem; margin-bottom:12px;">
+            <i class="fas fa-rocket" style="color:var(--purple);"></i>
+          </div>
+          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Langsung Pakai</h4>
+          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Server aktif otomatis. Detail login dikirim langsung ke WhatsApp.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section style="max-width:1100px; margin:0 auto; padding:0 24px 80px;">
+      <div class="reveal" style="text-align:center; margin-bottom:40px;">
+        <div class="section-tag" style="justify-content:center;">Testimoni</div>
+        <h2 style="font-size:1.8rem; font-weight:700; margin-top:8px;">Kata Mereka</h2>
+      </div>
+      <div class="testi-grid stagger reveal" style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px;">
+
+        <div class="testi-card">
+          <div class="testi-quote">"</div>
+          <div class="testi-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testi-text">Server MC-nya lancar banget, 40 player main bareng tetap stabilized. Panel Pterodactyl juga gampang dipakai.</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,var(--green),#34d399);">RZ</div>
+            <div>
+              <div class="testi-name">Rizky Z.</div>
+              <div class="testi-role">Minecraft Server Owner</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-quote">"</div>
+          <div class="testi-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testi-text">VPS 4GB cukup buat jalanin 3 bot sekaligus. Supportnya responsif, pernah error jam 2 pagi langsung dibantu.</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,var(--cyan),#38bdf8);">DA</div>
+            <div>
+              <div class="testi-name">Dimas A.</div>
+              <div class="testi-role">Bot Developer</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-quote">"</div>
+          <div class="testi-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i>
+          </div>
+          <p class="testi-text">Beli domain .com cuma 165k, langsung aktif dan bisa dikonekin ke Cloudflare. Harga paling murah yang pernah aku temuin.</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,var(--amber),#f59e0b);">FN</div>
+            <div>
+              <div class="testi-name">Farel N.</div>
+              <div class="testi-role">Web Developer</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section style="max-width:1100px; margin:0 auto; padding:0 24px 80px;">
+      <div class="reveal" style="margin-bottom:40px; text-align:center;">
+        <div class="section-tag" style="justify-content:center;">Keunggulan</div>
+        <h2 style="font-size:1.8rem; font-weight:700; margin-top:8px;">Kenapa HyunkkCloud?</h2>
+      </div>
+      <div class="features-grid stagger reveal" style="display:grid; grid-template-columns:repeat(4,1fr); gap:18px;">
         <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(0,232,157,0.1); color:var(--accent);">
+          <div class="feature-icon" style="background:rgba(0,196,255,0.1); color:var(--cyan);">
             <i class="fas fa-bolt"></i>
           </div>
-          <h3 style="font-weight:600; font-size:1.05rem; margin-bottom:8px;">SSD NVMe Storage</h3>
-          <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Baca/tulis hingga 3500 MB/s. Bukan SSD biasa, tapi NVMe generasi terbaru untuk I/O maksimal.</p>
+          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Performa Tinggi</h4>
+          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">CPU AMD EPYC dan SSD NVMe generasi terkini untuk kecepatan maksimal.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(0,196,255,0.1); color:var(--accent2);">
-            <i class="fas fa-shield-alt"></i>
+          <div class="feature-icon" style="background:rgba(0,232,157,0.1); color:var(--green);">
+            <i class="fas fa-shield-halved"></i>
           </div>
-          <h3 style="font-weight:600; font-size:1.05rem; margin-bottom:8px;">DDoS Protection</h3>
-          <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Lindungi server dari serangan hingga 1Tbps. Filtering real-time tanpa mengganggu performa.</p>
+          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">DDoS Protection</h4>
+          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Lindungi server dari serangan hingga 1Tbps, aktif 24 jam tanpa henti.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(255,189,46,0.1); color:#ffbd2e;">
-            <i class="fas fa-clock"></i>
-          </div>
-          <h3 style="font-weight:600; font-size:1.05rem; margin-bottom:8px;">Instant Deployment</h3>
-          <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Server siap dalam 60 detik setelah pembayaran. Tidak perlu menunggu provisioning manual.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(232,76,61,0.1); color:#e84c3d;">
-            <i class="fas fa-server"></i>
-          </div>
-          <h3 style="font-weight:600; font-size:1.05rem; margin-bottom:8px;">Dedicated Resource</h3>
-          <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">CPU dan RAM tidak dibagi dengan user lain. Performa konsisten 24 jam tanpa gangguan.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(155,89,182,0.1); color:#9b59b6;">
-            <i class="fas fa-expand-arrows-alt"></i>
-          </div>
-          <h3 style="font-weight:600; font-size:1.05rem; margin-bottom:8px;">Scalable</h3>
-          <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Upgrade resource kapan saja tanpa downtime. Cukup hubungi support, langsung kita naikkan.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(0,232,157,0.1); color:var(--accent);">
+          <div class="feature-icon" style="background:rgba(251,191,36,0.1); color:var(--amber);">
             <i class="fas fa-headset"></i>
           </div>
-          <h3 style="font-weight:600; font-size:1.05rem; margin-bottom:8px;">Support 24/7</h3>
-          <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">Tim support siap membantu kapan saja via WhatsApp. Respons rata-rata kurang dari 5 menit.</p>
+          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Support Cepat</h4>
+          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Respon rata-rata kurang dari 5 menit via WhatsApp dan Discord.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background:rgba(167,139,250,0.1); color:var(--purple);">
+            <i class="fas fa-tags"></i>
+          </div>
+          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Harga Terjangkau</h4>
+          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Mulai dari Rp5.000/akun hingga domain .com hanya Rp165.000/tahun.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <section style="max-width:1100px; margin:0 auto; padding:0 24px 80px;">
+      <div class="trust-grid stagger reveal" style="display:grid; grid-template-columns:1fr 1fr; gap:18px;">
+        <div class="trust-card" style="border-color:var(--border);"
+             onmouseover="this.style.borderColor='rgba(0,232,157,0.2)'"
+             onmouseout="this.style.borderColor='var(--border)'">
+          <div style="width:48px; height:48px; border-radius:12px; background:rgba(0,232,157,0.1); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <i class="fas fa-rotate-left" style="color:var(--green);"></i>
+          </div>
+          <div>
+            <h4 style="font-weight:600; font-size:0.95rem;">Garansi 3 Hari</h4>
+            <p style="font-size:0.8rem; color:var(--muted); margin-top:2px;">Tidak puas? Refund 100% tanpa syarat rumit.</p>
+          </div>
+        </div>
+        <div class="trust-card" style="border-color:var(--border);"
+             onmouseover="this.style.borderColor='rgba(0,196,255,0.2)'"
+             onmouseout="this.style.borderColor='var(--border)'">
+          <div style="width:48px; height:48px; border-radius:12px; background:rgba(0,196,255,0.1); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <i class="fas fa-rocket" style="color:var(--cyan);"></i>
+          </div>
+          <div>
+            <h4 style="font-weight:600; font-size:0.95rem;">Instant Deploy</h4>
+            <p style="font-size:0.8rem; color:var(--muted); margin-top:2px;">Server aktif otomatis kurang dari 60 detik.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- FAQ -->
-    <section id="faq" style="max-width:720px; margin:0 auto; padding:0 24px 100px;">
-      <div class="reveal" style="text-align:center; margin-bottom:48px;">
+    <section style="max-width:720px; margin:0 auto; padding:0 24px 80px;">
+      <div class="reveal" style="text-align:center; margin-bottom:36px;">
         <div class="section-tag" style="justify-content:center;">FAQ</div>
-        <h2 class="section-title">Pertanyaan Umum</h2>
+        <h2 style="font-size:1.5rem; font-weight:700; margin-top:8px;">Pertanyaan Umum</h2>
       </div>
-      <div style="display:flex; flex-direction:column; gap:12px;" class="reveal">
+      <div class="reveal" style="display:flex; flex-direction:column; gap:10px;">
         <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            Apa bedanya VPS dengan shared hosting?
-            <i class="fas fa-chevron-down"></i>
-          </div>
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            <span>Bisa bayar pakai apa saja?</span>
+            <i class="fas fa-chevron-down chevron"></i>
+          </button>
           <div class="faq-answer">
-            VPS memberikan resource yang dedicated (tidak dibagi pengguna lain), full root access untuk konfigurasi bebas, dan performa yang jauh lebih stabil dibanding shared hosting.
+            Kami menerima pembayaran via <strong>QRIS, GoPay, OVO, Dana, ShopeePay</strong>, transfer bank (BCA, BRI, Mandiri, BNI), dan pulsa (dengan rate tertentu).
           </div>
         </div>
         <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            Berapa lama proses aktifasi server?
-            <i class="fas fa-chevron-down"></i>
-          </div>
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            <span>Berapa lama proses aktifasi?</span>
+            <i class="fas fa-chevron-down chevron"></i>
+          </button>
           <div class="faq-answer">
-            Setelah pembayaran dikonfirmasi, server akan aktif otomatis dalam waktu kurang dari 60 detik. Detail login akan dikirim via WhatsApp.
+            Otomatis aktif setelah pembayaran dikonfirmasi. Biasanya <strong>kurang dari 1 menit</strong>. Pada peak time maksimal 30 menit.
           </div>
         </div>
         <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            Bisa pakai untuk apa saja?
-            <i class="fas fa-chevron-down"></i>
-          </div>
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            <span>Domain bisa diperpanjang?</span>
+            <i class="fas fa-chevron-down chevron"></i>
+          </button>
           <div class="faq-answer">
-            Bisa untuk hosting website, bot Discord/Telegram, game server, VPN, development environment, dan lainnya. Selama tidak melanggar hukum, bebas digunakan.
+            Domain yang kami jual <strong>aktif 1 tahun penuh dan tidak bisa diperpanjang</strong>. Setelah masa aktif habis, kamu bisa beli domain baru atau migrasi ke registrar lain.
           </div>
         </div>
         <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            Bagaimana cara pembayarannya?
-            <i class="fas fa-chevron-down"></i>
-          </div>
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            <span>Ada garansi uang kembali?</span>
+            <i class="fas fa-chevron-down chevron"></i>
+          </button>
           <div class="faq-answer">
-            Pembayaran melalui transfer bank atau e-wallet. Kami akan memberikan instruksi lengkap setelah kamu menghubungi via WhatsApp.
+            Ya, kami memberikan garansi <strong>3 hari</strong> setelah aktifasi. Jika tidak puas, hubungi support untuk refund 100%.
           </div>
         </div>
         <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            Apakah bisa upgrade paket?
-            <i class="fas fa-chevron-down"></i>
-          </div>
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            <span>Bisa request spesifikasi khusus?</span>
+            <i class="fas fa-chevron-down chevron"></i>
+          </button>
           <div class="faq-answer">
-            Tentu bisa. Hubungi support kami dan proses upgrade akan dilakukan tanpa downtime. Selisih biaya akan dihitung prorata.
+            Bisa! Hubungi kami via <strong>WhatsApp</strong>, sebutkan spesifikasi yang dibutuhkan, dan kami akan buatkan paket custom sesuai kebutuhan kamu.
           </div>
         </div>
       </div>
     </section>
 
     <!-- CTA -->
-    <section style="max-width:1200px; margin:0 auto; padding:0 24px 100px;">
-      <div class="reveal" style="text-align:center; padding:64px 40px; border-radius:24px; border:1px solid var(--border); background:linear-gradient(170deg, rgba(0,232,157,0.04), var(--bg-card) 50%); position:relative; overflow:hidden;">
-        <div style="position:absolute; top:-80px; right:-80px; width:200px; height:200px; background:radial-gradient(circle, rgba(0,232,157,0.08), transparent 70%); border-radius:50%; pointer-events:none;"></div>
-        <h2 style="font-size:2rem; font-weight:700; margin-bottom:12px;">Masih Ragu?</h2>
-        <p style="color:var(--muted); max-width:420px; margin:0 auto 28px; line-height:1.7;">
-          Hubungi kami sekarang dan tim kami akan membantu memilihkan paket yang paling sesuai dengan kebutuhanmu.
-        </p>
-        <button onclick="beli('Konsultasi VPS')" style="padding:16px 36px; border:none; border-radius:14px; background:linear-gradient(135deg, var(--accent), #00c4a0); color:#060a10; font-weight:700; font-size:1rem; cursor:pointer; font-family:inherit; transition:all 0.3s; display:inline-flex; align-items:center; gap:10px;"
-           onmouseover="this.style.boxShadow='0 0 40px rgba(0,232,157,0.3)'; this.style.transform='translateY(-3px)'"
-           onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'">
-          <i class="fab fa-whatsapp" style="font-size:1.1rem;"></i> Chat via WhatsApp
-        </button>
+    <section style="max-width:900px; margin:0 auto; padding:0 24px 80px;">
+      <div class="reveal" style="text-align:center; padding:56px 40px; border-radius:24px; border:1px solid var(--border); background:var(--bg-card); position:relative; overflow:hidden;">
+        <div style="position:absolute; top:-60px; left:50%; transform:translateX(-50%); width:300px; height:200px; background:radial-gradient(circle,rgba(0,232,157,0.06),transparent 70%); border-radius:50%; pointer-events:none;"></div>
+        <div style="position:relative;">
+          <h2 style="font-size:1.8rem; font-weight:700; margin-bottom:10px;">Bingung Pilih Paket?</h2>
+          <p style="color:var(--muted); max-width:420px; margin:0 auto 28px; line-height:1.7; font-size:0.95rem;">
+            Konsultasikan kebutuhanmu dengan tim kami. Kami bantu pilihkan yang paling pas dan efisien.
+          </p>
+          <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20butuh%20rekomendasi%20paket" target="_blank"
+             style="display:inline-flex; align-items:center; gap:10px; padding:16px 32px; border-radius:14px; background:linear-gradient(135deg,var(--accent),#00c4a0); color:#060a10; font-weight:700; font-size:0.95rem; text-decoration:none; transition:all 0.3s;"
+             onmouseover="this.style.boxShadow='0 0 35px rgba(0,232,157,0.3)'; this.style.transform='translateY(-3px)'"
+             onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'">
+            <i class="fab fa-whatsapp" style="font-size:1.1rem;"></i> Konsultasi Gratis
+          </a>
+        </div>
       </div>
     </section>
 
   </main>
 
   <!-- Footer -->
-  <footer style="position:relative; z-index:2; border-top:1px solid var(--border); background:rgba(6,10,16,0.9);">
+  <footer style="position:relative; z-index:2; border-top:1px solid var(--border); background:rgba(6,10,16,0.92);">
     <div style="max-width:1200px; margin:0 auto; padding:48px 24px 32px;">
-      <div class="footer-grid">
+      <div class="footer-grid" style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:40px;">
         <div>
-          <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
-            <div style="width:32px; height:32px; border-radius:8px; background:linear-gradient(135deg, var(--accent), var(--accent2)); display:flex; align-items:center; justify-content:center; font-weight:800; color:#060a10; font-size:0.75rem;">H</div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+            <div style="width:32px; height:32px; border-radius:8px; background:linear-gradient(135deg,var(--accent),var(--accent2)); display:flex; align-items:center; justify-content:center; font-weight:800; color:#060a10; font-size:0.75rem;">H</div>
             <span style="font-weight:700;">HyunkkCloud</span>
           </div>
-          <p style="font-size:0.85rem; color:var(--muted); line-height:1.7; max-width:320px;">
-            Layanan VPS dan cloud hosting dengan performa tinggi, harga terjangkau, dan support responsif.
+          <p style="font-size:0.85rem; color:var(--muted); line-height:1.7; max-width:300px;">Hosting modern dengan performa tinggi dan support aktif 24/7.</p>
+        </div>
+        <div>
+          <h4 style="font-weight:600; margin-bottom:14px; font-size:0.9rem;">Menu</h4>
+          <a href="store.html" class="footer-link">Store</a>
+          <a href="support.html" class="footer-link">Support</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+        </div>
+        <div>
+          <h4 style="font-weight:600; margin-bottom:14px; font-size:0.9rem;">Kontak</h4>
+          <p style="font-size:0.85rem; color:var(--muted); line-height:2;">
+            <i class="fas fa-envelope" style="width:16px; color:var(--accent); font-size:0.75rem;"></i> cahyobagaskoro03@gmail.com<br>
+            <i class="fab fa-whatsapp" style="width:16px; color:var(--accent); font-size:0.75rem;"></i> 082189822272<br>
+            <i class="fas fa-map-marker-alt" style="width:16px; color:var(--accent); font-size:0.75rem;"></i> Indonesia
           </p>
         </div>
-        <div>
-          <h4 style="font-weight:600; margin-bottom:16px; font-size:0.9rem;">Navigasi</h4>
-          <div style="display:flex; flex-direction:column; gap:10px;">
-            <a href="#vps" style="text-decoration:none; font-size:0.85rem; color:var(--muted); transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">VPS Server</a>
-            <a href="#fitur" style="text-decoration:none; font-size:0.85rem; color:var(--muted); transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Fitur</a>
-            <a href="#faq" style="text-decoration:none; font-size:0.85rem; color:var(--muted); transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">FAQ</a>
-            <a href="store.html" style="text-decoration:none; font-size:0.85rem; color:var(--muted); transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Store</a>
-          </div>
-        </div>
-        <div>
-          <h4 style="font-weight:600; margin-bottom:16px; font-size:0.9rem;">Kontak</h4>
-          <div style="display:flex; flex-direction:column; gap:10px;">
-            <a href="#" onclick="beli('Konsultasi'); return false;" style="text-decoration:none; font-size:0.85rem; color:var(--muted); transition:color 0.3s; display:flex; align-items:center; gap:8px;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">
-              <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
-            <span style="font-size:0.85rem; color:var(--muted); display:flex; align-items:center; gap:8px;">
-              <i class="fas fa-envelope"></i> support@hyunkcloud.com
-            </span>
-          </div>
-        </div>
       </div>
-      <div style="margin-top:40px; padding-top:24px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-        <span style="font-size:0.8rem; color:var(--muted);">&copy; 2026 HyunkkCloud. All rights reserved.</span>
-        <span class="font-mono" style="font-size:0.7rem; color:rgba(90,106,128,0.6);">v2.0.0</span>
+      <div style="margin-top:36px; padding-top:20px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <span style="font-size:0.78rem; color:var(--muted);">&copy; 2026 HyunkkCloud. All rights reserved.</span>
+        <span class="font-mono" style="font-size:0.68rem; color:rgba(90,106,128,0.5);">v2.0.0</span>
       </div>
     </div>
   </footer>
 
-  <!-- Toast -->
-  <div class="toast" id="toast"></div>
-
   <script>
-    /* === PARTIKEL LATAR === */
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
-    let particles = [];
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
+    let pArr = [];
+    function resizeCanvas() { canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
-
-    // Buat partikel
-    for (let i = 0; i < 60; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 1.5 + 0.5,
-        speedX: (Math.random() - 0.5) * 0.3,
-        speedY: (Math.random() - 0.5) * 0.3,
-        opacity: Math.random() * 0.5 + 0.1
+    for(let i=0;i<55;i++){
+      pArr.push({
+        x:Math.random()*canvas.width, y:Math.random()*canvas.height,
+        size:Math.random()*1.3+0.4, speedX:(Math.random()-0.5)*0.25, speedY:(Math.random()-0.5)*0.25,
+        opacity:Math.random()*0.4+0.1
       });
     }
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.x += p.speedX;
-        p.y += p.speedY;
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, Math.max(0.1, p.size), 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 232, 157, ${p.opacity})`;
-        ctx.fill();
+    function animP(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      pArr.forEach(p=>{
+        p.x+=p.speedX; p.y+=p.speedY;
+        if(p.x<0)p.x=canvas.width; if(p.x>canvas.width)p.x=0;
+        if(p.y<0)p.y=canvas.height; if(p.y>canvas.height)p.y=0;
+        ctx.beginPath(); ctx.arc(p.x,p.y,Math.max(0.1,p.size),0,Math.PI*2);
+        ctx.fillStyle=`rgba(0,232,157,${p.opacity})`; ctx.fill();
       });
-
-      // Garis penghubung antar partikel yang dekat
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(0, 232, 157, ${0.04 * (1 - dist / 120)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
+      for(let i=0;i<pArr.length;i++) for(let j=i+1;j<pArr.length;j++){
+        const dx=pArr[i].x-pArr[j].x, dy=pArr[i].y-pArr[j].y, d=Math.sqrt(dx*dx+dy*dy);
+        if(d<115){ ctx.beginPath(); ctx.moveTo(pArr[i].x,pArr[i].y); ctx.lineTo(pArr[j].x,pArr[j].y);
+          ctx.strokeStyle=`rgba(0,232,157,${0.035*(1-d/115)})`; ctx.lineWidth=0.5; ctx.stroke(); }
       }
-      requestAnimationFrame(animateParticles);
+      requestAnimationFrame(animP);
     }
-    animateParticles();
+    animP();
 
-    /* === MOUSE GLOW === */
-    const mouseGlow = document.getElementById('mouseGlow');
-    document.addEventListener('mousemove', (e) => {
-      mouseGlow.style.left = e.clientX + 'px';
-      mouseGlow.style.top = e.clientY + 'px';
+    const mg=document.getElementById('mouseGlow');
+    document.addEventListener('mousemove',e=>{ mg.style.left=e.clientX+'px'; mg.style.top=e.clientY+'px'; });
+
+    const navbar=document.getElementById('navbar');
+    window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>50));
+
+    const menuBtn=document.getElementById('menuBtn');
+    const mobileMenu=document.getElementById('mobileMenu');
+    const mOpen=document.getElementById('menuIconOpen');
+    const mClose=document.getElementById('menuIconClose');
+    menuBtn.addEventListener('click',()=>{
+      const open=mobileMenu.classList.toggle('open');
+      mOpen.style.display=open?'none':'inline';
+      mClose.style.display=open?'inline':'none';
     });
 
-    /* === NAVBAR SCROLL === */
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 50);
-    });
+    function updateLiveTime(){
+      const now=new Date();
+      document.getElementById('liveTime').textContent=
+        String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0')+':'+String(now.getSeconds()).padStart(2,'0');
+    }
+    updateLiveTime();
+    setInterval(updateLiveTime,1000);
 
-    /* === SMOOTH SCROLL === */
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-
-    /* === SCROLL REVEAL === */
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    /* === COUNTER ANIMATION === */
-    let counterDone = false;
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !counterDone) {
-          counterDone = true;
-          document.querySelectorAll('.stat-number').forEach(el => {
-            const target = parseInt(el.dataset.target);
-            const suffix = el.dataset.suffix || '';
-            let current = 0;
-            const step = Math.ceil(target / 40);
-            const timer = setInterval(() => {
-              current += step;
-              if (current >= target) {
-                current = target;
-                clearInterval(timer);
-              }
-              el.textContent = current + suffix;
-            }, 30);
-          });
-        }
-      });
-    }, { threshold: 0.5 });
-
-    const statsBar = document.querySelector('.stats-bar');
-    if (statsBar) counterObserver.observe(statsBar);
-
-    /* === TERMINAL ANIMATION === */
-    const terminalLines = [
-      { type: 'prompt', text: '~$ ' },
-      { type: 'cmd', text: 'ssh root@sg1.hyunkcloud.com' },
-      { type: 'output', text: '' },
-      { type: 'output', text: 'Connecting to sg1.hyunkcloud.com...' },
-      { type: 'success', text: 'Authenticated successfully.' },
-      { type: 'output', text: '' },
-      { type: 'prompt', text: 'root@sg1:~$ ' },
-      { type: 'cmd', text: 'neofetch' },
-      { type: 'output', text: '' },
-      { type: 'output', text: '  OS: Ubuntu 22.04 LTS' },
-      { type: 'output', text: '  CPU: AMD EPYC 7763 (2 cores)' },
-      { type: 'output', text: '  RAM: 4096MB / 4096MB' },
-      { type: 'output', text: '  Disk: 80GB / 80GB (SSD NVMe)' },
-      { type: 'output', text: '  Network: 1Gbps | SG-Singapore' },
-      { type: 'output', text: '  Uptime: 47d 12h 33m' },
-      { type: 'output', text: '' },
-      { type: 'prompt', text: 'root@sg1:~$ ' },
-    ];
-
-    const terminalBody = document.getElementById('terminalBody');
-    let lineIndex = 0;
-
-    function typeTerminal() {
-      if (lineIndex >= terminalLines.length) return;
-      const line = terminalLines[lineIndex];
-      const lineEl = document.createElement('div');
-      lineEl.style.minHeight = '1.5em';
-
-      if (line.type === 'prompt') {
-        lineEl.innerHTML = `<span class="prompt">${line.text}</span>`;
-        terminalBody.appendChild(lineEl);
-        lineIndex++;
-        // Ketik per karakter untuk command
-        if (lineIndex < terminalLines.length && terminalLines[lineIndex].type === 'cmd') {
-          typeCommand(lineEl, terminalLines[lineIndex].text);
-        } else {
-          setTimeout(typeTerminal, 200);
-        }
-      } else {
-        lineEl.className = line.type;
-        lineEl.textContent = line.text;
-        terminalBody.appendChild(lineEl);
-        lineIndex++;
-        setTimeout(typeTerminal, line.type === 'output' && line.text === '' ? 100 : 180);
+    function simulateLatency(){
+      const sg=document.querySelectorAll('.status-item strong');
+      if(sg.length>=3){
+        sg[1].textContent=(10+Math.random()*6).toFixed(0)+'ms';
+        sg[2].textContent=(5+Math.random()*8).toFixed(0)+'ms';
       }
-
-      // Auto scroll
-      terminalBody.scrollTop = terminalBody.scrollHeight;
     }
+    setInterval(simulateLatency,3000);
 
-    function typeCommand(container, text) {
-      let i = 0;
-      const cursor = document.createElement('span');
-      cursor.className = 'terminal-cursor';
-      container.appendChild(cursor);
+    const rObs=new IntersectionObserver(e=>e.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('vis'); }),{threshold:0.08});
+    document.querySelectorAll('.reveal').forEach(el=>rObs.observe(el));
 
-      function typeChar() {
-        if (i < text.length) {
-          // Hapus cursor, tambah huruf, tambah cursor lagi
-          container.removeChild(cursor);
-          container.innerHTML = `<span class="prompt">${terminalLines[lineIndex - 1].text}</span><span class="cmd">${text.substring(0, i + 1)}</span>`;
-          container.appendChild(cursor);
-          i++;
-          setTimeout(typeChar, 35 + Math.random() * 40);
-        } else {
-          container.removeChild(cursor);
-          lineIndex++;
-          setTimeout(typeTerminal, 300);
-        }
-      }
-      typeChar();
-    }
-
-    // Mulai terminal setelah 1 detik
-    setTimeout(typeTerminal, 1000);
-
-    /* === FAQ TOGGLE === */
-    function toggleFaq(el) {
-      const item = el.parentElement;
-      const wasOpen = item.classList.contains('open');
-      // Tutup semua
-      document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
-      // Buka yang diklik jika sebelumnya tertutup
-      if (!wasOpen) item.classList.add('open');
-    }
-
-    /* === BELI (WhatsApp) === */
-    function beli(produk) {
-      const nomor = '6282189822272';
-      const pesan = `Halo, saya mau beli ${produk}`;
-      showToast('Mengarahkan ke WhatsApp...');
-      setTimeout(() => {
-        window.open(`https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`, '_blank');
-      }, 600);
-    }
-
-    /* === TOAST === */
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      toast.innerHTML = `<i class="fas fa-circle-notch fa-spin" style="margin-right:8px; color:var(--accent);"></i>${msg}`;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2500);
-    }
-
-    /* === RESPONSIVE VPS GRID === */
-    function handleResize() {
-      const grid = document.getElementById('vpsGrid');
-      if (window.innerWidth < 768) {
-        grid.style.gridTemplateColumns = '1fr';
-      } else if (window.innerWidth < 1024) {
-        grid.style.gridTemplateColumns = '1fr 1fr';
-      } else {
-        grid.style.gridTemplateColumns = 'repeat(3, 1fr)';
-      }
-      // Features grid
-      document.querySelectorAll('.reveal').forEach(section => {
-        const featureGrids = section.querySelectorAll('[style*="grid-template-columns:repeat(3"]');
-        featureGrids.forEach(g => {
-          if (window.innerWidth < 768) g.style.gridTemplateColumns = '1fr';
-          else g.style.gridTemplateColumns = 'repeat(3, 1fr)';
+    let cDone=false;
+    const cObs=new IntersectionObserver(e=>e.forEach(en=>{
+      if(en.isIntersecting&&!cDone){
+        cDone=true;
+        document.querySelectorAll('.stat-number').forEach(el=>{
+          const t=parseInt(el.dataset.target), s=el.dataset.suffix||'';
+          let c=0; const step=Math.ceil(t/35);
+          const timer=setInterval(()=>{ c+=step; if(c>=t){c=t;clearInterval(timer);} el.textContent=c+s; },30);
         });
-      });
+      }
+    }),{threshold:0.5});
+    const sb=document.querySelector('.stats-bar');
+    if(sb) cObs.observe(sb);
+
+    function toggleFaq(btn){
+      const item=btn.parentElement, wasOpen=item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+      if(!wasOpen) item.classList.add('open');
     }
-    handleResize();
-    window.addEventListener('resize', handleResize);
+
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{ e.preventDefault(); const t=document.querySelector(a.getAttribute('href')); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); });
+    });
   </script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+    const firebaseConfig = {
+      apiKey:"AIzaSyB2YKgC5EdKYFPaU-4uavFABtYEupvang4",
+      authDomain:"loginpage-2e5aa.firebaseapp.com",
+      projectId:"loginpage-2e5aa",
+      appId:"1:676993662276:web:d8e12ca898fb4c0364eb11"
+    };
+    const app=initializeApp(firebaseConfig);
+    const auth=getAuth(app);
+    onAuthStateChanged(auth,(user)=>{ if(!user) window.location.href="login.html"; });
+  </script>
+
 </body>
 </html>

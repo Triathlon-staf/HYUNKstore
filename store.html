@@ -211,6 +211,79 @@
       font-size:0.95rem; font-weight:700;
     }
 
+    /* === DOMAIN STRIP === */
+    .domain-strip {
+      position:relative; background:var(--bg-card);
+      border:1px solid var(--border); border-radius:20px;
+      overflow:hidden; transition:all 0.45s cubic-bezier(0.4,0,0.2,1);
+      text-decoration:none; color:inherit; display:flex;
+      align-items:center; gap:24px; padding:28px 32px;
+    }
+    .domain-strip::before {
+      content:''; position:absolute; inset:0; border-radius:20px;
+      padding:1px;
+      background:linear-gradient(160deg,transparent 40%,rgba(251,191,36,0.25) 100%);
+      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor; mask-composite:exclude;
+      opacity:0; transition:opacity 0.45s;
+    }
+    .domain-strip:hover::before { opacity:1; }
+    .domain-strip:hover {
+      transform:translateY(-6px);
+      box-shadow:0 20px 50px rgba(0,0,0,0.35),0 0 40px rgba(251,191,36,0.08);
+      border-color:rgba(251,191,36,0.15);
+    }
+    .domain-strip .ds-bar {
+      position:absolute; top:0; left:0; right:0; height:3px;
+      background:linear-gradient(90deg,#fbbf24,#f59e0b);
+      transform:scaleX(0); transform-origin:left;
+      transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    .domain-strip:hover .ds-bar { transform:scaleX(1); }
+    .ds-icon {
+      width:56px; height:56px; border-radius:16px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.4rem; flex-shrink:0;
+      background:rgba(251,191,36,0.1); color:var(--amber);
+      transition:transform 0.35s;
+    }
+    .domain-strip:hover .ds-icon { transform:scale(1.08); }
+    .ds-info { flex:1; min-width:0; }
+    .ds-title { font-size:1.2rem; font-weight:700; margin-bottom:4px; }
+    .ds-desc { font-size:0.82rem; color:var(--muted); line-height:1.6; }
+    .ds-tags {
+      display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;
+    }
+    .ds-tag {
+      padding:3px 10px; border-radius:6px; font-size:0.7rem;
+      background:rgba(251,191,36,0.06); border:1px solid rgba(251,191,36,0.12);
+      color:var(--amber);
+    }
+    .ds-right {
+      display:flex; flex-direction:column; align-items:flex-end;
+      gap:10px; flex-shrink:0;
+    }
+    .ds-price {
+      font-family:'JetBrains Mono',monospace;
+      font-size:1.1rem; font-weight:700; color:var(--amber);
+    }
+    .ds-price small { font-size:0.7rem; color:var(--muted); font-weight:400; }
+    .ds-arrow {
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:600; font-size:0.85rem; color:var(--amber);
+      transition:gap 0.3s;
+    }
+    .domain-strip:hover .ds-arrow { gap:14px; }
+    .ds-new {
+      position:absolute; top:18px; right:22px;
+      padding:4px 14px; border-radius:999px;
+      font-size:0.68rem; font-weight:700;
+      text-transform:uppercase; letter-spacing:0.08em;
+      background:rgba(251,191,36,0.12); color:var(--amber);
+      border:1px solid rgba(251,191,36,0.25);
+      backdrop-filter:blur(8px);
+    }
+
     /* === HOW IT WORKS === */
     .step-card {
       position:relative; background:var(--bg-card);
@@ -359,7 +432,6 @@
     }
     .reveal.vis { opacity:1; transform:translateY(0); }
 
-    /* Stagger children */
     .stagger > * {
       opacity:0; transform:translateY(20px);
       transition:opacity 0.5s ease-out, transform 0.5s ease-out;
@@ -383,6 +455,10 @@
     @media (max-width:768px) {
       .stats-bar { grid-template-columns:repeat(3,1fr); }
       .store-grid { grid-template-columns:1fr!important; }
+      .domain-strip { flex-direction:column; text-align:center; gap:16px; padding:24px 20px; }
+      .ds-right { align-items:center; }
+      .ds-tags { justify-content:center; }
+      .ds-new { top:14px; right:14px; }
       .features-grid { grid-template-columns:repeat(2,1fr)!important; }
       .steps-grid { grid-template-columns:1fr!important; }
       .step-connector { display:none!important; }
@@ -442,13 +518,13 @@
       <div class="reveal" style="display:inline-flex; flex-direction:column; align-items:center;">
         <div class="hero-badge" style="margin-bottom:24px;">
           <span class="dot"></span>
-          3 Kategori Layanan
+          4 Kategori Layanan
         </div>
         <h1 class="hero-title">
           Pilih <span class="accent-text">Layanan</span> Kamu
         </h1>
         <p style="color:var(--muted); margin-top:16px; max-width:480px; line-height:1.7; font-size:1.05rem;">
-          Temukan solusi yang tepat untuk kebutuhan server, hosting, dan digital kamu.
+          Temukan solusi yang tepat untuk kebutuhan server, hosting, domain, dan digital kamu.
         </p>
       </div>
     </section>
@@ -497,7 +573,7 @@
     </section>
 
     <!-- Store Cards -->
-    <section style="max-width:1100px; margin:0 auto; padding:0 24px 80px;">
+    <section style="max-width:1100px; margin:0 auto; padding:0 24px 24px;">
       <div class="reveal" style="margin-bottom:40px;">
         <div class="section-tag">Kategori</div>
         <h2 style="font-size:1.8rem; font-weight:700; margin-top:8px;">Layanan Tersedia</h2>
@@ -619,6 +695,35 @@
       </div>
     </section>
 
+    <!-- Domain Strip (penghubung ke domain.html) -->
+    <section style="max-width:1100px; margin:0 auto; padding:0 24px 80px;">
+      <a href="domain.html" class="domain-strip reveal">
+        <div class="ds-bar"></div>
+        <span class="ds-new"><i class="fas fa-sparkles" style="margin-right:4px;"></i> Baru</span>
+        <div class="ds-icon">
+          <i class="fas fa-globe"></i>
+        </div>
+        <div class="ds-info">
+          <div class="ds-title">Domain</div>
+          <div class="ds-desc">Domain aktif 1 tahun penuh dengan custom IP, akses Cloudflare, dan siap untuk hosting website. Tersedia .my.id sampai .com.</div>
+          <div class="ds-tags">
+            <span class="ds-tag">.my.id</span>
+            <span class="ds-tag">.biz.id</span>
+            <span class="ds-tag">.cloud</span>
+            <span class="ds-tag">.xyz</span>
+            <span class="ds-tag">.com</span>
+            <span class="ds-tag">.net</span>
+            <span class="ds-tag">.id</span>
+            <span class="ds-tag" style="background:rgba(251,191,36,0.03); border-color:rgba(251,191,36,0.08); color:var(--muted);">+3 lainnya</span>
+          </div>
+        </div>
+        <div class="ds-right">
+          <div class="ds-price">Rp15.000<small>/tahun</small></div>
+          <span class="ds-arrow">Lihat 10 Domain <i class="fas fa-arrow-right" style="font-size:0.8rem;"></i></span>
+        </div>
+      </a>
+    </section>
+
     <!-- How It Works -->
     <section style="max-width:900px; margin:0 auto; padding:0 24px 80px;">
       <div class="reveal" style="text-align:center; margin-bottom:40px;">
@@ -698,12 +803,12 @@
           <div class="testi-stars">
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i>
           </div>
-          <p class="testi-text">Harganya paling murah dibanding tempat lain dengan spesifikasi sama. Proses aktifasi super cepat, tinggal tunggu beberapa detik.</p>
+          <p class="testi-text">Beli domain .com cuma 165k, langsung aktif dan bisa dikonekin ke Cloudflare. Harga paling murah yang pernah aku temuin.</p>
           <div class="testi-author">
-            <div class="testi-avatar" style="background:linear-gradient(135deg,var(--purple),var(--pink));">FN</div>
+            <div class="testi-avatar" style="background:linear-gradient(135deg,var(--amber),#f59e0b);">FN</div>
             <div>
               <div class="testi-name">Farel N.</div>
-              <div class="testi-role">VPS User</div>
+              <div class="testi-role">Web Developer</div>
             </div>
           </div>
         </div>
@@ -744,7 +849,7 @@
             <i class="fas fa-tags"></i>
           </div>
           <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Harga Terjangkau</h4>
-          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Mulai dari Rp5.000/bulan. Kualitas premium tanpa harga premium.</p>
+          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Mulai dari Rp5.000/akun hingga domain .com hanya Rp165.000/tahun.</p>
         </div>
       </div>
     </section>
@@ -800,6 +905,15 @@
           </button>
           <div class="faq-answer">
             Otomatis aktif setelah pembayaran dikonfirmasi. Biasanya <strong>kurang dari 1 menit</strong>. Pada peak time maksimal 30 menit.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            <span>Domain bisa diperpanjang?</span>
+            <i class="fas fa-chevron-down chevron"></i>
+          </button>
+          <div class="faq-answer">
+            Domain yang kami jual <strong>aktif 1 tahun penuh dan tidak bisa diperpanjang</strong>. Setelah masa aktif habis, kamu bisa beli domain baru atau migrasi ke registrar lain.
           </div>
         </div>
         <div class="faq-item">
@@ -878,7 +992,6 @@
   </footer>
 
   <script>
-    /* === PARTICLES === */
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
     let pArr = [];
@@ -910,15 +1023,12 @@
     }
     animP();
 
-    /* === MOUSE GLOW === */
     const mg=document.getElementById('mouseGlow');
     document.addEventListener('mousemove',e=>{ mg.style.left=e.clientX+'px'; mg.style.top=e.clientY+'px'; });
 
-    /* === NAVBAR === */
     const navbar=document.getElementById('navbar');
     window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>50));
 
-    /* === MOBILE MENU === */
     const menuBtn=document.getElementById('menuBtn');
     const mobileMenu=document.getElementById('mobileMenu');
     const mOpen=document.getElementById('menuIconOpen');
@@ -929,34 +1039,26 @@
       mClose.style.display=open?'inline':'none';
     });
 
-    /* === LIVE TIME === */
     function updateLiveTime(){
       const now=new Date();
-      const h=String(now.getHours()).padStart(2,'0');
-      const m=String(now.getMinutes()).padStart(2,'0');
-      const s=String(now.getSeconds()).padStart(2,'0');
-      document.getElementById('liveTime').textContent=h+':'+m+':'+s;
+      document.getElementById('liveTime').textContent=
+        String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0')+':'+String(now.getSeconds()).padStart(2,'0');
     }
     updateLiveTime();
     setInterval(updateLiveTime,1000);
 
-    /* === SIMULATED LATENCY === */
     function simulateLatency(){
       const sg=document.querySelectorAll('.status-item strong');
       if(sg.length>=3){
-        const sgLat=(10+Math.random()*6).toFixed(0);
-        const idLat=(5+Math.random()*8).toFixed(0);
-        sg[1].textContent=sgLat+'ms';
-        sg[2].textContent=idLat+'ms';
+        sg[1].textContent=(10+Math.random()*6).toFixed(0)+'ms';
+        sg[2].textContent=(5+Math.random()*8).toFixed(0)+'ms';
       }
     }
     setInterval(simulateLatency,3000);
 
-    /* === SCROLL REVEAL === */
     const rObs=new IntersectionObserver(e=>e.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('vis'); }),{threshold:0.08});
     document.querySelectorAll('.reveal').forEach(el=>rObs.observe(el));
 
-    /* === COUNTER === */
     let cDone=false;
     const cObs=new IntersectionObserver(e=>e.forEach(en=>{
       if(en.isIntersecting&&!cDone){
@@ -971,20 +1073,17 @@
     const sb=document.querySelector('.stats-bar');
     if(sb) cObs.observe(sb);
 
-    /* === FAQ === */
     function toggleFaq(btn){
       const item=btn.parentElement, wasOpen=item.classList.contains('open');
       document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
       if(!wasOpen) item.classList.add('open');
     }
 
-    /* === SMOOTH SCROLL === */
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click',e=>{ e.preventDefault(); const t=document.querySelector(a.getAttribute('href')); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); });
     });
   </script>
 
-  <!-- Firebase Auth -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";

@@ -3,46 +3,304 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HYUNK STORE - HOME</title>
+  <title>HYUNK STORE - STORE</title>
   <link rel="icon" type="image/png" href="images/icon.png">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body class="bg-[#0b1220] text-white">
+<body class="bg-[#0b1220] text-white min-h-screen">
 
 <!-- Navbar -->
 <nav class="fixed w-full z-50 bg-[#0f172a]/80 backdrop-blur border-b border-slate-800">
   <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
     <h1 class="font-bold text-lg">HyunkkCloud</h1>
-    <div class="hidden md:flex gap-6 text-sm text-gray-300">
-      <a href="index.html" class="hover:text-blue-400">Home</a>
-      <a href="store.html" class="hover:text-blue-400">Store</a>
-      <a href="contact.html" class="text-blue-400">Contact</a>
+    <div class="flex items-center gap-4">
+      <div class="hidden md:flex gap-6 text-sm text-gray-300">
+        <a href="index.html" class="hover:text-blue-400">Home</a>
+        <a href="store.html" class="text-blue-400">Store</a>
+        <a href="contact.html" class="hover:text-blue-400">Contact</a>
+      </div>
+      <button id="menuBtn" class="md:hidden text-gray-300">
+        <svg id="menuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
     </div>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden px-6 pb-4 space-y-3 text-sm text-gray-300">
+    <a href="index.html" class="block hover:text-blue-400">Home</a>
+    <a href="store.html" class="block text-blue-400">Store</a>
+    <a href="contact.html" class="block hover:text-blue-400">Contact</a>
   </div>
 </nav>
 
 <!-- Header -->
-<section class="text-center py-20">
-  <h2 class="text-4xl font-bold">Pilih Layanan</h2>
-  <p class="text-gray-400 mt-2">Silakan pilih kategori produk</p>
+<section class="pt-28 pb-6 text-center relative overflow-hidden">
+  <!-- Background glow -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="relative">
+    <p class="text-blue-400 text-sm font-medium tracking-widest uppercase mb-3">Layanan Kami</p>
+    <h2 class="text-4xl md:text-5xl font-bold">Pilih Layanan</h2>
+    <p class="text-gray-400 mt-3 max-w-md mx-auto">Temukan solusi yang cocok untuk kebutuhan server dan digital kamu</p>
+  </div>
 </section>
 
-<!-- Kategori -->
-<section class="max-w-6xl mx-auto px-6 pb-20 grid md:grid-cols-3 gap-6">
+<!-- Stats Bar -->
+<section class="max-w-4xl mx-auto px-6 pb-12">
+  <div class="grid grid-cols-3 gap-4">
+    <div class="text-center">
+      <p class="text-2xl md:text-3xl font-bold text-white">99.9%</p>
+      <p class="text-xs text-gray-500 mt-1">Uptime</p>
+    </div>
+    <div class="text-center border-x border-slate-800">
+      <p class="text-2xl md:text-3xl font-bold text-white">24/7</p>
+      <p class="text-xs text-gray-500 mt-1">Support</p>
+    </div>
+    <div class="text-center">
+      <p class="text-2xl md:text-3xl font-bold text-white">500+</p>
+      <p class="text-xs text-gray-500 mt-1">User Aktif</p>
+    </div>
+  </div>
+</section>
 
-  <a href="store-hosting.html" class="bg-[#0f172a] p-8 rounded-xl text-center hover:scale-105 transition border border-slate-800">
-    <h3 class="text-xl font-bold">Minecraft Hosting</h3>
+<!-- Kategori Cards -->
+<section class="max-w-6xl mx-auto px-6 pb-24 grid md:grid-cols-3 gap-6">
+
+  <!-- Minecraft Hosting -->
+  <a href="store-hosting.html" class="group relative bg-[#0f172a] rounded-2xl overflow-hidden border border-slate-800 hover:border-green-500/40 transition-all duration-300 hover:scale-[1.03]">
+    <!-- Accent top bar -->
+    <div class="h-1 bg-gradient-to-r from-green-500 to-emerald-400"></div>
+    <!-- Background image -->
+    <div class="absolute inset-0 opacity-[0.06] group-hover:opacity-[0.12] transition">
+      <img src="https://www.minecraft.net/content/dam/minecraftnet/franchise/component-library/redeemheroa/Redeem-Hero_Mobile_576x324.png" class="w-full h-full object-cover" alt="">
+    </div>
+    <div class="relative p-8">
+      <div class="w-14 h-14 rounded-xl bg-green-500/10 flex items-center justify-center mb-5 group-hover:bg-green-500/20 transition">
+        <i class="fas fa-cube text-green-400 text-2xl"></i>
+      </div>
+      <h3 class="text-xl font-bold mb-2">Minecraft Hosting</h3>
+      <p class="text-gray-400 text-sm leading-relaxed mb-6">Server MC siap pakai. Java & Bedrock support, panel Pterodactyl, dan performa tinggi.</p>
+      <div class="flex items-center gap-2 text-green-400 text-sm font-medium">
+        <span>Lihat Paket</span>
+        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+      </div>
+    </div>
   </a>
 
-  <a href="store-vps.html" class="bg-[#0f172a] p-8 rounded-xl text-center hover:scale-105 transition border border-slate-800">
-    <h3 class="text-xl font-bold">VPS Server</h3>
+  <!-- VPS Server -->
+  <a href="store-vps.html" class="group relative bg-[#0f172a] rounded-2xl overflow-hidden border border-slate-800 hover:border-blue-500/40 transition-all duration-300 hover:scale-[1.03]">
+    <div class="h-1 bg-gradient-to-r from-blue-500 to-cyan-400"></div>
+    <div class="absolute inset-0 opacity-[0.06] group-hover:opacity-[0.12] transition">
+      <img src="https://i.pinimg.com/1200x/0c/71/6b/0c716b63c067362c27697057230b58ab.jpg" class="w-full h-full object-cover" alt="">
+    </div>
+    <div class="relative p-8">
+      <!-- Popular badge -->
+      <div class="absolute top-4 right-4 bg-blue-500/20 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/30">
+        POPULER
+      </div>
+      <div class="w-14 h-14 rounded-xl bg-blue-500/10 flex items-center justify-center mb-5 group-hover:bg-blue-500/20 transition">
+        <i class="fas fa-server text-blue-400 text-2xl"></i>
+      </div>
+      <h3 class="text-xl font-bold mb-2">VPS Server</h3>
+      <p class="text-gray-400 text-sm leading-relaxed mb-6">AMD EPYC performa tinggi. Full root access, SSD NVMe, dan jaringan stabil.</p>
+      <div class="flex items-center gap-2 text-blue-400 text-sm font-medium">
+        <span>Lihat Paket</span>
+        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+      </div>
+    </div>
   </a>
 
-  <a href="store-aplikasi.html" class="bg-[#0f172a] p-8 rounded-xl text-center hover:scale-105 transition border border-slate-800">
-    <h3 class="text-xl font-bold">Aplikasi Premium</h3>
+  <!-- Aplikasi Premium -->
+  <a href="store-aplikasi.html" class="group relative bg-[#0f172a] rounded-2xl overflow-hidden border border-slate-800 hover:border-purple-500/40 transition-all duration-300 hover:scale-[1.03]">
+    <div class="h-1 bg-gradient-to-r from-purple-500 to-pink-400"></div>
+    <div class="absolute inset-0 opacity-[0.06] group-hover:opacity-[0.12] transition">
+      <img src="https://i.pinimg.com/736x/62/3d/82/623d829e13c1bff04bad5943533baab2.jpg" class="w-full h-full object-cover" alt="">
+    </div>
+    <div class="relative p-8">
+      <div class="w-14 h-14 rounded-xl bg-purple-500/10 flex items-center justify-center mb-5 group-hover:bg-purple-500/20 transition">
+        <i class="fas fa-gem text-purple-400 text-2xl"></i>
+      </div>
+      <h3 class="text-xl font-bold mb-2">Aplikasi Premium</h3>
+      <p class="text-gray-400 text-sm leading-relaxed mb-6">Berbagai akun premium original. Mulai dari streaming, desain, hingga produktivitas.</p>
+      <div class="flex items-center gap-2 text-purple-400 text-sm font-medium">
+        <span>Lihat Paket</span>
+        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+      </div>
+    </div>
   </a>
 
 </section>
+
+<!-- Keunggulan -->
+<section class="max-w-6xl mx-auto px-6 pb-24">
+  <div class="bg-[#0f172a] rounded-2xl border border-slate-800 p-8 md:p-12">
+    <h3 class="text-2xl font-bold text-center mb-10">Kenapa HyunkkCloud?</h3>
+    <div class="grid md:grid-cols-4 gap-8">
+
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mx-auto mb-3">
+          <i class="fas fa-bolt text-blue-400"></i>
+        </div>
+        <p class="font-medium text-sm">Performa Tinggi</p>
+        <p class="text-gray-500 text-xs mt-1">Hardware terbaru</p>
+      </div>
+
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center mx-auto mb-3">
+          <i class="fas fa-shield-halved text-green-400"></i>
+        </div>
+        <p class="font-medium text-sm">DDoS Protection</p>
+        <p class="text-gray-500 text-xs mt-1">Keamanan 24 jam</p>
+      </div>
+
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-lg bg-yellow-500/10 flex items-center justify-center mx-auto mb-3">
+          <i class="fas fa-headset text-yellow-400"></i>
+        </div>
+        <p class="font-medium text-sm">Support Cepat</p>
+        <p class="text-gray-500 text-xs mt-1">Respon hitungan menit</p>
+      </div>
+
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mx-auto mb-3">
+          <i class="fas fa-tags text-purple-400"></i>
+        </div>
+        <p class="font-medium text-sm">Harga Terjangkau</p>
+        <p class="text-gray-500 text-xs mt-1">Mulai dari 5rb/bulan</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Mini -->
+<section class="max-w-3xl mx-auto px-6 pb-24">
+  <h3 class="text-2xl font-bold text-center mb-8">Pertanyaan Umum</h3>
+
+  <div class="space-y-3" id="faqContainer">
+    <div class="faq-item bg-[#0f172a] rounded-xl border border-slate-800 overflow-hidden">
+      <button class="faq-btn w-full text-left px-6 py-4 flex justify-between items-center text-sm font-medium" onclick="toggleFaq(this)">
+        <span>Bisa bayar pakai apa saja?</span>
+        <i class="fas fa-chevron-down text-xs text-gray-500 transition-transform duration-200"></i>
+      </button>
+      <div class="faq-answer hidden px-6 pb-4 text-sm text-gray-400">
+        Kami menerima pembayaran via QRIS, GoPay, OVO, Dana, bank transfer, dan pulsa.
+      </div>
+    </div>
+
+    <div class="faq-item bg-[#0f172a] rounded-xl border border-slate-800 overflow-hidden">
+      <button class="faq-btn w-full text-left px-6 py-4 flex justify-between items-center text-sm font-medium" onclick="toggleFaq(this)">
+        <span>Berapa lama proses aktifasi?</span>
+        <i class="fas fa-chevron-down text-xs text-gray-500 transition-transform duration-200"></i>
+      </button>
+      <div class="faq-answer hidden px-6 pb-4 text-sm text-gray-400">
+        Otomatis aktif setelah pembayaran dikonfirmasi. Biasanya kurang dari 1 menit.
+      </div>
+    </div>
+
+    <div class="faq-item bg-[#0f172a] rounded-xl border border-slate-800 overflow-hidden">
+      <button class="faq-btn w-full text-left px-6 py-4 flex justify-between items-center text-sm font-medium" onclick="toggleFaq(this)">
+        <span>Ada garansi uang kembali?</span>
+        <i class="fas fa-chevron-down text-xs text-gray-500 transition-transform duration-200"></i>
+      </button>
+      <div class="faq-answer hidden px-6 pb-4 text-sm text-gray-400">
+        Ya, kami memberikan garansi 3 hari. Jika tidak puas, hubungi support untuk refund.
+      </div>
+    </div>
+
+    <div class="faq-item bg-[#0f172a] rounded-xl border border-slate-800 overflow-hidden">
+      <button class="faq-btn w-full text-left px-6 py-4 flex justify-between items-center text-sm font-medium" onclick="toggleFaq(this)">
+        <span>Bisa request spesifikasi khusus?</span>
+        <i class="fas fa-chevron-down text-xs text-gray-500 transition-transform duration-200"></i>
+      </button>
+      <div class="faq-answer hidden px-6 pb-4 text-sm text-gray-400">
+        Bisa! Hubungi kami via WhatsApp, dan kami akan buatkan paket custom sesuai kebutuhan kamu.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-[#0f172a] border-t border-slate-800 p-10">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 text-gray-400">
+    <div>
+      <h4 class="text-white font-bold mb-3">HyunkkCloud</h4>
+      <p>Hosting modern dengan performa tinggi dan support aktif.</p>
+    </div>
+    <div>
+      <h4 class="text-white font-bold mb-3">Menu</h4>
+      <div class="space-y-2">
+        <a href="store.html" class="block hover:text-blue-400">Store</a>
+        <a href="contact.html" class="block hover:text-blue-400">Contact</a>
+        <a href="#" class="block hover:text-blue-400">Game Panel</a>
+      </div>
+    </div>
+    <div>
+      <h4 class="text-white font-bold mb-3">Kontak</h4>
+      <p>Email: cahyobagaskoro03@gmail.com</p>
+      <p>WA: 082189822272</p>
+      <p>Indonesia</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Hamburger Menu -->
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuIcon = document.getElementById('menuIcon');
+  const closeIcon = document.getElementById('closeIcon');
+
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    menuIcon.classList.toggle('hidden');
+    closeIcon.classList.toggle('hidden');
+  });
+</script>
+
+<!-- FAQ Toggle -->
+<script>
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const icon = btn.querySelector('i');
+    const isOpen = !answer.classList.contains('hidden');
+
+    // Close all first
+    document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+    document.querySelectorAll('.faq-btn i').forEach(i => i.style.transform = 'rotate(0deg)');
+
+    // Toggle current
+    if (!isOpen) {
+      answer.classList.remove('hidden');
+      icon.style.transform = 'rotate(180deg)';
+    }
+  }
+</script>
+
+<!-- Firebase Auth -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyB2YKgC5EdKYFPaU-4uavFABtYEupvang4",
+    authDomain: "loginpage-2e5aa.firebaseapp.com",
+    projectId: "loginpage-2e5aa",
+    appId: "1:676993662276:web:d8e12ca898fb4c0364eb11"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      window.location.href = "login.html";
+    }
+  });
+</script>
 
 </body>
 </html>

@@ -65,7 +65,6 @@
     .section-tag::before{content:'';width:24px;height:1px;background:var(--accent);}
     .section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;letter-spacing:-0.02em;margin-top:12px;}
 
-    /* === VPS CARDS === */
     .vps-card{position:relative;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:32px 28px;transition:all .4s cubic-bezier(.4,0,.2,1);overflow:hidden;}
     .vps-card::before{content:'';position:absolute;inset:0;border-radius:20px;padding:1px;background:linear-gradient(135deg,transparent 40%,rgba(0,232,157,.15) 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s;}
     .vps-card:hover::before{opacity:1;}
@@ -97,7 +96,6 @@
     .btn-buy.primary:hover{box-shadow:0 0 30px rgba(0,232,157,.3);transform:translateY(-2px);}
     .btn-buy:active{transform:scale(.97);}
 
-    /* === FULL TABLE === */
     .table-wrap{border-radius:16px;border:1px solid var(--border);overflow:hidden;background:var(--bg-card);}
     .vps-table{width:100%;border-collapse:collapse;font-size:.85rem;}
     .vps-table thead{background:rgba(0,0,0,.3);}
@@ -126,7 +124,6 @@
     .table-hidden{max-height:0;overflow:hidden;transition:max-height .5s ease;}
     .table-visible{max-height:3000px;}
 
-    /* === PRIVATE NODE === */
     .pn-section{position:relative;}
     .pn-section::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),#fb923c,var(--amber));border-radius:3px 3px 0 0;}
     .pn-card{position:relative;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:32px 28px;transition:all .4s cubic-bezier(.4,0,.2,1);overflow:hidden;}
@@ -170,12 +167,10 @@
     .btn-pn.purple{background:linear-gradient(135deg,var(--purple),#7c3aed);color:#fff;}
     .btn-pn.purple:hover{box-shadow:0 0 30px rgba(167,139,250,.3);transform:translateY(-2px);}
 
-    /* === FEATURE CARD === */
     .feature-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:28px;transition:all .3s;}
     .feature-card:hover{border-color:rgba(0,232,157,.15);background:rgba(0,232,157,.02);transform:translateY(-4px);}
     .feature-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:16px;}
 
-    /* === FAQ === */
     .faq-item{border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .3s;}
     .faq-item:hover{border-color:rgba(0,232,157,.2);}
     .faq-question{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;cursor:pointer;font-weight:500;background:var(--bg-card);transition:background .3s;user-select:none;}
@@ -186,7 +181,6 @@
     .faq-item.open .faq-answer{max-height:200px;padding:0 20px 18px;}
     .faq-answer strong{color:var(--fg);}
 
-    /* === TOAST === */
     .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--bg-card);border:1px solid rgba(0,232,157,.3);color:var(--fg);padding:14px 24px;border-radius:12px;font-size:.9rem;z-index:9999;opacity:0;transition:all .4s cubic-bezier(.4,0,.2,1);backdrop-filter:blur(12px);box-shadow:0 10px 40px rgba(0,0,0,.5);}
     .toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
 
@@ -236,6 +230,7 @@
         <a href="#node" class="nav-link">Private Node</a>
         <a href="#fitur" class="nav-link">Fitur</a>
         <a href="#faq" class="nav-link">FAQ</a>
+        <a href="monitoring.html" class="nav-link" style="color:var(--accent);"><i class="fas fa-chart-line" style="margin-right:4px;font-size:.75rem;"></i> Monitoring</a>
       </div>
       <button id="menuBtn" class="md:hidden" style="background:none;border:none;color:var(--muted);cursor:pointer;padding:4px;" aria-label="Toggle menu">
         <i class="fas fa-bars" id="menuIconOpen" style="font-size:1.2rem;"></i>
@@ -249,6 +244,7 @@
     <a href="#node">Private Node</a>
     <a href="#fitur">Fitur</a>
     <a href="#faq">FAQ</a>
+    <a href="monitoring.html" style="color:var(--accent);"><i class="fas fa-chart-line" style="margin-right:6px;font-size:.8rem;"></i> Monitoring</a>
   </div>
 </nav>
 
@@ -368,7 +364,7 @@
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
         <div style="display:flex;align-items:center;gap:8px;">
           <div class="section-tag" style="justify-content:center;">Tabel Lengkap</div>
-        <h3 style="font-size:1.3rem;font-weight:700;margin-top:0;">Semua Paket VPS Hetzner Singapore</h3>
+          <h3 style="font-size:1.3rem;font-weight:700;margin-top:0;">Semua Paket VPS Hetzner Singapore</h3>
         </div>
         <div style="display:flex;gap:8px;">
           <span style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);">10 paket &bull; Genoa + Milan</span>
@@ -411,7 +407,7 @@
                 <td class="td-name">Genoa 8GB</td>
                 <td class="td-cpu">4 vCPU</td>
                 <td class="td-ram">8 GB</td>
-                <td class="td-disk">16 GB</td>
+                <td class="td-disk">160 GB</td>
                 <td class="td-bw">2 TB</td>
                 <td class="td-price">Rp100.000</td>
                 <td class="td-action"><a class="btn-table" onclick="beli('VPS Genoa 8GB - Rp100.000/bln')">Beli</a></td>
@@ -487,7 +483,8 @@
           <span id="expandText">Tampilkan Semua Paket</span>
         </button>
       </div>
-    </section>
+    </div>
+  </section>
 
   <!-- PRIVATE NODE -->
   <section id="node" class="pn-section" style="max-width:1200px;margin:0 auto;padding:80px 24px;">
@@ -497,7 +494,6 @@
       <p style="color:var(--muted);margin-top:12px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.7;">Server dedicated untuk kebutuhan berat — Minecraft besar, bot aktif, hosting multi-tenant.</p>
     </div>
     <div class="pn-grid reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
-      <!-- 8GB -->
       <div class="pn-card">
         <div class="pn-tier green">Starter</div>
         <div class="pn-name">Private Node 8GB</div>
@@ -509,14 +505,13 @@
         </div>
         <div class="pn-price"><span class="currency">Rp</span><span class="amount green">120.000</span><span class="period">/bln</span></div>
         <ul class="pn-features">
-          <li><i class="green"></i> Minecraft 20-30 player</li>
-          <li><i class="amber"></i> Auto Backup</li>
-          <li><i class="cyan"></i> Anti DDoS Protection</li>
-          <li><i class="purple"></i> 30 Hari Aktif</li>
+          <li><i class="fas fa-check green"></i> Minecraft 20-30 player</li>
+          <li><i class="fas fa-check amber"></i> Auto Backup</li>
+          <li><i class="fas fa-check cyan"></i> Anti DDoS Protection</li>
+          <li><i class="fas fa-check purple"></i> 30 Hari Aktif</li>
         </ul>
         <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20beli%20Private%20Node%208GB" target="_blank" class="btn-pn blue"><i class="fab fa-whatsapp"></i> Beli Sekarang</a>
       </div>
-      <!-- 16GB -->
       <div class="pn-card featured">
         <div class="pn-badge">Populer</div>
         <div class="pn-tier cyan">Standard</div>
@@ -529,14 +524,13 @@
         </div>
         <div class="pn-price"><span class="currency">Rp</span><span class="amount cyan">150.000</span><span class="period">/bln</span></div>
         <ul class="pn-features">
-          <li><i class="green"></i> Minecraft 30-50 player</li>
-          <li><i class="cyan"></i> 10x Backup Slot</li>
-          <li><i class="amber"></i> Multi Server</li>
-          <li><i class="green"></i> Gratis Pterodactyl Install</li>
+          <li><i class="fas fa-check green"></i> Minecraft 30-50 player</li>
+          <li><i class="fas fa-check cyan"></i> 10x Backup Slot</li>
+          <li><i class="fas fa-check amber"></i> Multi Server</li>
+          <li><i class="fas fa-check green"></i> Gratis Pterodactyl Install</li>
         </ul>
         <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20beli%20Private%20Node%2016GB" target="_blank" class="btn-pn purple"><i class="fab fa-whatsapp"></i> Beli Sekarang</a>
       </div>
-      <!-- 32GB -->
       <div class="pn-card">
         <div class="pn-badge alt">Premium</div>
         <div class="pn-tier purple">Professional</div>
@@ -549,10 +543,10 @@
         </div>
         <div class="pn-price"><span class="currency">Rp</span><span class="amount purple">230.000</span><span class="period">/bln</span></div>
         <ul class="pn-features">
-          <li><i class="green"></i> Minecraft 50+ player</li>
-          <li><i class="cyan"></i> 10x Backup Slot</li>
-          <li><i class="amber"></i> Full Tutorial Support</li>
-          <li><i class="purple"></i> 30 Hari Aktif</li>
+          <li><i class="fas fa-check green"></i> Minecraft 50+ player</li>
+          <li><i class="fas fa-check cyan"></i> 10x Backup Slot</li>
+          <li><i class="fas fa-check amber"></i> Full Tutorial Support</li>
+          <li><i class="fas fa-check purple"></i> 30 Hari Aktif</li>
         </ul>
         <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20beli%20Private%20Node%2032GB" target="_blank" class="btn-pn purple"><i class="fab fa-whatsapp"></i> Beli Sekarang</a>
       </div>
@@ -654,6 +648,7 @@
         <a href="store.html" class="footer-link">Store</a>
         <a href="#vps" class="footer-link">VPS</a>
         <a href="#node" class="footer-link">Private Node</a>
+        <a href="monitoring.html" class="footer-link">Monitoring</a>
         <a href="#faq" class="footer-link">FAQ</a>
       </div>
       <div>
@@ -675,115 +670,281 @@
 
 <script>
   /* === PARTICLES === */
-  const canvas=document.getElementById('particles'),ctx=canvas.getContext('2d');let pArr=[];
-  function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
-  resizeCanvas();window.addEventListener('resize',resizeCanvas);
-  for(let i=0;i<60;i++){pArr.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,size:Math.random()*1.5+.5,speedX:(Math.random()-.5)*.3,speedY:(Math.random()-.5)*.3,opacity:Math.random()*.5+.1});}
-  function animP(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    pArr.forEach(p=>{p.x+=p.speedX;p.y+=p.speedY;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,Math.max(.1,p.size),0,Math.PI*2);ctx.fillStyle=`rgba(0,232,157,${p.opacity})`;ctx.fill();});
-    for(let i=0;i<pArr.length;i++)for(let j=i+1;j<pArr.length;j++){const dx=pArr[i].x-pArr[j].x,dy=pArr[i].y-pArr[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<120){ctx.beginPath();ctx.moveTo(pArr[i].x,pArr[i].y);ctx.lineTo(pArr[j].x,pArr[j].y);ctx.strokeStyle=`rgba(0,232,157,${0.04*(1-d/120)})`;ctx.lineWidth=.5;ctx.stroke();}}
+  var canvas = document.getElementById('particles');
+  var ctx = canvas.getContext('2d');
+  var pArr = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  for (var i = 0; i < 60; i++) {
+    pArr.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 1.5 + 0.5,
+      speedX: (Math.random() - 0.5) * 0.3,
+      speedY: (Math.random() - 0.5) * 0.3,
+      opacity: Math.random() * 0.5 + 0.1
+    });
+  }
+
+  function animP() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (var i = 0; i < pArr.length; i++) {
+      var p = pArr[i];
+      p.x += p.speedX;
+      p.y += p.speedY;
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, Math.max(0.1, p.size), 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0,232,157,' + p.opacity + ')';
+      ctx.fill();
+    }
+    for (var i = 0; i < pArr.length; i++) {
+      for (var j = i + 1; j < pArr.length; j++) {
+        var dx = pArr[i].x - pArr[j].x;
+        var dy = pArr[i].y - pArr[j].y;
+        var d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 120) {
+          ctx.beginPath();
+          ctx.moveTo(pArr[i].x, pArr[i].y);
+          ctx.lineTo(pArr[j].x, pArr[j].y);
+          ctx.strokeStyle = 'rgba(0,232,157,' + (0.04 * (1 - d / 120)) + ')';
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
     requestAnimationFrame(animP);
   }
   animP();
 
-  const mg=document.getElementById('mouseGlow');
-  document.addEventListener('mousemove',e=>{mg.style.left=e.clientX+'px';mg.style.top=e.clientY+'px';});
-  const navbar=document.getElementById('navbar');
-  window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>50));
+  /* === MOUSE GLOW === */
+  var mg = document.getElementById('mouseGlow');
+  document.addEventListener('mousemove', function(e) {
+    mg.style.left = e.clientX + 'px';
+    mg.style.top = e.clientY + 'px';
+  });
+
+  /* === NAVBAR SCROLL === */
+  var navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function() {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
 
   /* === MOBILE MENU === */
-  const menuBtn=document.getElementById('menuBtn'),mobileMenu=document.getElementById('mobileMenu'),mOpen=document.getElementById('menuIconOpen'),mClose=document.getElementById('menuIconClose');
-  menuBtn.addEventListener('click',()=>{const o=mobileMenu.classList.toggle('open');mOpen.style.display=o?'none':'inline';mClose.style.display=o?'inline':'none';});
+  var menuBtn = document.getElementById('menuBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var mOpen = document.getElementById('menuIconOpen');
+  var mClose = document.getElementById('menuIconClose');
+  menuBtn.addEventListener('click', function() {
+    var isOpen = mobileMenu.classList.toggle('open');
+    mOpen.style.display = isOpen ? 'none' : 'inline';
+    mClose.style.display = isOpen ? 'inline' : 'none';
+  });
+  /* Tutup mobile menu saat klik link */
+  mobileMenu.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      mobileMenu.classList.remove('open');
+      mOpen.style.display = 'inline';
+      mClose.style.display = 'none';
+    });
+  });
 
   /* === SMOOTH SCROLL === */
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});});});
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (href === '#') return;
+      e.preventDefault();
+      var target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 
   /* === SCROLL REVEAL === */
-  const rObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible');}),{threshold:.1});
-  document.querySelectorAll('.reveal').forEach(el=>rObs.observe(el));
+  var rObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(en) {
+      if (en.isIntersecting) en.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(function(el) { rObs.observe(el); });
 
   /* === COUNTER === */
-  let cDone=false;
-  const cObs=new IntersectionObserver(e=>e.forEach(en=>{
-    if(en.isIntersecting&&!cDone){
-      cDone=true;
-      document.querySelectorAll('.stat-number').forEach(el=>{const t=parseInt(el.dataset.target),s=el.dataset.suffix||'';let c=0;const step=Math.ceil(t/35);const timer=setInterval(()=>{c+=step;if(c>=t){c=t;clearInterval(timer);}el.textContent=c+s;},30);});
-    }
-  }),{threshold:.5});
-  const sb=document.querySelector('.stats-bar');if(sb)cObs.observe(sb);
+  var cDone = false;
+  var cObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(en) {
+      if (en.isIntersecting && !cDone) {
+        cDone = true;
+        document.querySelectorAll('.stat-number').forEach(function(el) {
+          var target = parseInt(el.dataset.target);
+          var suffix = el.dataset.suffix || '';
+          var current = 0;
+          var step = Math.ceil(target / 35);
+          var timer = setInterval(function() {
+            current += step;
+            if (current >= target) {
+              current = target;
+              clearInterval(timer);
+            }
+            el.textContent = current + suffix;
+          }, 30);
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+  var sb = document.querySelector('.stats-bar');
+  if (sb) cObs.observe(sb);
 
-  /* === TERMINAL === */
-  const terminalLines=[
-    {type:'prompt',text:'~$ '},
-    {type:'cmd',text:'ssh root@sg1.hyunkcloud.com'},
-    {type:'output',text:''},
-    {type:'output',text:'Connecting to sg1.hyunkcloud.com...'},
-    {type:'success',text:'Authenticated successfully.'},
-    {type:'output',text:''},
-    {type:'prompt',text:'root@sg1:~$ '},
-    {type:'cmd',text:'neofetch'},
-    {type:'output',text:''},
-    {type:'highlight',text:'  CPU: AMD EPYC 7763 (2 cores)'},
-    {type:'highlight',text:'  RAM: 4096MB / 4096MB'},
-    {type:'highlight',text:'  Disk: 80GB / 80GB (SSD NVMe)'},
-    {type:'highlight',text:'  Network: 1Gbps | SG-Singapore'},
-    {type:'output',text:''},
-    {type:'prompt',text:'root@sg1:~$ '},
+  /* === TERMINAL ANIMATION (FIXED) === */
+  var terminalLines = [
+    { type: 'prompt', text: '~$ ' },
+    { type: 'cmd', text: 'ssh root@sg1.hyunkcloud.com' },
+    { type: 'output', text: '' },
+    { type: 'output', text: 'Connecting to sg1.hyunkcloud.com...' },
+    { type: 'success', text: 'Authenticated successfully.' },
+    { type: 'output', text: '' },
+    { type: 'prompt', text: 'root@sg1:~$ ' },
+    { type: 'cmd', text: 'neofetch' },
+    { type: 'output', text: '' },
+    { type: 'highlight', text: '  CPU: AMD EPYC 7763 (2 cores)' },
+    { type: 'highlight', text: '  RAM: 4096MB / 4096MB' },
+    { type: 'highlight', text: '  Disk: 80GB / 80GB (SSD NVMe)' },
+    { type: 'highlight', text: '  Network: 1Gbps | SG-Singapore' },
+    { type: 'output', text: '' },
+    { type: 'prompt', text: 'root@sg1:~$ ' }
   ];
-  const terminalBody=document.getElementById('terminalBody');
-  let lineIdx=0;
-  function typeTerminal(){
-    if(lineIdx>=terminalLines.length)return;
-    const line=terminalLines[lineIdx];
-    const lineEl=document.createElement('div');
-    lineEl.style.minHeight='1.5em';
-    if(line.type==='prompt'){lineEl.innerHTML=`<span class="prompt">${line.text}</span>`;terminalBody.appendChild(lineEl);lineIdx++;
-      if(lineIdx<terminalLines.length&&terminalLines[lineIdx].type==='cmd'){typeCommand(lineEl,terminalLines[lineIdx].text);}
-      else{lineEl.className=line.type;lineEl.textContent=line.text;terminalBody.appendChild(lineEl);lineIdx++;setTimeout(typeTerminal,line.type==='output'&&line.text===''?100:180);}
+
+  var terminalBody = document.getElementById('terminalBody');
+  var lineIdx = 0;
+
+  function processTerminal() {
+    if (lineIdx >= terminalLines.length) return;
+
+    var line = terminalLines[lineIdx];
+
+    if (line.type === 'prompt') {
+      /* Tampilkan prompt */
+      var promptEl = document.createElement('div');
+      promptEl.innerHTML = '<span class="prompt">' + line.text + '</span>';
+      terminalBody.appendChild(promptEl);
+      lineIdx++;
+
+      /* Cek apakah baris berikutnya adalah command */
+      if (lineIdx < terminalLines.length && terminalLines[lineIdx].type === 'cmd') {
+        var cmdLine = terminalLines[lineIdx];
+        var promptText = line.text;
+        lineIdx++;
+        typeCommand(promptEl, promptText, cmdLine.text, function() {
+          processTerminal();
+        });
+      } else {
+        terminalBody.scrollTop = terminalBody.scrollHeight;
+        setTimeout(processTerminal, 50);
+      }
+    } else {
+      /* Baris biasa: output, success, highlight */
+      var el = document.createElement('div');
+      el.className = line.type;
+      el.textContent = line.text;
+      terminalBody.appendChild(el);
+      lineIdx++;
+      terminalBody.scrollTop = terminalBody.scrollHeight;
+
+      var delay = (line.type === 'output' && line.text === '') ? 80 : 150;
+      setTimeout(processTerminal, delay);
     }
-    terminalBody.scrollTop=terminalBody.scrollHeight;
   }
-  function typeCommand(container,text){
-    let i=0;const cursor=document.createElement('span');cursor.className='terminal-cursor';container.appendChild(cursor);
-    function tc(){if(i<text.length){container.removeChild(cursor);container.innerHTML=`<span class="prompt">${terminalLines[lineIdx-1].text}</span><span class="cmd">${text.substring(0,i+1)}</span>`;container.appendChild(cursor);i++;setTimeout(tc,35+Math.random()*40);}
-    tc();
+
+  function typeCommand(container, promptText, text, callback) {
+    var i = 0;
+    var cursor = document.createElement('span');
+    cursor.className = 'terminal-cursor';
+    container.appendChild(cursor);
+
+    function tick() {
+      if (i < text.length) {
+        container.removeChild(cursor);
+        container.innerHTML = '<span class="prompt">' + promptText + '</span><span class="cmd">' + text.substring(0, i + 1) + '</span>';
+        container.appendChild(cursor);
+        i++;
+        terminalBody.scrollTop = terminalBody.scrollHeight;
+        setTimeout(tick, 30 + Math.random() * 40);
+      } else {
+        /* Selesai mengetik — hapus cursor setelah jeda */
+        setTimeout(function() {
+          if (cursor.parentNode) cursor.remove();
+          callback();
+        }, 400);
+      }
+    }
+    tick();
   }
-  setTimeout(typeTerminal,1000);
+
+  setTimeout(processTerminal, 1000);
 
   /* === FAQ === */
-  function toggleFaq(el){const item=el.parentElement;const wasOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));if(!wasOpen)item.classList.add('open');}
+  function toggleFaq(el) {
+    var item = el.parentElement;
+    var wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(f) { f.classList.remove('open'); });
+    if (!wasOpen) item.classList.add('open');
+  }
 
   /* === BELI (WhatsApp) === */
-  function beli(produk){const n='6282189822272';const p=`Halo, saya mau beli ${produk}`;showToast('Mengarah ke WhatsApp...');setTimeout(()=>window.open(`https://wa.me/${n}?text=${encodeURIComponent(p)}`,'_blank'),600);}
+  function beli(produk) {
+    var n = '6282189822272';
+    var p = 'Halo, saya mau beli ' + produk;
+    showToast('Mengarah ke WhatsApp...');
+    setTimeout(function() {
+      window.open('https://wa.me/' + n + '?text=' + encodeURIComponent(p), '_blank');
+    }, 600);
+  }
 
   /* === TOAST === */
-  function showToast(msg){const t=document.getElementById('toast');t.innerHTML=`<i class="fas fa-circle-notch fa-spin" style="margin-right:8px;color:var(--accent);"></i>${msg}`;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+  function showToast(msg) {
+    var t = document.getElementById('toast');
+    t.innerHTML = '<i class="fas fa-circle-notch fa-spin" style="margin-right:8px;color:var(--accent);"></i>' + msg;
+    t.classList.add('show');
+    setTimeout(function() { t.classList.remove('show'); }, 2500);
+  }
 
   /* === EXPAND TABLE === */
-  function toggleTable(){const h=document.getElementById('tableHidden');const b=document.getElementById('expandBtn');const t=document.getElementById('expandText');
-    const vis=h.classList.contains('table-visible');
+  function toggleTable() {
+    var h = document.getElementById('tableHidden');
+    var b = document.getElementById('expandBtn');
+    var isNowVisible = !h.classList.contains('table-visible');
     h.classList.toggle('table-visible');
     b.classList.toggle('expanded');
-    b.innerHTML=`<i class="${vis?'fas fa-chevron-up':'fas fa-chevron-down'}"></i> <span>${vis?'Tutup':'Tampilkan Semua Paket'}</span>`;
+    if (isNowVisible) {
+      b.innerHTML = '<i class="fas fa-chevron-up"></i> <span>Tutup Tabel</span>';
+    } else {
+      b.innerHTML = '<i class="fas fa-chevron-down"></i> <span>Tampilkan Semua Paket</span>';
+    }
   }
-
-  /* === RESPONSIVE === */
-  function handleResize(){const g=document.getElementById('vpsGrid'),fg=document.getElementById('pn-grid'),f=document.getElementById('feat-grid');
-    if(window.innerWidth<768){if(g)g.style.gridTemplateColumns='1fr';if(f)f.style.gridTemplateColumns='1fr';}
-    else if(window.innerWidth<1024){if(g)g.style.gridTemplateColumns='1fr 1fr';if(f)f.style.gridTemplateColumns:'1fr';}
-    else{if(g)g.style.gridTemplateColumns='repeat(3,1fr)';if(f)f.style.gridTemplateColumns:'repeat(3,1fr';}
-  }
-  handleResize();
-  window.addEventListener('resize',handleResize);
 </script>
 
 <script type="module">
-  import{initializeApp}from"https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-  import{getAuth,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
-  const firebaseConfig={apiKey:"AIzaSyB2YKgC5EdKYFPaU-4uavFABtYEupvang4",authDomain:"loginpage-2e5aa.firebaseapp.com",projectId:"loginpage-2e5aa",appId:"1:676993662276:web:d8e12ca898fb4c0364eb11"};
-  const app=initializeApp(firebaseConfig),auth=getAuth(app);
-  onAuthStateChanged(auth,(user)=>{if(!user)window.location.href="login.html";});
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+  const firebaseConfig = {
+    apiKey: "AIzaSyB2YKgC5EdKYFPaU-4uavFABtYEupvang4",
+    authDomain: "loginpage-2e5aa.firebaseapp.com",
+    projectId: "loginpage-2e5aa",
+    appId: "1:676993662276:web:d8e12ca898fb4c0364eb11"
+  };
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  onAuthStateChanged(auth, function(user) {
+    if (!user) window.location.href = "login.html";
+  });
 </script>
 
 </body>

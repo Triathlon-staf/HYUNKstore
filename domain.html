@@ -60,7 +60,7 @@
 
     .domain-search-box { max-width:620px; margin:0 auto; background:var(--bg-card); border:1px solid var(--border); border-radius:18px; padding:6px; display:flex; gap:0; transition:border-color 0.3s, box-shadow 0.3s; }
     .domain-search-box:focus-within { border-color:rgba(251,191,36,0.35); box-shadow:0 0 40px rgba(251,191,36,0.08); }
-    .domain-search-box input { flex:1; background:none; border:none; outline:none; padding:14px 20px; color:var(--fg); font-family:'JetBrains Mono',monospace; font-size:0.95rem; }
+    .domain-search-box input { flex:1; background:none; border:none; outline:none; padding:14px 20px; color:var(--fg); font-family:'JetBrains Mono',monospace; font-size:0.95rem; min-width:0; }
     .domain-search-box input::placeholder { color:var(--muted); opacity:0.6; }
     .domain-search-box .search-btn { padding:14px 28px; border:none; border-radius:14px; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#060a10; font-family:inherit; font-weight:700; font-size:0.9rem; cursor:pointer; transition:all 0.3s; white-space:nowrap; display:flex; align-items:center; gap:8px; }
     .domain-search-box .search-btn:hover { box-shadow:0 0 25px rgba(251,191,36,0.3); transform:translateY(-1px); }
@@ -71,11 +71,11 @@
     .filter-pill.active { border-color:rgba(251,191,36,0.4); color:var(--accent); background:rgba(251,191,36,0.06); }
 
     .domain-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
-    .domain-card { position:relative; background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:24px 28px; display:flex; align-items:center; justify-content:space-between; gap:16px; transition:all 0.4s cubic-bezier(0.4,0,0.2,1); cursor:pointer; text-decoration:none; color:inherit; overflow:hidden; }
+    .domain-card { position:relative; background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:24px 28px; display:flex; align-items:center; justify-content:space-between; gap:16px; transition:all 0.4s cubic-bezier(0.4,0,0.2,1); cursor:pointer; text-decoration:none; color:inherit; overflow:hidden; font-family:inherit; text-align:left; width:100%; }
     .domain-card::before { content:''; position:absolute; inset:0; border-radius:16px; padding:1px; background:linear-gradient(160deg,transparent 40%,var(--card-accent,rgba(251,191,36,0.25)) 100%); -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; opacity:0; transition:opacity 0.4s; }
     .domain-card:hover::before { opacity:1; }
     .domain-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,0.35),0 0 40px var(--card-glow,rgba(251,191,36,0.06)); border-color:transparent; }
-    .domain-card .card-bar { position:absolute; top:0; left:0; right:0; height:2px; background:var(--card-bar,linear-gradient(90deg,var(--amber),var(--accent2)); transform:scaleX(0); transform-origin:left; transition:transform 0.5s cubic-bezier(0.4,0,0.2,1); }
+    .domain-card .card-bar { position:absolute; top:0; left:0; right:0; height:2px; background:var(--card-bar,linear-gradient(90deg,var(--amber),var(--accent2))); transform:scaleX(0); transform-origin:left; transition:transform 0.5s cubic-bezier(0.4,0,0.2,1); }
     .domain-card:hover .card-bar { transform:scaleX(1); }
     .domain-ext { font-family:'JetBrains Mono',monospace; font-size:1.35rem; font-weight:700; white-space:nowrap; }
     .domain-info { flex:1; min-width:0; }
@@ -128,7 +128,7 @@
     .faq-item.open { border-color:rgba(251,191,36,0.2); }
     .faq-btn { width:100%; text-align:left; padding:18px 22px; display:flex; justify-content:space-between; align-items:center; background:none; border:none; color:var(--fg); font-family:inherit; font-size:0.92rem; font-weight:500; cursor:pointer; transition:background 0.3s; }
     .faq-btn:hover { background:rgba(255,255,255,0.015); }
-    .faq-btn .chevron { color:var(--muted); font-size:0.75rem; transition:transform 0.3s; flex-shrink:0; }
+    .faq-btn .chevron { color:var(--muted); font-size:0.75rem; transition:transform 0.3s; flex-shrink:0; margin-left:12px; }
     .faq-item.open .chevron { transform:rotate(180deg); }
     .faq-answer { max-height:0; overflow:hidden; transition:max-height 0.4s ease, padding 0.4s; padding:0 22px; font-size:0.88rem; color:var(--muted); line-height:1.75; }
     .faq-item.open .faq-answer { max-height:200px; padding:0 22px 20px; }
@@ -137,7 +137,7 @@
     .section-tag { font-family:'JetBrains Mono',monospace; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--accent); display:flex; align-items:center; gap:8px; }
     .section-tag::before { content:''; width:20px; height:1px; background:var(--accent); }
 
-    .footer-link { color:var(--muted); text-decoration:none; font-size:0.85rem; transition:color 0.3; display:block; padding:3px 0; }
+    .footer-link { color:var(--muted); text-decoration:none; font-size:0.85rem; transition:color 0.3s; display:block; padding:3px 0; }
     .footer-link:hover { color:var(--accent); }
 
     .mobile-menu { display:none; padding:0 24px 16px; border-top:1px solid var(--border); }
@@ -163,6 +163,153 @@
     .toast { position:fixed; bottom:30px; left:50%; transform:translateX(-50%) translateY(100px); padding:14px 28px; border-radius:14px; background:var(--bg-card); border:1px solid rgba(251,191,36,0.25); color:var(--fg); font-size:0.88rem; z-index:200; box-shadow:0 12px 40px rgba(0,0,0,0.5); transition:transform 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.4s; opacity:0; display:flex; align-items:center; gap:10px; pointer-events:none; }
     .toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
 
+    /* ===== CHATBOT STYLES ===== */
+    .chatbot-fab {
+      position:fixed; bottom:28px; right:28px; z-index:150;
+      width:56px; height:56px; border-radius:16px; border:none;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#060a10; font-size:1.3rem; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 8px 30px rgba(251,191,36,0.25);
+      transition:all 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .chatbot-fab:hover { transform:scale(1.08); box-shadow:0 10px 40px rgba(251,191,36,0.35); }
+    .chatbot-fab.open { border-radius:14px; background:var(--bg-card); color:var(--fg); box-shadow:0 4px 20px rgba(0,0,0,0.4); }
+    .fab-pulse {
+      position:absolute; inset:-4px; border-radius:20px;
+      background:rgba(251,191,36,0.15);
+      animation:fabPulse 2.5s ease-in-out infinite;
+      pointer-events:none;
+    }
+    .chatbot-fab.open .fab-pulse { display:none; }
+    @keyframes fabPulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.15);opacity:0} }
+    .fab-badge {
+      position:absolute; top:-4px; right:-4px;
+      min-width:18px; height:18px; border-radius:9px;
+      background:var(--red); color:#fff; font-size:0.6rem; font-weight:700;
+      display:flex; align-items:center; justify-content:center; padding:0 5px;
+    }
+    .chatbot-fab.open .fab-badge { display:none; }
+
+    .chatbot-window {
+      position:fixed; bottom:96px; right:28px; z-index:149;
+      width:400px; height:560px; max-height:calc(100vh - 140px);
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:20px; display:flex; flex-direction:column;
+      box-shadow:0 20px 60px rgba(0,0,0,0.6);
+      transform:scale(0.9) translateY(20px); opacity:0;
+      pointer-events:none; transition:all 0.35s cubic-bezier(0.4,0,0.2,1);
+      overflow:hidden;
+    }
+    .chatbot-window.open { transform:scale(1) translateY(0); opacity:1; pointer-events:all; }
+
+    .chat-header {
+      padding:16px 18px; display:flex; align-items:center; gap:12px;
+      border-bottom:1px solid var(--border);
+      background:rgba(251,191,36,0.02); flex-shrink:0;
+    }
+    .chat-avatar {
+      width:38px; height:38px; border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#060a10; display:flex; align-items:center; justify-content:center;
+      font-size:0.9rem; flex-shrink:0;
+    }
+    .chat-header-info { flex:1; min-width:0; }
+    .chat-header-name { font-weight:600; font-size:0.9rem; display:flex; align-items:center; gap:8px; }
+    .model-tag {
+      font-size:0.55rem; padding:2px 7px; border-radius:6px;
+      background:rgba(251,191,36,0.1); color:var(--accent);
+      font-family:'JetBrains Mono',monospace; font-weight:400;
+    }
+    .chat-header-status {
+      font-size:0.72rem; color:var(--green); margin-top:2px;
+      display:flex; align-items:center; gap:6px;
+    }
+    .status-dot { width:6px; height:6px; border-radius:50%; background:var(--green); display:inline-block; animation:pulse-dot 2s ease-in-out infinite; }
+    .chat-header-actions button {
+      background:none; border:none; color:var(--muted); cursor:pointer;
+      padding:6px; border-radius:8px; transition:all 0.2s; font-size:0.8rem;
+    }
+    .chat-header-actions button:hover { color:var(--fg); background:rgba(255,255,255,0.05); }
+
+    .chat-messages {
+      flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:12px;
+      scroll-behavior:smooth;
+    }
+    .chat-messages::-webkit-scrollbar { width:4px; }
+    .chat-messages::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+
+    .chat-msg { display:flex; gap:10px; max-width:88%; }
+    .chat-msg.bot { align-self:flex-start; }
+    .chat-msg.user { align-self:flex-end; flex-direction:row-reverse; }
+    .chat-msg-avatar {
+      width:30px; height:30px; border-radius:10px; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center; font-size:0.7rem;
+    }
+    .chat-msg.bot .chat-msg-avatar { background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#060a10; }
+    .chat-msg.user .chat-msg-avatar { background:rgba(255,255,255,0.08); color:var(--muted); }
+    .chat-bubble {
+      padding:12px 16px; border-radius:14px; font-size:0.84rem; line-height:1.7;
+      word-break:break-word;
+    }
+    .chat-msg.bot .chat-bubble { background:rgba(255,255,255,0.04); border:1px solid var(--border); border-top-left-radius:4px; }
+    .chat-msg.user .chat-bubble { background:rgba(251,191,36,0.1); border:1px solid rgba(251,191,36,0.15); border-top-right-radius:4px; }
+    .chat-msg-time { font-size:0.6rem; color:var(--muted); margin-top:4px; opacity:0.6; }
+    .chat-msg.user .chat-msg-time { text-align:right; }
+
+    .typing-msg { display:flex; gap:10px; align-items:center; }
+    .typing-dots { display:flex; gap:4px; padding:14px 18px; background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:14px; border-top-left-radius:4px; }
+    .typing-dots span { width:7px; height:7px; border-radius:50%; background:var(--muted); animation:typingBounce 1.4s ease-in-out infinite; }
+    .typing-dots span:nth-child(2) { animation-delay:0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay:0.4s; }
+    @keyframes typingBounce { 0%,60%,100%{transform:translateY(0);opacity:0.4} 30%{transform:translateY(-6px);opacity:1} }
+
+    .chat-quick-replies {
+      padding:0 16px 8px; display:flex; gap:6px; flex-wrap:wrap; flex-shrink:0;
+    }
+    .quick-reply-btn {
+      padding:6px 14px; border-radius:10px; border:1px solid var(--border);
+      background:var(--bg-card); color:var(--muted); font-size:0.75rem;
+      cursor:pointer; transition:all 0.25s; font-family:inherit; white-space:nowrap;
+    }
+    .quick-reply-btn:hover { border-color:rgba(251,191,36,0.3); color:var(--accent); background:rgba(251,191,36,0.05); }
+
+    .chat-input-area {
+      padding:12px 14px; border-top:1px solid var(--border);
+      display:flex; gap:8px; align-items:center; flex-shrink:0;
+    }
+    .chat-input-area input {
+      flex:1; background:rgba(255,255,255,0.04); border:1px solid var(--border);
+      border-radius:12px; padding:10px 16px; color:var(--fg);
+      font-family:inherit; font-size:0.84rem; outline:none;
+      transition:border-color 0.3s; min-width:0;
+    }
+    .chat-input-area input::placeholder { color:var(--muted); opacity:0.5; }
+    .chat-input-area input:focus { border-color:rgba(251,191,36,0.3); }
+    .chat-send-btn {
+      width:40px; height:40px; border-radius:12px; border:none;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#060a10; cursor:pointer; display:flex; align-items:center;
+      justify-content:center; font-size:0.8rem; transition:all 0.25s; flex-shrink:0;
+    }
+    .chat-send-btn:hover:not(:disabled) { box-shadow:0 0 20px rgba(251,191,36,0.25); transform:scale(1.05); }
+    .chat-send-btn:disabled { opacity:0.3; cursor:not-allowed; transform:none; }
+
+    .chat-footer-note {
+      padding:6px 16px 10px; text-align:center; font-size:0.6rem;
+      color:var(--muted); opacity:0.4; flex-shrink:0;
+    }
+    .chat-error-badge {
+      display:inline-flex; align-items:center; gap:5px;
+      padding:3px 10px; border-radius:8px; font-size:0.68rem;
+      background:rgba(251,191,36,0.08); color:var(--amber);
+      border:1px solid rgba(251,191,36,0.15);
+    }
+    .chat-bubble a { color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+    .chat-bubble li { margin-left:16px; list-style:disc; }
+    .chat-bubble pre { background:rgba(0,0,0,0.3); padding:10px 14px; border-radius:8px; margin:6px 0; overflow-x:auto; font-family:'JetBrains Mono',monospace; font-size:0.78rem; }
+    .chat-bubble code { font-family:'JetBrains Mono',monospace; font-size:0.8rem; }
+
     ::-webkit-scrollbar { width:6px; }
     ::-webkit-scrollbar-track { background:var(--bg); }
     ::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
@@ -177,7 +324,6 @@
       .step-connector { display:none!important; }
       .compare-table-wrap { overflow-x:auto; }
       .compare-table { min-width:520px; }
-      .footer-grid { grid-template-columns:1fr!important; gap:24px!important; }
       .chatbot-window { bottom:0; right:0; width:100vw; max-width:100vw; height:100vh; max-height:100vh; border-radius:0; }
       .chatbot-fab { bottom:20px; right:20px; }
     }
@@ -186,11 +332,11 @@
 <body>
 
   <div class="grid-bg"></div>
-  <canvas id="particles"></canvas></canvas>
+  <canvas id="particles"></canvas>
   <div class="scanline"></div>
   <div class="orb orb-1"></div>
-  <div class="orb-2"></div>
-  <div class="orb-3"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
   <div class="mouse-glow" id="mouseGlow"></div>
 
   <div class="toast" id="toast"><i class="fas fa-circle-info" style="color:var(--amber);"></i><span id="toastMsg"></span></div>
@@ -198,17 +344,17 @@
   <nav class="navbar" id="navbar">
     <div style="max-width:1200px; margin:0 auto; padding:16px 24px; display:flex; justify-content:space-between; align-items:center;">
       <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:10px;">
-        <div style="width:36px; height:36px; border-radius:10px; overflow:hidden;"><img src="images/icon.png" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div style="width:36px; height:36px; border-radius:10px; overflow:hidden;"><img src="images/icon.png" style="width:100%; height:100%; object-fit:cover;" alt="Logo"></div>
         <span style="font-weight:700; font-size:1.05rem; color:var(--fg);">HyunkStore</span>
       </a>
       <div style="display:flex; align-items:center; gap:28px;">
-        <div class="hidden md:flex items-center gap-7">
+        <div class="hidden md:flex items-center gap-7" style="display:none;" id="desktopNav">
           <a href="index.html" class="nav-link">Home</a>
           <a href="store.html" class="nav-link active">Store</a>
           <a href="support.html" class="nav-link">Support</a>
           <a href="contact.html" class="nav-link">Contact</a>
         </div>
-        <button id="menuBtn" class="md:hidden" style="background:none; border:none; color:var(--muted); cursor:pointer; padding:4px;" aria-label="Toggle menu">
+        <button id="menuBtn" style="background:none; border:none; color:var(--muted); cursor:pointer; padding:4px;" aria-label="Toggle menu">
           <i class="fas fa-bars" id="menuIconOpen" style="font-size:1.2rem;"></i>
           <i class="fas fa-xmark" id="menuIconClose" style="font-size:1.2rem; display:none;"></i>
         </button>
@@ -235,7 +381,7 @@
       <div class="reveal">
         <div class="domain-search-box">
           <input type="text" id="domainSearch" placeholder="Cari domain... contoh: namakamu" autocomplete="off">
-          <button class="search-btn" onclick="handleSearch()"><i class="fas fa-magnifying-glass"></i> Cari</button>
+          <button class="search-btn" id="searchBtn"><i class="fas fa-magnifying-glass"></i> Cari</button>
         </div>
         <p style="text-align:center; margin-top:12px; font-size:.75rem; color:var(--muted); opacity:0.6;">Ketik nama yang diinginkan, lalu pilih ekstensi domain di bawah</p>
       </div>
@@ -364,13 +510,13 @@
         <div style="position:relative;">
           <h2 style="font-size:1.8rem; font-weight:700; margin-bottom:10px;">Butuh Bantuan Pilih Domain?</h2>
           <p style="color:var(--muted); max-width:420px; margin:0 auto 28px; line-height:1.7; font-size:0.95rem;">Konsultasikan kebutuhan domainmu secara gratis. Kami bantu cek ketersediaan dan rekomendasikan yang terbaik.</p>
-          <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20butuh%20bantuan%20memilih%20domain" target="_blank" style="display:inline-flex; align-items:center; gap:10px; padding:16px 32px; border-radius:14px; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#060a10; font-weight:700; font-size:0.95rem; text-decoration:none; transition:all 0.3s;" onmouseover="this.style.boxShadow='0 0 35px rgba(251,191,36,0.3)'; this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'"><i class="fab fa-whatsapp" style="font-size:1.1rem;"></i> Konsultasi Gratis</a></a>
+          <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20butuh%20bantuan%20memilih%20domain" target="_blank" style="display:inline-flex; align-items:center; gap:10px; padding:16px 32px; border-radius:14px; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#060a10; font-weight:700; font-size:0.95rem; text-decoration:none; transition:all 0.3s;" onmouseover="this.style.boxShadow='0 0 35px rgba(251,191,36,0.3)'; this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'"><i class="fab fa-whatsapp" style="font-size:1.1rem;"></i> Konsultasi Gratis</a>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- ========== AI CHATBOT (Groq-Powered) ========== -->
+  <!-- AI CHATBOT -->
   <button class="chatbot-fab" id="chatFab" aria-label="Buka chatbot" onclick="toggleChat()">
     <span class="fab-pulse"></span>
     <span class="fab-badge" id="chatBadge">1</span>
@@ -392,366 +538,628 @@
     <div class="chat-messages" id="chatMessages"></div>
     <div class="chat-quick-replies" id="chatQuickReplies"></div>
     <div class="chat-input-area">
-      <input type="text" id="chatInput" placeholder="Tanya apa saja tentang HyunkkCloud..." autocomplete="off" onkeydown="if(event.key==='Enter')sendMessage()">
+      <input type="text" id="chatInput" placeholder="Tanya apa saja tentang domain..." autocomplete="off" onkeydown="if(event.key==='Enter')sendMessage()">
       <button class="chat-send-btn" id="chatSendBtn" onclick="sendMessage()" disabled><i class="fas fa-paper-plane"></i></button>
     </div>
     <div class="chat-footer-note">HyunkBot — ditenagai Groq AI (Llama 3.3 70B)</div>
   </div>
 
   <script>
-    /* === PARTICLES === */
-    const canvas=document.getElementById('particles'),ctx=canvas.getContext('2d');let pArr=[];
-    function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
-    resizeCanvas();window.addEventListener('resize',resizeCanvas);
-    for(let i=0;i<55;i++)pArr.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,size:Math.random()*1.3+0.4,speedX:(Math.random()-0.5)*0.25,speedY:(Math.random()-0.5)*0.25,opacity:Math.random()*0.35+0.1});
-    function animP(){ctx.clearRect(0,0,canvas.width,canvas.height);pArr.forEach(p=>{p.x+=p.speedX;p.y+=p.speedY;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,Math.max(0.1,p.size),0,Math.PI*2);ctx.fillStyle=`rgba(251,191,36,${p.opacity})`;ctx.fill()});for(let i=0;i<pArr.length;i++)for(let j=i+1;j<pArr.length;j++){const dx=pArr[i].x-pArr[j].x,dy=pArr[i].y-pArr[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<115){ctx.beginPath();ctx.moveTo(pArr[i].x,pArr[i].y);ctx.lineTo(pArr[j].x,pArr[j].y);ctx.strokeStyle=`rgba(251,191,36,${0.03*(1-d/115)})`;ctx.lineWidth=0.5;ctx.stroke()}}requestAnimationFrame(animP)}
+    /* ===================== PARTICLES ===================== */
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let pArr = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    for (let i = 0; i < 55; i++) {
+      pArr.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 1.3 + 0.4,
+        speedX: (Math.random() - 0.5) * 0.25,
+        speedY: (Math.random() - 0.5) * 0.25,
+        opacity: Math.random() * 0.35 + 0.1
+      });
+    }
+
+    function animP() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pArr.forEach(function(p) {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, Math.max(0.1, p.size), 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(251,191,36,' + p.opacity + ')';
+        ctx.fill();
+      });
+      for (let i = 0; i < pArr.length; i++) {
+        for (let j = i + 1; j < pArr.length; j++) {
+          const dx = pArr[i].x - pArr[j].x;
+          const dy = pArr[i].y - pArr[j].y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 115) {
+            ctx.beginPath();
+            ctx.moveTo(pArr[i].x, pArr[i].y);
+            ctx.lineTo(pArr[j].x, pArr[j].y);
+            ctx.strokeStyle = 'rgba(251,191,36,' + (0.03 * (1 - d / 115)) + ')';
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animP);
+    }
     animP();
 
-    const mg=document.getElementById('mouseGlow');
-    document.addEventListener('mousemove',e=>{mg.style.left=e.clientX+'px';mg.style.top=e.clientY+'px'});
-
-    const navbar=document.getElementById('navbar');
-    window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>50));
-    const menuBtn=document.getElementById('menuBtn'),mobileMenu=document.getElementById('mobileMenu'),mOpen=document.getElementById('menuIconOpen'),mClose=document.getElementById('menuIconClose');
-    menuBtn.addEventListener('click',()=>{const o=mobileMenu.classList.toggle('open');mOpen.style.display=o?'none':'inline';mClose.style.display=o?'inline':'none';});
-
-    const searchInput=document.getElementById('domainSearch'),domainCards=document.querySelectorAll('.domain-card'),noResults=document.getElementById('noResults');
-    searchInput.addEventListener('input',function(){const q=this.value.trim().toLowerCase();document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));document.querySelector('.filter-pill[data-filter="all"]').classList.add('active');let c=0;domainCards.forEach(card=>{const ext=card.dataset.ext||'';if(!q||ext.includes(q)){card.classList.remove('hidden-card');c++}else{card.classList.add('hidden-card')}});noResults.style.display=c===0?'block':'none'});
-    searchInput.addEventListener('keydown',function(e){if(e.key==='Enter')handleSearch()});
-    function handleSearch(){const q=searchInput.value.trim().toLowerCase();if(!q){showToast('Ketik nama domain yang ingin dicari');return}let f=false;domainCards.forEach(card=>{const ext=card.dataset.ext||'';if(ext.includes(q)){card.classList.remove('hidden-card');f=true}else{card.classList.add('hidden-card')}});if(f){showToast('Domain ditemukan! Scroll ke bawah');document.getElementById('domainGrid').scrollIntoView({behavior:'smooth',block:'center'})}else{showToast('Ekstensi "'+q+'" belum tersedia.')}noResults.style.display=f?'none':'block';document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'))}
-    document.querySelectorAll('.filter-pill').forEach(pill=>{pill.addEventListener('click',function(){document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));this.classList.add('active');const f=this.dataset.filter;searchInput.value='';let c=0;domainCards.forEach(card=>{if(f==='all'){card.classList.remove('hidden-card');c++}else{const cats=(card.dataset.category||'').split(' ');if(cats.includes(f)){card.classList.remove('hidden-card');c++}else{card.classList.add('hidden-card')}});noResults.style.display=c===0?'block':'none'}
+    /* ===================== MOUSE GLOW ===================== */
+    var mg = document.getElementById('mouseGlow');
+    document.addEventListener('mousemove', function(e) {
+      mg.style.left = e.clientX + 'px';
+      mg.style.top = e.clientY + 'px';
     });
 
-    function showToast(msg){const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
+    /* ===================== NAVBAR SCROLL ===================== */
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
 
-    /* === CHATBOT — GROQ INTEGRATION === */
-    const GROQ_API_KEY = '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';
-    const GROQ_MODEL = 'llama-3.3-70b-versatile';
-    const API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+    /* ===================== MOBILE MENU ===================== */
+    var menuBtn = document.getElementById('menuBtn');
+    var mobileMenu = document.getElementById('mobileMenu');
+    var mOpen = document.getElementById('menuIconOpen');
+    var mClose = document.getElementById('menuIconClose');
 
-    const SYSTEM_PROMPT = `Kamu adalah "HyunkBot", asisten AI resmi HyunkkCloud — penyedia layanan hosting, VPS, domain, dan aplikasi premium dari Indonesia. Kamu ramah, singkat, dan to-the-point. Gunakan bahasa Indonesia yang santai tapi profesional.
+    menuBtn.addEventListener('click', function() {
+      var isOpen = mobileMenu.classList.toggle('open');
+      mOpen.style.display = isOpen ? 'none' : 'inline';
+      mClose.style.display = isOpen ? 'inline' : 'none';
+    });
 
-INFORMASI DOMAIN (HAFAL INI):
-- my.id → Rp15.000/tahun — Indonesia, cocok personal/blog
-- biz.id → Rp15.000/tahun — Indonesia, cocok bisnis
-- .cloud → Rp40.000/tahun — Internasional/Trending
-- .xyz → Rp45.000/tahun — Internasional
-- .mom → Rp55.000/tahun — Trending
-- .lol → Rp55.000/tahun — Trending
-- web.id → Rp70.000/tahun — Indonesia
-- .com → Rp165.000/tahun — Internasional (PALING LARIS)
-- .net → Rp265.000/tahun — Internasional
-- .id → Rp275.000/tahun — Indonesia (premium)
+    mobileMenu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.remove('open');
+        mOpen.style.display = 'inline';
+        mClose.style.display = 'none';
+      });
+    });
 
-FITUR SETIAP DOMAIN:
-✅ Aktif 1 TAHUN penuh
-✅ DNS Management (A, CNAME, MX, TXT)
-✅ Cloudflare Ready
-✅ Custom IP Pointing
-✅ SSL Gratis (Cloudflare / Let's Encrypt)
-✅ Akses penuh panel manajemen domain
-✅ Support 24/7 via WhatsApp
+    /* ===================== DOMAIN SEARCH ===================== */
+    var searchInput = document.getElementById('domainSearch');
+    var domainCards = document.querySelectorAll('.domain-card');
+    var noResults = document.getElementById('noResults');
 
-KETENTUAN DOMAIN:
-- TIDAK BISA diperpanjang melalui kami setelah 1 tahun
-- Bisa migrasi ke registrar lain sebelum masa aktif berakhir
-- Aktifasi: internasional 1-5 menit, .id (PANDI) 1-24 jam
-- Tidak ada refund setelah domain aktif
+    searchInput.addEventListener('input', function() {
+      var q = this.value.trim().toLowerCase();
+      document.querySelectorAll('.filter-pill').forEach(function(p) { p.classList.remove('active'); });
+      document.querySelector('.filter-pill[data-filter="all"]').classList.add('active');
+      var count = 0;
+      domainCards.forEach(function(card) {
+        var ext = card.dataset.ext || '';
+        if (!q || ext.includes(q)) {
+          card.classList.remove('hidden-card');
+          count++;
+        } else {
+          card.classList.add('hidden-card');
+        }
+      });
+      noResults.style.display = count === 0 ? 'block' : 'none';
+    });
 
-METODE PEMBAYARAN:
-- E-Wallet: QRIS, GoPay, OVO, Dana, ShopeePay
-- Bank: BCA, BRI, Mandiri, BNI
-- Pulsa (rate tertentu)
+    searchInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') handleSearch();
+    });
 
-LAYANAN LAIN HYUNKCLOUD:
-- Minecraft Hosting — mulai Rp15.000/bulan (Java & Bedrock, Pterodactyl Panel)
-- VPS Server — mulai Rp55.000/bulan (AMD EPYC, SSD NVMe, Singapore)
-- Aplikasi Premium — mulai Rp1.000/akun (MC Account, GamePass, Cape, McAfee, dll)
+    document.getElementById('searchBtn').addEventListener('click', handleSearch);
 
-KONTAK:
-- WhatsApp: 082189822272
-- Email: cahyobagaskoro03@gmail.com
-- Uptime: 99.9%
-- Support: 24/7
-- User aktif: 500+
-- Garansi: 3 hari (hosting & VPS)
-- Instant Deploy: <60 detik
-
-ATURAN JAWABAN:
-1. Jika ditanya di luar topik HyunkkCloud, jawab SINGKAT lalu arahkan kembali ke topik domain
-2. Jangan pernah invent harga, fitur, atau layanan yang tidak ada di daftar
-3. Jaga agar jawaban tidak menyesuaikan informasi sensitif
-4. Selalu akhiri dengan saran tindakan (order, hubungi WA, dll)
-5. Gunakan HTML untuk formatting, bukan markdown
-6. Untuk code block, gunakan format: <pre><code>...</code></pre>
-7. Untuk link WhatsApp, gunakan: <a href="https://wa.me/6282189822272?text=xxx" target="_blank">
-8. Jaga agar jawaban tidak terlalu panjang — maksimal 3-4 paragraf unless diminta detail
-
-ATURAN KETAT:
-- Kalau ditanya di luar topik HyunkkCloud, jawab SINGKAT lalu arahkan ke topik domain
-- Kalau ditanya tanya hal lain, jawab singkat lalu arahkan ke topik domain
-- Kalau ada yang tidak di database, bilang "Saya tidak tahu" dan arahkan ke topik domain
-- Kalau ragu, katakan "Saya tidak yakin" — jangan pura-pura
-- Kalau error, coba lagi nanti
-- Kalau ada yang tidak ada di daftar, bilang "Hubungi admin via WhatsApp"
-- Kalau user bilang "Aku tidak punya tahu", bilang "Coba coba di sini → [nama domain].com" dan cek
-- Kalau terlalu error, bilang "Coba beberapa detik lalu coba lagi"
-9. JANGAN sebutkan Groq, Llama, Meta, atau bahwa kamu adalah AI bahasa model
-10. Selalu akhiri dengan saran tindakan (order, hubungi WA, dll) jika relevan
-
-══════════════════════════════════════════
-ATURAN JAWABAN:
-1. Kalau ditanya di luar topik HyunkkCloud, jawab SINGKAT lalu arahkan ke topik domain
-2. Kalau ditanya di luar topik, bilang "Saya tidak tahu" lalu arahkan ke topik domain
-3. Kalau ragu, katakan "Coba coba di sini → [nama domain].com" dan cek
-4. Kalau error, bilang "Coba beberapa detik lalu coba lagi"
-5. Kalau ada yang tidak ada di daftar, bilang "Hubungi admin via WhatsApp"
-6. JANGAN sebutkan Groq, Llama, Meta, atau bahwa kamu adalah AI bahasa model`;
-
-    let conversationHistory = [];
-    let chatOpen = false;
-    let isTyping = false;
-    let firstOpen = true;
-    let apiAvailable = null;
-
-    const chatFab=document.getElementById('chatFab'),chatWindow=document.getElementById('chatWindow'),
-          chatMessages=document.getElementById('chatMessages'),chatQuickReplies=document.getElementById('chatQuickReplies'),
-          chatInput=document.getElementById('chatInput'),chatSendBtn=document.getElementById('chatSendBtn'),
-          chatBadge=document.getElementById('chatBadge'),fabIconOpen=document.getElementById('fabIconOpen'),
-          fabIconClose=document.getElementById('fabIconClose'),chatStatus=document.getElementById('chatStatus');
-
-    function toggleChat(){
-      chatOpen=!chatOpen;
-      chatWindow.classList.toggle('open',chatOpen);
-      chatFab.classList.toggle('open',chatOpen);
-      fabIconOpen.style.display=chatOpen?'none':'inline';
-      fabIconClose.style.display=chatOpen?'inline':'none';
-      if(chatOpen){chatBadge.style.display='none';if(firstOpen){firstOpen=false;initChat()}setTimeout(()=>chatInput.focus(),350)}
+    function handleSearch() {
+      var q = searchInput.value.trim().toLowerCase();
+      if (!q) { showToast('Ketik nama domain yang ingin dicari'); return; }
+      var found = false;
+      domainCards.forEach(function(card) {
+        var ext = card.dataset.ext || '';
+        if (ext.includes(q)) {
+          card.classList.remove('hidden-card');
+          found = true;
+        } else {
+          card.classList.add('hidden-card');
+        }
+      });
+      if (found) {
+        showToast('Domain ditemukan! Scroll ke bawah');
+        document.getElementById('domainGrid').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        showToast('Ekstensi "' + q + '" belum tersedia.');
+      }
+      noResults.style.display = found ? 'none' : 'block';
+      document.querySelectorAll('.filter-pill').forEach(function(p) { p.classList.remove('active'); });
     }
 
-    function initChat(){
-      conversationHistory=[];
-      chatMessages.innerHTML='';
-      const h=new Date().getHours();
-      const g=h<11?'Selamat pagi':h<15?'Selamat siang':h<18?'Selamat sore':h<18?'Selamat malam':'Selamat malam';
-      addBotMessage(g+'! Aku <strong>HyunkBot</strong>, asisten AI HyunkkCloud. Aku bisa bantu soal domain — harga, rekomendasi, cara order, setup DNS, dan lainnya.<br><br>Apa yang ingin kamu tanyakan?');
+    /* ===================== FILTER PILLS ===================== */
+    document.querySelectorAll('.filter-pill').forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        document.querySelectorAll('.filter-pill').forEach(function(p) { p.classList.remove('active'); });
+        this.classList.add('active');
+        var f = this.dataset.filter;
+        searchInput.value = '';
+        var count = 0;
+        domainCards.forEach(function(card) {
+          if (f === 'all') {
+            card.classList.remove('hidden-card');
+            count++;
+          } else {
+            var cats = (card.dataset.category || '').split(' ');
+            if (cats.indexOf(f) !== -1) {
+              card.classList.remove('hidden-card');
+              count++;
+            } else {
+              card.classList.add('hidden-card');
+            }
+          }
+        });
+        noResults.style.display = count === 0 ? 'block' : 'none';
+      });
+    });
+
+    /* ===================== OPEN CHECKOUT ===================== */
+    function openCheckout(ext, price) {
+      var name = searchInput.value.trim();
+      var domainName = name ? name + ext : ext;
+      var priceStr = 'Rp' + price.toLocaleString('id-ID');
+      var waText = 'Halo, saya ingin order domain *' + domainName + '* (' + priceStr + '/tahun)';
+      var waUrl = 'https://wa.me/6282189822272?text=' + encodeURIComponent(waText);
+      window.open(waUrl, '_blank');
+      showToast('Mengarahkan ke WhatsApp untuk order ' + domainName);
+    }
+
+    /* ===================== TOAST ===================== */
+    var toastTimer = null;
+    function showToast(msg) {
+      var t = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      t.classList.add('show');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(function() { t.classList.remove('show'); }, 3000);
+    }
+
+    /* ===================== FAQ TOGGLE ===================== */
+    function toggleFaq(btn) {
+      var item = btn.parentElement;
+      var wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(i) { i.classList.remove('open'); });
+      if (!wasOpen) item.classList.add('open');
+    }
+
+    /* ===================== REVEAL ON SCROLL ===================== */
+    var revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('vis');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      revealObs.observe(el);
+    });
+
+    /* ============================================================
+       CHATBOT — GROQ INTEGRATION
+       ============================================================ */
+    var GROQ_API_KEY = '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';
+    var GROQ_MODEL = 'llama-3.3-70b-versatile';
+    var API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+
+    var SYSTEM_PROMPT = 'Kamu adalah "HyunkBot", asisten AI resmi HyunkkCloud — penyedia layanan hosting, VPS, domain, dan aplikasi premium dari Indonesia. Kamu ramah, singkat, dan to-the-point. Gunakan bahasa Indonesia yang santai tapi profesional.\n\nINFORMASI DOMAIN (HAFAL INI):\n- my.id → Rp15.000/tahun — Indonesia, cocok personal/blog\n- biz.id → Rp15.000/tahun — Indonesia, cocok bisnis\n- .cloud → Rp40.000/tahun — Internasional/Trending\n- .xyz → Rp45.000/tahun — Internasional\n- .mom → Rp55.000/tahun — Trending\n- .lol → Rp55.000/tahun — Trending\n- web.id → Rp70.000/tahun — Indonesia\n- .com → Rp165.000/tahun — Internasional (PALING LARIS)\n- .net → Rp265.000/tahun — Internasional\n- .id → Rp275.000/tahun — Indonesia (premium)\n\nFITUR SETIAP DOMAIN:\n- Aktif 1 TAHUN penuh\n- DNS Management (A, CNAME, MX, TXT)\n- Cloudflare Ready\n- Custom IP Pointing\n- SSL Gratis (Cloudflare / Let\'s Encrypt)\n- Akses penuh panel manajemen domain\n- Support 24/7 via WhatsApp\n\nKETENTUAN DOMAIN:\n- TIDAK BISA diperpanjang melalui kami setelah 1 tahun\n- Bisa migrasi ke registrar lain sebelum masa aktif berakhir\n- Aktifasi: internasional 1-5 menit, .id (PANDI) 1-24 jam\n- Tidak ada refund setelah domain aktif\n\nMETODE PEMBAYARAN:\n- E-Wallet: QRIS, GoPay, OVO, Dana, ShopeePay\n- Bank: BCA, BRI, Mandiri, BNI\n- Pulsa (rate tertentu)\n\nLAYANAN LAIN HYUNKCLOUD:\n- Minecraft Hosting — mulai Rp15.000/bulan\n- VPS Server — mulai Rp55.000/bulan\n- Aplikasi Premium — mulai Rp1.000/akun\n\nKONTAK:\n- WhatsApp: 082189822272\n- Uptime: 99.9%\n- Support: 24/7\n- Garansi: 3 hari (hosting & VPS)\n\nATURAN JAWABAN:\n1. Kalau ditanya di luar topik HyunkkCloud, jawab SINGKAT lalu arahkan ke topik domain\n2. Kalau ada yang tidak ada di daftar, bilang "Hubungi admin via WhatsApp"\n3. Kalau ragu, katakan "Saya tidak yakin" — jangan pura-pura tahu\n4. JANGAN sebutkan Groq, Llama, Meta, atau bahwa kamu adalah AI bahasa model\n5. Selalu akhiri dengan saran tindakan jika relevan\n6. Gunakan HTML untuk formatting, bukan markdown\n7. Untuk link WhatsApp, gunakan: <a href="https://wa.me/6282189822272?text=xxx" target="_blank">';
+
+    var conversationHistory = [];
+    var chatOpen = false;
+    var isTyping = false;
+    var firstOpen = true;
+
+    var chatFab = document.getElementById('chatFab');
+    var chatWindow = document.getElementById('chatWindow');
+    var chatMessages = document.getElementById('chatMessages');
+    var chatQuickReplies = document.getElementById('chatQuickReplies');
+    var chatInput = document.getElementById('chatInput');
+    var chatSendBtn = document.getElementById('chatSendBtn');
+    var chatBadge = document.getElementById('chatBadge');
+    var fabIconOpen = document.getElementById('fabIconOpen');
+    var fabIconClose = document.getElementById('fabIconClose');
+    var chatStatus = document.getElementById('chatStatus');
+
+    /* Aktifkan/nonaktifkan tombol kirim */
+    chatInput.addEventListener('input', function() {
+      chatSendBtn.disabled = !this.value.trim() || isTyping;
+    });
+
+    function toggleChat() {
+      chatOpen = !chatOpen;
+      chatWindow.classList.toggle('open', chatOpen);
+      chatFab.classList.toggle('open', chatOpen);
+      fabIconOpen.style.display = chatOpen ? 'none' : 'inline';
+      fabIconClose.style.display = chatOpen ? 'inline' : 'none';
+      if (chatOpen) {
+        chatBadge.style.display = 'none';
+        if (firstOpen) {
+          firstOpen = false;
+          initChat();
+        }
+        setTimeout(function() { chatInput.focus(); }, 350);
+      }
+    }
+
+    function initChat() {
+      conversationHistory = [];
+      chatMessages.innerHTML = '';
+      var h = new Date().getHours();
+      var g = h < 11 ? 'Selamat pagi' : h < 15 ? 'Selamat siang' : h < 18 ? 'Selamat sore' : 'Selamat malam';
+      addBotMessage(g + '! Aku <strong>HyunkBot</strong>, asisten AI HyunkkCloud. Aku bisa bantu soal domain — harga, rekomendasi, cara order, setup DNS, dan lainnya.<br><br>Apa yang ingin kamu tanyakan?');
       showQuickReplies([
-        {text:'Daftar harga',query:'Berapa harga semua domain?'},
-        {text:'Domain termurah',query:'Domain termurah apa?'},
-        {text:'Cara order',query:'Cara order domain gimana?'},
-        {text:'Rekomendasi',query:'Rekomendasikan domain untuk saya, saya butuh untuk bisnis kecil online'}
+        { text: 'Daftar harga', query: 'Berapa harga semua domain?' },
+        { text: 'Domain termurah', query: 'Domain termurah apa?' },
+        { text: 'Cara order', query: 'Cara order domain gimana?' },
+        { text: 'Rekomendasi', query: 'Rekomendasikan domain untuk bisnis kecil online' }
       ]);
+      updateChatStatus('online');
     }
 
-    function addBotMessage(html){
-      const t=getTimeStr();
-      chatMessages.insertAdjacentHTML('beforeend',`<div class="chat-msg bot"><div class="chat-msg-avatar"><i class="fas fa-robot"></i></div><div><div class="chat-bubble">${html}</div><div class="chat-msg-time">${t}</div></div></div>`);
-      scrollChat();
+    function addBotMessage(html) {
+      var t = getTimeStr();
+      chatMessages.insertAdjacentHTML('beforeend',
+        '<div class="chat-msg bot"><div class="chat-msg-avatar"><i class="fas fa-robot"></i></div><div><div class="chat-bubble">' + html + '</div><div class="chat-msg-time">' + t + '</div></div></div>'
+      );
+      scrollChatBottom();
     }
 
-    function addUserMessage(text){
-      const t=getTimeStr();
-      chatMessages.insertAdjacentHTML('beforeend',`<div class="msg-wrapper"><div class="msg user"><div class="msg-avatar"><i class="fas fa-user"></i></div><div><div class="msg-name">Kamu</div><div class="msg-bubble">${escapeHtml(text)}</div><div class="msg-time">${t}</div></div></div></div>`);
-      scrollChat();
+    function addUserMessage(text) {
+      var t = getTimeStr();
+      var safe = escapeHtml(text);
+      chatMessages.insertAdjacentHTML('beforeend',
+        '<div class="chat-msg user"><div class="chat-msg-avatar"><i class="fas fa-user"></i></div><div><div class="chat-bubble">' + safe + '</div><div class="chat-msg-time">' + t + '</div></div></div>'
+      );
+      scrollChatBottom();
     }
 
-    function showTyping(){
-      isTyping=true;chatSendBtn.disabled=true;
-      chatMessages.insertAdjacentHTML('beforeend',`<div class="msg-wrapper" id="typingMsg"><div class="typing-msg"><div class="chat-msg-avatar" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:#060a10;width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0;"><i class="fas fa-robot"></i></div><div class="typing-dots"><span></span><span></span><span></span></div></div></div>`);
-      scrollChat();
+    function showTypingIndicator() {
+      isTyping = true;
+      chatSendBtn.disabled = true;
+      chatMessages.insertAdjacentHTML('beforeend',
+        '<div class="chat-msg bot" id="typingMsg"><div class="chat-msg-avatar"><i class="fas fa-robot"></i></div><div class="typing-dots"><span></span><span></span><span></span></div></div>'
+      );
+      scrollChatBottom();
     }
 
-    function hideTyping(){
-      isTyping=false;chatSendBtn.disabled=false;
-      const el=document.getElementById('typingMsg');if(el)el.remove();
+    function hideTypingIndicator() {
+      isTyping = false;
+      chatSendBtn.disabled = !chatInput.value.trim();
+      var el = document.getElementById('typingMsg');
+      if (el) el.remove();
     }
 
-    function showQuickReplies(replies){
-      chatQuickReplies.innerHTML='';
-      replies.forEach(r=>{
-        const btn=document.createElement('button');btn.className='quick-reply-btn';btn.textContent=r.text;
-        btn.onclick=()=>{chatQuickReplies.innerHTML='';processInput(r.query)};
+    function showQuickReplies(replies) {
+      chatQuickReplies.innerHTML = '';
+      replies.forEach(function(r) {
+        var btn = document.createElement('button');
+        btn.className = 'quick-reply-btn';
+        btn.textContent = r.text;
+        btn.onclick = function() {
+          chatQuickReplies.innerHTML = '';
+          processInput(r.query);
+        };
         chatQuickReplies.appendChild(btn);
       });
     }
 
-    function clearChat(){initChat()}
-
-    function scrollChat(){requestAnimationFrame(()=>{chatMessages.scrollTop=chatMessages.scrollHeight;})}
-
-    // === CORE: Kirim pesan & dapat jawaban dari Groq ===
-    async function processInput(text){
-      addUserMessage(text);
-      showTyping();
-      chatQuickReplies.innerHTML='';
-
-      // Tambah ke riwayat (Groq format)
-      conversationHistory.push({role:'user',content:text});
-
-      try {
-        const result = await callGroq(chatHistory);
-        hideTyping();
-
-        if(result.success){
-          apiAvailable=true;
-          updateStatus('online');
-          addBotMessage(result.text);
-          conversationHistory.push({role:'assistant',content:result.raw});
-          const followUps = generateFollowUps(text, result.raw);
-          if(followUps) showQuickReplies(followUps);
-        } else {
-          apiAvailable=false;
-          updateStatus('fallback');
-          const fallbackText = getLocalFallback(text);
-          addBotMessage(fallbackText + `<br><br><span class="chat-error-badge"><i class="fas fa-triangle-exclamation"></i> Mode offline</span>`);
-          showQuickReplies([
-            {text:'Coba lagi',query:text},
-            {text:'Hubungi WA',query:'Saya ingin hubungi via WhatsApp'},
-            {text:'Daftar harga',query:'Berapa harga semua domain?'}
-          ]);
-        ]);
-      }
-      } catch(e){
-        hideTyping();
-        apiAvailable=false;
-        updateStatus('error');
-        const fallbackText = getLocalFallback(text);
-        addBotMessage(fallbackText + `<br><br><span class="chat-error-badge"><i class="fas fa-triangle-exclamation"></i> Mode offline</span>`);
-        showQuickReplies([
-          {text:'Coba lagi',query:text},
-          {text:'Hubungi WA',query:'Saya ingin hubungi via WhatsApp'}
-        ]);
-      }
-
-      // Batasi riwayat agar tidak kebesaran (simpan 20 pesan terakhir)
-      if(conversationHistory.length > 22) conversationHistory = conversationHistory.slice(-22);
-
-      save();
-      scrollToBottom();
+    function clearChat() {
+      initChat();
     }
 
-    // === PANGGIL GROQ ===
-    async function callGroq(){
-      if(!GROQ_API_KEY)return{return{success:false,error:'API key tidak ditemukan.';}
+    function scrollChatBottom() {
+      requestAnimationFrame(function() {
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      });
+    }
 
-      const messages = [
-        { role:'system', content:SYSTEM_PROMPT },
-        ...history.slice(-20)
-      ];
+    function getTimeStr() {
+      var n = new Date();
+      return String(n.getHours()).padStart(2, '0') + ':' + String(n.getMinutes()).padStart(2, '0');
+    }
 
-      const controller = new AbortController();
-      const timeout = setTimeout(()=>controller.abort(),15000);
+    function escapeHtml(s) {
+      if (!s) return '';
+      var d = document.createElement('div');
+      d.textContent = s;
+      return d.innerHTML;
+    }
+
+    function updateChatStatus(mode) {
+      if (mode === 'online') {
+        chatStatus.innerHTML = '<span class="status-dot"></span> Online — siap bantu';
+        chatStatus.style.color = 'var(--green)';
+      } else if (mode === 'fallback') {
+        chatStatus.innerHTML = '<i class="fas fa-wifi" style="font-size:0.6rem;"></i> Mode offline — jawaban lokal';
+        chatStatus.style.color = 'var(--amber)';
+      } else {
+        chatStatus.innerHTML = '<span class="status-dot" style="background:var(--amber);"></span> Mencari koneksi...';
+        chatStatus.style.color = 'var(--amber)';
+      }
+    }
+
+    /* ==================== CORE: PROSES INPUT ==================== */
+    function sendMessage() {
+      var text = chatInput.value.trim();
+      if (!text || isTyping) return;
+      chatInput.value = '';
+      chatSendBtn.disabled = true;
+      processInput(text);
+    }
+
+    async function processInput(text) {
+      addUserMessage(text);
+      showTypingIndicator();
+      chatQuickReplies.innerHTML = '';
+      updateChatStatus('typing');
+
+      conversationHistory.push({ role: 'user', content: text });
 
       try {
-        const res = await fetch(API_URL, {
-          method:'POST',
-          headers:{
-            'Content-Type':'application/json',
-            'Authorization':'Bearer '+GROQ_API_KEY,
-          body:JSON.stringify({model:GROQ_MODEL,messages:messages,temperature:0.75,max_tokens:1200,top_p:0.92}),
-          signal:controller.signal
+        var result = await callGroqAPI();
+        hideTypingIndicator();
+
+        if (result.success) {
+          updateChatStatus('online');
+          addBotMessage(result.html);
+          conversationHistory.push({ role: 'assistant', content: result.raw });
+          var followUps = generateFollowUps(text, result.raw);
+          if (followUps) showQuickReplies(followUps);
+        } else {
+          updateChatStatus('fallback');
+          var fallbackText = getLocalFallback(text);
+          addBotMessage(fallbackText + '<br><br><span class="chat-error-badge"><i class="fas fa-triangle-exclamation"></i> Mode offline</span>');
+          showQuickReplies([
+            { text: 'Coba lagi', query: text },
+            { text: 'Hubungi WA', query: 'Saya ingin hubungi via WhatsApp' },
+            { text: 'Daftar harga', query: 'Berapa harga semua domain?' }
+          ]);
+        }
+      } catch (err) {
+        hideTypingIndicator();
+        updateChatStatus('fallback');
+        var fallbackText2 = getLocalFallback(text);
+        addBotMessage(fallbackText2 + '<br><br><span class="chat-error-badge"><i class="fas fa-triangle-exclamation"></i> Mode offline</span>');
+        showQuickReplies([
+          { text: 'Coba lagi', query: text },
+          { text: 'Hubungi WA', query: 'Saya ingin hubungi via WhatsApp' }
+        ]);
+      }
+
+      /* Batasi riwayat agar tidak kebesaran */
+      if (conversationHistory.length > 22) {
+        conversationHistory = conversationHistory.slice(-22);
+      }
+    }
+
+    /* ==================== PANGGIL GROQ API ==================== */
+    async function callGroqAPI() {
+      if (!GROQ_API_KEY) {
+        return { success: false, error: 'API key tidak ditemukan.' };
+      }
+
+      var messages = [
+        { role: 'system', content: SYSTEM_PROMPT }
+      ].concat(conversationHistory.slice(-20));
+
+      var controller = new AbortController();
+      var timeout = setTimeout(function() { controller.abort(); }, 15000);
+
+      try {
+        var res = await fetch(API_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + GROQ_API_KEY
+          },
+          body: JSON.stringify({
+            model: GROQ_MODEL,
+            messages: messages,
+            temperature: 0.75,
+            max_tokens: 1200,
+            top_p: 0.92
+          }),
+          signal: controller.signal
         });
         clearTimeout(timeout);
 
-        if(!res.ok){
-          const err = await res.json().catch(()=>({}));
-          const errMsg = err.error?.message || 'HTTP ' + res.status;
-          if(res.status===401)return{success:false,error:'API key tidak valid atau sudah di-revoke. Buat key baru di console.groq.com'}
-          if(res.status===429)return{success:false,error:'Rate limit tercapai. Tunggu beberapa detik lalu coba lagi.'}
-          return {success:false, error:errMsg};
+        if (!res.ok) {
+          var errData = null;
+          try { errData = await res.json(); } catch(e) { errData = {}; }
+          var errMsg = (errData.error && errData.error.message) ? errData.error.message : ('HTTP ' + res.status);
+          if (res.status === 401) return { success: false, error: 'API key tidak valid.' };
+          if (res.status === 429) return { success: false, error: 'Rate limit tercapai.' };
+          return { success: false, error: errMsg };
         }
 
-        const data = await res.json();
+        var data = await res.json();
 
-        if(data.choices && data.choices[0]?.message?.content){
-          const raw = data.choices[0].message.content;
-          const html = markdownToHtml(raw);
-          return {success:true, raw, html};
+        if (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
+          var raw = data.choices[0].message.content;
+          var html = markdownToHtml(raw);
+          return { success: true, raw: raw, html: html };
         }
 
-        return {success:false,error:'Tidak ada respons dari AI'};
-      } catch(e){
+        return { success: false, error: 'Tidak ada respons dari AI.' };
+      } catch (e) {
         clearTimeout(timeout);
-        if(e.name==='AbortError')return{success:false,error:'Timeout — server AI terlalu lama merespon. Coba lagi.';}
-        return {success:false,error:e.message};
+        if (e.name === 'AbortError') {
+          return { success: false, error: 'Timeout — server AI terlalu lama merespon.' };
+        }
+        return { success: false, error: e.message };
       }
     }
 
-    // === Konversi markdown ===
-    function markdownToHtml(text){
+    /* ==================== MARKDOWN → HTML ==================== */
+    function markdownToHtml(text) {
+      if (!text) return '';
       return text
+        .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
         .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.+?)\*/g, '<em>$1</em>')
         .replace(/^### (.+)$/gm, '<strong style="font-size:0.92rem;color:var(--fg);">$1</strong>')
         .replace(/^## (.+)$/gm, '<p><strong style="font-size:1rem;color:var(--fg);">$1</strong></p>')
         .replace(/^# (.+)$/gm, '<p><strong style="font-size:1.1rem;color:var(--fg);">$1</strong></p>')
-        .replace(/\*\*(.+?)\*/g, '<em>$1</em>')
-        .replace(/^>\s+(.+)$/gm, '<li>$1</li>')
-        .replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>')
-        .replace(/\[([^\]]+)\]\(([^)]\)/g, '<a href="$2" target="_blank">$1</a>')
+        .replace(/^\- (.+)$/gm, '<li>$1</li>')
+        .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
         .replace(/\n/g, '<br>');
     }
 
-    // === Update status bar ===
-    function updateStatus(mode){
-      const el = document.getElementById('chatStatus');
-      if(mode==='online'){el.className='ch-status online';el.innerHTML='<span class="status-dot"></span> Online — siap bantu';el.style.color='var(--green)';}
-      else if(mode==='fallback'){el.className='ch-status offline';el.innerHTML='<i class="fas fa-wifi" style="font-size:0.6rem;"></i> Mode offline — jawaban lokal';el.style.color='var(--amber)';}
-      else{el.className='ch-status offline';el.innerHTML='<span class="status-dot" style="background:var(--amber);"></span> Mencari koneksi...';el.style.color='var(--amber)';}
+    /* ==================== FALLBACK JAWABAN LOKAL ==================== */
+    function getLocalFallback(text) {
+      var q = text.toLowerCase();
+
+      if (q.indexOf('harga') !== -1 || q.indexOf('daftar') !== -1 || q.indexOf('price') !== -1) {
+        return 'Berikut daftar harga domain HyunkkCloud:<br><br>' +
+          '<strong>Indonesia:</strong><br>' +
+          '• my.id — <strong>Rp15.000</strong>/thn<br>' +
+          '• biz.id — <strong>Rp15.000</strong>/thn<br>' +
+          '• web.id — <strong>Rp70.000</strong>/thn<br>' +
+          '• .id — <strong>Rp275.000</strong>/thn<br><br>' +
+          '<strong>Internasional:</strong><br>' +
+          '• .cloud — <strong>Rp40.000</strong>/thn<br>' +
+          '• .xyz — <strong>Rp45.000</strong>/thn<br>' +
+          '• .com — <strong>Rp165.000</strong>/thn<br>' +
+          '• .net — <strong>Rp265.000</strong>/thn<br><br>' +
+          '<strong>Trending:</strong><br>' +
+          '• .mom — <strong>Rp55.000</strong>/thn<br>' +
+          '• .lol — <strong>Rp55.000</strong>/thn<br><br>' +
+          'Semua termasuk DNS management, Cloudflare ready, SSL gratis, dan support 24/7. Order langsung via <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20ingin%20order%20domain" target="_blank">WhatsApp</a>.';
+      }
+
+      if (q.indexOf('termurah') !== -1 || q.indexOf('murah') !== -1 || q.indexOf('budget') !== -1) {
+        return 'Domain termurah kami adalah <strong>my.id</strong> dan <strong>biz.id</strong>, masing-masing hanya <strong>Rp15.000/tahun</strong>! Cocok banget untuk yang baru mulai.<br><br>Fitur tetap lengkap: DNS management, Cloudflare ready, SSL gratis, dan support 24/7. Order via <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20ingin%20order%20domain%20my.id" target="_blank">WhatsApp</a>.';
+      }
+
+      if (q.indexOf('order') !== -1 || q.indexOf('cara') !== -1 || q.indexOf('beli') !== -1) {
+        return 'Cara order domain sangat mudah:<br><br>' +
+          '<strong>1.</strong> Pilih ekstensi domain yang diinginkan<br>' +
+          '<strong>2.</strong> Klik tombol <strong>Order</strong> pada kartu domain<br>' +
+          '<strong>3.</strong> Kamu akan diarahkan ke WhatsApp untuk konfirmasi<br>' +
+          '<strong>4.</strong> Lakukan pembayaran (QRIS, GoPay, OVO, Dana, Bank)<br>' +
+          '<strong>5.</strong> Domain aktif dalam hitungan menit!<br><br>' +
+          'Langsung order aja, atau <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20ingin%20konsultasi%20domain" target="_blank">konsultasi dulu via WhatsApp</a>.';
+      }
+
+      if (q.indexOf('rekomendasi') !== -1 || q.indexOf('saran') !== -1) {
+        return 'Tergantung kebutuhanmu:<br><br>' +
+          '• <strong>Bisnis online</strong> → .com (Rp165.000) paling profesional<br>' +
+          '• <strong>Personal/blog</strong> → my.id (Rp15.000) paling hemat<br>' +
+          '• <strong>Startup/tech</strong> → .cloud (Rp40.000) atau .xyz (Rp45.000)<br>' +
+          '• <strong>Konten kreator</strong> → .mom (Rp55.000) atau .lol (Rp55.000)<br><br>' +
+          'Butuh bantuan lebih lanjut? <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20butuh%20rekomendasi%20domain" target="_blank">Chat via WhatsApp</a>.';
+      }
+
+      if (q.indexOf('perpanjang') !== -1 || q.indexOf('renew') !== -1) {
+        return 'Domain yang kami jual <strong>aktif 1 tahun dan tidak bisa diperpanjang</strong> melalui kami. Tapi tenang, sebelum masa aktif berakhir kamu bisa migrasi ke registrar lain. Kami bantu prosesnya.<br><br>Mau tahu lebih lanjut? <a href="https://wa.me/6282189822272?text=Halo%2C%20tanya%20soal%20perpanjangan%20domain" target="_blank">Hubungi kami via WhatsApp</a>.';
+      }
+
+      if (q.indexOf('dns') !== -1 || q.indexOf('cloudflare') !== -1 || q.indexOf('setup') !== -1 || q.indexOf('hubungkan') !== -1) {
+        return 'Semua domain kami sudah <strong>Cloudflare Ready</strong> dan bisa langsung dihubungkan. Caranya:<br><br>' +
+          '<strong>1.</strong> Tambah domain di dashboard Cloudflare<br>' +
+          '<strong>2.</strong> Ubah nameserver sesuai yang diberikan Cloudflare<br>' +
+          '<strong>3.</strong> Tunggu propagasi (maks 24 jam)<br><br>' +
+          'Kami juga bantu setup DNS record (A, CNAME, MX, TXT) secara gratis. <a href="https://wa.me/6282189822272?text=Halo%2C%20butuh%20bantuan%20setup%20DNS" target="_blank">Minta bantuan via WhatsApp</a>.';
+      }
+
+      if (q.indexOf('whatsapp') !== -1 || q.indexOf('wa') !== -1 || q.indexOf('kontak') !== -1 || q.indexOf('hubungi') !== -1) {
+        return 'Kamu bisa hubungi kami via WhatsApp di nomor <strong>082189822272</strong>.<br><br><a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20ingin%20bertanya" target="_blank">Klik di sini untuk langsung chat</a>.';
+      }
+
+      if (q.indexOf('hosting') !== -1 || q.indexOf('vps') !== -1 || q.indexOf('minecraft') !== -1) {
+        return 'HyunkkCloud juga menyediakan:<br><br>' +
+          '• <strong>Minecraft Hosting</strong> — mulai Rp15.000/bulan (Java & Bedrock, Pterodactyl Panel)<br>' +
+          '• <strong>VPS Server</strong> — mulai Rp55.000/bulan (AMD EPYC, SSD NVMe, Singapore)<br><br>' +
+          'Detail lebih lengkap bisa cek di halaman store atau <a href="https://wa.me/6282189822272?text=Halo%2C%20tanya%20soal%20hosting%20/%20VPS" target="_blank">tanya via WhatsApp</a>.';
+      }
+
+      return 'Maaf, saat ini saya tidak bisa terhubung ke server AI. Tapi aku bisa bantu soal domain! Coba tanyakan tentang:<br><br>' +
+        '• <strong>Daftar harga domain</strong><br>' +
+        '• <strong>Domain termurah</strong><br>' +
+        '• <strong>Cara order</strong><br>' +
+        '• <strong>Setup DNS / Cloudflare</strong><br><br>' +
+        'Atau langsung <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20butuh%20bantuan" target="_blank">hubungi admin via WhatsApp</a>.';
     }
 
-    function sendMessage(){
-      const text=chatInput.value.trim();
-      if(!text||isTyping)return;
-      chatInput.value='';
-      processInput(text);
+    /* ==================== QUICK REPLY SUGGESTIONS ==================== */
+    function generateFollowUps(userText, botText) {
+      var q = userText.toLowerCase();
+      var replies = [];
+
+      if (q.indexOf('harga') !== -1 || q.indexOf('daftar') !== -1) {
+        replies = [
+          { text: 'Domain termurah', query: 'Domain termurah apa?' },
+          { text: 'Cara order', query: 'Cara order domain?' },
+          { text: 'Rekomendasi', query: 'Rekomendasikan domain untuk saya' }
+        ];
+      } else if (q.indexOf('termurah') !== -1 || q.indexOf('murah') !== -1) {
+        replies = [
+          { text: 'Cara order my.id', query: 'Saya mau order my.id' },
+          { text: 'Lihat semua harga', query: 'Berapa harga semua domain?' },
+          { text: 'Rekomendasi lain', query: 'Domain lain yang murah?' }
+        ];
+      } else if (q.indexOf('order') !== -1 || q.indexOf('cara') !== -1) {
+        replies = [
+          { text: 'Daftar harga', query: 'Berapa harga semua domain?' },
+          { text: 'Rekomendasi', query: 'Rekomendasikan domain untuk saya' }
+        ];
+      } else if (q.indexOf('dns') !== -1 || q.indexOf('cloudflare') !== -1) {
+        replies = [
+          { text: 'Cara order', query: 'Cara order domain?' },
+          { text: 'Hubungi WA', query: 'Saya ingin hubungi via WhatsApp' }
+        ];
+      } else {
+        replies = [
+          { text: 'Daftar harga', query: 'Berapa harga semua domain?' },
+          { text: 'Rekomendasi', query: 'Rekomendasikan domain untuk saya' },
+          { text: 'Hubungi WA', query: 'Saya ingin hubungi via WhatsApp' }
+        ];
+      }
+
+      return replies.length > 0 ? replies : null;
     }
-
-    function clearChat(){initChat()}
-
-    function scrollChat(){requestAnimationFrame(()=>{chatMessages.scrollTop=chatMessages.scrollHeight})}
-
-    function getTimeStr(){const n=new Date();return String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');}
-
-    function escapeHtml(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
-
-    /* === TOAST === */
-    document.getElementById('sidebarToggle').addEventListener('click',()=>{sidebar.classList.toggle('open');sidebarOverlay.classList.toggle('open')});
-    function closeSidebar(){sidebar.classList.remove('open');sidebarOverlay.classList.remove('open')}
-
-    document.getElementById('sidebarToggle').addEventListener('click',()=>{
-      const o=mobileMenu.classList.toggle('open');mOpen.style.display=o?'none':'inline';mClose.style.display=o?'inline':'none';
-    });
-    mobileMenu.querySelectorAll('a').forEach(link=>{link.addEventListener('click',function(){mobileMenu.classList.remove('open');mOpen.style.display='inline';mClose.style.display='none';});});
-    document.getElementById('sidebarToggle').addEventListener('click',()=>{
-      const o=mobileMenu.classList.toggle('open');mOpen.style.display=o?'none':'inline';mClose.style.display=o?'inline';
-    });
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
-
-    document.getElementById('sidebarToggle').addEventListener('click',()=>{
-      const o=mobileMenu.classList.toggle('open');mOpen.style.display=o?'none':'inline';mClose.style.display=o?'inline':'none';
-    });
-    document.getElementById('sidebarToggle').addEventListener('click',()=>{
-      const o=mobileMenu.classList.toggle('open');mOpen.style.display=o?'none':'inline';
-    });
-
-    document.querySelectorAll('.faq-item').forEach(btn=>{btn.addEventListener('click',function(){const item=btn.parentElement;item.classList.toggle('open');if(!wasOpen)item.classList.add('open');})});
-
-    function toggleFaq(btn){
-      const item=btn.parentElement,wasOpen=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
-      if(!wasOpen)item.classList.add('open');
-    }
-
-    document.querySelectorAll('.reveal').forEach(el=>rObs.observe(el=>{if(en.isIntersecting)el.target.classList.add('vis')}));
   </script>
 
-  <!-- Firebase Auth -->
+  <!-- Firebase Auth Guard -->
   <script type="module">
-    import{initializeApp}from"https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-    import{getAuth,onAuthStateChanged}from"https://www.gstatic.com/12.11.0/firebase-auth.js";
-    const firebaseConfig={apiKey:"AIzaSyB2YKgC5EdKYFPaU-4uavFABtYEupvang4",authDomain:"loginpage-2e5aa.firebaseapp.com",projectId:"loginpage-2e5aa",appId:"1:676993662276:web:d8e12ca898fb4c0364eb11"};
-    const app=initializeApp(firebaseConfig);const auth=getAuth(app);
-    onAuthStateChanged(auth,(user)=>{if(!user)window.location.href="login.html";}
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+
+    var firebaseConfig = {
+      apiKey: "AIzaSyB2YKgC5EdKYFPaU-4uavFABtYEupvang4",
+      authDomain: "loginpage-2e5aa.firebaseapp.com",
+      projectId: "loginpage-2e5aa",
+      appId: "1:676993662276:web:d8e12ca898fb4c0364eb11"
+    };
+
+    var app = initializeApp(firebaseConfig);
+    var auth = getAuth(app);
+
+    onAuthStateChanged(auth, function(user) {
+      if (!user) {
+        window.location.href = "login.html";
+      }
+    });
   </script>
 </body>
 </html>

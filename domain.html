@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HYUNK STORE - STORE</title>
+  <title>HYUNK STORE - Domain</title>
   <link rel="icon" type="image/png" href="images/icon.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -14,10 +14,10 @@
       --bg-card: #0c1220;
       --fg: #e8ecf2;
       --muted: #5a6a80;
-      --accent: #00e89d;
-      --accent2: #00c4ff;
+      --accent: #fbbf24;
+      --accent2: #f59e0b;
       --border: #152035;
-      --glow: rgba(0,232,157,0.15);
+      --glow: rgba(251,191,36,0.15);
       --green: #00e89d;
       --cyan: #00c4ff;
       --purple: #a78bfa;
@@ -36,8 +36,8 @@
     .grid-bg {
       position:fixed; inset:0;
       background-image:
-        linear-gradient(rgba(0,232,157,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,232,157,0.025) 1px, transparent 1px);
+        linear-gradient(rgba(251,191,36,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(251,191,36,0.02) 1px, transparent 1px);
       background-size:60px 60px; z-index:0; pointer-events:none;
     }
     .scanline {
@@ -49,9 +49,9 @@
       pointer-events:none; z-index:0;
       animation: orbFloat 14s ease-in-out infinite alternate;
     }
-    .orb-1 { width:420px; height:420px; background:radial-gradient(circle,rgba(0,232,157,0.1),transparent 70%); top:-120px; left:-100px; }
-    .orb-2 { width:380px; height:380px; background:radial-gradient(circle,rgba(0,196,255,0.08),transparent 70%); bottom:5%; right:-100px; animation-delay:-5s; }
-    .orb-3 { width:220px; height:220px; background:radial-gradient(circle,rgba(167,139,250,0.07),transparent 70%); top:45%; left:30%; animation-delay:-9s; }
+    .orb-1 { width:420px; height:420px; background:radial-gradient(circle,rgba(251,191,36,0.08),transparent 70%); top:-120px; left:-100px; }
+    .orb-2 { width:380px; height:380px; background:radial-gradient(circle,rgba(245,158,11,0.06),transparent 70%); bottom:5%; right:-100px; animation-delay:-5s; }
+    .orb-3 { width:220px; height:220px; background:radial-gradient(circle,rgba(0,232,157,0.05),transparent 70%); top:45%; left:30%; animation-delay:-9s; }
     @keyframes orbFloat {
       0% { transform:translate(0,0) scale(1); }
       50% { transform:translate(25px,-35px) scale(1.08); }
@@ -60,7 +60,7 @@
     #particles { position:fixed; inset:0; z-index:0; pointer-events:none; }
     .mouse-glow {
       position:fixed; width:450px; height:450px; border-radius:50%;
-      background:radial-gradient(circle,rgba(0,232,157,0.05),transparent 60%);
+      background:radial-gradient(circle,rgba(251,191,36,0.04),transparent 60%);
       pointer-events:none; z-index:1; transform:translate(-50%,-50%);
       transition:left 0.35s ease-out, top 0.35s ease-out;
     }
@@ -87,8 +87,8 @@
     .hero-badge {
       display:inline-flex; align-items:center; gap:8px;
       padding:6px 16px; border-radius:999px;
-      border:1px solid rgba(0,232,157,0.2);
-      background:rgba(0,232,157,0.05);
+      border:1px solid rgba(251,191,36,0.2);
+      background:rgba(251,191,36,0.05);
       font-size:0.8rem; color:var(--accent);
     }
     .hero-badge .dot {
@@ -108,117 +108,220 @@
       -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
     }
 
-    /* === LIVE STATUS BAR === */
-    .status-bar {
-      display:flex; align-items:center; justify-content:center;
-      gap:24px; padding:12px 24px; flex-wrap:wrap;
+    /* === DOMAIN SEARCH === */
+    .domain-search-box {
+      max-width:620px; margin:0 auto;
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:18px; padding:6px; display:flex; gap:0;
+      transition:border-color 0.3s, box-shadow 0.3s;
     }
-    .status-item {
+    .domain-search-box:focus-within {
+      border-color:rgba(251,191,36,0.35);
+      box-shadow:0 0 40px rgba(251,191,36,0.08);
+    }
+    .domain-search-box input {
+      flex:1; background:none; border:none; outline:none;
+      padding:14px 20px; color:var(--fg);
+      font-family:'JetBrains Mono',monospace; font-size:0.95rem;
+    }
+    .domain-search-box input::placeholder { color:var(--muted); opacity:0.6; }
+    .domain-search-box .search-btn {
+      padding:14px 28px; border:none; border-radius:14px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#060a10; font-family:inherit; font-weight:700; font-size:0.9rem;
+      cursor:pointer; transition:all 0.3s; white-space:nowrap;
       display:flex; align-items:center; gap:8px;
-      font-size:0.78rem; color:var(--muted);
     }
-    .status-dot-live {
-      width:7px; height:7px; border-radius:50%;
-      animation:pulse-dot 2s ease-in-out infinite;
-    }
-
-    /* === STATS === */
-    .stats-bar {
-      display:grid; grid-template-columns:repeat(3,1fr);
-      gap:1px; background:var(--border);
-      border:1px solid var(--border); border-radius:16px; overflow:hidden;
-    }
-    .stat-item {
-      background:var(--bg-card); padding:24px 16px;
-      text-align:center; transition:background 0.3s;
-    }
-    .stat-item:hover { background:rgba(0,232,157,0.03); }
-    .stat-number {
-      font-family:'JetBrains Mono',monospace;
-      font-size:1.6rem; font-weight:700; color:var(--accent);
-    }
-    .stat-label {
-      font-size:0.72rem; color:var(--muted); margin-top:4px;
-      text-transform:uppercase; letter-spacing:0.06em;
+    .domain-search-box .search-btn:hover {
+      box-shadow:0 0 25px rgba(251,191,36,0.3);
+      transform:translateY(-1px);
     }
 
-    /* === STORE CARDS === */
-    .store-card {
+    /* === FILTER PILLS === */
+    .filter-pills {
+      display:flex; gap:8px; flex-wrap:wrap; justify-content:center;
+    }
+    .filter-pill {
+      padding:8px 18px; border-radius:10px;
+      border:1px solid var(--border); background:var(--bg-card);
+      color:var(--muted); font-size:0.82rem; cursor:pointer;
+      transition:all 0.3s; font-family:inherit;
+    }
+    .filter-pill:hover { border-color:rgba(251,191,36,0.2); color:var(--fg); }
+    .filter-pill.active {
+      border-color:rgba(251,191,36,0.4); color:var(--accent);
+      background:rgba(251,191,36,0.06);
+    }
+
+    /* === DOMAIN CARDS === */
+    .domain-grid {
+      display:grid; grid-template-columns:repeat(2,1fr);
+      gap:16px;
+    }
+    .domain-card {
       position:relative; background:var(--bg-card);
-      border:1px solid var(--border); border-radius:20px;
-      overflow:hidden; transition:all 0.45s cubic-bezier(0.4,0,0.2,1);
-      text-decoration:none; color:inherit; display:block;
+      border:1px solid var(--border); border-radius:16px;
+      padding:24px 28px; display:flex; align-items:center;
+      justify-content:space-between; gap:16px;
+      transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+      cursor:pointer; text-decoration:none; color:inherit;
+      overflow:hidden;
     }
-    .store-card::before {
-      content:''; position:absolute; inset:0; border-radius:20px;
+    .domain-card::before {
+      content:''; position:absolute; inset:0; border-radius:16px;
       padding:1px;
-      background:linear-gradient(160deg,transparent 30%,var(--card-accent,rgba(0,232,157,0.2)) 100%);
+      background:linear-gradient(160deg,transparent 40%,var(--card-accent,rgba(251,191,36,0.25)) 100%);
       -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
       -webkit-mask-composite:xor; mask-composite:exclude;
-      opacity:0; transition:opacity 0.45s;
+      opacity:0; transition:opacity 0.4s;
     }
-    .store-card:hover::before { opacity:1; }
-    .store-card:hover {
-      transform:translateY(-10px);
-      box-shadow:0 24px 60px rgba(0,0,0,0.4),0 0 50px var(--card-glow,rgba(0,232,157,0.08));
+    .domain-card:hover::before { opacity:1; }
+    .domain-card:hover {
+      transform:translateY(-4px);
+      box-shadow:0 16px 40px rgba(0,0,0,0.35),0 0 40px var(--card-glow,rgba(251,191,36,0.06));
+      border-color:transparent;
     }
-    .card-accent-bar {
-      height:3px; width:100%;
-      background:var(--card-bar,linear-gradient(90deg,var(--green),var(--cyan)));
+    .domain-card .card-bar {
+      position:absolute; top:0; left:0; right:0; height:2px;
+      background:var(--card-bar,linear-gradient(90deg,var(--amber),var(--accent2)));
       transform:scaleX(0); transform-origin:left;
       transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);
     }
-    .store-card:hover .card-accent-bar { transform:scaleX(1); }
-    .card-bg-pattern {
-      position:absolute; inset:0; opacity:0;
-      transition:opacity 0.5s; pointer-events:none;
-    }
-    .store-card:hover .card-bg-pattern { opacity:1; }
-    .card-icon-wrap {
-      width:56px; height:56px; border-radius:16px;
-      display:flex; align-items:center; justify-content:center;
-      font-size:1.4rem; transition:all 0.35s;
-    }
-    .store-card:hover .card-icon-wrap { transform:scale(1.08); }
-    .card-arrow {
-      display:inline-flex; align-items:center; gap:8px;
-      font-weight:600; font-size:0.9rem; transition:gap 0.3s;
-    }
-    .store-card:hover .card-arrow { gap:14px; }
-    .card-badge {
-      position:absolute; top:20px; right:20px;
-      padding:4px 14px; border-radius:999px;
-      font-size:0.68rem; font-weight:700;
-      text-transform:uppercase; letter-spacing:0.08em;
-      backdrop-filter:blur(8px);
-    }
-    .card-tags {
-      display:flex; flex-wrap:wrap; gap:6px; margin-top:16px;
-    }
-    .card-tag {
-      padding:4px 10px; border-radius:6px; font-size:0.72rem;
-      background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.05);
-      color:var(--muted);
-    }
-    .card-price-hint {
-      margin-top:18px; padding-top:16px;
-      border-top:1px solid rgba(255,255,255,0.04);
-      display:flex; justify-content:space-between; align-items:center;
-    }
-    .card-price-hint .label { font-size:0.75rem; color:var(--muted); }
-    .card-price-hint .price {
+    .domain-card:hover .card-bar { transform:scaleX(1); }
+    .domain-ext {
       font-family:'JetBrains Mono',monospace;
-      font-size:0.95rem; font-weight:700;
+      font-size:1.35rem; font-weight:700; white-space:nowrap;
+    }
+    .domain-info { flex:1; min-width:0; }
+    .domain-features {
+      display:flex; gap:10px; margin-top:6px; flex-wrap:wrap;
+    }
+    .domain-feat {
+      font-size:0.68rem; color:var(--muted);
+      display:flex; align-items:center; gap:4px;
+    }
+    .domain-feat i { font-size:0.55rem; color:rgba(251,191,36,0.5); }
+    .domain-price-col { text-align:right; flex-shrink:0; }
+    .domain-price {
+      font-family:'JetBrains Mono',monospace;
+      font-size:1.25rem; font-weight:700; color:var(--amber);
+    }
+    .domain-period {
+      font-size:0.7rem; color:var(--muted); margin-top:2px;
+    }
+    .domain-order {
+      display:inline-flex; align-items:center; gap:6px;
+      margin-top:8px; padding:7px 16px; border-radius:10px;
+      border:1px solid rgba(251,191,36,0.25); background:rgba(251,191,36,0.06);
+      color:var(--amber); font-size:0.78rem; font-weight:600;
+      transition:all 0.3s;
+    }
+    .domain-card:hover .domain-order {
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#060a10; border-color:transparent;
+      box-shadow:0 0 20px rgba(251,191,36,0.2);
+    }
+    .domain-order i { font-size:0.65rem; transition:transform 0.3s; }
+    .domain-card:hover .domain-order i { transform:translateX(3px); }
+
+    .domain-card.featured {
+      grid-column:span 2;
+      padding:32px 36px;
+      border-color:rgba(251,191,36,0.15);
+      background:linear-gradient(135deg,rgba(251,191,36,0.03),var(--bg-card));
+    }
+    .domain-card.featured .domain-ext { font-size:1.6rem; }
+    .domain-card.featured .domain-price { font-size:1.5rem; }
+    .domain-card.featured .domain-features { gap:14px; }
+    .domain-card.featured .domain-feat { font-size:0.72rem; }
+
+    .card-popular-tag {
+      position:absolute; top:12px; right:16px;
+      padding:3px 12px; border-radius:999px;
+      font-size:0.62rem; font-weight:700; text-transform:uppercase;
+      letter-spacing:0.08em;
+      background:rgba(251,191,36,0.12); color:var(--amber);
+      border:1px solid rgba(251,191,36,0.25);
     }
 
-    /* === HOW IT WORKS === */
+    .domain-card.hidden-card {
+      display:none;
+    }
+
+    /* === INCLUDES GRID === */
+    .includes-grid {
+      display:grid; grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+    .include-item {
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:14px; padding:22px 20px;
+      display:flex; align-items:flex-start; gap:14px;
+      transition:all 0.35s;
+    }
+    .include-item:hover {
+      border-color:rgba(251,191,36,0.15);
+      transform:translateY(-3px);
+      box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    }
+    .include-icon {
+      width:40px; height:40px; border-radius:11px; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center;
+      font-size:0.95rem; transition:transform 0.3s;
+    }
+    .include-item:hover .include-icon { transform:scale(1.08); }
+    .include-title {
+      font-weight:600; font-size:0.88rem; margin-bottom:3px;
+    }
+    .include-desc {
+      font-size:0.76rem; color:var(--muted); line-height:1.6;
+    }
+
+    /* === COMPARISON TABLE === */
+    .compare-table-wrap {
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:18px; overflow:hidden;
+    }
+    .compare-table {
+      width:100%; border-collapse:collapse;
+    }
+    .compare-table thead th {
+      padding:16px 20px; text-align:left;
+      font-size:0.75rem; font-weight:600;
+      color:var(--muted); text-transform:uppercase;
+      letter-spacing:0.06em;
+      border-bottom:1px solid var(--border);
+      background:rgba(251,191,36,0.02);
+    }
+    .compare-table thead th:last-child { text-align:right; }
+    .compare-table tbody tr {
+      border-bottom:1px solid rgba(255,255,255,0.025);
+      transition:background 0.2s;
+    }
+    .compare-table tbody tr:last-child { border-bottom:none; }
+    .compare-table tbody tr:hover { background:rgba(251,191,36,0.02); }
+    .compare-table td {
+      padding:14px 20px; font-size:0.88rem;
+    }
+    .compare-table td:last-child { text-align:right; }
+    .compare-table .ext-cell {
+      font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--fg);
+    }
+    .compare-table .price-cell {
+      font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--amber);
+    }
+    .compare-table .type-cell {
+      font-size:0.78rem; color:var(--muted);
+    }
+
+    /* === STEPS === */
     .step-card {
       position:relative; background:var(--bg-card);
       border:1px solid var(--border); border-radius:16px;
       padding:28px; text-align:center; transition:all 0.35s;
     }
     .step-card:hover {
-      border-color:rgba(0,232,157,0.15);
+      border-color:rgba(251,191,36,0.15);
       transform:translateY(-4px);
       box-shadow:0 12px 30px rgba(0,0,0,0.25);
     }
@@ -235,74 +338,13 @@
       color:var(--border); font-size:1.2rem; z-index:2;
     }
 
-    /* === TESTIMONIALS === */
-    .testi-card {
-      background:var(--bg-card); border:1px solid var(--border);
-      border-radius:16px; padding:28px; transition:all 0.35s;
-      position:relative;
-    }
-    .testi-card:hover {
-      border-color:rgba(255,255,255,0.08);
-      transform:translateY(-3px);
-    }
-    .testi-quote {
-      position:absolute; top:20px; right:24px;
-      font-size:2rem; color:rgba(0,232,157,0.08);
-      font-family:Georgia,serif; line-height:1;
-    }
-    .testi-stars { display:flex; gap:3px; margin-bottom:12px; }
-    .testi-stars i { font-size:0.7rem; color:var(--amber); }
-    .testi-text {
-      font-size:0.88rem; color:#8a96a8; line-height:1.7;
-      margin-bottom:16px; font-style:italic;
-    }
-    .testi-author {
-      display:flex; align-items:center; gap:12px;
-    }
-    .testi-avatar {
-      width:36px; height:36px; border-radius:10px;
-      display:flex; align-items:center; justify-content:center;
-      font-weight:700; font-size:0.8rem; color:#060a10;
-    }
-    .testi-name { font-size:0.85rem; font-weight:600; }
-    .testi-role { font-size:0.72rem; color:var(--muted); }
-
-    /* === FEATURES === */
-    .feature-card {
-      background:var(--bg-card); border:1px solid var(--border);
-      border-radius:16px; padding:28px; transition:all 0.35s;
-      text-align:center;
-    }
-    .feature-card:hover {
-      transform:translateY(-6px);
-      box-shadow:0 16px 40px rgba(0,0,0,0.3);
-    }
-    .feature-icon {
-      width:52px; height:52px; border-radius:14px;
-      display:flex; align-items:center; justify-content:center;
-      font-size:1.2rem; margin:0 auto 16px; transition:transform 0.3s;
-    }
-    .feature-card:hover .feature-icon { transform:scale(1.1) rotate(-3deg); }
-
-    /* === TRUST CARDS === */
-    .trust-card {
-      background:var(--bg-card); border:1px solid var(--border);
-      border-radius:16px; padding:28px;
-      display:flex; align-items:center; gap:20px;
-      transition:all 0.35s;
-    }
-    .trust-card:hover {
-      transform:translateY(-3px);
-      box-shadow:0 12px 30px rgba(0,0,0,0.2);
-    }
-
     /* === FAQ === */
     .faq-item {
       background:var(--bg-card); border:1px solid var(--border);
       border-radius:14px; overflow:hidden; transition:all 0.35s;
     }
     .faq-item:hover { border-color:rgba(255,255,255,0.08); }
-    .faq-item.open { border-color:rgba(0,232,157,0.2); }
+    .faq-item.open { border-color:rgba(251,191,36,0.2); }
     .faq-btn {
       width:100%; text-align:left; padding:18px 22px;
       display:flex; justify-content:space-between; align-items:center;
@@ -364,9 +406,28 @@
       transition:opacity 0.5s ease-out, transform 0.5s ease-out;
     }
     .stagger.vis > *:nth-child(1) { transition-delay:0s; opacity:1; transform:translateY(0); }
-    .stagger.vis > *:nth-child(2) { transition-delay:0.1s; opacity:1; transform:translateY(0); }
-    .stagger.vis > *:nth-child(3) { transition-delay:0.2s; opacity:1; transform:translateY(0); }
-    .stagger.vis > *:nth-child(4) { transition-delay:0.3s; opacity:1; transform:translateY(0); }
+    .stagger.vis > *:nth-child(2) { transition-delay:0.06s; opacity:1; transform:translateY(0); }
+    .stagger.vis > *:nth-child(3) { transition-delay:0.12s; opacity:1; transform:translateY(0); }
+    .stagger.vis > *:nth-child(4) { transition-delay:0.18s; opacity:1; transform:translateY(0); }
+    .stagger.vis > *:nth-child(5) { transition-delay:0.24s; opacity:1; transform:translateY(0); }
+    .stagger.vis > *:nth-child(6) { transition-delay:0.3s; opacity:1; transform:translateY(0); }
+    .stagger.vis > *:nth-child(7) { transition-delay:0.36s; opacity:1; transform:translateY(0); }
+    .stagger.vis > *:nth-child(8) { transition-delay:0.42s; opacity:1; transform:translateY(0); }
+    .stagger.vis > *:nth-child(9) { transition-delay:0.48s; opacity:1; transform:translateY(0); }
+    .stagger.vis > *:nth-child(10) { transition-delay:0.54s; opacity:1; transform:translateY(0); }
+
+    /* Toast notification */
+    .toast {
+      position:fixed; bottom:30px; left:50%; transform:translateX(-50%) translateY(100px);
+      padding:14px 28px; border-radius:14px;
+      background:var(--bg-card); border:1px solid rgba(251,191,36,0.25);
+      color:var(--fg); font-size:0.88rem; z-index:200;
+      box-shadow:0 12px 40px rgba(0,0,0,0.5);
+      transition:transform 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.4s;
+      opacity:0; display:flex; align-items:center; gap:10px;
+      pointer-events:none;
+    }
+    .toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
 
     ::-webkit-scrollbar { width:6px; }
     ::-webkit-scrollbar-track { background:var(--bg); }
@@ -380,19 +441,15 @@
       }
     }
     @media (max-width:768px) {
-      .stats-bar { grid-template-columns:repeat(3,1fr); }
-      .store-grid { grid-template-columns:1fr!important; }
-      .features-grid { grid-template-columns:repeat(2,1fr)!important; }
+      .domain-grid { grid-template-columns:1fr!important; }
+      .domain-card.featured { grid-column:span 1!important; }
+      .includes-grid { grid-template-columns:1fr!important; }
       .steps-grid { grid-template-columns:1fr!important; }
       .step-connector { display:none!important; }
-      .testi-grid { grid-template-columns:1fr!important; }
-      .trust-grid { grid-template-columns:1fr!important; }
+      .compare-table-wrap { overflow-x:auto; }
+      .compare-table { min-width:520px; }
       .footer-grid { grid-template-columns:1fr!important; gap:24px!important; }
-      .feature-card:last-child { grid-column:span 2; }
-    }
-    @media (max-width:480px) {
-      .features-grid { grid-template-columns:1fr!important; }
-      .feature-card:last-child { grid-column:span 1; }
+      .domain-features { gap:6px!important; }
     }
   </style>
 </head>
@@ -405,6 +462,12 @@
   <div class="orb orb-2"></div>
   <div class="orb orb-3"></div>
   <div class="mouse-glow" id="mouseGlow"></div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <i class="fas fa-circle-info" style="color:var(--amber);"></i>
+    <span id="toastMsg"></span>
+  </div>
 
   <!-- Navbar -->
   <nav class="navbar" id="navbar">
@@ -441,238 +504,422 @@
       <div class="reveal" style="display:inline-flex; flex-direction:column; align-items:center;">
         <div class="hero-badge" style="margin-bottom:24px;">
           <span class="dot"></span>
-          4 Kategori Layanan
+          10 Ekstensi Domain
         </div>
         <h1 class="hero-title">
-          Pilih <span class="accent-text">Layanan</span> Kamu
+          Domain <span class="accent-text">Murah</span> & Cepat
         </h1>
-        <p style="color:var(--muted); margin-top:16px; max-width:480px; line-height:1.7; font-size:1.05rem;">
-          Temukan solusi yang tepat untuk kebutuhan server, hosting, domain, dan digital kamu.
+        <p style="color:var(--muted); margin-top:16px; max-width:520px; line-height:1.7; font-size:1.05rem;">
+          Dapatkan domain premium dengan harga terjangkau. Aktif 1 tahun penuh, siap connected ke Cloudflare dan hosting.
         </p>
       </div>
     </section>
 
-    <!-- Live Status -->
+    <!-- Domain Search -->
+    <section style="padding:28px 24px 0;">
+      <div class="reveal">
+        <div class="domain-search-box">
+          <input type="text" id="domainSearch" placeholder="Cari domain... contoh: namakamu" autocomplete="off">
+          <button class="search-btn" onclick="handleSearch()">
+            <i class="fas fa-magnifying-glass"></i> Cari
+          </button>
+        </div>
+        <p style="text-align:center; margin-top:12px; font-size:0.75rem; color:var(--muted); opacity:0.6;">
+          Ketik nama yang diinginkan, lalu pilih ekstensi domain di bawah
+        </p>
+      </div>
+    </section>
+
+    <!-- Filter Pills -->
     <section style="padding:24px 24px 0;">
-      <div class="status-bar reveal">
-        <div class="status-item">
-          <span class="status-dot-live" style="background:var(--green);"></span>
-          <span>Semua sistem <strong style="color:var(--green);">operasional</strong></span>
+      <div class="filter-pills reveal" id="filterPills">
+        <button class="filter-pill active" data-filter="all">Semua</button>
+        <button class="filter-pill" data-filter="id">.id</button>
+        <button class="filter-pill" data-filter="international">Internasional</button>
+        <button class="filter-pill" data-filter="trend">Trending</button>
+        <button class="filter-pill" data-filter="budget">Budget</button>
+      </div>
+    </section>
+
+    <!-- Domain Cards -->
+    <section style="max-width:900px; margin:0 auto; padding:32px 24px 80px;">
+      <div class="domain-grid stagger reveal" id="domainGrid">
+
+        <!-- .com - Featured -->
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.com" target="_blank"
+           class="domain-card featured"
+           style="--card-accent:rgba(251,191,36,0.3); --card-glow:rgba(251,191,36,0.1); --card-bar:linear-gradient(90deg,#fbbf24,#f59e0b);"
+           data-category="international" data-ext=".com">
+          <div class="card-bar"></div>
+          <span class="card-popular-tag"><i class="fas fa-crown" style="margin-right:4px;"></i> Paling Laris</span>
+          <div class="domain-info">
+            <div class="domain-ext" style="color:var(--amber);">.com</div>
+            <div class="domain-features">
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS Management</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare Ready</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> Custom IP</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> SSL Free</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun Aktif</span>
+            </div>
+          </div>
+          <div class="domain-price-col">
+            <div class="domain-price">Rp165.000</div>
+            <div class="domain-period">/tahun</div>
+            <div class="domain-order">Order <i class="fas fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- .id -->
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.id" target="_blank"
+           class="domain-card"
+           style="--card-accent:rgba(0,232,157,0.25); --card-glow:rgba(0,232,157,0.08); --card-bar:linear-gradient(90deg,#00e89d,#34d399);"
+           data-category="id" data-ext=".id">
+          <div class="card-bar"></div>
+          <div class="domain-info">
+            <div class="domain-ext" style="color:var(--green);">.id</div>
+            <div class="domain-features">
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span>
+            </div>
+          </div>
+          <div class="domain-price-col">
+            <div class="domain-price" style="color:var(--green);">Rp275.000</div>
+            <div class="domain-period">/tahun</div>
+            <div class="domain-order" style="border-color:rgba(0,232,157,0.25); background:rgba(0,232,157,0.06); color:var(--green);">Order <i class="fas fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- .net -->
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.net" target="_blank"
+           class="domain-card"
+           style="--card-accent:rgba(0,196,255,0.25); --card-glow:rgba(0,196,255,0.08); --card-bar:linear-gradient(90deg,#00c4ff,#38bdf8);"
+           data-category="international" data-ext=".net">
+          <div class="card-bar"></div>
+          <div class="domain-info">
+            <div class="domain-ext" style="color:var(--cyan);">.net</div>
+            <div class="domain-features">
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span>
+            </div>
+          </div>
+          <div class="domain-price-col">
+            <div class="domain-price" style="color:var(--cyan);">Rp265.000</div>
+            <div class="domain-period">/tahun</div>
+            <div class="domain-order" style="border-color:rgba(0,196,255,0.25); background:rgba(0,196,255,0.06); color:var(--cyan);">Order <i class="fas fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- web.id -->
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20web.id" target="_blank"
+           class="domain-card"
+           style="--card-accent:rgba(0,232,157,0.2); --card-glow:rgba(0,232,157,0.06); --card-bar:linear-gradient(90deg,#34d399,#6ee7b7);"
+           data-category="id" data-ext="web.id">
+          <div class="card-bar"></div>
+          <div class="domain-info">
+            <div class="domain-ext" style="color:var(--green);">web.id</div>
+            <div class="domain-features">
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span>
+            </div>
+          </div>
+          <div class="domain-price-col">
+            <div class="domain-price" style="color:var(--green);">Rp70.000</div>
+            <div class="domain-period">/tahun</div>
+            <div class="domain-order" style="border-color:rgba(0,232,157,0.25); background:rgba(0,232,157,0.06); color:var(--green);">Order <i class="fas fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- .mom -->
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.mom" target="_blank"
+           class="domain-card"
+           style="--card-accent:rgba(244,114,182,0.25); --card-glow:rgba(244,114,182,0.08); --card-bar:linear-gradient(90deg,#f472b6,#fb7185);"
+           data-category="trend" data-ext=".mom">
+          <div class="card-bar"></div>
+          <span class="card-popular-tag" style="background:rgba(244,114,182,0.12); color:var(--pink); border-color:rgba(244,114,182,0.25);">Trending</span>
+          <div class="domain-info">
+            <div class="domain-ext" style="color:var(--pink);">.mom</div>
+            <div class="domain-features">
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span>
+            </div>
+          </div>
+          <div class="domain-price-col">
+            <div class="domain-price" style="color:var(--pink);">Rp55.000</div>
+            <div class="domain-period">/tahun</div>
+            <div class="domain-order" style="border-color:rgba(244,114,182,0.25); background:rgba(244,114,182,0.06); color:var(--pink);">Order <i class="fas fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- .lol -->
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.lol" target="_blank"
+           class="domain-card"
+           style="--card-accent:rgba(167,139,250,0.25); --card-glow:rgba(167,139,250,0.08); --card-bar:linear-gradient(90deg,#a78bfa,#c4b5fd);"
+           data-category="trend" data-ext=".lol">
+          <div class="card-bar"></div>
+          <span class="card-popular-tag" style="background:rgba(167,139,250,0.12); color:var(--purple); border-color:rgba(167,139,250,0.25);">Trending</span>
+          <div class="domain-info">
+            <div class="domain-ext" style="color:var(--purple);">.lol</div>
+            <div class="domain-features">
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span>
+            </div>
+          </div>
+          <div class="domain-price-col">
+            <div class="domain-price" style="color:var(--purple);">Rp55.000</div>
+            <div class="domain-period">/tahun</div>
+            <div class="domain-order" style="border-color:rgba(167,139,250,0.25); background:rgba(167,139,250,0.06); color:var(--purple);">Order <i class="fas fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- .xyz -->
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.xyz" target="_blank"
+           class="domain-card"
+           style="--card-accent:rgba(0,196,255,0.2); --card-glow:rgba(0,196,255,0.06); --card-bar:linear-gradient(90deg,#38bdf8,#7dd3fc);"
+           data-category="international" data-ext=".xyz">
+          <div class="card-bar"></div>
+          <div class="domain-info">
+            <div class="domain-ext" style="color:var(--cyan);">.xyz</div>
+            <div class="domain-features">
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span>
+            </div>
+          </div>
+          <div class="domain-price-col">
+            <div class="domain-price" style="color:var(--cyan);">Rp45.000</div>
+            <div class="domain-period">/tahun</div>
+            <div class="domain-order" style="border-color:rgba(0,196,255,0.25); background:rgba(0,196,255,0.06); color:var(--cyan);">Order <i class="fas fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- .cloud -->
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.cloud" target="_blank"
+           class="domain-card"
+           style="--card-accent:rgba(0,196,255,0.2); --card-glow:rgba(0,196,255,0.06); --card-bar:linear-gradient(90deg,#0ea5e9,#38bdf8);"
+           data-category="trend" data-ext=".cloud">
+          <div class="card-bar"></div>
+          <div class="domain-info">
+            <div class="domain-ext" style="color:var(--cyan);">.cloud</div>
+            <div class="domain-features">
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span>
+            </div>
+          </div>
+          <div class="domain-price-col">
+            <div class="domain-price" style="color:var(--cyan);">Rp40.000</div>
+            <div class="domain-period">/tahun</div>
+            <div class="domain-order" style="border-color:rgba(0,196,255,0.25); background:rgba(0,196,255,0.06); color:var(--cyan);">Order <i class="fas fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- my.id -->
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20my.id" target="_blank"
+           class="domain-card"
+           style="--card-accent:rgba(0,232,157,0.2); --card-glow:rgba(0,232,157,0.06); --card-bar:linear-gradient(90deg,#6ee7b7,#a7f3d0);"
+           data-category="budget" data-ext="my.id">
+          <div class="card-bar"></div>
+          <span class="card-popular-tag" style="background:rgba(0,232,157,0.12); color:var(--green); border-color:rgba(0,232,157,0.25);">Termurah</span>
+          <div class="domain-info">
+            <div class="domain-ext" style="color:var(--green);">my.id</div>
+            <div class="domain-features">
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span>
+            </div>
+          </div>
+          <div class="domain-price-col">
+            <div class="domain-price" style="color:var(--green);">Rp15.000</div>
+            <div class="domain-period">/tahun</div>
+            <div class="domain-order" style="border-color:rgba(0,232,157,0.25); background:rgba(0,232,157,0.06); color:var(--green);">Order <i class="fas fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+        <!-- biz.id -->
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20biz.id" target="_blank"
+           class="domain-card"
+           style="--card-accent:rgba(0,232,157,0.2); --card-glow:rgba(0,232,157,0.06); --card-bar:linear-gradient(90deg,#34d399,#6ee7b7);"
+           data-category="budget" data-ext="biz.id">
+          <div class="card-bar"></div>
+          <div class="domain-info">
+            <div class="domain-ext" style="color:var(--green);">biz.id</div>
+            <div class="domain-features">
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span>
+              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span>
+            </div>
+          </div>
+          <div class="domain-price-col">
+            <div class="domain-price" style="color:var(--green);">Rp15.000</div>
+            <div class="domain-period">/tahun</div>
+            <div class="domain-order" style="border-color:rgba(0,232,157,0.25); background:rgba(0,232,157,0.06); color:var(--green);">Order <i class="fas fa-arrow-right"></i></div>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- No results message -->
+      <div id="noResults" style="display:none; text-align:center; padding:60px 20px;">
+        <i class="fas fa-face-meh" style="font-size:2.5rem; color:var(--muted); opacity:0.3; margin-bottom:16px;"></i>
+        <p style="color:var(--muted); font-size:0.95rem;">Domain tidak ditemukan untuk filter ini.</p>
+      </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section style="max-width:900px; margin:0 auto; padding:0 24px 80px;">
+      <div class="reveal" style="margin-bottom:32px;">
+        <div class="section-tag">Perbandingan</div>
+        <h2 style="font-size:1.5rem; font-weight:700; margin-top:8px;">Daftar Harga Domain</h2>
+      </div>
+      <div class="compare-table-wrap reveal">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Ekstensi</th>
+              <th>Tipe</th>
+              <th>Harga / Tahun</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="ext-cell">.my.id</td>
+              <td class="type-cell">Indonesia</td>
+              <td class="price-cell">Rp15.000</td>
+            </tr>
+            <tr>
+              <td class="ext-cell">.biz.id</td>
+              <td class="type-cell">Indonesia</td>
+              <td class="price-cell">Rp15.000</td>
+            </tr>
+            <tr>
+              <td class="ext-cell">.cloud</td>
+              <td class="type-cell">Internasional</td>
+              <td class="price-cell">Rp40.000</td>
+            </tr>
+            <tr>
+              <td class="ext-cell">.xyz</td>
+              <td class="type-cell">Internasional</td>
+              <td class="price-cell">Rp45.000</td>
+            </tr>
+            <tr>
+              <td class="ext-cell">.mom</td>
+              <td class="type-cell">Trending</td>
+              <td class="price-cell">Rp55.000</td>
+            </tr>
+            <tr>
+              <td class="ext-cell">.lol</td>
+              <td class="type-cell">Trending</td>
+              <td class="price-cell">Rp55.000</td>
+            </tr>
+            <tr>
+              <td class="ext-cell">.web.id</td>
+              <td class="type-cell">Indonesia</td>
+              <td class="price-cell">Rp70.000</td>
+            </tr>
+            <tr style="background:rgba(251,191,36,0.03);">
+              <td class="ext-cell" style="color:var(--amber);">.com</td>
+              <td class="type-cell">Internasional</td>
+              <td class="price-cell" style="color:var(--amber);">Rp165.000</td>
+            </tr>
+            <tr>
+              <td class="ext-cell">.net</td>
+              <td class="type-cell">Internasional</td>
+              <td class="price-cell">Rp265.000</td>
+            </tr>
+            <tr>
+              <td class="ext-cell">.id</td>
+              <td class="type-cell">Indonesia</td>
+              <td class="price-cell">Rp275.000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- What You Get -->
+    <section style="max-width:900px; margin:0 auto; padding:0 24px 80px;">
+      <div class="reveal" style="margin-bottom:32px; text-align:center;">
+        <div class="section-tag" style="justify-content:center;">Yang Kamu Dapat</div>
+        <h2 style="font-size:1.5rem; font-weight:700; margin-top:8px;">Setiap Domain Sudah Termasuk</h2>
+      </div>
+      <div class="includes-grid stagger reveal">
+        <div class="include-item">
+          <div class="include-icon" style="background:rgba(251,191,36,0.1); color:var(--amber);">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <div>
+            <div class="include-title">Aktif 1 Tahun</div>
+            <div class="include-desc">Domain aktif penuh selama 12 bulan tanpa biaya tersembunyi.</div>
+          </div>
         </div>
-        <div class="status-item" style="color:#2a3a4e;">|</div>
-        <div class="status-item">
-          <i class="fas fa-server" style="font-size:0.7rem; color:var(--cyan);"></i>
-          <span>SG Server: <strong style="color:var(--cyan);">12ms</strong></span>
+        <div class="include-item">
+          <div class="include-icon" style="background:rgba(0,196,255,0.1); color:var(--cyan);">
+            <i class="fas fa-network-wired"></i>
+          </div>
+          <div>
+            <div class="include-title">DNS Management</div>
+            <div class="include-desc">Kelola DNS record (A, CNAME, MX, TXT) secara bebas dan fleksibel.</div>
+          </div>
         </div>
-        <div class="status-item" style="color:#2a3a4e;">|</div>
-        <div class="status-item">
-          <i class="fas fa-server" style="font-size:0.7rem; color:var(--green);"></i>
-          <span>ID Server: <strong style="color:var(--green);">8ms</strong></span>
+        <div class="include-item">
+          <div class="include-icon" style="background:rgba(248,113,113,0.1); color:var(--red);">
+            <i class="fas fa-shield-halved"></i>
+          </div>
+          <div>
+            <div class="include-title">Cloudflare Ready</div>
+            <div class="include-desc">Bisa langsung dikoneksikan ke Cloudflare untuk CDN dan keamanan.</div>
+          </div>
         </div>
-        <div class="status-item" style="color:#2a3a4e;">|</div>
-        <div class="status-item">
-          <i class="fas fa-clock" style="font-size:0.7rem; color:var(--amber);"></i>
-          <span>Update: <span id="liveTime" class="font-mono" style="font-size:0.75rem;">--:--:--</span></span>
+        <div class="include-item">
+          <div class="include-icon" style="background:rgba(0,232,157,0.1); color:var(--green);">
+            <i class="fas fa-server"></i>
+          </div>
+          <div>
+            <div class="include-title">Custom IP Pointing</div>
+            <div class="include-desc">Arahkan domain ke IP server manapun, termasuk VPS kami.</div>
+          </div>
+        </div>
+        <div class="include-item">
+          <div class="include-icon" style="background:rgba(167,139,250,0.1); color:var(--purple);">
+            <i class="fas fa-lock"></i>
+          </div>
+          <div>
+            <div class="include-title">SSL Gratis</div>
+            <div class="include-desc">Dapatkan sertifikat SSL gratis lewat Cloudflare atau Let's Encrypt.</div>
+          </div>
+        </div>
+        <div class="include-item">
+          <div class="include-icon" style="background:rgba(244,114,182,0.1); color:var(--pink);">
+            <i class="fas fa-headset"></i>
+          </div>
+          <div>
+            <div class="include-title">Support 24/7</div>
+            <div class="include-desc">Tim support siap bantu setup DNS dan koneksi domain kapanpun.</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Stats -->
-    <section style="max-width:640px; margin:0 auto; padding:28px 24px 56px;">
-      <div class="stats-bar reveal">
-        <div class="stat-item">
-          <div class="stat-number" data-target="99" data-suffix=".9%">0</div>
-          <div class="stat-label">Uptime</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number" data-target="24" data-suffix="/7">0</div>
-          <div class="stat-label">Support</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number" data-target="500" data-suffix="+">0</div>
-          <div class="stat-label">User Aktif</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Store Cards -->
-    <section style="max-width:1100px; margin:0 auto; padding:0 24px 80px;">
-      <div class="reveal" style="margin-bottom:40px;">
-        <div class="section-tag">Kategori</div>
-        <h2 style="font-size:1.8rem; font-weight:700; margin-top:8px;">Layanan Tersedia</h2>
-      </div>
-
-      <div class="store-grid stagger reveal" style="display:grid; grid-template-columns:repeat(2,1fr); gap:24px;">
-
-        <!-- Minecraft Hosting -->
-        <a href="store-hosting.html" class="store-card"
-           style="--card-accent:rgba(0,232,157,0.25); --card-glow:rgba(0,232,157,0.1); --card-bar:linear-gradient(90deg,#00e89d,#34d399);">
-          <div class="card-accent-bar"></div>
-          <div class="card-bg-pattern">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="opacity:0.04;">
-              <defs><pattern id="mc" width="32" height="32" patternUnits="userSpaceOnUse"><rect width="16" height="16" fill="#00e89d"/><rect x="16" y="16" width="16" height="16" fill="#00e89d"/></pattern></defs>
-              <rect width="100%" height="100%" fill="url(#mc)"/>
-            </svg>
-          </div>
-          <div style="position:relative; padding:32px 28px 28px;">
-            <div class="card-icon-wrap" style="background:rgba(0,232,157,0.1); color:var(--green);">
-              <i class="fas fa-cube"></i>
-            </div>
-            <h3 style="font-size:1.3rem; font-weight:700; margin-top:20px;">Minecraft Hosting</h3>
-            <p style="color:var(--muted); font-size:0.85rem; line-height:1.7; margin-top:10px;">
-              Server MC siap pakai dengan panel Pterodactyl. Support Java & Bedrock, performa tinggi tanpa lag.
-            </p>
-            <div class="card-tags">
-              <span class="card-tag">Java</span>
-              <span class="card-tag">Bedrock</span>
-              <span class="card-tag">Pterodactyl</span>
-              <span class="card-tag">DDoS Guard</span>
-            </div>
-            <div class="card-price-hint">
-              <span class="label">Mulai dari</span>
-              <span class="price" style="color:var(--green);">Rp15.000<span style="font-size:0.7rem; color:var(--muted); font-weight:400;">/bln</span></span>
-            </div>
-            <div style="margin-top:18px;">
-              <span class="card-arrow" style="color:var(--green);">
-                Lihat 6 Paket <i class="fas fa-arrow-right" style="font-size:0.8rem;"></i>
-              </span>
-            </div>
-          </div>
-        </a>
-
-        <!-- VPS Server -->
-        <a href="store-vps.html" class="store-card"
-           style="--card-accent:rgba(0,196,255,0.25); --card-glow:rgba(0,196,255,0.1); --card-bar:linear-gradient(90deg,#00c4ff,#38bdf8);">
-          <div class="card-accent-bar"></div>
-          <div class="card-bg-pattern">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="opacity:0.03;">
-              <defs><pattern id="vps" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="#00c4ff"/></pattern></defs>
-              <rect width="100%" height="100%" fill="url(#vps)"/>
-            </svg>
-          </div>
-          <div class="card-badge" style="background:rgba(0,196,255,0.12); color:var(--cyan); border:1px solid rgba(0,196,255,0.25);">
-            <i class="fas fa-fire" style="margin-right:4px;"></i> Populer
-          </div>
-          <div style="position:relative; padding:32px 28px 28px;">
-            <div class="card-icon-wrap" style="background:rgba(0,196,255,0.1); color:var(--cyan);">
-              <i class="fas fa-server"></i>
-            </div>
-            <h3 style="font-size:1.3rem; font-weight:700; margin-top:20px;">VPS Server</h3>
-            <p style="color:var(--muted); font-size:0.85rem; line-height:1.7; margin-top:10px;">
-              AMD EPYC performa tinggi dengan full root access, SSD NVMe, dan jaringan Singapore stabil.
-            </p>
-            <div class="card-tags">
-              <span class="card-tag">Full Root</span>
-              <span class="card-tag">SSD NVMe</span>
-              <span class="card-tag">Singapore</span>
-              <span class="card-tag">1Gbps</span>
-            </div>
-            <div class="card-price-hint">
-              <span class="label">Mulai dari</span>
-              <span class="price" style="color:var(--cyan);">Rp55.000<span style="font-size:0.7rem; color:var(--muted); font-weight:400;">/bln</span></span>
-            </div>
-            <div style="margin-top:18px;">
-              <span class="card-arrow" style="color:var(--cyan);">
-                Lihat 3 Paket <i class="fas fa-arrow-right" style="font-size:0.8rem;"></i>
-              </span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Aplikasi Premium -->
-        <a href="store-aplikasipremium.html" class="store-card"
-           style="--card-accent:rgba(167,139,250,0.25); --card-glow:rgba(167,139,250,0.1); --card-bar:linear-gradient(90deg,#a78bfa,#f472b6);">
-          <div class="card-accent-bar"></div>
-          <div class="card-bg-pattern">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="opacity:0.03;">
-              <defs><pattern id="app" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M24 0L48 24L24 48L0 24Z" fill="none" stroke="#a78bfa" stroke-width="0.5"/></pattern></defs>
-              <rect width="100%" height="100%" fill="url(#app)"/>
-            </svg>
-          </div>
-          <div style="position:relative; padding:32px 28px 28px;">
-            <div class="card-icon-wrap" style="background:rgba(167,139,250,0.1); color:var(--purple);">
-              <i class="fas fa-gem"></i>
-            </div>
-            <h3 style="font-size:1.3rem; font-weight:700; margin-top:20px;">Aplikasi Premium</h3>
-            <p style="color:var(--muted); font-size:0.85rem; line-height:1.7; margin-top:10px;">
-              Akun premium original untuk berbagai layanan. Streaming, desain, hingga antivirus dan game pass.
-            </p>
-            <div class="card-tags">
-              <span class="card-tag">MC Account</span>
-              <span class="card-tag">GamePass</span>
-              <span class="card-tag">Cape</span>
-              <span class="card-tag">McAfee</span>
-            </div>
-            <div class="card-price-hint">
-              <span class="label">Mulai dari</span>
-              <span class="price" style="color:var(--purple);">Rp1.000<span style="font-size:0.7rem; color:var(--muted); font-weight:400;">/akun</span></span>
-            </div>
-            <div style="margin-top:18px;">
-              <span class="card-arrow" style="color:var(--purple);">
-                Lihat Semua <i class="fas fa-arrow-right" style="font-size:0.8rem;"></i>
-              </span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Domain -->
-        <a href="store-domain.html" class="store-card"
-           style="--card-accent:rgba(251,191,36,0.25); --card-glow:rgba(251,191,36,0.1); --card-bar:linear-gradient(90deg,#fbbf24,#f59e0b);">
-          <div class="card-accent-bar"></div>
-          <div class="card-bg-pattern">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="opacity:0.03;">
-              <defs><pattern id="dmn" width="60" height="60" patternUnits="userSpaceOnUse"><circle cx="30" cy="30" r="12" fill="none" stroke="#fbbf24" stroke-width="0.5"/><circle cx="30" cy="30" r="3" fill="#fbbf24" opacity="0.3"/></pattern></defs>
-              <rect width="100%" height="100%" fill="url(#dmn)"/>
-            </svg>
-          </div>
-          <div class="card-badge" style="background:rgba(251,191,36,0.12); color:var(--amber); border:1px solid rgba(251,191,36,0.25);">
-            <i class="fas fa-sparkles" style="margin-right:4px;"></i> Baru
-          </div>
-          <div style="position:relative; padding:32px 28px 28px;">
-            <div class="card-icon-wrap" style="background:rgba(251,191,36,0.1); color:var(--amber);">
-              <i class="fas fa-globe"></i>
-            </div>
-            <h3 style="font-size:1.3rem; font-weight:700; margin-top:20px;">Domain</h3>
-            <p style="color:var(--muted); font-size:0.85rem; line-height:1.7; margin-top:10px;">
-              Domain aktif 1 tahun penuh dengan custom IP, akses Cloudflare, dan siap untuk hosting website.
-            </p>
-            <div class="card-tags">
-              <span class="card-tag">.com</span>
-              <span class="card-tag">.id</span>
-              <span class="card-tag">.net</span>
-              <span class="card-tag">.xyz</span>
-              <span class="card-tag">+6 lainnya</span>
-            </div>
-            <div class="card-price-hint">
-              <span class="label">Mulai dari</span>
-              <span class="price" style="color:var(--amber);">Rp15.000<span style="font-size:0.7rem; color:var(--muted); font-weight:400;">/tahun</span></span>
-            </div>
-            <div style="margin-top:18px;">
-              <span class="card-arrow" style="color:var(--amber);">
-                Lihat 10 Domain <i class="fas fa-arrow-right" style="font-size:0.8rem;"></i>
-              </span>
-            </div>
-          </div>
-        </a>
-
-      </div>
-    </section>
-
-    <!-- How It Works -->
+    <!-- How to Order -->
     <section style="max-width:900px; margin:0 auto; padding:0 24px 80px;">
       <div class="reveal" style="text-align:center; margin-bottom:40px;">
         <div class="section-tag" style="justify-content:center;">Cara Order</div>
-        <h2 style="font-size:1.8rem; font-weight:700; margin-top:8px;">3 Langkah Mudah</h2>
+        <h2 style="font-size:1.5rem; font-weight:700; margin-top:8px;">Order Domain dalam 3 Langkah</h2>
       </div>
       <div class="steps-grid stagger reveal" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
         <div class="step-card">
           <span class="step-connector hidden md:block"><i class="fas fa-chevron-right"></i></span>
           <div class="step-number">1</div>
           <div style="font-size:1.6rem; margin-bottom:12px;">
-            <i class="fas fa-hand-pointer" style="color:var(--cyan);"></i>
+            <i class="fas fa-pen-to-square" style="color:var(--amber);"></i>
           </div>
-          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Pilih Paket</h4>
-          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Browse kategori dan pilih paket yang sesuai kebutuhanmu.</p>
+          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Pilih Domain</h4>
+          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Tentukan nama domain dan ekstensi yang kamu inginkan dari daftar di atas.</p>
         </div>
         <div class="step-card">
           <span class="step-connector hidden md:block"><i class="fas fa-chevron-right"></i></span>
@@ -680,138 +927,16 @@
           <div style="font-size:1.6rem; margin-bottom:12px;">
             <i class="fab fa-whatsapp" style="color:var(--green);"></i>
           </div>
-          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Konfirmasi & Bayar</h4>
-          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Klik beli, konfirmasi via WhatsApp, dan lakukan pembayaran.</p>
+          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Konfirmasi via WA</h4>
+          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Klik order, kami akan konfirmasi ketersediaan domain dan detail pembayaran.</p>
         </div>
         <div class="step-card">
           <div class="step-number">3</div>
           <div style="font-size:1.6rem; margin-bottom:12px;">
-            <i class="fas fa-rocket" style="color:var(--purple);"></i>
+            <i class="fas fa-circle-check" style="color:var(--cyan);"></i>
           </div>
-          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Langsung Pakai</h4>
-          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Server aktif otomatis. Detail login dikirim langsung ke WhatsApp.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section style="max-width:1100px; margin:0 auto; padding:0 24px 80px;">
-      <div class="reveal" style="text-align:center; margin-bottom:40px;">
-        <div class="section-tag" style="justify-content:center;">Testimoni</div>
-        <h2 style="font-size:1.8rem; font-weight:700; margin-top:8px;">Kata Mereka</h2>
-      </div>
-      <div class="testi-grid stagger reveal" style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px;">
-
-        <div class="testi-card">
-          <div class="testi-quote">"</div>
-          <div class="testi-stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <p class="testi-text">Server MC-nya lancar banget, 40 player main bareng tetap stabilized. Panel Pterodactyl juga gampang dipakai.</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="background:linear-gradient(135deg,var(--green),#34d399);">RZ</div>
-            <div>
-              <div class="testi-name">Rizky Z.</div>
-              <div class="testi-role">Minecraft Server Owner</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testi-card">
-          <div class="testi-quote">"</div>
-          <div class="testi-stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <p class="testi-text">VPS 4GB cukup buat jalanin 3 bot sekaligus. Supportnya responsif, pernah error jam 2 pagi langsung dibantu.</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="background:linear-gradient(135deg,var(--cyan),#38bdf8);">DA</div>
-            <div>
-              <div class="testi-name">Dimas A.</div>
-              <div class="testi-role">Bot Developer</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testi-card">
-          <div class="testi-quote">"</div>
-          <div class="testi-stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i>
-          </div>
-          <p class="testi-text">Beli domain .com cuma 165k, langsung aktif dan bisa dikonekin ke Cloudflare. Harga paling murah yang pernah aku temuin.</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="background:linear-gradient(135deg,var(--amber),#f59e0b);">FN</div>
-            <div>
-              <div class="testi-name">Farel N.</div>
-              <div class="testi-role">Web Developer</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Features -->
-    <section style="max-width:1100px; margin:0 auto; padding:0 24px 80px;">
-      <div class="reveal" style="margin-bottom:40px; text-align:center;">
-        <div class="section-tag" style="justify-content:center;">Keunggulan</div>
-        <h2 style="font-size:1.8rem; font-weight:700; margin-top:8px;">Kenapa HyunkkCloud?</h2>
-      </div>
-      <div class="features-grid stagger reveal" style="display:grid; grid-template-columns:repeat(4,1fr); gap:18px;">
-        <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(0,196,255,0.1); color:var(--cyan);">
-            <i class="fas fa-bolt"></i>
-          </div>
-          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Performa Tinggi</h4>
-          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">CPU AMD EPYC dan SSD NVMe generasi terkini untuk kecepatan maksimal.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(0,232,157,0.1); color:var(--green);">
-            <i class="fas fa-shield-halved"></i>
-          </div>
-          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">DDoS Protection</h4>
-          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Lindungi server dari serangan hingga 1Tbps, aktif 24 jam tanpa henti.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(251,191,36,0.1); color:var(--amber);">
-            <i class="fas fa-headset"></i>
-          </div>
-          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Support Cepat</h4>
-          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Respon rata-rata kurang dari 5 menit via WhatsApp dan Discord.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(167,139,250,0.1); color:var(--purple);">
-            <i class="fas fa-tags"></i>
-          </div>
-          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Harga Terjangkau</h4>
-          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Mulai dari Rp1.000/akun hingga domain .com hanya Rp165.000/tahun.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Trust Indicators -->
-    <section style="max-width:1100px; margin:0 auto; padding:0 24px 80px;">
-      <div class="trust-grid stagger reveal" style="display:grid; grid-template-columns:1fr 1fr; gap:18px;">
-        <div class="trust-card" style="border-color:var(--border);"
-             onmouseover="this.style.borderColor='rgba(0,232,157,0.2)'"
-             onmouseout="this.style.borderColor='var(--border)'">
-          <div style="width:48px; height:48px; border-radius:12px; background:rgba(0,232,157,0.1); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-            <i class="fas fa-rotate-left" style="color:var(--green);"></i>
-          </div>
-          <div>
-            <h4 style="font-weight:600; font-size:0.95rem;">Garansi 3 Hari</h4>
-            <p style="font-size:0.8rem; color:var(--muted); margin-top:2px;">Tidak puas? Refund 100% tanpa syarat rumit.</p>
-          </div>
-        </div>
-        <div class="trust-card" style="border-color:var(--border);"
-             onmouseover="this.style.borderColor='rgba(0,196,255,0.2)'"
-             onmouseout="this.style.borderColor='var(--border)'">
-          <div style="width:48px; height:48px; border-radius:12px; background:rgba(0,196,255,0.1); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-            <i class="fas fa-rocket" style="color:var(--cyan);"></i>
-          </div>
-          <div>
-            <h4 style="font-weight:600; font-size:0.95rem;">Instant Deploy</h4>
-            <p style="font-size:0.8rem; color:var(--muted); margin-top:2px;">Server aktif otomatis kurang dari 60 detik.</p>
-          </div>
+          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Domain Aktif</h4>
+          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Setelah bayar, domain langsung aktif. Detail login dan DNS dikirim via WA.</p>
         </div>
       </div>
     </section>
@@ -820,52 +945,61 @@
     <section style="max-width:720px; margin:0 auto; padding:0 24px 80px;">
       <div class="reveal" style="text-align:center; margin-bottom:36px;">
         <div class="section-tag" style="justify-content:center;">FAQ</div>
-        <h2 style="font-size:1.5rem; font-weight:700; margin-top:8px;">Pertanyaan Umum</h2>
+        <h2 style="font-size:1.5rem; font-weight:700; margin-top:8px;">Pertanyaan Seputar Domain</h2>
       </div>
       <div class="reveal" style="display:flex; flex-direction:column; gap:10px;">
         <div class="faq-item">
           <button class="faq-btn" onclick="toggleFaq(this)">
-            <span>Bisa bayar pakai apa saja?</span>
+            <span>Domain bisa diperpanjang setelah 1 tahun?</span>
             <i class="fas fa-chevron-down chevron"></i>
           </button>
           <div class="faq-answer">
-            Kami menerima pembayaran via <strong>QRIS, GoPay, OVO, Dana, ShopeePay</strong>, transfer bank (BCA, BRI, Mandiri, BNI), dan pulsa (dengan rate tertentu).
+            Domain yang kami jual <strong>aktif 1 tahun dan tidak bisa diperpanjang</strong> melalui kami. Setelah habis, kamu bisa membeli domain baru atau migrasikan ke registrar lain sebelum masa aktif berakhir.
           </div>
         </div>
         <div class="faq-item">
           <button class="faq-btn" onclick="toggleFaq(this)">
-            <span>Berapa lama proses aktifasi?</span>
+            <span>Bisa pakai untuk hosting website?</span>
             <i class="fas fa-chevron-down chevron"></i>
           </button>
           <div class="faq-answer">
-            Otomatis aktif setelah pembayaran dikonfirmasi. Biasanya <strong>kurang dari 1 menit</strong>. Pada peak time maksimal 30 menit.
+            Tentu! Domain bisa dikoneksikan ke <strong>semua jenis hosting</strong> — shared hosting, VPS, atau bahkan platform seperti Vercel dan Netlify. Kami bantu setup DNS-nya.
           </div>
         </div>
         <div class="faq-item">
           <button class="faq-btn" onclick="toggleFaq(this)">
-            <span>Domain bisa diperpanjang?</span>
+            <span>Berapa lama proses aktifasi domain?</span>
             <i class="fas fa-chevron-down chevron"></i>
           </button>
           <div class="faq-answer">
-            Domain yang kami jual <strong>aktif 1 tahun penuh dan tidak bisa diperpanjang</strong>. Setelah masa aktif habis, kamu bisa beli domain baru atau migrasi ke registrar lain.
+            Domain <strong>aktif dalam hitungan menit</strong> setelah pembayaran dikonfirmasi. Untuk domain .id biasanya membutuhkan waktu propagasi DNS maksimal <strong>1-24 jam</strong>.
           </div>
         </div>
         <div class="faq-item">
           <button class="faq-btn" onclick="toggleFaq(this)">
-            <span>Ada garansi uang kembali?</span>
+            <span>Apa bedanya my.id dan biz.id?</span>
             <i class="fas fa-chevron-down chevron"></i>
           </button>
           <div class="faq-answer">
-            Ya, kami memberikan garansi <strong>3 hari</strong> setelah aktifasi. Jika tidak puas, hubungi support untuk refund 100%.
+            Secara teknis <strong>sama saja</strong> — keduanya domain Indonesia dengan fitur yang identik. <strong>my.id</strong> cocok untuk personal/blog, sedangkan <strong>biz.id</strong> lebih cocok untuk bisnis. Harga keduanya sama: Rp15.000/tahun.
           </div>
         </div>
         <div class="faq-item">
           <button class="faq-btn" onclick="toggleFaq(this)">
-            <span>Bisa request spesifikasi khusus?</span>
+            <span>Bisa request domain yang tidak ada di daftar?</span>
             <i class="fas fa-chevron-down chevron"></i>
           </button>
           <div class="faq-answer">
-            Bisa! Hubungi kami via <strong>WhatsApp</strong>, sebutkan spesifikasi yang dibutuhkan, dan kami akan buatkan paket custom sesuai kebutuhan kamu.
+            Bisa! Hubungi kami via <strong>WhatsApp</strong> dengan menyebutkan ekstensi domain yang kamu inginkan. Kami akan cek ketersediaan dan berikan harga terbaik.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            <span>Apakah saya mendapatkan akses panel domain?</span>
+            <i class="fas fa-chevron-down chevron"></i>
+          </button>
+          <div class="faq-answer">
+            Ya, kamu akan mendapatkan <strong>akses penuh ke panel manajemen domain</strong> untuk mengatur DNS record, nameserver, dan pengaturan domain lainnya secara mandiri.
           </div>
         </div>
       </div>
@@ -874,17 +1008,17 @@
     <!-- CTA -->
     <section style="max-width:900px; margin:0 auto; padding:0 24px 80px;">
       <div class="reveal" style="text-align:center; padding:56px 40px; border-radius:24px; border:1px solid var(--border); background:var(--bg-card); position:relative; overflow:hidden;">
-        <div style="position:absolute; top:-60px; left:50%; transform:translateX(-50%); width:300px; height:200px; background:radial-gradient(circle,rgba(0,232,157,0.06),transparent 70%); border-radius:50%; pointer-events:none;"></div>
+        <div style="position:absolute; top:-60px; left:50%; transform:translateX(-50%); width:300px; height:200px; background:radial-gradient(circle,rgba(251,191,36,0.06),transparent 70%); border-radius:50%; pointer-events:none;"></div>
         <div style="position:relative;">
-          <h2 style="font-size:1.8rem; font-weight:700; margin-bottom:10px;">Bingung Pilih Paket?</h2>
+          <h2 style="font-size:1.8rem; font-weight:700; margin-bottom:10px;">Butuh Bantuan Pilih Domain?</h2>
           <p style="color:var(--muted); max-width:420px; margin:0 auto 28px; line-height:1.7; font-size:0.95rem;">
-            Konsultasikan kebutuhanmu dengan tim kami. Kami bantu pilihkan yang paling pas dan efisien.
+            Konsultasikan kebutuhan domainmu secara gratis. Kami bantu cek ketersediaan dan rekomendasikan yang terbaik.
           </p>
-          <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20butuh%20rekomendasi%20paket" target="_blank"
-             style="display:inline-flex; align-items:center; gap:10px; padding:16px 32px; border-radius:14px; background:linear-gradient(135deg,var(--accent),#00c4a0); color:#060a10; font-weight:700; font-size:0.95rem; text-decoration:none; transition:all 0.3s;"
-             onmouseover="this.style.boxShadow='0 0 35px rgba(0,232,157,0.3)'; this.style.transform='translateY(-3px)'"
+          <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20butuh%20bantuan%20memilih%20domain" target="_blank"
+             style="display:inline-flex; align-items:center; gap:10px; padding:16px 32px; border-radius:14px; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#060a10; font-weight:700; font-size:0.95rem; text-decoration:none; transition:all 0.3s;"
+             onmouseover="this.style.boxShadow='0 0 35px rgba(251,191,36,0.3)'; this.style.transform='translateY(-3px)'"
              onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'">
-            <i class="fab fa-whatsapp" style="font-size:1.1rem;"></i> Konsultasi Gratis
+            <i class="fab fa-whatsapp" style="font-size:1.1rem;"></i> Tanya via WhatsApp
           </a>
         </div>
       </div>
@@ -899,15 +1033,16 @@
         <div>
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
             <div style="width:32px; height:32px; border-radius:8px; background:linear-gradient(135deg,var(--accent),var(--accent2)); display:flex; align-items:center; justify-content:center; font-weight:800; color:#060a10; font-size:0.75rem;">H</div>
-            <span style="font-weight:700;">HyunkkCloud</span>
+            <span style="font-weight:700;">HyunkStore</span>
           </div>
           <p style="font-size:0.85rem; color:var(--muted); line-height:1.7; max-width:300px;">Hosting modern dengan performa tinggi dan support aktif 24/7.</p>
         </div>
         <div>
           <h4 style="font-weight:600; margin-bottom:14px; font-size:0.9rem;">Menu</h4>
           <a href="store.html" class="footer-link">Store</a>
-          <a href="support.html" class="footer-link">Support</a>
-          <a href="contact.html" class="footer-link">Contact</a>
+          <a href="store-hosting.html" class="footer-link">Minecraft Hosting</a>
+          <a href="store-vps.html" class="footer-link">VPS Server</a>
+          <a href="domain.html" class="footer-link" style="color:var(--accent);">Domain</a>
         </div>
         <div>
           <h4 style="font-weight:600; margin-bottom:14px; font-size:0.9rem;">Kontak</h4>
@@ -919,7 +1054,7 @@
         </div>
       </div>
       <div style="margin-top:36px; padding-top:20px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-        <span style="font-size:0.78rem; color:var(--muted);">&copy; 2026 HyunkkCloud. All rights reserved.</span>
+        <span style="font-size:0.78rem; color:var(--muted);">&copy; 2026 HyunkStore. All rights reserved.</span>
         <span class="font-mono" style="font-size:0.68rem; color:rgba(90,106,128,0.5);">v2.0.0</span>
       </div>
     </div>
@@ -937,7 +1072,7 @@
       pArr.push({
         x:Math.random()*canvas.width, y:Math.random()*canvas.height,
         size:Math.random()*1.3+0.4, speedX:(Math.random()-0.5)*0.25, speedY:(Math.random()-0.5)*0.25,
-        opacity:Math.random()*0.4+0.1
+        opacity:Math.random()*0.35+0.1
       });
     }
     function animP(){
@@ -947,12 +1082,12 @@
         if(p.x<0)p.x=canvas.width; if(p.x>canvas.width)p.x=0;
         if(p.y<0)p.y=canvas.height; if(p.y>canvas.height)p.y=0;
         ctx.beginPath(); ctx.arc(p.x,p.y,Math.max(0.1,p.size),0,Math.PI*2);
-        ctx.fillStyle=`rgba(0,232,157,${p.opacity})`; ctx.fill();
+        ctx.fillStyle=`rgba(251,191,36,${p.opacity})`; ctx.fill();
       });
       for(let i=0;i<pArr.length;i++) for(let j=i+1;j<pArr.length;j++){
         const dx=pArr[i].x-pArr[j].x, dy=pArr[i].y-pArr[j].y, d=Math.sqrt(dx*dx+dy*dy);
         if(d<115){ ctx.beginPath(); ctx.moveTo(pArr[i].x,pArr[i].y); ctx.lineTo(pArr[j].x,pArr[j].y);
-          ctx.strokeStyle=`rgba(0,232,157,${0.035*(1-d/115)})`; ctx.lineWidth=0.5; ctx.stroke(); }
+          ctx.strokeStyle=`rgba(251,191,36,${0.03*(1-d/115)})`; ctx.lineWidth=0.5; ctx.stroke(); }
       }
       requestAnimationFrame(animP);
     }
@@ -977,47 +1112,102 @@
       mClose.style.display=open?'inline':'none';
     });
 
-    /* === LIVE TIME === */
-    function updateLiveTime(){
-      const now=new Date();
-      const h=String(now.getHours()).padStart(2,'0');
-      const m=String(now.getMinutes()).padStart(2,'0');
-      const s=String(now.getSeconds()).padStart(2,'0');
-      document.getElementById('liveTime').textContent=h+':'+m+':'+s;
-    }
-    updateLiveTime();
-    setInterval(updateLiveTime,1000);
+    /* === DOMAIN SEARCH === */
+    const searchInput = document.getElementById('domainSearch');
+    const domainCards = document.querySelectorAll('.domain-card');
+    const noResults = document.getElementById('noResults');
 
-    /* === SIMULATED LATENCY === */
-    function simulateLatency(){
-      const sg=document.querySelectorAll('.status-item strong');
-      if(sg.length>=3){
-        const sgLat=(10+Math.random()*6).toFixed(0);
-        const idLat=(5+Math.random()*8).toFixed(0);
-        sg[1].textContent=sgLat+'ms';
-        sg[2].textContent=idLat+'ms';
+    searchInput.addEventListener('input', function() {
+      const query = this.value.trim().toLowerCase();
+      // Reset filter pills
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      document.querySelector('.filter-pill[data-filter="all"]').classList.add('active');
+
+      let visibleCount = 0;
+      domainCards.forEach(card => {
+        const ext = card.dataset.ext || '';
+        if (!query || ext.includes(query)) {
+          card.classList.remove('hidden-card');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden-card');
+        }
+      });
+      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    });
+
+    searchInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') handleSearch();
+    });
+
+    function handleSearch() {
+      const query = searchInput.value.trim().toLowerCase();
+      if (!query) {
+        showToast('Ketik nama domain yang ingin dicari');
+        return;
       }
+      // Check if query matches any extension
+      let found = false;
+      domainCards.forEach(card => {
+        const ext = card.dataset.ext || '';
+        if (ext.includes(query)) {
+          card.classList.remove('hidden-card');
+          found = true;
+        } else {
+          card.classList.add('hidden-card');
+        }
+      });
+      if (found) {
+        showToast('Domain ditemukan! Scroll ke bawah untuk melihat');
+        // Scroll to grid
+        document.getElementById('domainGrid').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        showToast('Ekstensi "' + query + '" belum tersedia. Hubungi kami untuk request.');
+      }
+      noResults.style.display = found ? 'none' : 'block';
+      // Reset filter pills
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
     }
-    setInterval(simulateLatency,3000);
+
+    /* === FILTER PILLS === */
+    const filterPills = document.querySelectorAll('.filter-pill');
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', function() {
+        filterPills.forEach(p => p.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter;
+        searchInput.value = '';
+        let visibleCount = 0;
+
+        domainCards.forEach(card => {
+          if (filter === 'all') {
+            card.classList.remove('hidden-card');
+            visibleCount++;
+          } else {
+            const categories = (card.dataset.category || '').split(' ');
+            if (categories.includes(filter)) {
+              card.classList.remove('hidden-card');
+              visibleCount++;
+            } else {
+              card.classList.add('hidden-card');
+            }
+          }
+        });
+        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+      });
+    });
+
+    /* === TOAST === */
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
 
     /* === SCROLL REVEAL === */
     const rObs=new IntersectionObserver(e=>e.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('vis'); }),{threshold:0.08});
     document.querySelectorAll('.reveal').forEach(el=>rObs.observe(el));
-
-    /* === COUNTER === */
-    let cDone=false;
-    const cObs=new IntersectionObserver(e=>e.forEach(en=>{
-      if(en.isIntersecting&&!cDone){
-        cDone=true;
-        document.querySelectorAll('.stat-number').forEach(el=>{
-          const t=parseInt(el.dataset.target), s=el.dataset.suffix||'';
-          let c=0; const step=Math.ceil(t/35);
-          const timer=setInterval(()=>{ c+=step; if(c>=t){c=t;clearInterval(timer);} el.textContent=c+s; },30);
-        });
-      }
-    }),{threshold:0.5});
-    const sb=document.querySelector('.stats-bar');
-    if(sb) cObs.observe(sb);
 
     /* === FAQ === */
     function toggleFaq(btn){

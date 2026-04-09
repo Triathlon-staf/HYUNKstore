@@ -26,12 +26,8 @@
       --red: #f87171;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: 'Space Grotesk', sans-serif;
-      background: var(--bg); color: var(--fg);
-      overflow-x: hidden;
-    }
-    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    body { font-family:'Space Grotesk',sans-serif; background:var(--bg); color:var(--fg); overflow-x:hidden; }
+    .font-mono { font-family:'JetBrains Mono',monospace; }
 
     .grid-bg {
       position:fixed; inset:0;
@@ -40,230 +36,80 @@
         linear-gradient(90deg, rgba(251,191,36,0.02) 1px, transparent 1px);
       background-size:60px 60px; z-index:0; pointer-events:none;
     }
-    .scanline {
-      position:fixed; inset:0; z-index:1; pointer-events:none;
-      background: repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px);
-    }
-    .orb {
-      position:fixed; border-radius:50%; filter:blur(90px);
-      pointer-events:none; z-index:0;
-      animation: orbFloat 14s ease-in-out infinite alternate;
-    }
+    .scanline { position:fixed; inset:0; z-index:1; pointer-events:none; background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px); }
+    .orb { position:fixed; border-radius:50%; filter:blur(90px); pointer-events:none; z-index:0; animation:orbFloat 14s ease-in-out infinite alternate; }
     .orb-1 { width:420px; height:420px; background:radial-gradient(circle,rgba(251,191,36,0.08),transparent 70%); top:-120px; left:-100px; }
     .orb-2 { width:380px; height:380px; background:radial-gradient(circle,rgba(245,158,11,0.06),transparent 70%); bottom:5%; right:-100px; animation-delay:-5s; }
     .orb-3 { width:220px; height:220px; background:radial-gradient(circle,rgba(0,232,157,0.05),transparent 70%); top:45%; left:30%; animation-delay:-9s; }
-    @keyframes orbFloat {
-      0% { transform:translate(0,0) scale(1); }
-      50% { transform:translate(25px,-35px) scale(1.08); }
-      100% { transform:translate(-15px,20px) scale(0.95); }
-    }
+    @keyframes orbFloat { 0%{transform:translate(0,0) scale(1)} 50%{transform:translate(25px,-35px) scale(1.08)} 100%{transform:translate(-15px,20px) scale(0.95)} }
     #particles { position:fixed; inset:0; z-index:0; pointer-events:none; }
-    .mouse-glow {
-      position:fixed; width:450px; height:450px; border-radius:50%;
-      background:radial-gradient(circle,rgba(251,191,36,0.04),transparent 60%);
-      pointer-events:none; z-index:1; transform:translate(-50%,-50%);
-      transition:left 0.35s ease-out, top 0.35s ease-out;
-    }
+    .mouse-glow { position:fixed; width:450px; height:450px; border-radius:50%; background:radial-gradient(circle,rgba(251,191,36,0.04),transparent 60%); pointer-events:none; z-index:1; transform:translate(-50%,-50%); transition:left 0.35s ease-out, top 0.35s ease-out; }
 
-    .navbar {
-      position:fixed; top:0; left:0; right:0; z-index:100;
-      backdrop-filter:blur(20px); background:rgba(6,10,16,0.82);
-      border-bottom:1px solid var(--border); transition:box-shadow 0.3s;
-    }
+    .navbar { position:fixed; top:0; left:0; right:0; z-index:100; backdrop-filter:blur(20px); background:rgba(6,10,16,0.82); border-bottom:1px solid var(--border); transition:box-shadow 0.3s; }
     .navbar.scrolled { box-shadow:0 4px 30px rgba(0,0,0,0.5); }
-    .nav-link {
-      position:relative; color:var(--muted); transition:color 0.3s;
-      text-decoration:none; font-size:0.9rem;
-    }
+    .nav-link { position:relative; color:var(--muted); transition:color 0.3s; text-decoration:none; font-size:0.9rem; }
     .nav-link:hover,.nav-link.active { color:var(--accent); }
-    .nav-link::after {
-      content:''; position:absolute; bottom:-4px; left:0;
-      width:0; height:2px; background:var(--accent); transition:width 0.3s;
-    }
+    .nav-link::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--accent); transition:width 0.3s; }
     .nav-link:hover::after,.nav-link.active::after { width:100%; }
 
-    .hero-badge {
-      display:inline-flex; align-items:center; gap:8px;
-      padding:6px 16px; border-radius:999px;
-      border:1px solid rgba(251,191,36,0.2);
-      background:rgba(251,191,36,0.05);
-      font-size:0.8rem; color:var(--accent);
-    }
-    .hero-badge .dot {
-      width:6px; height:6px; border-radius:50%; background:var(--accent);
-      animation:pulse-dot 2s ease-in-out infinite;
-    }
-    @keyframes pulse-dot {
-      0%,100% { opacity:1; transform:scale(1); }
-      50% { opacity:0.3; transform:scale(0.6); }
-    }
-    .hero-title {
-      font-size:clamp(2.2rem,5vw,3.8rem);
-      font-weight:700; line-height:1.1; letter-spacing:-0.03em;
-    }
-    .hero-title .accent-text {
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-    }
+    .hero-badge { display:inline-flex; align-items:center; gap:8px; padding:6px 16px; border-radius:999px; border:1px solid rgba(251,191,36,0.2); background:rgba(251,191,36,0.05); font-size:0.8rem; color:var(--accent); }
+    .hero-badge .dot { width:6px; height:6px; border-radius:50%; background:var(--accent); animation:pulse-dot 2s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.6)} }
+    .hero-title { font-size:clamp(2.2rem,5vw,3.8rem); font-weight:700; line-height:1.1; letter-spacing:-0.03em; }
+    .hero-title .accent-text { background:linear-gradient(135deg,var(--accent),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 
-    .domain-search-box {
-      max-width:620px; margin:0 auto;
-      background:var(--bg-card); border:1px solid var(--border);
-      border-radius:18px; padding:6px; display:flex; gap:0;
-      transition:border-color 0.3s, box-shadow 0.3s;
-    }
-    .domain-search-box:focus-within {
-      border-color:rgba(251,191,36,0.35);
-      box-shadow:0 0 40px rgba(251,191,36,0.08);
-    }
-    .domain-search-box input {
-      flex:1; background:none; border:none; outline:none;
-      padding:14px 20px; color:var(--fg);
-      font-family:'JetBrains Mono',monospace; font-size:0.95rem;
-    }
+    .domain-search-box { max-width:620px; margin:0 auto; background:var(--bg-card); border:1px solid var(--border); border-radius:18px; padding:6px; display:flex; gap:0; transition:border-color 0.3s, box-shadow 0.3s; }
+    .domain-search-box:focus-within { border-color:rgba(251,191,36,0.35); box-shadow:0 0 40px rgba(251,191,36,0.08); }
+    .domain-search-box input { flex:1; background:none; border:none; outline:none; padding:14px 20px; color:var(--fg); font-family:'JetBrains Mono',monospace; font-size:0.95rem; }
     .domain-search-box input::placeholder { color:var(--muted); opacity:0.6; }
-    .domain-search-box .search-btn {
-      padding:14px 28px; border:none; border-radius:14px;
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      color:#060a10; font-family:inherit; font-weight:700; font-size:0.9rem;
-      cursor:pointer; transition:all 0.3s; white-space:nowrap;
-      display:flex; align-items:center; gap:8px;
-    }
-    .domain-search-box .search-btn:hover {
-      box-shadow:0 0 25px rgba(251,191,36,0.3);
-      transform:translateY(-1px);
-    }
+    .domain-search-box .search-btn { padding:14px 28px; border:none; border-radius:14px; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#060a10; font-family:inherit; font-weight:700; font-size:0.9rem; cursor:pointer; transition:all 0.3s; white-space:nowrap; display:flex; align-items:center; gap:8px; }
+    .domain-search-box .search-btn:hover { box-shadow:0 0 25px rgba(251,191,36,0.3); transform:translateY(-1px); }
 
     .filter-pills { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
-    .filter-pill {
-      padding:8px 18px; border-radius:10px;
-      border:1px solid var(--border); background:var(--bg-card);
-      color:var(--muted); font-size:0.82rem; cursor:pointer;
-      transition:all 0.3s; font-family:inherit;
-    }
+    .filter-pill { padding:8px 18px; border-radius:10px; border:1px solid var(--border); background:var(--bg-card); color:var(--muted); font-size:0.82rem; cursor:pointer; transition:all 0.3s; font-family:inherit; }
     .filter-pill:hover { border-color:rgba(251,191,36,0.2); color:var(--fg); }
-    .filter-pill.active {
-      border-color:rgba(251,191,36,0.4); color:var(--accent);
-      background:rgba(251,191,36,0.06);
-    }
+    .filter-pill.active { border-color:rgba(251,191,36,0.4); color:var(--accent); background:rgba(251,191,36,0.06); }
 
     .domain-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
-    .domain-card {
-      position:relative; background:var(--bg-card);
-      border:1px solid var(--border); border-radius:16px;
-      padding:24px 28px; display:flex; align-items:center;
-      justify-content:space-between; gap:16px;
-      transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
-      cursor:pointer; text-decoration:none; color:inherit; overflow:hidden;
-    }
-    .domain-card::before {
-      content:''; position:absolute; inset:0; border-radius:16px; padding:1px;
-      background:linear-gradient(160deg,transparent 40%,var(--card-accent,rgba(251,191,36,0.25)) 100%);
-      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-      -webkit-mask-composite:xor; mask-composite:exclude;
-      opacity:0; transition:opacity 0.4s;
-    }
+    .domain-card { position:relative; background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:24px 28px; display:flex; align-items:center; justify-content:space-between; gap:16px; transition:all 0.4s cubic-bezier(0.4,0,0.2,1); cursor:pointer; text-decoration:none; color:inherit; overflow:hidden; }
+    .domain-card::before { content:''; position:absolute; inset:0; border-radius:16px; padding:1px; background:linear-gradient(160deg,transparent 40%,var(--card-accent,rgba(251,191,36,0.25)) 100%); -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; opacity:0; transition:opacity 0.4s; }
     .domain-card:hover::before { opacity:1; }
-    .domain-card:hover {
-      transform:translateY(-4px);
-      box-shadow:0 16px 40px rgba(0,0,0,0.35),0 0 40px var(--card-glow,rgba(251,191,36,0.06));
-      border-color:transparent;
-    }
-    .domain-card .card-bar {
-      position:absolute; top:0; left:0; right:0; height:2px;
-      background:var(--card-bar,linear-gradient(90deg,var(--amber),var(--accent2)));
-      transform:scaleX(0); transform-origin:left;
-      transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);
-    }
+    .domain-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,0.35),0 0 40px var(--card-glow,rgba(251,191,36,0.06)); border-color:transparent; }
+    .domain-card .card-bar { position:absolute; top:0; left:0; right:0; height:2px; background:var(--card-bar,linear-gradient(90deg,var(--amber),var(--accent2))); transform:scaleX(0); transform-origin:left; transition:transform 0.5s cubic-bezier(0.4,0,0.2,1); }
     .domain-card:hover .card-bar { transform:scaleX(1); }
-    .domain-ext {
-      font-family:'JetBrains Mono',monospace;
-      font-size:1.35rem; font-weight:700; white-space:nowrap;
-    }
+    .domain-ext { font-family:'JetBrains Mono',monospace; font-size:1.35rem; font-weight:700; white-space:nowrap; }
     .domain-info { flex:1; min-width:0; }
     .domain-features { display:flex; gap:10px; margin-top:6px; flex-wrap:wrap; }
-    .domain-feat {
-      font-size:0.68rem; color:var(--muted);
-      display:flex; align-items:center; gap:4px;
-    }
+    .domain-feat { font-size:0.68rem; color:var(--muted); display:flex; align-items:center; gap:4px; }
     .domain-feat i { font-size:0.55rem; color:rgba(251,191,36,0.5); }
     .domain-price-col { text-align:right; flex-shrink:0; }
-    .domain-price {
-      font-family:'JetBrains Mono',monospace;
-      font-size:1.25rem; font-weight:700; color:var(--amber);
-    }
+    .domain-price { font-family:'JetBrains Mono',monospace; font-size:1.25rem; font-weight:700; color:var(--amber); }
     .domain-period { font-size:0.7rem; color:var(--muted); margin-top:2px; }
-    .domain-order {
-      display:inline-flex; align-items:center; gap:6px;
-      margin-top:8px; padding:7px 16px; border-radius:10px;
-      border:1px solid rgba(251,191,36,0.25); background:rgba(251,191,36,0.06);
-      color:var(--amber); font-size:0.78rem; font-weight:600; transition:all 0.3s;
-    }
-    .domain-card:hover .domain-order {
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      color:#060a10; border-color:transparent;
-      box-shadow:0 0 20px rgba(251,191,36,0.2);
-    }
+    .domain-order { display:inline-flex; align-items:center; gap:6px; margin-top:8px; padding:7px 16px; border-radius:10px; border:1px solid rgba(251,191,36,0.25); background:rgba(251,191,36,0.06); color:var(--amber); font-size:0.78rem; font-weight:600; transition:all 0.3s; }
+    .domain-card:hover .domain-order { background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#060a10; border-color:transparent; box-shadow:0 0 20px rgba(251,191,36,0.2); }
     .domain-order i { font-size:0.65rem; transition:transform 0.3s; }
     .domain-card:hover .domain-order i { transform:translateX(3px); }
-
-    .domain-card.featured {
-      grid-column:span 2; padding:32px 36px;
-      border-color:rgba(251,191,36,0.15);
-      background:linear-gradient(135deg,rgba(251,191,36,0.03),var(--bg-card));
-    }
+    .domain-card.featured { grid-column:span 2; padding:32px 36px; border-color:rgba(251,191,36,0.15); background:linear-gradient(135deg,rgba(251,191,36,0.03),var(--bg-card)); }
     .domain-card.featured .domain-ext { font-size:1.6rem; }
     .domain-card.featured .domain-price { font-size:1.5rem; }
     .domain-card.featured .domain-features { gap:14px; }
     .domain-card.featured .domain-feat { font-size:0.72rem; }
-
-    .card-popular-tag {
-      position:absolute; top:12px; right:16px;
-      padding:3px 12px; border-radius:999px;
-      font-size:0.62rem; font-weight:700; text-transform:uppercase;
-      letter-spacing:0.08em;
-      background:rgba(251,191,36,0.12); color:var(--amber);
-      border:1px solid rgba(251,191,36,0.25);
-    }
+    .card-popular-tag { position:absolute; top:12px; right:16px; padding:3px 12px; border-radius:999px; font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; background:rgba(251,191,36,0.12); color:var(--amber); border:1px solid rgba(251,191,36,0.25); }
     .domain-card.hidden-card { display:none; }
 
     .includes-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
-    .include-item {
-      background:var(--bg-card); border:1px solid var(--border);
-      border-radius:14px; padding:22px 20px;
-      display:flex; align-items:flex-start; gap:14px; transition:all 0.35s;
-    }
-    .include-item:hover {
-      border-color:rgba(251,191,36,0.15); transform:translateY(-3px);
-      box-shadow:0 10px 25px rgba(0,0,0,0.2);
-    }
-    .include-icon {
-      width:40px; height:40px; border-radius:11px; flex-shrink:0;
-      display:flex; align-items:center; justify-content:center;
-      font-size:0.95rem; transition:transform 0.3s;
-    }
+    .include-item { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:22px 20px; display:flex; align-items:flex-start; gap:14px; transition:all 0.35s; }
+    .include-item:hover { border-color:rgba(251,191,36,0.15); transform:translateY(-3px); box-shadow:0 10px 25px rgba(0,0,0,0.2); }
+    .include-icon { width:40px; height:40px; border-radius:11px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:0.95rem; transition:transform 0.3s; }
     .include-item:hover .include-icon { transform:scale(1.08); }
     .include-title { font-weight:600; font-size:0.88rem; margin-bottom:3px; }
     .include-desc { font-size:0.76rem; color:var(--muted); line-height:1.6; }
 
-    .compare-table-wrap {
-      background:var(--bg-card); border:1px solid var(--border);
-      border-radius:18px; overflow:hidden;
-    }
+    .compare-table-wrap { background:var(--bg-card); border:1px solid var(--border); border-radius:18px; overflow:hidden; }
     .compare-table { width:100%; border-collapse:collapse; }
-    .compare-table thead th {
-      padding:16px 20px; text-align:left;
-      font-size:0.75rem; font-weight:600;
-      color:var(--muted); text-transform:uppercase;
-      letter-spacing:0.06em;
-      border-bottom:1px solid var(--border);
-      background:rgba(251,191,36,0.02);
-    }
+    .compare-table thead th { padding:16px 20px; text-align:left; font-size:0.75rem; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; border-bottom:1px solid var(--border); background:rgba(251,191,36,0.02); }
     .compare-table thead th:last-child { text-align:right; }
-    .compare-table tbody tr {
-      border-bottom:1px solid rgba(255,255,255,0.025);
-      transition:background 0.2s;
-    }
+    .compare-table tbody tr { border-bottom:1px solid rgba(255,255,255,0.025); transition:background 0.2s; }
     .compare-table tbody tr:last-child { border-bottom:none; }
     .compare-table tbody tr:hover { background:rgba(251,191,36,0.02); }
     .compare-table td { padding:14px 20px; font-size:0.88rem; }
@@ -272,341 +118,125 @@
     .compare-table .price-cell { font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--amber); }
     .compare-table .type-cell { font-size:0.78rem; color:var(--muted); }
 
-    .step-card {
-      position:relative; background:var(--bg-card);
-      border:1px solid var(--border); border-radius:16px;
-      padding:28px; text-align:center; transition:all 0.35s;
-    }
-    .step-card:hover {
-      border-color:rgba(251,191,36,0.15); transform:translateY(-4px);
-      box-shadow:0 12px 30px rgba(0,0,0,0.25);
-    }
-    .step-number {
-      width:40px; height:40px; border-radius:12px;
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      color:#060a10; font-family:'JetBrains Mono',monospace;
-      font-weight:700; font-size:0.9rem;
-      display:flex; align-items:center; justify-content:center;
-      margin:0 auto 16px;
-    }
-    .step-connector {
-      position:absolute; top:50%; right:-24px;
-      color:var(--border); font-size:1.2rem; z-index:2;
-    }
+    .step-card { position:relative; background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:28px; text-align:center; transition:all 0.35s; }
+    .step-card:hover { border-color:rgba(251,191,36,0.15); transform:translateY(-4px); box-shadow:0 12px 30px rgba(0,0,0,0.25); }
+    .step-number { width:40px; height:40px; border-radius:12px; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#060a10; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:0.9rem; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; }
+    .step-connector { position:absolute; top:50%; right:-24px; color:var(--border); font-size:1.2rem; z-index:2; }
 
-    .faq-item {
-      background:var(--bg-card); border:1px solid var(--border);
-      border-radius:14px; overflow:hidden; transition:all 0.35s;
-    }
+    .faq-item { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:all 0.35s; }
     .faq-item:hover { border-color:rgba(255,255,255,0.08); }
     .faq-item.open { border-color:rgba(251,191,36,0.2); }
-    .faq-btn {
-      width:100%; text-align:left; padding:18px 22px;
-      display:flex; justify-content:space-between; align-items:center;
-      background:none; border:none; color:var(--fg);
-      font-family:inherit; font-size:0.92rem; font-weight:500;
-      cursor:pointer; transition:background 0.3s;
-    }
+    .faq-btn { width:100%; text-align:left; padding:18px 22px; display:flex; justify-content:space-between; align-items:center; background:none; border:none; color:var(--fg); font-family:inherit; font-size:0.92rem; font-weight:500; cursor:pointer; transition:background 0.3s; }
     .faq-btn:hover { background:rgba(255,255,255,0.015); }
-    .faq-btn .chevron {
-      color:var(--muted); font-size:0.75rem;
-      transition:transform 0.3s; flex-shrink:0;
-    }
+    .faq-btn .chevron { color:var(--muted); font-size:0.75rem; transition:transform 0.3s; flex-shrink:0; }
     .faq-item.open .chevron { transform:rotate(180deg); }
-    .faq-answer {
-      max-height:0; overflow:hidden;
-      transition:max-height 0.4s ease, padding 0.4s;
-      padding:0 22px; font-size:0.88rem; color:var(--muted); line-height:1.75;
-    }
+    .faq-answer { max-height:0; overflow:hidden; transition:max-height 0.4s ease, padding 0.4s; padding:0 22px; font-size:0.88rem; color:var(--muted); line-height:1.75; }
     .faq-item.open .faq-answer { max-height:200px; padding:0 22px 20px; }
     .faq-answer strong { color:var(--fg); }
 
-    .section-tag {
-      font-family:'JetBrains Mono',monospace;
-      font-size:0.72rem; text-transform:uppercase;
-      letter-spacing:0.12em; color:var(--accent);
-      display:flex; align-items:center; gap:8px;
-    }
+    .section-tag { font-family:'JetBrains Mono',monospace; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--accent); display:flex; align-items:center; gap:8px; }
     .section-tag::before { content:''; width:20px; height:1px; background:var(--accent); }
 
-    .footer-link {
-      color:var(--muted); text-decoration:none; font-size:0.85rem;
-      transition:color 0.3s; display:block; padding:3px 0;
-    }
+    .footer-link { color:var(--muted); text-decoration:none; font-size:0.85rem; transition:color 0.3s; display:block; padding:3px 0; }
     .footer-link:hover { color:var(--accent); }
 
-    .mobile-menu {
-      display:none; padding:0 24px 16px;
-      border-top:1px solid var(--border);
-    }
+    .mobile-menu { display:none; padding:0 24px 16px; border-top:1px solid var(--border); }
     .mobile-menu.open { display:block; }
-    .mobile-menu a {
-      display:block; padding:10px 0; color:var(--muted);
-      text-decoration:none; font-size:0.9rem; transition:color 0.3s;
-      border-bottom:1px solid rgba(255,255,255,0.03);
-    }
+    .mobile-menu a { display:block; padding:10px 0; color:var(--muted); text-decoration:none; font-size:0.9rem; transition:color 0.3s; border-bottom:1px solid rgba(255,255,255,0.03); }
     .mobile-menu a:last-child { border-bottom:none; }
     .mobile-menu a:hover,.mobile-menu a.active { color:var(--accent); }
 
-    .reveal {
-      opacity:0; transform:translateY(28px);
-      transition:opacity 0.7s ease-out, transform 0.7s ease-out;
-    }
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease-out, transform 0.7s ease-out; }
     .reveal.vis { opacity:1; transform:translateY(0); }
+    .stagger > * { opacity:0; transform:translateY(20px); transition:opacity 0.5s ease-out, transform 0.5s ease-out; }
+    .stagger.vis > *:nth-child(1){transition-delay:0s;opacity:1;transform:translateY(0)}
+    .stagger.vis > *:nth-child(2){transition-delay:0.06s;opacity:1;transform:translateY(0)}
+    .stagger.vis > *:nth-child(3){transition-delay:0.12s;opacity:1;transform:translateY(0)}
+    .stagger.vis > *:nth-child(4){transition-delay:0.18s;opacity:1;transform:translateY(0)}
+    .stagger.vis > *:nth-child(5){transition-delay:0.24s;opacity:1;transform:translateY(0)}
+    .stagger.vis > *:nth-child(6){transition-delay:0.3s;opacity:1;transform:translateY(0)}
+    .stagger.vis > *:nth-child(7){transition-delay:0.36s;opacity:1;transform:translateY(0)}
+    .stagger.vis > *:nth-child(8){transition-delay:0.42s;opacity:1;transform:translateY(0)}
+    .stagger.vis > *:nth-child(9){transition-delay:0.48s;opacity:1;transform:translateY(0)}
+    .stagger.vis > *:nth-child(10){transition-delay:0.54s;opacity:1;transform:translateY(0)}
 
-    .stagger > * {
-      opacity:0; transform:translateY(20px);
-      transition:opacity 0.5s ease-out, transform 0.5s ease-out;
-    }
-    .stagger.vis > *:nth-child(1) { transition-delay:0s; opacity:1; transform:translateY(0); }
-    .stagger.vis > *:nth-child(2) { transition-delay:0.06s; opacity:1; transform:translateY(0); }
-    .stagger.vis > *:nth-child(3) { transition-delay:0.12s; opacity:1; transform:translateY(0); }
-    .stagger.vis > *:nth-child(4) { transition-delay:0.18s; opacity:1; transform:translateY(0); }
-    .stagger.vis > *:nth-child(5) { transition-delay:0.24s; opacity:1; transform:translateY(0); }
-    .stagger.vis > *:nth-child(6) { transition-delay:0.3s; opacity:1; transform:translateY(0); }
-    .stagger.vis > *:nth-child(7) { transition-delay:0.36s; opacity:1; transform:translateY(0); }
-    .stagger.vis > *:nth-child(8) { transition-delay:0.42s; opacity:1; transform:translateY(0); }
-    .stagger.vis > *:nth-child(9) { transition-delay:0.48s; opacity:1; transform:translateY(0); }
-    .stagger.vis > *:nth-child(10) { transition-delay:0.54s; opacity:1; transform:translateY(0); }
-
-    .toast {
-      position:fixed; bottom:30px; left:50%; transform:translateX(-50%) translateY(100px);
-      padding:14px 28px; border-radius:14px;
-      background:var(--bg-card); border:1px solid rgba(251,191,36,0.25);
-      color:var(--fg); font-size:0.88rem; z-index:200;
-      box-shadow:0 12px 40px rgba(0,0,0,0.5);
-      transition:transform 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.4s;
-      opacity:0; display:flex; align-items:center; gap:10px; pointer-events:none;
-    }
+    .toast { position:fixed; bottom:30px; left:50%; transform:translateX(-50%) translateY(100px); padding:14px 28px; border-radius:14px; background:var(--bg-card); border:1px solid rgba(251,191,36,0.25); color:var(--fg); font-size:0.88rem; z-index:200; box-shadow:0 12px 40px rgba(0,0,0,0.5); transition:transform 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.4s; opacity:0; display:flex; align-items:center; gap:10px; pointer-events:none; }
     .toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
 
-    /* ========================================
-       AI CHATBOT STYLES
-    ======================================== */
-    .chatbot-fab {
-      position:fixed; bottom:28px; right:28px; z-index:150;
-      width:60px; height:60px; border-radius:18px;
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      border:none; cursor:pointer; color:#060a10;
-      display:flex; align-items:center; justify-content:center;
-      font-size:1.4rem; transition:all 0.35s;
-      box-shadow:0 8px 30px rgba(251,191,36,0.25);
-    }
-    .chatbot-fab:hover {
-      transform:scale(1.08);
-      box-shadow:0 12px 40px rgba(251,191,36,0.35);
-    }
-    .chatbot-fab .fab-pulse {
-      position:absolute; inset:-4px; border-radius:22px;
-      border:2px solid rgba(251,191,36,0.3);
-      animation:fabPulse 2.5s ease-out infinite;
-      pointer-events:none;
-    }
-    @keyframes fabPulse {
-      0% { transform:scale(1); opacity:1; }
-      100% { transform:scale(1.35); opacity:0; }
-    }
-    .chatbot-fab .fab-badge {
-      position:absolute; top:-6px; right:-6px;
-      width:20px; height:20px; border-radius:50%;
-      background:var(--red); color:#fff;
-      font-size:0.65rem; font-weight:700;
-      display:flex; align-items:center; justify-content:center;
-      transition:transform 0.3s;
-    }
+    /* ===== AI CHATBOT ===== */
+    .chatbot-fab { position:fixed; bottom:28px; right:28px; z-index:150; width:60px; height:60px; border-radius:18px; background:linear-gradient(135deg,var(--accent),var(--accent2)); border:none; cursor:pointer; color:#060a10; display:flex; align-items:center; justify-content:center; font-size:1.4rem; transition:all 0.35s; box-shadow:0 8px 30px rgba(251,191,36,0.25); }
+    .chatbot-fab:hover { transform:scale(1.08); box-shadow:0 12px 40px rgba(251,191,36,0.35); }
+    .chatbot-fab .fab-pulse { position:absolute; inset:-4px; border-radius:22px; border:2px solid rgba(251,191,36,0.3); animation:fabPulse 2.5s ease-out infinite; pointer-events:none; }
+    @keyframes fabPulse { 0%{transform:scale(1);opacity:1} 100%{transform:scale(1.35);opacity:0} }
+    .chatbot-fab .fab-badge { position:absolute; top:-6px; right:-6px; width:20px; height:20px; border-radius:50%; background:var(--red); color:#fff; font-size:0.65rem; font-weight:700; display:flex; align-items:center; justify-content:center; transition:transform 0.3s; }
     .chatbot-fab:hover .fab-badge { transform:scale(1.15); }
     .chatbot-fab.open .fab-pulse { display:none; }
     .chatbot-fab.open { border-radius:16px; background:var(--bg-card); color:var(--fg); box-shadow:0 8px 30px rgba(0,0,0,0.5); }
 
-    .chatbot-window {
-      position:fixed; bottom:100px; right:28px; z-index:149;
-      width:400px; max-width:calc(100vw - 32px);
-      height:560px; max-height:calc(100vh - 140px);
-      background:var(--bg-card); border:1px solid var(--border);
-      border-radius:22px; overflow:hidden;
-      display:flex; flex-direction:column;
-      box-shadow:0 24px 80px rgba(0,0,0,0.6),0 0 60px rgba(251,191,36,0.05);
-      transform:scale(0.9) translateY(20px); opacity:0;
-      pointer-events:none; transition:all 0.35s cubic-bezier(0.4,0,0.2,1);
-      transform-origin:bottom right;
-    }
-    .chatbot-window.open {
-      transform:scale(1) translateY(0); opacity:1; pointer-events:auto;
-    }
+    .chatbot-window { position:fixed; bottom:100px; right:28px; z-index:149; width:400px; max-width:calc(100vw - 32px); height:560px; max-height:calc(100vh - 140px); background:var(--bg-card); border:1px solid var(--border); border-radius:22px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 24px 80px rgba(0,0,0,0.6),0 0 60px rgba(251,191,36,0.05); transform:scale(0.9) translateY(20px); opacity:0; pointer-events:none; transition:all 0.35s cubic-bezier(0.4,0,0.2,1); transform-origin:bottom right; }
+    .chatbot-window.open { transform:scale(1) translateY(0); opacity:1; pointer-events:auto; }
 
-    .chat-header {
-      padding:18px 20px; display:flex; align-items:center; gap:12px;
-      border-bottom:1px solid var(--border);
-      background:linear-gradient(135deg,rgba(251,191,36,0.04),transparent);
-      flex-shrink:0;
-    }
-    .chat-avatar {
-      width:42px; height:42px; border-radius:13px; flex-shrink:0;
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      display:flex; align-items:center; justify-content:center;
-      font-size:1.1rem; color:#060a10;
-    }
+    .chat-header { padding:18px 20px; display:flex; align-items:center; gap:12px; border-bottom:1px solid var(--border); background:linear-gradient(135deg,rgba(251,191,36,0.04),transparent); flex-shrink:0; }
+    .chat-avatar { width:42px; height:42px; border-radius:13px; flex-shrink:0; background:linear-gradient(135deg,var(--accent),var(--accent2)); display:flex; align-items:center; justify-content:center; font-size:1.1rem; color:#060a10; }
     .chat-header-info { flex:1; min-width:0; }
     .chat-header-name { font-weight:700; font-size:0.95rem; }
-    .chat-header-status {
-      font-size:0.72rem; color:var(--green);
-      display:flex; align-items:center; gap:5px;
-    }
-    .chat-header-status .status-dot {
-      width:5px; height:5px; border-radius:50%;
-      background:var(--green); animation:pulse-dot 2s ease-in-out infinite;
-    }
+    .chat-header-status { font-size:0.72rem; color:var(--green); display:flex; align-items:center; gap:5px; }
+    .chat-header-status .status-dot { width:5px; height:5px; border-radius:50%; background:var(--green); animation:pulse-dot 2s ease-in-out infinite; }
     .chat-header-actions { display:flex; gap:4px; }
-    .chat-header-actions button {
-      width:34px; height:34px; border-radius:10px; border:none;
-      background:rgba(255,255,255,0.03); color:var(--muted);
-      cursor:pointer; transition:all 0.2s; font-size:0.8rem;
-      display:flex; align-items:center; justify-content:center;
-    }
+    .chat-header-actions button { width:34px; height:34px; border-radius:10px; border:none; background:rgba(255,255,255,0.03); color:var(--muted); cursor:pointer; transition:all 0.2s; font-size:0.8rem; display:flex; align-items:center; justify-content:center; }
     .chat-header-actions button:hover { background:rgba(255,255,255,0.06); color:var(--fg); }
 
-    .chat-messages {
-      flex:1; overflow-y:auto; padding:16px 16px 8px;
-      display:flex; flex-direction:column; gap:12px;
-    }
+    .chat-messages { flex:1; overflow-y:auto; padding:16px 16px 8px; display:flex; flex-direction:column; gap:12px; }
     .chat-messages::-webkit-scrollbar { width:4px; }
     .chat-messages::-webkit-scrollbar-track { background:transparent; }
     .chat-messages::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
 
-    .chat-msg {
-      display:flex; gap:10px; max-width:88%;
-      animation:msgIn 0.35s ease-out;
-    }
-    @keyframes msgIn {
-      from { opacity:0; transform:translateY(10px); }
-      to { opacity:1; transform:translateY(0); }
-    }
+    .chat-msg { display:flex; gap:10px; max-width:88%; animation:msgIn 0.35s ease-out; }
+    @keyframes msgIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
     .chat-msg.bot { align-self:flex-start; }
     .chat-msg.user { align-self:flex-end; flex-direction:row-reverse; }
-
-    .chat-msg-avatar {
-      width:30px; height:30px; border-radius:10px; flex-shrink:0;
-      display:flex; align-items:center; justify-content:center;
-      font-size:0.7rem;
-    }
-    .chat-msg.bot .chat-msg-avatar {
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      color:#060a10;
-    }
-    .chat-msg.user .chat-msg-avatar {
-      background:rgba(255,255,255,0.06); color:var(--muted);
-    }
-
-    .chat-bubble {
-      padding:12px 16px; border-radius:16px; font-size:0.85rem;
-      line-height:1.65;
-    }
-    .chat-msg.bot .chat-bubble {
-      background:rgba(255,255,255,0.03);
-      border:1px solid rgba(255,255,255,0.05);
-      border-top-left-radius:4px; color:var(--fg);
-    }
-    .chat-msg.user .chat-bubble {
-      background:linear-gradient(135deg,rgba(251,191,36,0.15),rgba(245,158,11,0.1));
-      border:1px solid rgba(251,191,36,0.15);
-      border-top-right-radius:4px; color:var(--fg);
-    }
+    .chat-msg-avatar { width:30px; height:30px; border-radius:10px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:0.7rem; }
+    .chat-msg.bot .chat-msg-avatar { background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#060a10; }
+    .chat-msg.user .chat-msg-avatar { background:rgba(255,255,255,0.06); color:var(--muted); }
+    .chat-bubble { padding:12px 16px; border-radius:16px; font-size:0.85rem; line-height:1.65; }
+    .chat-msg.bot .chat-bubble { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.05); border-top-left-radius:4px; color:var(--fg); }
+    .chat-msg.user .chat-bubble { background:linear-gradient(135deg,rgba(251,191,36,0.15),rgba(245,158,11,0.1)); border:1px solid rgba(251,191,36,0.15); border-top-right-radius:4px; color:var(--fg); }
     .chat-bubble strong { color:var(--accent); font-weight:600; }
-    .chat-bubble code {
-      font-family:'JetBrains Mono',monospace;
-      background:rgba(255,255,255,0.06); padding:1px 6px;
-      border-radius:4px; font-size:0.8rem;
-    }
-    .chat-msg-time {
-      font-size:0.62rem; color:rgba(90,106,128,0.6);
-      margin-top:4px; padding:0 4px;
-    }
+    .chat-bubble code { font-family:'JetBrains Mono',monospace; background:rgba(255,255,255,0.06); padding:1px 6px; border-radius:4px; font-size:0.8rem; }
+    .chat-bubble ul,.chat-bubble ol { margin:6px 0; padding-left:18px; }
+    .chat-bubble li { margin:3px 0; }
+    .chat-bubble a { color:var(--accent); text-decoration:underline; }
+    .chat-msg-time { font-size:0.62rem; color:rgba(90,106,128,0.6); margin-top:4px; padding:0 4px; }
     .chat-msg.user .chat-msg-time { text-align:right; }
 
-    /* Quick replies */
-    .chat-quick-replies {
-      display:flex; flex-wrap:wrap; gap:6px;
-      padding:4px 16px 8px;
-    }
-    .quick-reply-btn {
-      padding:7px 14px; border-radius:10px;
-      border:1px solid rgba(251,191,36,0.15);
-      background:rgba(251,191,36,0.04);
-      color:var(--amber); font-size:0.76rem; font-weight:500;
-      cursor:pointer; transition:all 0.2s;
-      font-family:inherit; white-space:nowrap;
-    }
-    .quick-reply-btn:hover {
-      background:rgba(251,191,36,0.1);
-      border-color:rgba(251,191,36,0.3);
-    }
+    .chat-quick-replies { display:flex; flex-wrap:wrap; gap:6px; padding:4px 16px 8px; }
+    .quick-reply-btn { padding:7px 14px; border-radius:10px; border:1px solid rgba(251,191,36,0.15); background:rgba(251,191,36,0.04); color:var(--amber); font-size:0.76rem; font-weight:500; cursor:pointer; transition:all 0.2s; font-family:inherit; white-space:nowrap; }
+    .quick-reply-btn:hover { background:rgba(251,191,36,0.1); border-color:rgba(251,191,36,0.3); }
 
-    /* Typing indicator */
-    .chat-typing {
-      display:flex; gap:10px; align-self:flex-start;
-      max-width:88%; animation:msgIn 0.35s ease-out;
-    }
-    .typing-dots {
-      padding:14px 18px; border-radius:16px; border-top-left-radius:4px;
-      background:rgba(255,255,255,0.03);
-      border:1px solid rgba(255,255,255,0.05);
-      display:flex; gap:4px; align-items:center;
-    }
-    .typing-dots span {
-      width:6px; height:6px; border-radius:50%;
-      background:var(--muted); opacity:0.4;
-      animation:typingBounce 1.4s ease-in-out infinite;
-    }
+    .chat-typing { display:flex; gap:10px; align-self:flex-start; max-width:88%; animation:msgIn 0.35s ease-out; }
+    .typing-dots { padding:14px 18px; border-radius:16px; border-top-left-radius:4px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.05); display:flex; gap:4px; align-items:center; }
+    .typing-dots span { width:6px; height:6px; border-radius:50%; background:var(--muted); opacity:0.4; animation:typingBounce 1.4s ease-in-out infinite; }
     .typing-dots span:nth-child(2) { animation-delay:0.2s; }
     .typing-dots span:nth-child(3) { animation-delay:0.4s; }
-    @keyframes typingBounce {
-      0%,60%,100% { transform:translateY(0); opacity:0.4; }
-      30% { transform:translateY(-6px); opacity:1; }
-    }
+    @keyframes typingBounce { 0%,60%,100%{transform:translateY(0);opacity:0.4} 30%{transform:translateY(-6px);opacity:1} }
 
-    .chat-input-area {
-      padding:12px 14px; border-top:1px solid var(--border);
-      display:flex; gap:8px; align-items:center; flex-shrink:0;
-      background:rgba(6,10,16,0.5);
-    }
-    .chat-input-area input {
-      flex:1; background:rgba(255,255,255,0.03);
-      border:1px solid var(--border); border-radius:12px;
-      padding:12px 16px; color:var(--fg); font-family:inherit;
-      font-size:0.88rem; outline:none; transition:border-color 0.3s;
-    }
+    .chat-input-area { padding:12px 14px; border-top:1px solid var(--border); display:flex; gap:8px; align-items:center; flex-shrink:0; background:rgba(6,10,16,0.5); }
+    .chat-input-area input { flex:1; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:12px; padding:12px 16px; color:var(--fg); font-family:inherit; font-size:0.88rem; outline:none; transition:border-color 0.3s; }
     .chat-input-area input::placeholder { color:var(--muted); opacity:0.5; }
     .chat-input-area input:focus { border-color:rgba(251,191,36,0.3); }
-    .chat-send-btn {
-      width:44px; height:44px; border-radius:12px; border:none;
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      color:#060a10; cursor:pointer; font-size:0.95rem;
-      display:flex; align-items:center; justify-content:center;
-      transition:all 0.25s; flex-shrink:0;
-    }
-    .chat-send-btn:hover {
-      box-shadow:0 0 20px rgba(251,191,36,0.3);
-      transform:scale(1.05);
-    }
-    .chat-send-btn:disabled {
-      opacity:0.3; cursor:not-allowed;
-      transform:none; box-shadow:none;
-    }
+    .chat-send-btn { width:44px; height:44px; border-radius:12px; border:none; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#060a10; cursor:pointer; font-size:0.95rem; display:flex; align-items:center; justify-content:center; transition:all 0.25s; flex-shrink:0; }
+    .chat-send-btn:hover { box-shadow:0 0 20px rgba(251,191,36,0.3); transform:scale(1.05); }
+    .chat-send-btn:disabled { opacity:0.3; cursor:not-allowed; transform:none; box-shadow:none; }
+    .chat-footer-note { padding:6px 16px 10px; text-align:center; font-size:0.6rem; color:rgba(90,106,128,0.4); flex-shrink:0; }
 
-    .chat-footer-note {
-      padding:6px 16px 10px; text-align:center;
-      font-size:0.6rem; color:rgba(90,106,128,0.4);
-      flex-shrink:0;
-    }
+    .chat-error-badge { display:inline-flex; align-items:center; gap:4px; padding:2px 8px; border-radius:6px; font-size:0.6rem; background:rgba(248,113,113,0.1); color:var(--red); border:1px solid rgba(248,113,113,0.15); }
 
     ::-webkit-scrollbar { width:6px; }
     ::-webkit-scrollbar-track { background:var(--bg); }
     ::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
     ::-webkit-scrollbar-thumb:hover { background:var(--muted); }
 
-    @media (prefers-reduced-motion:reduce) {
-      *,*::before,*::after { animation-duration:0.01ms!important; transition-duration:0.01ms!important; }
-    }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:0.01ms!important; transition-duration:0.01ms!important; } }
     @media (max-width:768px) {
       .domain-grid { grid-template-columns:1fr!important; }
       .domain-card.featured { grid-column:span 1!important; }
@@ -631,12 +261,8 @@
   <div class="orb orb-3"></div>
   <div class="mouse-glow" id="mouseGlow"></div>
 
-  <div class="toast" id="toast">
-    <i class="fas fa-circle-info" style="color:var(--amber);"></i>
-    <span id="toastMsg"></span>
-  </div>
+  <div class="toast" id="toast"><i class="fas fa-circle-info" style="color:var(--amber);"></i><span id="toastMsg"></span></div>
 
-  <!-- Navbar -->
   <nav class="navbar" id="navbar">
     <div style="max-width:1200px; margin:0 auto; padding:16px 24px; display:flex; justify-content:space-between; align-items:center;">
       <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:10px;">
@@ -665,39 +291,24 @@
   </nav>
 
   <main style="position:relative; z-index:2;">
-
-    <!-- Hero -->
     <section style="padding:140px 24px 20px; text-align:center;">
       <div class="reveal" style="display:inline-flex; flex-direction:column; align-items:center;">
-        <div class="hero-badge" style="margin-bottom:24px;">
-          <span class="dot"></span>
-          10 Ekstensi Domain
-        </div>
-        <h1 class="hero-title">
-          Domain <span class="accent-text">Murah</span> & Cepat
-        </h1>
-        <p style="color:var(--muted); margin-top:16px; max-width:520px; line-height:1.7; font-size:1.05rem;">
-          Dapatkan domain premium dengan harga terjangkau. Aktif 1 tahun penuh, siap connected ke Cloudflare dan hosting.
-        </p>
+        <div class="hero-badge" style="margin-bottom:24px;"><span class="dot"></span> 10 Ekstensi Domain</div>
+        <h1 class="hero-title">Domain <span class="accent-text">Murah</span> & Cepat</h1>
+        <p style="color:var(--muted); margin-top:16px; max-width:520px; line-height:1.7; font-size:1.05rem;">Dapatkan domain premium dengan harga terjangkau. Aktif 1 tahun penuh, siap connected ke Cloudflare dan hosting.</p>
       </div>
     </section>
 
-    <!-- Domain Search -->
     <section style="padding:28px 24px 0;">
       <div class="reveal">
         <div class="domain-search-box">
           <input type="text" id="domainSearch" placeholder="Cari domain... contoh: namakamu" autocomplete="off">
-          <button class="search-btn" onclick="handleSearch()">
-            <i class="fas fa-magnifying-glass"></i> Cari
-          </button>
+          <button class="search-btn" onclick="handleSearch()"><i class="fas fa-magnifying-glass"></i> Cari</button>
         </div>
-        <p style="text-align:center; margin-top:12px; font-size:0.75rem; color:var(--muted); opacity:0.6;">
-          Ketik nama yang diinginkan, lalu pilih ekstensi domain di bawah
-        </p>
+        <p style="text-align:center; margin-top:12px; font-size:0.75rem; color:var(--muted); opacity:0.6;">Ketik nama yang diinginkan, lalu pilih ekstensi domain di bawah</p>
       </div>
     </section>
 
-    <!-- Filter Pills -->
     <section style="padding:24px 24px 0;">
       <div class="filter-pills reveal" id="filterPills">
         <button class="filter-pill active" data-filter="all">Semua</button>
@@ -708,216 +319,52 @@
       </div>
     </section>
 
-    <!-- Domain Cards -->
     <section style="max-width:900px; margin:0 auto; padding:32px 24px 80px;">
       <div class="domain-grid stagger reveal" id="domainGrid">
-
-        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.com" target="_blank"
-           class="domain-card featured"
-           style="--card-accent:rgba(251,191,36,0.3); --card-glow:rgba(251,191,36,0.1); --card-bar:linear-gradient(90deg,#fbbf24,#f59e0b);"
-           data-category="international" data-ext=".com">
-          <div class="card-bar"></div>
-          <span class="card-popular-tag"><i class="fas fa-crown" style="margin-right:4px;"></i> Paling Laris</span>
-          <div class="domain-info">
-            <div class="domain-ext" style="color:var(--amber);">.com</div>
-            <div class="domain-features">
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS Management</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare Ready</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> Custom IP</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> SSL Free</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun Aktif</span>
-            </div>
-          </div>
-          <div class="domain-price-col">
-            <div class="domain-price">Rp165.000</div>
-            <div class="domain-period">/tahun</div>
-            <div class="domain-order">Order <i class="fas fa-arrow-right"></i></div>
-          </div>
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.com" target="_blank" class="domain-card featured" style="--card-accent:rgba(251,191,36,0.3); --card-glow:rgba(251,191,36,0.1); --card-bar:linear-gradient(90deg,#fbbf24,#f59e0b);" data-category="international" data-ext=".com">
+          <div class="card-bar"></div><span class="card-popular-tag"><i class="fas fa-crown" style="margin-right:4px;"></i> Paling Laris</span>
+          <div class="domain-info"><div class="domain-ext" style="color:var(--amber);">.com</div><div class="domain-features"><span class="domain-feat"><i class="fas fa-circle-check"></i> DNS Management</span><span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare Ready</span><span class="domain-feat"><i class="fas fa-circle-check"></i> Custom IP</span><span class="domain-feat"><i class="fas fa-circle-check"></i> SSL Free</span><span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun Aktif</span></div></div>
+          <div class="domain-price-col"><div class="domain-price">Rp165.000</div><div class="domain-period">/tahun</div><div class="domain-order">Order <i class="fas fa-arrow-right"></i></div></div>
         </a>
-
-        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.id" target="_blank"
-           class="domain-card"
-           style="--card-accent:rgba(0,232,157,0.25); --card-glow:rgba(0,232,157,0.08); --card-bar:linear-gradient(90deg,#00e89d,#34d399);"
-           data-category="id" data-ext=".id">
-          <div class="card-bar"></div>
-          <div class="domain-info">
-            <div class="domain-ext" style="color:var(--green);">.id</div>
-            <div class="domain-features">
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span>
-            </div>
-          </div>
-          <div class="domain-price-col">
-            <div class="domain-price" style="color:var(--green);">Rp275.000</div>
-            <div class="domain-period">/tahun</div>
-            <div class="domain-order" style="border-color:rgba(0,232,157,0.25); background:rgba(0,232,157,0.06); color:var(--green);">Order <i class="fas fa-arrow-right"></i></div>
-          </div>
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.id" target="_blank" class="domain-card" style="--card-accent:rgba(0,232,157,0.25); --card-glow:rgba(0,232,157,0.08); --card-bar:linear-gradient(90deg,#00e89d,#34d399);" data-category="id" data-ext=".id">
+          <div class="card-bar"></div><div class="domain-info"><div class="domain-ext" style="color:var(--green);">.id</div><div class="domain-features"><span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span><span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span><span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span></div></div>
+          <div class="domain-price-col"><div class="domain-price" style="color:var(--green);">Rp275.000</div><div class="domain-period">/tahun</div><div class="domain-order" style="border-color:rgba(0,232,157,0.25); background:rgba(0,232,157,0.06); color:var(--green);">Order <i class="fas fa-arrow-right"></i></div></div>
         </a>
-
-        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.net" target="_blank"
-           class="domain-card"
-           style="--card-accent:rgba(0,196,255,0.25); --card-glow:rgba(0,196,255,0.08); --card-bar:linear-gradient(90deg,#00c4ff,#38bdf8);"
-           data-category="international" data-ext=".net">
-          <div class="card-bar"></div>
-          <div class="domain-info">
-            <div class="domain-ext" style="color:var(--cyan);">.net</div>
-            <div class="domain-features">
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span>
-            </div>
-          </div>
-          <div class="domain-price-col">
-            <div class="domain-price" style="color:var(--cyan);">Rp265.000</div>
-            <div class="domain-period">/tahun</div>
-            <div class="domain-order" style="border-color:rgba(0,196,255,0.25); background:rgba(0,196,255,0.06); color:var(--cyan);">Order <i class="fas fa-arrow-right"></i></div>
-          </div>
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.net" target="_blank" class="domain-card" style="--card-accent:rgba(0,196,255,0.25); --card-glow:rgba(0,196,255,0.08); --card-bar:linear-gradient(90deg,#00c4ff,#38bdf8);" data-category="international" data-ext=".net">
+          <div class="card-bar"></div><div class="domain-info"><div class="domain-ext" style="color:var(--cyan);">.net</div><div class="domain-features"><span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span><span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span><span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span></div></div>
+          <div class="domain-price-col"><div class="domain-price" style="color:var(--cyan);">Rp265.000</div><div class="domain-period">/tahun</div><div class="domain-order" style="border-color:rgba(0,196,255,0.25); background:rgba(0,196,255,0.06); color:var(--cyan);">Order <i class="fas fa-arrow-right"></i></div></div>
         </a>
-
-        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20web.id" target="_blank"
-           class="domain-card"
-           style="--card-accent:rgba(0,232,157,0.2); --card-glow:rgba(0,232,157,0.06); --card-bar:linear-gradient(90deg,#34d399,#6ee7b7);"
-           data-category="id" data-ext="web.id">
-          <div class="card-bar"></div>
-          <div class="domain-info">
-            <div class="domain-ext" style="color:var(--green);">web.id</div>
-            <div class="domain-features">
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span>
-            </div>
-          </div>
-          <div class="domain-price-col">
-            <div class="domain-price" style="color:var(--green);">Rp70.000</div>
-            <div class="domain-period">/tahun</div>
-            <div class="domain-order" style="border-color:rgba(0,232,157,0.25); background:rgba(0,232,157,0.06); color:var(--green);">Order <i class="fas fa-arrow-right"></i></div>
-          </div>
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20web.id" target="_blank" class="domain-card" style="--card-accent:rgba(0,232,157,0.2); --card-glow:rgba(0,232,157,0.06); --card-bar:linear-gradient(90deg,#34d399,#6ee7b7);" data-category="id" data-ext="web.id">
+          <div class="card-bar"></div><div class="domain-info"><div class="domain-ext" style="color:var(--green);">web.id</div><div class="domain-features"><span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span><span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span><span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span></div></div>
+          <div class="domain-price-col"><div class="domain-price" style="color:var(--green);">Rp70.000</div><div class="domain-period">/tahun</div><div class="domain-order" style="border-color:rgba(0,232,157,0.25); background:rgba(0,232,157,0.06); color:var(--green);">Order <i class="fas fa-arrow-right"></i></div></div>
         </a>
-
-        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.mom" target="_blank"
-           class="domain-card"
-           style="--card-accent:rgba(244,114,182,0.25); --card-glow:rgba(244,114,182,0.08); --card-bar:linear-gradient(90deg,#f472b6,#fb7185);"
-           data-category="trend" data-ext=".mom">
-          <div class="card-bar"></div>
-          <span class="card-popular-tag" style="background:rgba(244,114,182,0.12); color:var(--pink); border-color:rgba(244,114,182,0.25);">Trending</span>
-          <div class="domain-info">
-            <div class="domain-ext" style="color:var(--pink);">.mom</div>
-            <div class="domain-features">
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span>
-            </div>
-          </div>
-          <div class="domain-price-col">
-            <div class="domain-price" style="color:var(--pink);">Rp55.000</div>
-            <div class="domain-period">/tahun</div>
-            <div class="domain-order" style="border-color:rgba(244,114,182,0.25); background:rgba(244,114,182,0.06); color:var(--pink);">Order <i class="fas fa-arrow-right"></i></div>
-          </div>
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.mom" target="_blank" class="domain-card" style="--card-accent:rgba(244,114,182,0.25); --card-glow:rgba(244,114,182,0.08); --card-bar:linear-gradient(90deg,#f472b6,#fb7185);" data-category="trend" data-ext=".mom">
+          <div class="card-bar"></div><span class="card-popular-tag" style="background:rgba(244,114,182,0.12); color:var(--pink); border-color:rgba(244,114,182,0.25);">Trending</span>
+          <div class="domain-info"><div class="domain-ext" style="color:var(--pink);">.mom</div><div class="domain-features"><span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span><span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span><span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span></div></div>
+          <div class="domain-price-col"><div class="domain-price" style="color:var(--pink);">Rp55.000</div><div class="domain-period">/tahun</div><div class="domain-order" style="border-color:rgba(244,114,182,0.25); background:rgba(244,114,182,0.06); color:var(--pink);">Order <i class="fas fa-arrow-right"></i></div></div>
         </a>
-
-        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.lol" target="_blank"
-           class="domain-card"
-           style="--card-accent:rgba(167,139,250,0.25); --card-glow:rgba(167,139,250,0.08); --card-bar:linear-gradient(90deg,#a78bfa,#c4b5fd);"
-           data-category="trend" data-ext=".lol">
-          <div class="card-bar"></div>
-          <span class="card-popular-tag" style="background:rgba(167,139,250,0.12); color:var(--purple); border-color:rgba(167,139,250,0.25);">Trending</span>
-          <div class="domain-info">
-            <div class="domain-ext" style="color:var(--purple);">.lol</div>
-            <div class="domain-features">
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span>
-            </div>
-          </div>
-          <div class="domain-price-col">
-            <div class="domain-price" style="color:var(--purple);">Rp55.000</div>
-            <div class="domain-period">/tahun</div>
-            <div class="domain-order" style="border-color:rgba(167,139,250,0.25); background:rgba(167,139,250,0.06); color:var(--purple);">Order <i class="fas fa-arrow-right"></i></div>
-          </div>
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.lol" target="_blank" class="domain-card" style="--card-accent:rgba(167,139,250,0.25); --card-glow:rgba(167,139,250,0.08); --card-bar:linear-gradient(90deg,#a78bfa,#c4b5fd);" data-category="trend" data-ext=".lol">
+          <div class="card-bar"></div><span class="card-popular-tag" style="background:rgba(167,139,250,0.12); color:var(--purple); border-color:rgba(167,139,250,0.25);">Trending</span>
+          <div class="domain-info"><div class="domain-ext" style="color:var(--purple);">.lol</div><div class="domain-features"><span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span><span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span><span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span></div></div>
+          <div class="domain-price-col"><div class="domain-price" style="color:var(--purple);">Rp55.000</div><div class="domain-period">/tahun</div><div class="domain-order" style="border-color:rgba(167,139,250,0.25); background:rgba(167,139,250,0.06); color:var(--purple);">Order <i class="fas fa-arrow-right"></i></div></div>
         </a>
-
-        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.xyz" target="_blank"
-           class="domain-card"
-           style="--card-accent:rgba(0,196,255,0.2); --card-glow:rgba(0,196,255,0.06); --card-bar:linear-gradient(90deg,#38bdf8,#7dd3fc);"
-           data-category="international" data-ext=".xyz">
-          <div class="card-bar"></div>
-          <div class="domain-info">
-            <div class="domain-ext" style="color:var(--cyan);">.xyz</div>
-            <div class="domain-features">
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span>
-            </div>
-          </div>
-          <div class="domain-price-col">
-            <div class="domain-price" style="color:var(--cyan);">Rp45.000</div>
-            <div class="domain-period">/tahun</div>
-            <div class="domain-order" style="border-color:rgba(0,196,255,0.25); background:rgba(0,196,255,0.06); color:var(--cyan);">Order <i class="fas fa-arrow-right"></i></div>
-          </div>
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.xyz" target="_blank" class="domain-card" style="--card-accent:rgba(0,196,255,0.2); --card-glow:rgba(0,196,255,0.06); --card-bar:linear-gradient(90deg,#38bdf8,#7dd3fc);" data-category="international" data-ext=".xyz">
+          <div class="card-bar"></div><div class="domain-info"><div class="domain-ext" style="color:var(--cyan);">.xyz</div><div class="domain-features"><span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span><span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span><span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span></div></div>
+          <div class="domain-price-col"><div class="domain-price" style="color:var(--cyan);">Rp45.000</div><div class="domain-period">/tahun</div><div class="domain-order" style="border-color:rgba(0,196,255,0.25); background:rgba(0,196,255,0.06); color:var(--cyan);">Order <i class="fas fa-arrow-right"></i></div></div>
         </a>
-
-        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.cloud" target="_blank"
-           class="domain-card"
-           style="--card-accent:rgba(0,196,255,0.2); --card-glow:rgba(0,196,255,0.06); --card-bar:linear-gradient(90deg,#0ea5e9,#38bdf8);"
-           data-category="trend" data-ext=".cloud">
-          <div class="card-bar"></div>
-          <div class="domain-info">
-            <div class="domain-ext" style="color:var(--cyan);">.cloud</div>
-            <div class="domain-features">
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span>
-            </div>
-          </div>
-          <div class="domain-price-col">
-            <div class="domain-price" style="color:var(--cyan);">Rp40.000</div>
-            <div class="domain-period">/tahun</div>
-            <div class="domain-order" style="border-color:rgba(0,196,255,0.25); background:rgba(0,196,255,0.06); color:var(--cyan);">Order <i class="fas fa-arrow-right"></i></div>
-          </div>
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20.cloud" target="_blank" class="domain-card" style="--card-accent:rgba(0,196,255,0.2); --card-glow:rgba(0,196,255,0.06); --card-bar:linear-gradient(90deg,#0ea5e9,#38bdf8);" data-category="trend" data-ext=".cloud">
+          <div class="card-bar"></div><div class="domain-info"><div class="domain-ext" style="color:var(--cyan);">.cloud</div><div class="domain-features"><span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span><span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span><span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span></div></div>
+          <div class="domain-price-col"><div class="domain-price" style="color:var(--cyan);">Rp40.000</div><div class="domain-period">/tahun</div><div class="domain-order" style="border-color:rgba(0,196,255,0.25); background:rgba(0,196,255,0.06); color:var(--cyan);">Order <i class="fas fa-arrow-right"></i></div></div>
         </a>
-
-        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20my.id" target="_blank"
-           class="domain-card"
-           style="--card-accent:rgba(0,232,157,0.2); --card-glow:rgba(0,232,157,0.06); --card-bar:linear-gradient(90deg,#6ee7b7,#a7f3d0);"
-           data-category="budget" data-ext="my.id">
-          <div class="card-bar"></div>
-          <span class="card-popular-tag" style="background:rgba(0,232,157,0.12); color:var(--green); border-color:rgba(0,232,157,0.25);">Termurah</span>
-          <div class="domain-info">
-            <div class="domain-ext" style="color:var(--green);">my.id</div>
-            <div class="domain-features">
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span>
-            </div>
-          </div>
-          <div class="domain-price-col">
-            <div class="domain-price" style="color:var(--green);">Rp15.000</div>
-            <div class="domain-period">/tahun</div>
-            <div class="domain-order" style="border-color:rgba(0,232,157,0.25); background:rgba(0,232,157,0.06); color:var(--green);">Order <i class="fas fa-arrow-right"></i></div>
-          </div>
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20my.id" target="_blank" class="domain-card" style="--card-accent:rgba(0,232,157,0.2); --card-glow:rgba(0,232,157,0.06); --card-bar:linear-gradient(90deg,#6ee7b7,#a7f3d0);" data-category="budget" data-ext="my.id">
+          <div class="card-bar"></div><span class="card-popular-tag" style="background:rgba(0,232,157,0.12); color:var(--green); border-color:rgba(0,232,157,0.25);">Termurah</span>
+          <div class="domain-info"><div class="domain-ext" style="color:var(--green);">my.id</div><div class="domain-features"><span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span><span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span><span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span></div></div>
+          <div class="domain-price-col"><div class="domain-price" style="color:var(--green);">Rp15.000</div><div class="domain-period">/tahun</div><div class="domain-order" style="border-color:rgba(0,232,157,0.25); background:rgba(0,232,157,0.06); color:var(--green);">Order <i class="fas fa-arrow-right"></i></div></div>
         </a>
-
-        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20biz.id" target="_blank"
-           class="domain-card"
-           style="--card-accent:rgba(0,232,157,0.2); --card-glow:rgba(0,232,157,0.06); --card-bar:linear-gradient(90deg,#34d399,#6ee7b7);"
-           data-category="budget" data-ext="biz.id">
-          <div class="card-bar"></div>
-          <div class="domain-info">
-            <div class="domain-ext" style="color:var(--green);">biz.id</div>
-            <div class="domain-features">
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span>
-              <span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span>
-            </div>
-          </div>
-          <div class="domain-price-col">
-            <div class="domain-price" style="color:var(--green);">Rp15.000</div>
-            <div class="domain-period">/tahun</div>
-            <div class="domain-order" style="border-color:rgba(0,232,157,0.25); background:rgba(0,232,157,0.06); color:var(--green);">Order <i class="fas fa-arrow-right"></i></div>
-          </div>
+        <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20mau%20order%20domain%20biz.id" target="_blank" class="domain-card" style="--card-accent:rgba(0,232,157,0.2); --card-glow:rgba(0,232,157,0.06); --card-bar:linear-gradient(90deg,#34d399,#6ee7b7);" data-category="budget" data-ext="biz.id">
+          <div class="card-bar"></div><div class="domain-info"><div class="domain-ext" style="color:var(--green);">biz.id</div><div class="domain-features"><span class="domain-feat"><i class="fas fa-circle-check"></i> DNS</span><span class="domain-feat"><i class="fas fa-circle-check"></i> Cloudflare</span><span class="domain-feat"><i class="fas fa-circle-check"></i> 1 Tahun</span></div></div>
+          <div class="domain-price-col"><div class="domain-price" style="color:var(--green);">Rp15.000</div><div class="domain-period">/tahun</div><div class="domain-order" style="border-color:rgba(0,232,157,0.25); background:rgba(0,232,157,0.06); color:var(--green);">Order <i class="fas fa-arrow-right"></i></div></div>
         </a>
-
       </div>
       <div id="noResults" style="display:none; text-align:center; padding:60px 20px;">
         <i class="fas fa-face-meh" style="font-size:2.5rem; color:var(--muted); opacity:0.3; margin-bottom:16px;"></i>
@@ -925,17 +372,11 @@
       </div>
     </section>
 
-    <!-- Comparison Table -->
     <section style="max-width:900px; margin:0 auto; padding:0 24px 80px;">
-      <div class="reveal" style="margin-bottom:32px;">
-        <div class="section-tag">Perbandingan</div>
-        <h2 style="font-size:1.5rem; font-weight:700; margin-top:8px;">Daftar Harga Domain</h2>
-      </div>
+      <div class="reveal" style="margin-bottom:32px;"><div class="section-tag">Perbandingan</div><h2 style="font-size:1.5rem; font-weight:700; margin-top:8px;">Daftar Harga Domain</h2></div>
       <div class="compare-table-wrap reveal">
         <table class="compare-table">
-          <thead>
-            <tr><th>Ekstensi</th><th>Tipe</th><th>Harga / Tahun</th></tr>
-          </thead>
+          <thead><tr><th>Ekstensi</th><th>Tipe</th><th>Harga / Tahun</th></tr></thead>
           <tbody>
             <tr><td class="ext-cell">.my.id</td><td class="type-cell">Indonesia</td><td class="price-cell">Rp15.000</td></tr>
             <tr><td class="ext-cell">.biz.id</td><td class="type-cell">Indonesia</td><td class="price-cell">Rp15.000</td></tr>
@@ -952,149 +393,57 @@
       </div>
     </section>
 
-    <!-- What You Get -->
     <section style="max-width:900px; margin:0 auto; padding:0 24px 80px;">
-      <div class="reveal" style="margin-bottom:32px; text-align:center;">
-        <div class="section-tag" style="justify-content:center;">Yang Kamu Dapat</div>
-        <h2 style="font-size:1.5rem; font-weight:700; margin-top:8px;">Setiap Domain Sudah Termasuk</h2>
-      </div>
+      <div class="reveal" style="margin-bottom:32px; text-align:center;"><div class="section-tag" style="justify-content:center;">Yang Kamu Dapat</div><h2 style="font-size:1.5rem; font-weight:700; margin-top:8px;">Setiap Domain Sudah Termasuk</h2></div>
       <div class="includes-grid stagger reveal">
-        <div class="include-item">
-          <div class="include-icon" style="background:rgba(251,191,36,0.1); color:var(--amber);"><i class="fas fa-calendar-check"></i></div>
-          <div><div class="include-title">Aktif 1 Tahun</div><div class="include-desc">Domain aktif penuh selama 12 bulan tanpa biaya tersembunyi.</div></div>
-        </div>
-        <div class="include-item">
-          <div class="include-icon" style="background:rgba(0,196,255,0.1); color:var(--cyan);"><i class="fas fa-network-wired"></i></div>
-          <div><div class="include-title">DNS Management</div><div class="include-desc">Kelola DNS record (A, CNAME, MX, TXT) secara bebas dan fleksibel.</div></div>
-        </div>
-        <div class="include-item">
-          <div class="include-icon" style="background:rgba(248,113,113,0.1); color:var(--red);"><i class="fas fa-shield-halved"></i></div>
-          <div><div class="include-title">Cloudflare Ready</div><div class="include-desc">Bisa langsung dikoneksikan ke Cloudflare untuk CDN dan keamanan.</div></div>
-        </div>
-        <div class="include-item">
-          <div class="include-icon" style="background:rgba(0,232,157,0.1); color:var(--green);"><i class="fas fa-server"></i></div>
-          <div><div class="include-title">Custom IP Pointing</div><div class="include-desc">Arahkan domain ke IP server manapun, termasuk VPS kami.</div></div>
-        </div>
-        <div class="include-item">
-          <div class="include-icon" style="background:rgba(167,139,250,0.1); color:var(--purple);"><i class="fas fa-lock"></i></div>
-          <div><div class="include-title">SSL Gratis</div><div class="include-desc">Sertifikat SSL gratis lewat Cloudflare atau Let's Encrypt.</div></div>
-        </div>
-        <div class="include-item">
-          <div class="include-icon" style="background:rgba(244,114,182,0.1); color:var(--pink);"><i class="fas fa-headset"></i></div>
-          <div><div class="include-title">Support 24/7</div><div class="include-desc">Tim support siap bantu setup DNS dan koneksi domain kapanpun.</div></div>
-        </div>
+        <div class="include-item"><div class="include-icon" style="background:rgba(251,191,36,0.1); color:var(--amber);"><i class="fas fa-calendar-check"></i></div><div><div class="include-title">Aktif 1 Tahun</div><div class="include-desc">Domain aktif penuh selama 12 bulan tanpa biaya tersembunyi.</div></div></div>
+        <div class="include-item"><div class="include-icon" style="background:rgba(0,196,255,0.1); color:var(--cyan);"><i class="fas fa-network-wired"></i></div><div><div class="include-title">DNS Management</div><div class="include-desc">Kelola DNS record (A, CNAME, MX, TXT) secara bebas dan fleksibel.</div></div></div>
+        <div class="include-item"><div class="include-icon" style="background:rgba(248,113,113,0.1); color:var(--red);"><i class="fas fa-shield-halved"></i></div><div><div class="include-title">Cloudflare Ready</div><div class="include-desc">Bisa langsung dikoneksikan ke Cloudflare untuk CDN dan keamanan.</div></div></div>
+        <div class="include-item"><div class="include-icon" style="background:rgba(0,232,157,0.1); color:var(--green);"><i class="fas fa-server"></i></div><div><div class="include-title">Custom IP Pointing</div><div class="include-desc">Arahkan domain ke IP server manapun, termasuk VPS kami.</div></div></div>
+        <div class="include-item"><div class="include-icon" style="background:rgba(167,139,250,0.1); color:var(--purple);"><i class="fas fa-lock"></i></div><div><div class="include-title">SSL Gratis</div><div class="include-desc">Sertifikat SSL gratis lewat Cloudflare atau Let's Encrypt.</div></div></div>
+        <div class="include-item"><div class="include-icon" style="background:rgba(244,114,182,0.1); color:var(--pink);"><i class="fas fa-headset"></i></div><div><div class="include-title">Support 24/7</div><div class="include-desc">Tim support siap bantu setup DNS dan koneksi domain kapanpun.</div></div></div>
       </div>
     </section>
 
-    <!-- How to Order -->
     <section style="max-width:900px; margin:0 auto; padding:0 24px 80px;">
-      <div class="reveal" style="text-align:center; margin-bottom:40px;">
-        <div class="section-tag" style="justify-content:center;">Cara Order</div>
-        <h2 style="font-size:1.5rem; font-weight:700; margin-top:8px;">Order Domain dalam 3 Langkah</h2>
-      </div>
+      <div class="reveal" style="text-align:center; margin-bottom:40px;"><div class="section-tag" style="justify-content:center;">Cara Order</div><h2 style="font-size:1.5rem; font-weight:700; margin-top:8px;">Order Domain dalam 3 Langkah</h2></div>
       <div class="steps-grid stagger reveal" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
-        <div class="step-card">
-          <span class="step-connector hidden md:block"><i class="fas fa-chevron-right"></i></span>
-          <div class="step-number">1</div>
-          <div style="font-size:1.6rem; margin-bottom:12px;"><i class="fas fa-pen-to-square" style="color:var(--amber);"></i></div>
-          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Pilih Domain</h4>
-          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Tentukan nama domain dan ekstensi yang kamu inginkan dari daftar di atas.</p>
-        </div>
-        <div class="step-card">
-          <span class="step-connector hidden md:block"><i class="fas fa-chevron-right"></i></span>
-          <div class="step-number">2</div>
-          <div style="font-size:1.6rem; margin-bottom:12px;"><i class="fab fa-whatsapp" style="color:var(--green);"></i></div>
-          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Konfirmasi via WA</h4>
-          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Klik order, kami konfirmasi ketersediaan domain dan detail pembayaran.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">3</div>
-          <div style="font-size:1.6rem; margin-bottom:12px;"><i class="fas fa-circle-check" style="color:var(--cyan);"></i></div>
-          <h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Domain Aktif</h4>
-          <p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Setelah bayar, domain langsung aktif. Detail login dan DNS dikirim via WA.</p>
-        </div>
+        <div class="step-card"><span class="step-connector hidden md:block"><i class="fas fa-chevron-right"></i></span><div class="step-number">1</div><div style="font-size:1.6rem; margin-bottom:12px;"><i class="fas fa-pen-to-square" style="color:var(--amber);"></i></div><h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Pilih Domain</h4><p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Tentukan nama domain dan ekstensi yang kamu inginkan.</p></div>
+        <div class="step-card"><span class="step-connector hidden md:block"><i class="fas fa-chevron-right"></i></span><div class="step-number">2</div><div style="font-size:1.6rem; margin-bottom:12px;"><i class="fab fa-whatsapp" style="color:var(--green);"></i></div><h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Konfirmasi via WA</h4><p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Klik order, kami konfirmasi ketersediaan dan detail pembayaran.</p></div>
+        <div class="step-card"><div class="step-number">3</div><div style="font-size:1.6rem; margin-bottom:12px;"><i class="fas fa-circle-check" style="color:var(--cyan);"></i></div><h4 style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Domain Aktif</h4><p style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Setelah bayar, domain langsung aktif. Detail login dikirim via WA.</p></div>
       </div>
     </section>
 
-    <!-- FAQ -->
     <section style="max-width:720px; margin:0 auto; padding:0 24px 80px;">
-      <div class="reveal" style="text-align:center; margin-bottom:36px;">
-        <div class="section-tag" style="justify-content:center;">FAQ</div>
-        <h2 style="font-size:1.5rem; font-weight:700; margin-top:8px;">Pertanyaan Seputar Domain</h2>
-      </div>
+      <div class="reveal" style="text-align:center; margin-bottom:36px;"><div class="section-tag" style="justify-content:center;">FAQ</div><h2 style="font-size:1.5rem; font-weight:700; margin-top:8px;">Pertanyaan Seputar Domain</h2></div>
       <div class="reveal" style="display:flex; flex-direction:column; gap:10px;">
-        <div class="faq-item">
-          <button class="faq-btn" onclick="toggleFaq(this)"><span>Domain bisa diperpanjang setelah 1 tahun?</span><i class="fas fa-chevron-down chevron"></i></button>
-          <div class="faq-answer">Domain yang kami jual <strong>aktif 1 tahun dan tidak bisa diperpanjang</strong> melalui kami. Setelah habis, kamu bisa membeli domain baru atau migrasikan ke registrar lain sebelum masa aktif berakhir.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-btn" onclick="toggleFaq(this)"><span>Bisa pakai untuk hosting website?</span><i class="fas fa-chevron-down chevron"></i></button>
-          <div class="faq-answer">Tentu! Domain bisa dikoneksikan ke <strong>semua jenis hosting</strong> — shared hosting, VPS, atau bahkan platform seperti Vercel dan Netlify. Kami bantu setup DNS-nya.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-btn" onclick="toggleFaq(this)"><span>Berapa lama proses aktifasi domain?</span><i class="fas fa-chevron-down chevron"></i></button>
-          <div class="faq-answer">Domain <strong>aktif dalam hitungan menit</strong> setelah pembayaran dikonfirmasi. Untuk domain .id biasanya membutuhkan waktu propagasi DNS maksimal <strong>1-24 jam</strong>.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-btn" onclick="toggleFaq(this)"><span>Apa bedanya my.id dan biz.id?</span><i class="fas fa-chevron-down chevron"></i></button>
-          <div class="faq-answer">Secara teknis <strong>sama saja</strong> — keduanya domain Indonesia dengan fitur identik. <strong>my.id</strong> cocok untuk personal/blog, <strong>biz.id</strong> lebih cocok untuk bisnis. Harga sama: Rp15.000/tahun.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-btn" onclick="toggleFaq(this)"><span>Bisa request domain yang tidak ada di daftar?</span><i class="fas fa-chevron-down chevron"></i></button>
-          <div class="faq-answer">Bisa! Hubungi kami via <strong>WhatsApp</strong> dengan menyebutkan ekstensi domain yang kamu inginkan. Kami cek ketersediaan dan berikan harga terbaik.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-btn" onclick="toggleFaq(this)"><span>Apakah saya mendapatkan akses panel domain?</span><i class="fas fa-chevron-down chevron"></i></button>
-          <div class="faq-answer">Ya, kamu mendapatkan <strong>akses penuh ke panel manajemen domain</strong> untuk mengatur DNS record, nameserver, dan pengaturan domain lainnya secara mandiri.</div>
-        </div>
+        <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span>Domain bisa diperpanjang setelah 1 tahun?</span><i class="fas fa-chevron-down chevron"></i></button><div class="faq-answer">Domain yang kami jual <strong>aktif 1 tahun dan tidak bisa diperpanjang</strong> melalui kami. Setelah habis, kamu bisa membeli domain baru atau migrasikan ke registrar lain sebelum masa aktif berakhir.</div></div>
+        <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span>Bisa pakai untuk hosting website?</span><i class="fas fa-chevron-down chevron"></i></button><div class="faq-answer">Tentu! Domain bisa dikoneksikan ke <strong>semua jenis hosting</strong> — shared hosting, VPS, atau platform seperti Vercel dan Netlify. Kami bantu setup DNS-nya.</div></div>
+        <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span>Berapa lama proses aktifasi domain?</span><i class="fas fa-chevron-down chevron"></i></button><div class="faq-answer">Domain <strong>aktif dalam hitungan menit</strong> setelah pembayaran dikonfirmasi. Untuk domain .id biasanya membutuhkan waktu propagasi DNS maksimal <strong>1-24 jam</strong>.</div></div>
+        <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span>Apa bedanya my.id dan biz.id?</span><i class="fas fa-chevron-down chevron"></i></button><div class="faq-answer">Secara teknis <strong>sama saja</strong>. <strong>my.id</strong> cocok untuk personal/blog, <strong>biz.id</strong> lebih cocok untuk bisnis. Harga sama: Rp15.000/tahun.</div></div>
+        <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span>Bisa request domain yang tidak ada di daftar?</span><i class="fas fa-chevron-down chevron"></i></button><div class="faq-answer">Bisa! Hubungi kami via <strong>WhatsApp</strong> dengan menyebutkan ekstensi yang diinginkan. Kami cek ketersediaan dan berikan harga terbaik.</div></div>
+        <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span>Apakah saya mendapatkan akses panel domain?</span><i class="fas fa-chevron-down chevron"></i></button><div class="faq-answer">Ya, kamu mendapatkan <strong>akses penuh ke panel manajemen domain</strong> untuk mengatur DNS record, nameserver, dan pengaturan lainnya secara mandiri.</div></div>
       </div>
     </section>
 
-    <!-- CTA -->
     <section style="max-width:900px; margin:0 auto; padding:0 24px 80px;">
       <div class="reveal" style="text-align:center; padding:56px 40px; border-radius:24px; border:1px solid var(--border); background:var(--bg-card); position:relative; overflow:hidden;">
         <div style="position:absolute; top:-60px; left:50%; transform:translateX(-50%); width:300px; height:200px; background:radial-gradient(circle,rgba(251,191,36,0.06),transparent 70%); border-radius:50%; pointer-events:none;"></div>
         <div style="position:relative;">
           <h2 style="font-size:1.8rem; font-weight:700; margin-bottom:10px;">Butuh Bantuan Pilih Domain?</h2>
           <p style="color:var(--muted); max-width:420px; margin:0 auto 28px; line-height:1.7; font-size:0.95rem;">Konsultasikan kebutuhan domainmu secara gratis. Kami bantu cek ketersediaan dan rekomendasikan yang terbaik.</p>
-          <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20butuh%20bantuan%20memilih%20domain" target="_blank"
-             style="display:inline-flex; align-items:center; gap:10px; padding:16px 32px; border-radius:14px; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#060a10; font-weight:700; font-size:0.95rem; text-decoration:none; transition:all 0.3s;"
-             onmouseover="this.style.boxShadow='0 0 35px rgba(251,191,36,0.3)'; this.style.transform='translateY(-3px)'"
-             onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'">
-            <i class="fab fa-whatsapp" style="font-size:1.1rem;"></i> Tanya via WhatsApp
-          </a>
+          <a href="https://wa.me/6282189822272?text=Halo%2C%20saya%20butuh%20bantuan%20memilih%20domain" target="_blank" style="display:inline-flex; align-items:center; gap:10px; padding:16px 32px; border-radius:14px; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#060a10; font-weight:700; font-size:0.95rem; text-decoration:none; transition:all 0.3s;" onmouseover="this.style.boxShadow='0 0 35px rgba(251,191,36,0.3)'; this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'"><i class="fab fa-whatsapp" style="font-size:1.1rem;"></i> Tanya via WhatsApp</a>
         </div>
       </div>
     </section>
-
   </main>
 
-  <!-- Footer -->
   <footer style="position:relative; z-index:2; border-top:1px solid var(--border); background:rgba(6,10,16,0.92);">
     <div style="max-width:1200px; margin:0 auto; padding:48px 24px 32px;">
       <div class="footer-grid" style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:40px;">
-        <div>
-          <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
-            <div style="width:32px; height:32px; border-radius:8px; background:linear-gradient(135deg,var(--accent),var(--accent2)); display:flex; align-items:center; justify-content:center; font-weight:800; color:#060a10; font-size:0.75rem;">H</div>
-            <span style="font-weight:700;">HyunkkCloud</span>
-          </div>
-          <p style="font-size:0.85rem; color:var(--muted); line-height:1.7; max-width:300px;">Hosting modern dengan performa tinggi dan support aktif 24/7.</p>
-        </div>
-        <div>
-          <h4 style="font-weight:600; margin-bottom:14px; font-size:0.9rem;">Menu</h4>
-          <a href="store.html" class="footer-link">Store</a>
-          <a href="store-hosting.html" class="footer-link">Minecraft Hosting</a>
-          <a href="store-vps.html" class="footer-link">VPS Server</a>
-          <a href="store-domain.html" class="footer-link" style="color:var(--accent);">Domain</a>
-        </div>
-        <div>
-          <h4 style="font-weight:600; margin-bottom:14px; font-size:0.9rem;">Kontak</h4>
-          <p style="font-size:0.85rem; color:var(--muted); line-height:2;">
-            <i class="fas fa-envelope" style="width:16px; color:var(--accent); font-size:0.75rem;"></i> cahyobagaskoro03@gmail.com<br>
-            <i class="fab fa-whatsapp" style="width:16px; color:var(--accent); font-size:0.75rem;"></i> 082189822272<br>
-            <i class="fas fa-map-marker-alt" style="width:16px; color:var(--accent); font-size:0.75rem;"></i> Indonesia
-          </p>
-        </div>
+        <div><div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;"><div style="width:32px; height:32px; border-radius:8px; background:linear-gradient(135deg,var(--accent),var(--accent2)); display:flex; align-items:center; justify-content:center; font-weight:800; color:#060a10; font-size:0.75rem;">H</div><span style="font-weight:700;">HyunkkCloud</span></div><p style="font-size:0.85rem; color:var(--muted); line-height:1.7; max-width:300px;">Hosting modern dengan performa tinggi dan support aktif 24/7.</p></div>
+        <div><h4 style="font-weight:600; margin-bottom:14px; font-size:0.9rem;">Menu</h4><a href="store.html" class="footer-link">Store</a><a href="store-hosting.html" class="footer-link">Minecraft Hosting</a><a href="store-vps.html" class="footer-link">VPS Server</a><a href="store-domain.html" class="footer-link" style="color:var(--accent);">Domain</a></div>
+        <div><h4 style="font-weight:600; margin-bottom:14px; font-size:0.9rem;">Kontak</h4><p style="font-size:0.85rem; color:var(--muted); line-height:2;"><i class="fas fa-envelope" style="width:16px; color:var(--accent); font-size:0.75rem;"></i> cahyobagaskoro03@gmail.com<br><i class="fab fa-whatsapp" style="width:16px; color:var(--accent); font-size:0.75rem;"></i> 082189822272<br><i class="fas fa-map-marker-alt" style="width:16px; color:var(--accent); font-size:0.75rem;"></i> Indonesia</p></div>
       </div>
       <div style="margin-top:36px; padding-top:20px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
         <span style="font-size:0.78rem; color:var(--muted);">&copy; 2026 HyunkkCloud. All rights reserved.</span>
@@ -1103,7 +452,7 @@
     </div>
   </footer>
 
-  <!-- ========== AI CHATBOT WIDGET ========== -->
+  <!-- ========== AI CHATBOT (Gemini-Powered) ========== -->
   <button class="chatbot-fab" id="chatFab" aria-label="Buka chatbot" onclick="toggleChat()">
     <span class="fab-pulse"></span>
     <span class="fab-badge" id="chatBadge">1</span>
@@ -1112,575 +461,410 @@
   </button>
 
   <div class="chatbot-window" id="chatWindow">
-    <!-- Header -->
     <div class="chat-header">
       <div class="chat-avatar"><i class="fas fa-robot"></i></div>
       <div class="chat-header-info">
-        <div class="chat-header-name">HyunkBot</div>
-        <div class="chat-header-status"><span class="status-dot"></span> Online — siap bantu</div>
+        <div class="chat-header-name">HyunkBot <span style="font-size:0.65rem; color:var(--cyan); font-weight:500;">Gemini</span></div>
+        <div class="chat-header-status" id="chatStatus"><span class="status-dot"></span> Online — siap bantu</div>
       </div>
       <div class="chat-header-actions">
         <button onclick="clearChat()" title="Hapus chat"><i class="fas fa-trash-can"></i></button>
       </div>
     </div>
-
-    <!-- Messages -->
     <div class="chat-messages" id="chatMessages"></div>
-
-    <!-- Quick Replies -->
     <div class="chat-quick-replies" id="chatQuickReplies"></div>
-
-    <!-- Input -->
     <div class="chat-input-area">
-      <input type="text" id="chatInput" placeholder="Ketik pertanyaan..." autocomplete="off"
-             onkeydown="if(event.key==='Enter')sendMessage()">
-      <button class="chat-send-btn" id="chatSendBtn" onclick="sendMessage()">
-        <i class="fas fa-paper-plane"></i>
-      </button>
+      <input type="text" id="chatInput" placeholder="Ketik pertanyaan..." autocomplete="off" onkeydown="if(event.key==='Enter')sendMessage()">
+      <button class="chat-send-btn" id="chatSendBtn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
     </div>
-    <div class="chat-footer-note">HyunkBot — ditenagai AI lokal HyunkkCloud</div>
+    <div class="chat-footer-note">HyunkBot — ditenagai Google Gemini AI</div>
   </div>
 
   <script>
     /* === PARTICLES === */
-    const canvas = document.getElementById('particles');
-    const ctx = canvas.getContext('2d');
-    let pArr = [];
-    function resizeCanvas() { canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-    for(let i=0;i<55;i++){
-      pArr.push({
-        x:Math.random()*canvas.width, y:Math.random()*canvas.height,
-        size:Math.random()*1.3+0.4, speedX:(Math.random()-0.5)*0.25, speedY:(Math.random()-0.5)*0.25,
-        opacity:Math.random()*0.35+0.1
-      });
-    }
-    function animP(){
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      pArr.forEach(p=>{
-        p.x+=p.speedX; p.y+=p.speedY;
-        if(p.x<0)p.x=canvas.width; if(p.x>canvas.width)p.x=0;
-        if(p.y<0)p.y=canvas.height; if(p.y>canvas.height)p.y=0;
-        ctx.beginPath(); ctx.arc(p.x,p.y,Math.max(0.1,p.size),0,Math.PI*2);
-        ctx.fillStyle=`rgba(251,191,36,${p.opacity})`; ctx.fill();
-      });
-      for(let i=0;i<pArr.length;i++) for(let j=i+1;j<pArr.length;j++){
-        const dx=pArr[i].x-pArr[j].x, dy=pArr[i].y-pArr[j].y, d=Math.sqrt(dx*dx+dy*dy);
-        if(d<115){ ctx.beginPath(); ctx.moveTo(pArr[i].x,pArr[i].y); ctx.lineTo(pArr[j].x,pArr[j].y);
-          ctx.strokeStyle=`rgba(251,191,36,${0.03*(1-d/115)})`; ctx.lineWidth=0.5; ctx.stroke(); }
-      }
-      requestAnimationFrame(animP);
-    }
+    const canvas=document.getElementById('particles'),ctx=canvas.getContext('2d');let pArr=[];
+    function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+    resizeCanvas();window.addEventListener('resize',resizeCanvas);
+    for(let i=0;i<55;i++)pArr.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,size:Math.random()*1.3+0.4,speedX:(Math.random()-0.5)*0.25,speedY:(Math.random()-0.5)*0.25,opacity:Math.random()*0.35+0.1});
+    function animP(){ctx.clearRect(0,0,canvas.width,canvas.height);pArr.forEach(p=>{p.x+=p.speedX;p.y+=p.speedY;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,Math.max(0.1,p.size),0,Math.PI*2);ctx.fillStyle=`rgba(251,191,36,${p.opacity})`;ctx.fill()});for(let i=0;i<pArr.length;i++)for(let j=i+1;j<pArr.length;j++){const dx=pArr[i].x-pArr[j].x,dy=pArr[i].y-pArr[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<115){ctx.beginPath();ctx.moveTo(pArr[i].x,pArr[i].y);ctx.lineTo(pArr[j].x,pArr[j].y);ctx.strokeStyle=`rgba(251,191,36,${0.03*(1-d/115)})`;ctx.lineWidth=0.5;ctx.stroke()}}requestAnimationFrame(animP)}
     animP();
 
     const mg=document.getElementById('mouseGlow');
-    document.addEventListener('mousemove',e=>{ mg.style.left=e.clientX+'px'; mg.style.top=e.clientY+'px'; });
-
+    document.addEventListener('mousemove',e=>{mg.style.left=e.clientX+'px';mg.style.top=e.clientY+'px'});
     const navbar=document.getElementById('navbar');
     window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>50));
+    const menuBtn=document.getElementById('menuBtn'),mobileMenu=document.getElementById('mobileMenu'),mOpen=document.getElementById('menuIconOpen'),mClose=document.getElementById('menuIconClose');
+    menuBtn.addEventListener('click',()=>{const o=mobileMenu.classList.toggle('open');mOpen.style.display=o?'none':'inline';mClose.style.display=o?'inline':'none'});
 
-    const menuBtn=document.getElementById('menuBtn');
-    const mobileMenu=document.getElementById('mobileMenu');
-    const mOpen=document.getElementById('menuIconOpen');
-    const mClose=document.getElementById('menuIconClose');
-    menuBtn.addEventListener('click',()=>{
-      const open=mobileMenu.classList.toggle('open');
-      mOpen.style.display=open?'none':'inline';
-      mClose.style.display=open?'inline':'none';
-    });
-
-    const searchInput = document.getElementById('domainSearch');
-    const domainCards = document.querySelectorAll('.domain-card');
-    const noResults = document.getElementById('noResults');
-
-    searchInput.addEventListener('input', function() {
-      const query = this.value.trim().toLowerCase();
-      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-      document.querySelector('.filter-pill[data-filter="all"]').classList.add('active');
-      let c = 0;
-      domainCards.forEach(card => {
-        const ext = card.dataset.ext || '';
-        if (!query || ext.includes(query)) { card.classList.remove('hidden-card'); c++; }
-        else { card.classList.add('hidden-card'); }
-      });
-      noResults.style.display = c === 0 ? 'block' : 'none';
-    });
-    searchInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') handleSearch(); });
-
-    function handleSearch() {
-      const query = searchInput.value.trim().toLowerCase();
-      if (!query) { showToast('Ketik nama domain yang ingin dicari'); return; }
-      let found = false;
-      domainCards.forEach(card => {
-        const ext = card.dataset.ext || '';
-        if (ext.includes(query)) { card.classList.remove('hidden-card'); found = true; }
-        else { card.classList.add('hidden-card'); }
-      });
-      if (found) { showToast('Domain ditemukan! Scroll ke bawah untuk melihat'); document.getElementById('domainGrid').scrollIntoView({ behavior:'smooth', block:'center' }); }
-      else { showToast('Ekstensi "' + query + '" belum tersedia. Hubungi kami untuk request.'); }
-      noResults.style.display = found ? 'none' : 'block';
-      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-    }
-
-    const filterPills = document.querySelectorAll('.filter-pill');
-    filterPills.forEach(pill => {
-      pill.addEventListener('click', function() {
-        filterPills.forEach(p => p.classList.remove('active'));
-        this.classList.add('active');
-        const filter = this.dataset.filter;
-        searchInput.value = '';
-        let c = 0;
-        domainCards.forEach(card => {
-          if (filter === 'all') { card.classList.remove('hidden-card'); c++; }
-          else {
-            const cats = (card.dataset.category || '').split(' ');
-            if (cats.includes(filter)) { card.classList.remove('hidden-card'); c++; }
-            else { card.classList.add('hidden-card'); }
-          }
-        });
-        noResults.style.display = c === 0 ? 'block' : 'none';
-      });
-    });
-
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      document.getElementById('toastMsg').textContent = msg;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 3000);
-    }
-
-    const rObs=new IntersectionObserver(e=>e.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('vis'); }),{threshold:0.08});
+    const searchInput=document.getElementById('domainSearch'),domainCards=document.querySelectorAll('.domain-card'),noResults=document.getElementById('noResults');
+    searchInput.addEventListener('input',function(){const q=this.value.trim().toLowerCase();document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));document.querySelector('.filter-pill[data-filter="all"]').classList.add('active');let c=0;domainCards.forEach(card=>{const ext=card.dataset.ext||'';if(!q||ext.includes(q)){card.classList.remove('hidden-card');c++}else{card.classList.add('hidden-card')}});noResults.style.display=c===0?'block':'none'});
+    searchInput.addEventListener('keydown',function(e){if(e.key==='Enter')handleSearch()});
+    function handleSearch(){const q=searchInput.value.trim().toLowerCase();if(!q){showToast('Ketik nama domain yang ingin dicari');return}let f=false;domainCards.forEach(card=>{const ext=card.dataset.ext||'';if(ext.includes(q)){card.classList.remove('hidden-card');f=true}else{card.classList.add('hidden-card')}});if(f){showToast('Domain ditemukan! Scroll ke bawah');document.getElementById('domainGrid').scrollIntoView({behavior:'smooth',block:'center'})}else{showToast('Ekstensi "'+q+'" belum tersedia.')}noResults.style.display=f?'none':'block';document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'))}
+    document.querySelectorAll('.filter-pill').forEach(pill=>{pill.addEventListener('click',function(){document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));this.classList.add('active');const f=this.dataset.filter;searchInput.value='';let c=0;domainCards.forEach(card=>{if(f==='all'){card.classList.remove('hidden-card');c++}else{const cats=(card.dataset.category||'').split(' ');if(cats.includes(f)){card.classList.remove('hidden-card');c++}else{card.classList.add('hidden-card')}}});noResults.style.display=c===0?'block':'none'})});
+    function showToast(msg){const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
+    const rObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('vis')}),{threshold:0.08});
     document.querySelectorAll('.reveal').forEach(el=>rObs.observe(el));
+    function toggleFaq(btn){const item=btn.parentElement,wasOpen=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));if(!wasOpen)item.classList.add('open')}
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
 
-    function toggleFaq(btn){
-      const item=btn.parentElement, wasOpen=item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
-      if(!wasOpen) item.classList.add('open');
-    }
+    /* ================================================
+       AI CHATBOT — GOOGLE GEMINI INTEGRATION
+    ================================================ */
 
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click',e=>{ e.preventDefault(); const t=document.querySelector(a.getAttribute('href')); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); });
-    });
+    // ⚠️ GANTI DENGAN API KEY KAMU SENDIRI
+    // Cara dapatkan: https://aistudio.google.com/apikey
+    // Gratis 15 request/menit, 1500 request/hari
+    const GEMINI_API_KEY = 'AIzaSyBwAC5S1O7VBBIkSiMVjgvTYgVhyAsaWf0';
 
-    /* ============================================
-       AI CHATBOT ENGINE
-    ============================================ */
+    const GEMINI_MODEL = 'gemini-2.0-flash';
 
-    // Database domain
-    const domainDB = [
-      { ext: 'my.id', price: 'Rp15.000', type: 'Indonesia', cat: 'budget' },
-      { ext: 'biz.id', price: 'Rp15.000', type: 'Indonesia', cat: 'budget' },
-      { ext: '.cloud', price: 'Rp40.000', type: 'Internasional', cat: 'trend' },
-      { ext: '.xyz', price: 'Rp45.000', type: 'Internasional', cat: 'international' },
-      { ext: '.mom', price: 'Rp55.000', type: 'Trending', cat: 'trend' },
-      { ext: '.lol', price: 'Rp55.000', type: 'Trending', cat: 'trend' },
-      { ext: 'web.id', price: 'Rp70.000', type: 'Indonesia', cat: 'id' },
-      { ext: '.com', price: 'Rp165.000', type: 'Internasional', cat: 'international' },
-      { ext: '.net', price: 'Rp265.000', type: 'Internasional', cat: 'international' },
-      { ext: '.id', price: 'Rp275.000', type: 'Indonesia', cat: 'id' }
-    ];
+    // System prompt — konteks lengkap tentang HyunkkCloud
+    const SYSTEM_PROMPT = `Kamu adalah "HyunkBot", asisten AI virtual untuk HyunkkCloud — penyedia layanan hosting dan domain dari Indonesia. Kamu ramah, singkat, dan to-the-point. Gunakan bahasa Indonesia yang santai tapi profesional.
 
-    // Knowledge base untuk chatbot
-    const knowledgeBase = [
-      {
-        keywords: ['harga', 'berapa', 'biaya', 'cost', 'price list', 'daftar harga'],
-        response: () => {
-          let list = domainDB.map(d => `<strong>${d.ext}</strong> — ${d.price}/tahun`).join('<br>');
-          return `Berikut daftar harga domain kami:<br><br>${list}<br><br>Semua domain sudah termasuk DNS Management, Cloudflare ready, dan aktif 1 tahun penuh.`;
-        }
-      },
-      {
-        keywords: ['murah', 'termurah', 'budget', 'hemat', 'paling murah'],
-        response: () => `Domain termurah kami adalah <strong>my.id</strong> dan <strong>biz.id</strong>, masing-masing hanya <strong>Rp15.000/tahun</strong>.<br><br>Kedua domain ini cocok untuk personal blog atau bisnis kecil. Fitur yang didapat sama lengkapnya dengan domain yang lebih mahal.`
-      },
-      {
-        keywords: ['com', '.com'],
-        response: () => `Domain <strong>.com</strong> kami jual seharga <strong>Rp165.000/tahun</strong>. Ini adalah ekstensi paling populer dan paling banyak dipesan.<br><br>Sudah termasuk: DNS Management, Cloudflare ready, Custom IP pointing, SSL gratis, dan akses panel penuh.`
-      },
-      {
-        keywords: ['id', '.id', 'indonesia'],
-        response: () => {
-          const idDomains = domainDB.filter(d => d.type === 'Indonesia');
-          let list = idDomains.map(d => `<strong>${d.ext}</strong> — ${d.price}/tahun`).join('<br>');
-          return `Domain Indonesia yang tersedia:<br><br>${list}<br><br>Domain .id biasanya butuh propagasi DNS 1-24 jam setelah aktifasi. Untuk my.id dan biz.id prosesnya lebih cepat.`;
-        }
-      },
-      {
-        keywords: ['perpanjang', 'renew', 'extend'],
-        response: () => `Domain yang kami jual <strong>aktif 1 tahun dan tidak bisa diperpanjang</strong> melalui kami.<br><br>Tapi tenang, kamu bisa:<br>1. Beli domain baru sebelum habis<br>2. Migrasikan ke registrar lain sebelum masa aktif berakhir<br><br>Kami sarankan untuk migrasi minimal 2 minggu sebelum expired.`
-      },
-      {
-        keywords: ['cloudflare', 'cdn', 'proxy'],
-        response: () => `Ya, <strong>semua domain kami bisa langsung dikoneksikan ke Cloudflare</strong>. Caranya:<br><br>1. Daftar/ login ke Cloudflare<br>2. Add site dengan domain kamu<br>3. Ganti nameserver sesuai yang diberikan Cloudflare<br>4. Tunggu propagasi (biasanya 1-24 jam)<br><br>Kami juga bisa bantu setup DNS-nya jika kamu bingung.`
-      },
-      {
-        keywords: ['dns', 'record', 'nameserver', 'ns'],
-        response: () => `Kamu mendapatkan <strong>akses penuh ke panel DNS management</strong>. Bisa mengatur:<br><br>• <strong>A Record</strong> — arahkan ke IP server<br>• <strong>CNAME Record</strong> — alias ke domain lain<br>• <strong>MX Record</strong> — untuk email<br>• <strong>TXT Record</strong> — verifikasi domain<br>• <strong>Nameserver</strong> — ganti ke Cloudflare dll<br><br>Panelnya user-friendly, mirip seperti panel registrar pada umumnya.`
-      },
-      {
-        keywords: ['ssl', 'https', 'secure', 'certificate'],
-        response: () => `SSL gratis bisa didapat melalui 2 cara:<br><br>1. <strong>Cloudflare</strong> — aktif otomatis saat domain dikoneksikan ke Cloudflare (mode Full atau Full Strict)<br>2. <strong>Let's Encrypt</strong> — bisa diinstall di server kamu via Certbot<br><br>Keduanya gratis dan recognized oleh browser.`
-      },
-      {
-        keywords: ['hosting', 'vps', 'server', 'connect', 'sambung'],
-        response: () => `Domain kami bisa dikoneksikan ke <strong>semua jenis hosting</strong>:<br><br>• Shared Hosting (cPanel, Plesk)<br>• VPS (bisa pakai VPS kami juga)<br>• Platform modern (Vercel, Netlify, Railway)<br>• Cloud (AWS, GCP, Azure)<br><br>Cukup atur A Record di DNS panel menuju IP server kamu. Kami bantu jika perlu.`
-      },
-      {
-        keywords: ['bayar', 'payment', 'pembayaran', 'metode', 'transfer', 'qris'],
-        response: () => `Kami menerima berbagai metode pembayaran:<br><br>• <strong>E-Wallet:</strong> QRIS, GoPay, OVO, Dana, ShopeePay<br>• <strong>Bank Transfer:</strong> BCA, BRI, Mandiri, BNI<br>• <strong>Pulsa:</strong> (dengan rate tertentu)<br><br>Detail pembayaran akan dikirim via WhatsApp setelah kamu konfirmasi order.`
-      },
-      {
-        keywords: ['order', 'beli', 'cara', 'proses', 'langkah'],
-        response: () => `Cara order domain:<br><br>1. <strong>Pilih domain</strong> dari daftar di halaman ini<br>2. <strong>Klik tombol Order</strong> — otomatis redirect ke WhatsApp<br>3. <strong>Konfirmasi</strong> nama domain yang diinginkan<br>4. <strong>Bayar</strong> sesuai metode yang dikirim<br>5. <strong>Domain aktif!</strong> Detail login dikirim via WA<br><br>Prosesnya cepat, biasanya aktif dalam hitungan menit.`
-      },
-      {
-        keywords: ['aktif', 'lama', 'waktu', 'proses aktifasi', 'cepat'],
-        response: () => `Proses aktifasi domain:<br><br>• <strong>Domain internasional</strong> (.com, .net, .xyz, dll): <strong>1-5 menit</strong><br>• <strong>Domain .id</strong> (PANDI): <strong>1-24 jam</strong> (karena registrasi ke PANDI)<br>• <strong>my.id / biz.id</strong>: biasanya lebih cepat, <strong>5-30 menit</strong><br><br>Setelah aktif, detail login panel langsung dikirim ke WhatsApp kamu.`
-      },
-      {
-        keywords: ['panel', 'akses', 'login', 'manage'],
-        response: () => `Ya, kamu mendapatkan <strong>akses penuh ke panel manajemen domain</strong>. Di panel ini kamu bisa:<br><br>• Mengatur DNS Record<br>• Mengubah Nameserver<br>• Melihat status domain<br>• Mengatur WHOIS info<br>• Lock/Unlock domain<br><br>Kredensial login dikirim via WhatsApp setelah domain aktif.`
-      },
-      {
-        keywords: ['my.id', 'biz.id', 'bedanya', 'perbedaan'],
-        response: () => `<strong>my.id</strong> dan <strong>biz.id</strong> secara teknis identik — sama-sama domain Indonesia dengan fitur yang sama lengkapnya.<br><br>Perbedaannya hanya di <strong>nuansa penggunaan</strong>:<br>• <strong>my.id</strong> → cocok untuk personal, portfolio, blog<br>• <strong>biz.id</strong> → cocok untuk bisnis, toko online, company<br><br>Harga keduanya sama: <strong>Rp15.000/tahun</strong>.`
-      },
-      {
-        keywords: ['trending', 'lol', 'mom', 'cloud'],
-        response: () => {
-          const trends = domainDB.filter(d => d.cat === 'trend');
-          let list = trends.map(d => `<strong>${d.ext}</strong> — ${d.price}/tahun`).join('<br>');
-          return `Domain trending yang sedang populer:<br><br>${list}<br><br>Domain ini unik dan eye-catching, cocok untuk project kreatif, startup, atau personal brand yang ingin beda dari yang lain.`
-        }
-      },
-      {
-        keywords: ['refund', 'garansi', 'uang kembali', 'cancel', 'batal'],
-        response: () => `Untuk domain, kami tidak memberikan <strong>refund</strong> setelah domain aktif karena domain sudah terdaftar atas nama kamu di registrar.<br><br>Tapi kami pastikan:<br>• Domain yang dikirim sesuai pesanan<br>• Bisa diakses dan dikelola melalui panel<br>• Support setup DNS jika ada kendala<br><br>Jika ada masalah teknis, hubungi kami langsung.`
-      },
-      {
-        keywords: ['rekomendasi', 'suggest', 'pilih mana', 'bantu pilih'],
-        response: () => `Tergantung kebutuhanmu:<br><br>• <strong>Personal/blog</strong> → <strong>my.id</strong> (Rp15.000)<br>• <strong>Bisnis</strong> → <strong>biz.id</strong> (Rp15.000) atau <strong>.com</strong> (Rp165.000)<br>• <strong>Project kreatif</strong> → <strong>.lol</strong> atau <strong>.mom</strong> (Rp55.000)<br>• <strong>Startup/tech</strong> → <strong>.cloud</strong> (Rp40.000) atau <strong>.xyz</strong> (Rp45.000)<br>• <strong>Professional</strong> → <strong>.com</strong> (Rp165.000) atau <strong>.net</strong> (Rp265.000)<br><br>Ceritakan lebih detail kebutuhanmu, aku bantu rekomendasikan yang paling pas!`
-      },
-      {
-        keywords: ['wa', 'whatsapp', 'kontak', 'hubungi', 'cs'],
-        response: () => `Kamu bisa menghubungi kami via:<br><br>• <strong>WhatsApp:</strong> <a href="https://wa.me/6282189822272" target="_blank" style="color:var(--amber);">082189822272</a><br>• <strong>Email:</strong> cahyobagaskoro03@gmail.com<br><br>Respon rata-rata <strong>kurang dari 5 menit</strong> pada jam operasional.`
-      },
-      {
-        keywords: ['halo', 'hai', 'hi', 'hello', 'hey', 'pagi', 'siang', 'sore', 'malam'],
-        response: () => {
-          const hour = new Date().getHours();
-          let greeting = hour < 11 ? 'Selamat pagi' : hour < 15 ? 'Selamat siang' : hour < 18 ? 'Selamat sore' : 'Selamat malam';
-          return `${greeting}! Ada yang bisa aku bantu terkait domain? Kamu bisa tanya tentang harga, cara order, DNS setup, atau rekomendasi domain.`;
-        }
-      },
-      {
-        keywords: ['makasih', 'thanks', 'terima kasih', 'thx', 'thank'],
-        response: () => `Sama-sama! Senang bisa membantu. Kalau ada pertanyaan lain seputar domain, jangan ragu tanya ya. Kami selalu siap bantu!`
-      },
-      {
-        keywords: ['other', 'layanan', 'hosting', 'vps', 'minecraft', 'premium', 'aplikasi'],
-        response: () => `Selain domain, kami juga menyediakan:<br><br>• <strong>Minecraft Hosting</strong> — mulai Rp15.000/bln<br>• <strong>VPS Server</strong> — mulai Rp55.000/bln<br>• <strong>Aplikasi Premium</strong> — mulai Rp1.000/akun<br><br>Kunjungi halaman <strong>Store</strong> untuk melihat semua layanan, atau tanya langsung ke aku di sini!`
-      }
-    ];
+INFORMASI DOMAIN (WAJIB HAFAL):
+- my.id → Rp15.000/tahun — Indonesia, cocok personal/blog
+- biz.id → Rp15.000/tahun — Indonesia, cocok bisnis
+- .cloud → Rp40.000/tahun — Internasional/Trending
+- .xyz → Rp45.000/tahun — Internasional
+- .mom → Rp55.000/tahun — Trending
+- .lol → Rp55.000/tahun — Trending
+- web.id → Rp70.000/tahun — Indonesia
+- .com → Rp165.000/tahun — Internasional (PALING LARIS)
+- .net → Rp265.000/tahun — Internasional
+- .id → Rp275.000/tahun — Indonesia (premium)
 
-    // Fallback response jika tidak ada yang cocok
-    const fallbackResponses = [
-      `Aku belum terlalu paham pertanyaan itu, tapi aku bisa bantu dengan topik seperti:<br><br>• <strong>Harga domain</strong><br>• <strong>Cara order</strong><br>• <strong>Setup DNS & Cloudflare</strong><br>• <strong>Rekomendasi domain</strong><br>• <strong>Metode pembayaran</strong><br><br>Coba tanya salah satunya, atau hubungi kami via WhatsApp untuk bantuan lebih lanjut.`,
-      `Hmm, pertanyaan itu di luar area aku. Tapi aku ahlinya soal domain! Coba tanya tentang harga, cara order, DNS setup, atau rekomendasi domain ya.`,
-      `Maaf, aku belum bisa menjawab itu. Untuk pertanyaan spesifik, silakan hubungi kami langsung via <a href="https://wa.me/6282189822272" target="_blank" style="color:var(--amber);">WhatsApp</a>. Untuk pertanyaan seputar domain, aku siap bantu!`
-    ];
+SETIAP DOMAIN SUDAH TERMASUK:
+- Aktif 1 TAHUN penuh
+- DNS Management (A, CNAME, MX, TXT record)
+- Cloudflare Ready (bisa langsung dikoneksikan)
+- Custom IP Pointing
+- SSL Gratis (via Cloudflare atau Let's Encrypt)
+- Akses penuh panel manajemen domain
+- Support 24/7 via WhatsApp
 
-    // Chat state
+KETENTUAN PENTING:
+- Domain TIDAK BISA diperpanjang melalui kami setelah 1 tahun
+- Bisa migrasi ke registrar lain sebelum expired
+- Proses aktifasi: domain internasional 1-5 menit, domain .id (PANDI) 1-24 jam
+- Tidak ada refund setelah domain aktif
+
+METODE PEMBAYARAN:
+- E-Wallet: QRIS, GoPay, OVO, Dana, ShopeePay
+- Bank Transfer: BCA, BRI, Mandiri, BNI
+- Pulsa (dengan rate tertentu)
+
+LAYANAN LAIN HYUNKCLOUD:
+- Minecraft Hosting — mulai Rp15.000/bulan (Java & Bedrock, Pterodactyl Panel)
+- VPS Server — mulai Rp55.000/bulan (AMD EPYC, SSD NVMe, Singapore)
+- Aplikasi Premium — mulai Rp1.000/akun (MC Account, GamePass, dll)
+
+KONTAK:
+- WhatsApp: 082189822272
+- Email: cahyobagaskoro03@gmail.com
+- Website: HyunkkCloud
+
+ATURAN JAWABAN:
+1. Jika ditanya harga domain, berikan harga yang tepat dari daftar di atas
+2. Jika ditanya di luar topik domain/hosting HyunkkCloud, jawab singkat lalu arahkan kembali ke topik domain
+3. Gunakan format yang mudah dibaca: bullet point, bold untuk harga/nama domain
+4. Jika user mau order, arahkan ke WhatsApp 082189822272
+5. Jangan pernah invent harga atau fitur yang tidak ada di daftar di atas
+6. Jangan sebutkan kamu menggunakan Gemini atau Google AI
+7. Jawaban boleh pakai HTML sederhana: <strong>, <br>, <ul><li>, <a href="...">
+8. JANGAN gunakan markdown (no **, no ##, no -). Gunakan HTML saja.`;
+
+    // Riwayat percakapan untuk konteks
+    let conversationHistory = [];
     let chatOpen = false;
-    let chatHistory = [];
     let isTyping = false;
     let firstOpen = true;
+    let apiAvailable = null; // null = belum dicek, true = bisa, false = gagal
 
-    // Elemen DOM
-    const chatFab = document.getElementById('chatFab');
-    const chatWindow = document.getElementById('chatWindow');
-    const chatMessages = document.getElementById('chatMessages');
-    const chatQuickReplies = document.getElementById('chatQuickReplies');
-    const chatInput = document.getElementById('chatInput');
-    const chatSendBtn = document.getElementById('chatSendBtn');
-    const chatBadge = document.getElementById('chatBadge');
-    const fabIconOpen = document.getElementById('fabIconOpen');
-    const fabIconClose = document.getElementById('fabIconClose');
+    const chatFab=document.getElementById('chatFab'),chatWindow=document.getElementById('chatWindow'),
+          chatMessages=document.getElementById('chatMessages'),chatQuickReplies=document.getElementById('chatQuickReplies'),
+          chatInput=document.getElementById('chatInput'),chatSendBtn=document.getElementById('chatSendBtn'),
+          chatBadge=document.getElementById('chatBadge'),fabIconOpen=document.getElementById('fabIconOpen'),
+          fabIconClose=document.getElementById('fabIconClose'),chatStatus=document.getElementById('chatStatus');
 
-    // Toggle chat
-    function toggleChat() {
-      chatOpen = !chatOpen;
-      chatWindow.classList.toggle('open', chatOpen);
-      chatFab.classList.toggle('open', chatOpen);
-      fabIconOpen.style.display = chatOpen ? 'none' : 'inline';
-      fabIconClose.style.display = chatOpen ? 'inline' : 'none';
-
-      if (chatOpen) {
-        chatBadge.style.display = 'none';
-        if (firstOpen) {
-          firstOpen = false;
-          initChat();
-        }
-        setTimeout(() => chatInput.focus(), 350);
-      }
+    function toggleChat(){
+      chatOpen=!chatOpen;
+      chatWindow.classList.toggle('open',chatOpen);
+      chatFab.classList.toggle('open',chatOpen);
+      fabIconOpen.style.display=chatOpen?'none':'inline';
+      fabIconClose.style.display=chatOpen?'inline':'none';
+      if(chatOpen){chatBadge.style.display='none';if(firstOpen){firstOpen=false;initChat()}setTimeout(()=>chatInput.focus(),350)}
     }
 
-    // Inisialisasi chat
-    function initChat() {
-      chatHistory = [];
-      chatMessages.innerHTML = '';
-      const hour = new Date().getHours();
-      let greeting = hour < 11 ? 'Selamat pagi' : hour < 15 ? 'Selamat siang' : hour < 18 ? 'Selamat sore' : 'Selamat malam';
-
-      addBotMessage(`${greeting}! Aku <strong>HyunkBot</strong>, asisten virtual HyunkkCloud. Aku bisa bantu kamu soal domain — mulai dari harga, cara order, setup DNS, hingga rekomendasi domain yang pas.<br><br>Apa yang ingin kamu tanyakan?`);
+    function initChat(){
+      conversationHistory=[];
+      chatMessages.innerHTML='';
+      const h=new Date().getHours();
+      const g=h<11?'Selamat pagi':h<15?'Selamat siang':h<18?'Selamat sore':'Selamat malam';
+      addBotMessage(`${g}! Aku <strong>HyunkBot</strong>, asisten AI HyunkkCloud. Aku bisa bantu soal domain — harga, rekomendasi, cara order, setup DNS, dan lainnya.<br><br>Apa yang ingin kamu tanyakan?`);
       showQuickReplies([
-        { text: 'Daftar harga', query: 'berapa harga semua domain' },
-        { text: 'Domain termurah', query: 'domain termurah' },
-        { text: 'Cara order', query: 'cara order domain' },
-        { text: 'Rekomendasi domain', query: 'rekomendasi domain untuk saya' }
+        {text:'Daftar harga',query:'Berapa harga semua domain?'},
+        {text:'Domain termurah',query:'Domain termurah apa?'},
+        {text:'Cara order',query:'Cara order domain gimana?'},
+        {text:'Rekomendasi domain',query:'Rekomendasikan domain untuk saya, saya butuh untuk bisnis kecil online'}
       ]);
     }
 
-    // Tambah pesan bot
-    function addBotMessage(html) {
-      const time = getTimeStr();
-      const msgHTML = `
-        <div class="chat-msg bot">
-          <div class="chat-msg-avatar"><i class="fas fa-robot"></i></div>
-          <div>
-            <div class="chat-bubble">${html}</div>
-            <div class="chat-msg-time">${time}</div>
-          </div>
-        </div>`;
-      chatMessages.insertAdjacentHTML('beforeend', msgHTML);
+    function addBotMessage(html){
+      const t=getTimeStr();
+      chatMessages.insertAdjacentHTML('beforeend',`<div class="chat-msg bot"><div class="chat-msg-avatar"><i class="fas fa-robot"></i></div><div><div class="chat-bubble">${html}</div><div class="chat-msg-time">${t}</div></div></div>`);
       scrollChat();
     }
 
-    // Tambah pesan user
-    function addUserMessage(text) {
-      const time = getTimeStr();
-      const msgHTML = `
-        <div class="chat-msg user">
-          <div class="chat-msg-avatar"><i class="fas fa-user"></i></div>
-          <div>
-            <div class="chat-bubble">${escapeHtml(text)}</div>
-            <div class="chat-msg-time">${time}</div>
-          </div>
-        </div>`;
-      chatMessages.insertAdjacentHTML('beforeend', msgHTML);
+    function addUserMessage(text){
+      const t=getTimeStr();
+      chatMessages.insertAdjacentHTML('beforeend',`<div class="chat-msg user"><div class="chat-msg-avatar"><i class="fas fa-user"></i></div><div><div class="chat-bubble">${escapeHtml(text)}</div><div class="chat-msg-time">${t}</div></div></div>`);
       scrollChat();
     }
 
-    // Typing indicator
-    function showTyping() {
-      isTyping = true;
-      chatSendBtn.disabled = true;
-      const typingHTML = `
-        <div class="chat-typing" id="typingIndicator">
-          <div class="chat-msg-avatar" style="background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#060a10; width:30px; height:30px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; flex-shrink:0;">
-            <i class="fas fa-robot"></i>
-          </div>
-          <div class="typing-dots"><span></span><span></span><span></span></div>
-        </div>`;
-      chatMessages.insertAdjacentHTML('beforeend', typingHTML);
+    function showTyping(){
+      isTyping=true;chatSendBtn.disabled=true;
+      chatMessages.insertAdjacentHTML('beforeend',`<div class="chat-typing" id="typingIndicator"><div class="chat-msg-avatar" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:#060a10;width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;"><i class="fas fa-robot"></i></div><div class="typing-dots"><span></span><span></span><span></span></div></div>`);
       scrollChat();
     }
 
-    function hideTyping() {
-      isTyping = false;
-      chatSendBtn.disabled = false;
-      const el = document.getElementById('typingIndicator');
-      if (el) el.remove();
+    function hideTyping(){
+      isTyping=false;chatSendBtn.disabled=false;
+      const el=document.getElementById('typingIndicator');if(el)el.remove();
     }
 
-    // Quick replies
-    function showQuickReplies(replies) {
-      chatQuickReplies.innerHTML = '';
-      replies.forEach(r => {
-        const btn = document.createElement('button');
-        btn.className = 'quick-reply-btn';
-        btn.textContent = r.text;
-        btn.onclick = () => {
-          chatQuickReplies.innerHTML = '';
-          processInput(r.query);
-        };
+    function showQuickReplies(replies){
+      chatQuickReplies.innerHTML='';
+      replies.forEach(r=>{
+        const btn=document.createElement('button');btn.className='quick-reply-btn';btn.textContent=r.text;
+        btn.onclick=()=>{chatQuickReplies.innerHTML='';processInput(r.query)};
         chatQuickReplies.appendChild(btn);
       });
     }
 
-    // Proses input dan cari jawaban
-    function processInput(text) {
+    function clearChat(){initChat()}
+
+    function scrollChat(){requestAnimationFrame(()=>{chatMessages.scrollTop=chatMessages.scrollHeight})}
+    function getTimeStr(){const n=new Date();return String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')}
+    function escapeHtml(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+
+    // === CORE: Kirim pesan & dapat jawaban dari Gemini ===
+    async function processInput(text){
       addUserMessage(text);
       showTyping();
+      chatQuickReplies.innerHTML='';
 
-      // Delay untuk efek "berpikir"
-      const delay = 600 + Math.random() * 800;
-      setTimeout(() => {
+      // Tambah ke riwayat
+      conversationHistory.push({role:'user',parts:[{text}]});
+
+      try {
+        const response = await callGeminiAPI();
         hideTyping();
-        const response = findResponse(text);
-        addBotMessage(response.text);
 
-        // Tampilkan quick replies berdasarkan konteks
-        if (response.followUp) {
-          showQuickReplies(response.followUp);
+        if(response.success){
+          apiAvailable=true;
+          updateStatus('online');
+          addBotMessage(response.text);
+          conversationHistory.push({role:'model',parts:[{text:response.rawText}]});
+
+          // Smart follow-up berdasarkan konteks jawaban
+          const followUps = generateFollowUps(text, response.rawText);
+          if(followUps) showQuickReplies(followUps);
+        } else {
+          // API gagal — gunakan fallback lokal
+          apiAvailable=false;
+          updateStatus('fallback');
+          const fallbackText = getLocalFallback(text);
+          addBotMessage(fallbackText + `<br><br><span class="chat-error-badge"><i class="fas fa-triangle-exclamation"></i> Mode offline — AI Gemini tidak tersedia</span>`);
+          showQuickReplies([
+            {text:'Coba lagi',query:text},
+            {text:'Hubungi WA',query:'Saya ingin hubungi via WhatsApp'},
+            {text:'Daftar harga',query:'Berapa harga semua domain?'}
+          ]);
         }
-      }, delay);
+      } catch(err){
+        hideTyping();
+        apiAvailable=false;
+        updateStatus('fallback');
+        const fallbackText = getLocalFallback(text);
+        addBotMessage(fallbackText + `<br><br><span class="chat-error-badge"><i class="fas fa-triangle-exclamation"></i> Mode offline</span>`);
+        showQuickReplies([
+          {text:'Coba lagi',query:text},
+          {text:'Hubungi WA',query:'Saya ingin hubungi via WhatsApp'}
+        ]);
+      }
+
+      // Batasi riwayat agar tidak kebesaran (simpan 20 pesan terakhir)
+      if(conversationHistory.length > 20){
+        conversationHistory = conversationHistory.slice(-20);
+      }
     }
 
-    // Cari jawaban dari knowledge base
-    function findResponse(input) {
-      const lower = input.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-      let bestMatch = null;
-      let bestScore = 0;
+    // === Panggil Gemini API ===
+    async function callGeminiAPI(){
+      if(!GEMINI_API_KEY || GEMINI_API_KEY === 'AIzaSyBwAC5S1O7VBBIkSiMVjgvTYgVhyAsaWf0'){
+        return {success:false, error:'No API key'};
+      }
 
-      for (const entry of knowledgeBase) {
-        let score = 0;
-        for (const kw of entry.keywords) {
-          const kwNorm = kw.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-          if (lower.includes(kwNorm)) {
-            // Keyword lebih panjang = score lebih tinggi
-            score += kwNorm.length;
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+
+      const body = {
+        system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+        contents: conversationHistory.slice(-16), // Kirim 8 pasang terakhir
+        generationConfig: {
+          temperature: 0.7,
+          topP: 0.9,
+          maxOutputTokens: 800,
+        },
+        safetySettings: [
+          {category:'HARM_CATEGORY_HARASSMENT',threshold:'BLOCK_NONE'},
+          {category:'HARM_CATEGORY_HATE_SPEECH',threshold:'BLOCK_NONE'},
+          {category:'HARM_CATEGORY_SEXUALLY_EXPLICIT',threshold:'BLOCK_MEDIUM_AND_ABOVE'},
+          {category:'HARM_CATEGORY_DANGEROUS_CONTENT',threshold:'BLOCK_NONE'}
+        ]
+      };
+
+      const controller = new AbortController();
+      const timeout = setTimeout(()=>controller.abort(), 12000); // 12 detik timeout
+
+      try {
+        const res = await fetch(url, {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(body),
+          signal:controller.signal
+        });
+        clearTimeout(timeout);
+
+        if(!res.ok){
+          const errData = await res.json().catch(()=>({}));
+          console.warn('Gemini API error:', res.status, errData);
+          return {success:false, error:`HTTP ${res.status}`};
+        }
+
+        const data = await res.json();
+
+        if(data.candidates && data.candidates[0]){
+          const candidate = data.candidates[0];
+          if(candidate.content && candidate.content.parts && candidate.content.parts[0]){
+            const rawText = candidate.content.parts[0].text;
+            // Konversi markdown sederhana ke HTML
+            const htmlText = markdownToHtml(rawText);
+            return {success:true, text:htmlText, rawText:rawText};
+          }
+          if(candidate.finishReason === 'SAFETY'){
+            return {success:false, error:'Safety blocked'};
           }
         }
-        if (score > bestScore) {
-          bestScore = score;
-          bestMatch = entry;
+        return {success:false, error:'No response'};
+
+      } catch(err){
+        clearTimeout(timeout);
+        if(err.name==='AbortError') return {success:false, error:'Timeout'};
+        return {success:false, error:err.message};
+      }
+    }
+
+    // === Konversi markdown ringan ke HTML ===
+    function markdownToHtml(text){
+      return text
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/`(.+?)`/g, '<code>$1</code>')
+        .replace(/^### (.+)$/gm, '<strong style="font-size:0.95rem;">$1</strong>')
+        .replace(/^## (.+)$/gm, '<strong style="font-size:1rem;">$1</strong>')
+        .replace(/^[-•] (.+)$/gm, '<li>$1</li>')
+        .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>')
+        .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
+        .replace(/\n/g, '<br>');
+    }
+
+    // === Update status bar ===
+    function updateStatus(mode){
+      const statusEl = document.getElementById('chatStatus');
+      if(mode==='online'){
+        statusEl.innerHTML='<span class="status-dot"></span> Online — Gemini AI aktif';
+        statusEl.style.color='var(--green)';
+      } else if(mode==='fallback'){
+        statusEl.innerHTML='<i class="fas fa-wifi" style="font-size:0.6rem;"></i> Mode offline — jawaban lokal';
+        statusEl.style.color='var(--amber)';
+      } else {
+        statusEl.innerHTML='<span class="status-dot" style="background:var(--amber);"></span> Mencari koneksi...';
+        statusEl.style.color='var(--amber)';
+      }
+    }
+
+    // === Fallback lokal jika API tidak tersedia ===
+    function getLocalFallback(input){
+      const lower = input.toLowerCase();
+      if(lower.includes('harga')||lower.includes('berapa')||lower.includes('daftar')){
+        return `Berikut daftar harga domain kami:<br><br><strong>my.id</strong> — Rp15.000/tahun<br><strong>biz.id</strong> — Rp15.000/tahun<br><strong>.cloud</strong> — Rp40.000/tahun<br><strong>.xyz</strong> — Rp45.000/tahun<br><strong>.mom</strong> — Rp55.000/tahun<br><strong>.lol</strong> — Rp55.000/tahun<br><strong>web.id</strong> — Rp70.000/tahun<br><strong>.com</strong> — Rp165.000/tahun<br><strong>.net</strong> — Rp265.000/tahun<br><strong>.id</strong> — Rp275.000/tahun<br><br>Semua termasuk DNS, Cloudflare, SSL gratis, dan aktif 1 tahun.`;
+      }
+      if(lower.includes('murah')||lower.includes('termurah')){
+        return `Domain termurah: <strong>my.id</strong> dan <strong>biz.id</strong>, masing-masing <strong>Rp15.000/tahun</strong>. Fitur lengkap sama seperti domain lainnya.`;
+      }
+      if(lower.includes('order')||lower.includes('beli')||lower.includes('cara')){
+        return `Cara order: <strong>1.</strong> Pilih domain → <strong>2.</strong> Klik Order (redirect ke WA) → <strong>3.</strong> Konfirmasi & bayar → <strong>4.</strong> Domain aktif! Prosesnya cepat, hitungan menit.`;
+      }
+      if(lower.includes('wa')||lower.includes('whatsapp')||lower.includes('kontak')){
+        return `Hubungi kami via <strong>WhatsApp: 082189822272</strong> atau email <strong>cahyobagaskoro03@gmail.com</strong>. Respon kurang dari 5 menit.`;
+      }
+      return `Maaf, aku sedang dalam mode offline dan jawaban terbatas. Untuk pertanyaan lengkap, hubungi kami via <a href="https://wa.me/6282189822272" target="_blank" style="color:var(--accent);">WhatsApp</a> atau coba lagi nanti saat AI sudah online.`;
+    }
+
+    // === Smart follow-up berdasarkan konteks ===
+    function generateFollowUps(userText, botText){
+      const lower = (userText+' '+botText).toLowerCase();
+      const suggestions = [];
+
+      if(lower.includes('harga') && !lower.includes('termurah')){
+        suggestions.push({text:'Domain termurah', query:'Domain termurah apa?'});
+      }
+      if(lower.includes('termurah') || lower.includes('budget')){
+        suggestions.push({text:'Info my.id', query:'Ceritakan tentang domain my.id'});
+      }
+      if(lower.includes('.com')){
+        suggestions.push({text:'Domain Indonesia', query:'Domain .id Indonesia ada apa saja?'});
+      }
+      if(lower.includes('order') || lower.includes('beli')){
+        suggestions.push({text:'Metode bayar', query:'Metode pembayaran apa saja yang diterima?'});
+        suggestions.push({text:'Lama aktifasi', query:'Berapa lama proses aktifasi domain?'});
+      }
+      if(lower.includes('dns') || lower.includes('cloudflare')){
+        suggestions.push({text:'Info SSL', query:'Cara dapat SSL gratis?'});
+      }
+      if(lower.includes('rekomendasi') || lower.includes('pilih')){
+        suggestions.push({text:'Lihat semua harga', query:'Tampilkan daftar harga semua domain'});
+        suggestions.push({text:'Order via WA', query:'Saya ingin langsung order via WhatsApp'});
+      }
+
+      // Selalu tampilkan minimal 2
+      if(suggestions.length < 2){
+        if(!suggestions.some(s=>s.text.includes('harga'))){
+          suggestions.push({text:'Daftar harga', query:'Berapa harga semua domain?'});
+        }
+        if(!suggestions.some(s=>s.text.includes('WA'))){
+          suggestions.push({text:'Hubungi WA', query:'Saya ingin hubungi via WhatsApp'});
         }
       }
 
-      if (bestMatch && bestScore > 0) {
-        const text = bestMatch.response();
-        const followUp = getFollowUp(bestMatch.keywords[0]);
-        return { text, followUp };
-      }
-
-      // Fallback
-      const fbText = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
-      return {
-        text: fbText,
-        followUp: [
-          { text: 'Daftar harga', query: 'berapa harga semua domain' },
-          { text: 'Cara order', query: 'cara order domain' },
-          { text: 'Rekomendasi', query: 'rekomendasi domain' },
-          { text: 'Hubungi WA', query: 'kontak wa' }
-        ]
-      };
+      return suggestions.slice(0, 4);
     }
 
-    // Follow-up quick replies berdasarkan topik
-    function getFollowUp(topic) {
-      const map = {
-        'harga': [
-          { text: 'Domain termurah', query: 'domain termurah' },
-          { text: 'Info .com', query: 'harga domain .com' },
-          { text: 'Domain Indonesia', query: 'domain .id indonesia' },
-          { text: 'Domain trending', query: 'domain trending' }
-        ],
-        'murah': [
-          { text: 'Beli my.id', query: 'saya mau beli my.id' },
-          { text: 'Info lengkap my.id', query: 'info domain my.id' },
-          { text: 'Cara order', query: 'cara order domain' }
-        ],
-        'com': [
-          { text: 'Beli .com', query: 'saya mau order domain .com' },
-          { text: 'Domain lain', query: 'daftar harga domain' },
-          { text: 'Setup DNS', query: 'cara setup dns domain .com' }
-        ],
-        'perpanjang': [
-          { text: 'Cara migrasi', query: 'bagaimana cara migrasi domain' },
-          { text: 'Hubungi WA', query: 'kontak whatsapp' }
-        ],
-        'cloudflare': [
-          { text: 'Setup DNS', query: 'cara setup dns record' },
-          { text: 'Info SSL', query: 'cara dapat ssl gratis' },
-          { text: 'Konek ke hosting', query: 'cara sambung domain ke hosting' }
-        ],
-        'dns': [
-          { text: 'Cloudflare setup', query: 'cara konek cloudflare' },
-          { text: 'Info SSL', query: 'cara dapat ssl gratis' },
-          { text: 'Konek ke VPS', query: 'cara sambung domain ke vps' }
-        ],
-        'order': [
-          { text: 'Metode bayar', query: 'metode pembayaran' },
-          { text: 'Lama aktifasi', query: 'berapa lama proses aktifasi' },
-          { text: 'Daftar harga', query: 'daftar harga domain' }
-        ],
-        'bayar': [
-          { text: 'Cara order', query: 'cara order domain' },
-          { text: 'Daftar harga', query: 'daftar harga domain' }
-        ],
-        'rekomendasi': [
-          { text: 'Domain termurah', query: 'domain termurah' },
-          { text: 'Domain trending', query: 'domain trending lol mom cloud' },
-          { text: 'Beli .com', query: 'info domain .com' }
-        ],
-        'trending': [
-          { text: 'Info .lol', query: 'harga domain .lol' },
-          { text: 'Info .mom', query: 'harga domain .mom' },
-          { text: 'Info .cloud', query: 'harga domain .cloud' }
-        ],
-        'halo': [
-          { text: 'Daftar harga', query: 'berapa harga semua domain' },
-          { text: 'Rekomendasi', query: 'rekomendasi domain untuk saya' },
-          { text: 'Cara order', query: 'cara order domain' }
-        ]
-      };
-      return map[topic] || [
-        { text: 'Daftar harga', query: 'berapa harga semua domain' },
-        { text: 'Cara order', query: 'cara order domain' },
-        { text: 'Rekomendasi', query: 'rekomendasi domain' }
-      ];
-    }
-
-    // Send message dari input
-    function sendMessage() {
-      const text = chatInput.value.trim();
-      if (!text || isTyping) return;
-      chatInput.value = '';
-      chatQuickReplies.innerHTML = '';
+    function sendMessage(){
+      const text=chatInput.value.trim();
+      if(!text||isTyping)return;
+      chatInput.value='';
       processInput(text);
-    }
-
-    // Clear chat
-    function clearChat() {
-      initChat();
-    }
-
-    // Scroll ke bawah
-    function scrollChat() {
-      requestAnimationFrame(() => {
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-      });
-    }
-
-    // Waktu saat ini
-    function getTimeStr() {
-      const now = new Date();
-      return String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
-    }
-
-    // Escape HTML
-    function escapeHtml(str) {
-      const div = document.createElement('div');
-      div.textContent = str;
-      return div.innerHTML;
     }
   </script>
 
   <!-- Firebase Auth -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
-    const firebaseConfig = {
-      apiKey:"AIzaSyB2YKgC5EdKYFPaU-4uavFABtYEupvang4",
-      authDomain:"loginpage-2e5aa.firebaseapp.com",
-      projectId:"loginpage-2e5aa",
-      appId:"1:676993662276:web:d8e12ca898fb4c0364eb11"
-    };
-    const app=initializeApp(firebaseConfig);
-    const auth=getAuth(app);
-    onAuthStateChanged(auth,(user)=>{ if(!user) window.location.href="login.html"; });
+    import{initializeApp}from"https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+    import{getAuth,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+    const firebaseConfig={apiKey:"AIzaSyB2YKgC5EdKYFPaU-4uavFABtYEupvang4",authDomain:"loginpage-2e5aa.firebaseapp.com",projectId:"loginpage-2e5aa",appId:"1:676993662276:web:d8e12ca898fb4c0364eb11"};
+    const app=initializeApp(firebaseConfig);const auth=getAuth(app);
+    onAuthStateChanged(auth,(user)=>{if(!user)window.location.href="login.html"});
   </script>
 
 </body>

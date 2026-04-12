@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic (Milan) - HYUNK STORE</title>
+  <link rel="icon" type="image/png" href="images/icon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --bg:#060a10;--bg-card:#0c1220;--fg:#e8ecf2;--muted:#5a6a80;
+      --accent:#00c4ff;--accent2:#00a8e0;--accent-dim:rgba(0,196,255,0.15);
+      --border:#152035;--green:#34d399;--cyan:#00c4ff;--purple:#a78bfa;--amber:#fbbf24;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--fg);overflow-x:hidden;}
+    .font-mono{font-family:'JetBrains Mono',monospace;}
+    .grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(0,196,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,196,255,0.02) 1px,transparent 1px);background-size:60px 60px;z-index:0;pointer-events:none;}
+    .scanline{position:fixed;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px);}
+    .orb{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;animation:orbFloat 14s ease-in-out infinite alternate;}
+    .orb-1{width:450px;height:450px;background:radial-gradient(circle,rgba(0,196,255,0.1),transparent 70%);top:-130px;left:-100px;}
+    .orb-2{width:350px;height:350px;background:radial-gradient(circle,rgba(0,196,255,0.06),transparent 70%);bottom:8%;right:-80px;animation-delay:-5s;}
+    @keyframes orbFloat{0%{transform:translate(0,0) scale(1);}50%{transform:translate(25px,-35px) scale(1.08);}100%{transform:translate(-15px,20px) scale(.95);}}
+    #particles{position:fixed;inset:0;z-index:0;pointer-events:none;}
+    .mouse-glow{position:fixed;width:450px;height:450px;border-radius:50%;background:radial-gradient(circle,rgba(0,196,255,0.04),transparent 60%);pointer-events:none;z-index:1;transform:translate(-50%,-50%);transition:left .35s ease-out,top .35s ease-out;}
+    .navbar{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px);background:rgba(6,10,16,0.82);border-bottom:1px solid var(--border);transition:box-shadow .3s;}
+    .navbar.scrolled{box-shadow:0 4px 30px rgba(0,0,0,0.5);}
+    .nav-link{position:relative;color:var(--muted);transition:color .3s;text-decoration:none;font-size:.9rem;}
+    .nav-link:hover{color:var(--accent);}
+    .nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);transition:width .3s;}
+    .nav-link:hover::after{width:100%;}
+    .nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:.88rem;transition:color .3s;}
+    .nav-back:hover{color:var(--accent);}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:999px;border:1px solid rgba(0,196,255,0.2);background:rgba(0,196,255,0.05);font-size:.8rem;color:var(--accent);}
+    .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulseDot 2s ease-in-out infinite;}
+    @keyframes pulseDot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(.6);}}
+    .hero-title{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;line-height:1.1;letter-spacing:-.03em;}
+    .hero-title .accent-text{background:linear-gradient(135deg,var(--cyan),#0090cc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+    /* === MAIN CARD === */
+    .main-card{background:var(--bg-card);border:1px solid var(--border);border-radius:24px;padding:40px 36px;position:relative;overflow:hidden;max-width:520px;margin:0 auto;}
+    .main-card::before{content:'';position:absolute;inset:0;border-radius:24px;padding:1px;background:linear-gradient(160deg,transparent 30%,rgba(0,196,255,0.2) 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;}
+    .cpu-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:8px;font-size:.72rem;font-weight:600;letter-spacing:.04em;background:rgba(0,196,255,0.08);color:var(--accent);border:1px solid rgba(0,196,255,0.15);}
+    .card-name{font-size:1.8rem;font-weight:700;margin-top:8px;}
+    .card-desc{font-size:.85rem;color:var(--muted);margin-top:8px;line-height:1.6;}
+
+    /* === RAM SELECTOR === */
+    .ram-label{font-size:.72rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:28px;margin-bottom:10px;}
+    .ram-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;}
+    .ram-btn{padding:10px 4px;border-radius:10px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.04);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .25s;text-align:center;}
+    .ram-btn:hover{border-color:rgba(255,255,255,0.1);color:var(--fg);background:rgba(255,255,255,0.03);}
+    .ram-btn.active{border-color:rgba(0,196,255,0.4);color:var(--accent);background:rgba(0,196,255,0.08);box-shadow:0 0 15px rgba(0,196,255,0.08);}
+    .ram-btn .ram-unit{display:block;font-size:.55rem;color:var(--muted);font-weight:400;margin-top:2px;text-transform:uppercase;letter-spacing:.05em;}
+    .ram-btn.active .ram-unit{color:rgba(0,196,255,0.6);}
+
+    /* === SPECS === */
+    .dyn-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px;padding:16px;background:rgba(0,0,0,0.25);border-radius:14px;border:1px solid rgba(255,255,255,0.03);}
+    .dyn-spec-val{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:700;color:var(--fg);transition:all .3s;}
+    .dyn-spec-label{font-size:.62rem;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.05em;}
+
+    /* === PRICE === */
+    .dyn-price{margin-top:24px;display:flex;align-items:baseline;gap:4px;}
+    .dyn-price .currency{font-size:.85rem;color:var(--muted);}
+    .dyn-price .amount{font-family:'JetBrains Mono',monospace;font-size:2.2rem;font-weight:700;color:var(--accent);transition:all .3s;}
+    .dyn-price .period{font-size:.78rem;color:var(--muted);}
+    .price-note{font-size:.68rem;color:rgba(90,106,128,0.6);margin-top:4px;font-family:'JetBrains Mono',monospace;}
+    @keyframes pricePop{0%{transform:scale(1);}50%{transform:scale(1.06);}100%{transform:scale(1);}}
+    .price-pop{animation:pricePop .3s ease-out;}
+
+    /* === FEATURES === */
+    .tier-features{margin-top:20px;display:flex;flex-direction:column;gap:7px;}
+    .tier-features li{display:flex;align-items:center;gap:10px;font-size:.83rem;color:#8a96a8;list-style:none;}
+    .tier-features li i{color:var(--accent);font-size:.6rem;width:17px;height:17px;display:flex;align-items:center;justify-content:center;background:rgba(0,196,255,0.1);border-radius:50%;flex-shrink:0;}
+
+    .btn-buy{width:100%;margin-top:24px;padding:15px;border:none;border-radius:14px;font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px;}
+    .btn-buy.primary{background:linear-gradient(135deg,#00c4ff,#0090cc);color:#060a10;}
+    .btn-buy.primary:hover{box-shadow:0 0 30px rgba(0,196,255,0.3);transform:translateY(-2px);}
+    .btn-buy:active{transform:scale(.97)!important;}
+    .btn-ghost{width:100%;margin-top:10px;padding:13px;border:1px solid var(--border);border-radius:14px;background:none;font-family:'Space Grotesk',sans-serif;font-size:.88rem;font-weight:500;cursor:pointer;color:var(--muted);transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;}
+    .btn-ghost:hover{border-color:rgba(52,211,153,0.25);color:var(--fg);}
+
+    /* === FAQ === */
+    .faq-item{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .35s;}
+    .faq-item:hover{border-color:rgba(255,255,255,0.08);}
+    .faq-item.open{border-color:rgba(0,196,255,0.2);}
+    .faq-btn{width:100%;text-align:left;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;background:none;border:none;color:var(--fg);font-family:inherit;font-size:.92rem;font-weight:500;cursor:pointer;transition:background .3s;}
+    .faq-btn:hover{background:rgba(255,255,255,0.015);}
+    .faq-btn .chevron{color:var(--muted);font-size:.75rem;transition:transform .3s;flex-shrink:0;}
+    .faq-item.open .chevron{transform:rotate(180deg);}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s;padding:0 22px;font-size:.88rem;color:var(--muted);line-height:1.75;}
+    .faq-item.open .faq-answer{max-height:260px;padding:0 22px 20px;}
+    .faq-answer strong{color:var(--fg);}
+
+    .section-tag{font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);display:flex;align-items:center;gap:8px;}
+    .section-tag::before{content:'';width:20px;height:1px;background:var(--accent);}
+    .footer-link{color:var(--muted);text-decoration:none;font-size:.85rem;transition:color .3s;display:block;padding:3px 0;}
+    .footer-link:hover{color:var(--accent);}
+    .mobile-menu{display:none;padding:0 24px 16px;border-top:1px solid var(--border);}
+    .mobile-menu.open{display:block;}
+    .mobile-menu a{display:block;padding:10px 0;color:var(--muted);text-decoration:none;font-size:.9rem;transition:color .3s;border-bottom:1px solid rgba(255,255,255,0.03);}
+    .mobile-menu a:last-child{border-bottom:none;}
+    .mobile-menu a:hover{color:var(--accent);}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease-out,transform .7s ease-out;}
+    .reveal.vis{opacity:1;transform:translateY(0);}
+    .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--bg-card);border:1px solid rgba(0,196,255,0.3);color:var(--fg);padding:14px 24px;border-radius:14px;font-size:.88rem;z-index:9999;opacity:0;transition:all .4s cubic-bezier(.4,0,.2,1);backdrop-filter:blur(12px);box-shadow:0 10px 40px rgba(0,0,0,0.5);}
+    .toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+    ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+    @media(max-width:768px){.ram-grid{grid-template-columns:repeat(5,1fr);}.dyn-specs{grid-template-columns:repeat(2,1fr);}.footer-grid{grid-template-columns:1fr!important;gap:24px!important;}}
+    @media(max-width:480px){.ram-grid{grid-template-columns:repeat(3,1fr);}.main-card{padding:28px 20px;}}
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <canvas id="particles"></canvas>
+  <div class="scanline"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="mouse-glow" id="mouseGlow"></div>
+
+  <nav class="navbar" id="navbar">
+    <div style="max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;">
+      <a href="index.html" style="text-decoration:none;display:flex;align-items:center;gap:10px;">
+        <div style="width:36px;height:36px;border-radius:10px;overflow:hidden;"><img src="images/icon.png" style="width:100%;height:100%;object-fit:cover;"></div>
+        <span style="font-weight:700;font-size:1.05rem;color:var(--fg);">HyunkkCloud</span>
+      </a>
+      <div style="display:flex;align-items:center;gap:24px;">
+        <a href="mc-hosting.html" class="nav-back hidden md:inline-flex"><i class="fas fa-arrow-left" style="font-size:.75rem;"></i> Semua Paket</a>
+        <div class="hidden md:flex items-center gap-7">
+          <a href="mc-hosting.html" class="nav-link">MC Hosting</a>
+          <a href="mc-genoa.html" class="nav-link">Pro (Genoa)</a>
+          <a href="store.html" class="nav-link">Store</a>
+        </div>
+        <button id="menuBtn" class="md:hidden" style="background:none;border:none;color:var(--muted);cursor:pointer;padding:4px;" aria-label="Toggle menu">
+          <i class="fas fa-bars" id="menuIconOpen" style="font-size:1.2rem;"></i>
+          <i class="fas fa-xmark" id="menuIconClose" style="font-size:1.2rem;display:none;"></i>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="mc-hosting.html"><i class="fas fa-arrow-left" style="margin-right:6px;font-size:.75rem;"></i> Semua Paket</a>
+      <a href="mc-hosting.html">MC Hosting</a><a href="mc-genoa.html">Pro (Genoa)</a><a href="store.html">Store</a>
+    </div>
+  </nav>
+
+  <main style="position:relative;z-index:2;">
+    <!-- Hero -->
+    <section style="padding:140px 24px 20px;text-align:center;">
+      <div class="reveal" style="display:inline-flex;flex-direction:column;align-items:center;">
+        <div class="hero-badge" style="margin-bottom:20px;"><span class="dot"></span> AMD EPYC Milan — Zen 3</div>
+        <h1 class="hero-title"><span class="accent-text">Basic</span> Hosting</h1>
+        <p style="color:var(--muted);margin-top:14px;max-width:440px;line-height:1.7;font-size:.98rem;">
+          Performa solid untuk server vanilla hingga medium modded. Mulai dari Rp 10.000/bulan.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Card -->
+    <section style="max-width:560px;margin:0 auto;padding:16px 24px 60px;">
+      <div class="reveal">
+        <div class="main-card">
+          <div class="cpu-badge"><i class="fas fa-microchip"></i> AMD EPYC Milan</div>
+          <div class="card-name">Basic</div>
+          <div class="card-desc">Zen 3 architecture. Clock 2.45–3.65 GHz. Cocok untuk vanilla, SMP kecil, dan light modded.</div>
+
+          <div class="ram-label">Pilih RAM</div>
+          <div class="ram-grid" id="ramGrid">
+            <button class="ram-btn" data-ram="2" onclick="selectRam(2)">2<span class="ram-unit">GB</span></button>
+            <button class="ram-btn" data-ram="4" onclick="selectRam(4)">4<span class="ram-unit">GB</span></button>
+            <button class="ram-btn" data-ram="6" onclick="selectRam(6)">6<span class="ram-unit">GB</span></button>
+            <button class="ram-btn active" data-ram="8" onclick="selectRam(8)">8<span class="ram-unit">GB</span></button>
+            <button class="ram-btn" data-ram="10" onclick="selectRam(10)">10<span class="ram-unit">GB</span></button>
+            <button class="ram-btn" data-ram="12" onclick="selectRam(12)">12<span class="ram-unit">GB</span></button>
+            <button class="ram-btn" data-ram="16" onclick="selectRam(16)">16<span class="ram-unit">GB</span></button>
+            <button class="ram-btn" data-ram="20" onclick="selectRam(20)">20<span class="ram-unit">GB</span></button>
+            <button class="ram-btn" data-ram="24" onclick="selectRam(24)">24<span class="ram-unit">GB</span></button>
+            <button class="ram-btn" data-ram="32" onclick="selectRam(32)">32<span class="ram-unit">GB</span></button>
+          </div>
+
+          <div class="dyn-specs">
+            <div><div class="dyn-spec-val" id="specRam">8 GB</div><div class="dyn-spec-label">RAM</div></div>
+            <div><div class="dyn-spec-val" id="specCpu">4 vCPU</div><div class="dyn-spec-label">Processor</div></div>
+            <div><div class="dyn-spec-val" id="specStor">80 GB</div><div class="dyn-spec-label">NVMe Storage</div></div>
+          </div>
+
+          <div class="dyn-price">
+            <span class="currency">Rp</span>
+            <span class="amount" id="priceVal">40.000</span>
+            <span class="period">/bln</span>
+          </div>
+          <div class="price-note" id="priceNote">Rp 5.000/GB &times; 8 GB</div>
+
+          <ul class="tier-features">
+            <li><i class="fas fa-check"></i> Pterodactyl Panel</li>
+            <li><i class="fas fa-check"></i> 1 Dedicated IP</li>
+            <li><i class="fas fa-check"></i> DDoS Protection</li>
+            <li><i class="fas fa-check"></i> Java & Bedrock</li>
+            <li><i class="fas fa-check"></i> Instant Deploy (60 dtk)</li>
+          </ul>
+
+          <button class="btn-buy primary" onclick="beli()">
+            <i class="fab fa-whatsapp"></i> Beli Sekarang
+          </button>
+          <a href="mc-genoa.html" class="btn-ghost">
+            <i class="fas fa-arrow-right" style="font-size:.75rem;"></i> Lihat Pro (Genoa) — dari Rp 6.500/GB
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Info -->
+    <section style="max-width:560px;margin:0 auto;padding:0 24px 48px;">
+      <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center;">
+          <div style="font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">Lokasi</div>
+          <div style="font-weight:700;margin-top:6px;font-size:.95rem;">SG / JKT</div>
+        </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center;">
+          <div style="font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">Storage</div>
+          <div style="font-weight:700;margin-top:6px;font-size:.95rem;">10 GB / 1 GB RAM</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="max-width:560px;margin:0 auto;padding:0 24px 80px;">
+      <div class="reveal" style="margin-bottom:24px;">
+        <div class="section-tag">FAQ — Basic Milan</div>
+      </div>
+      <div class="reveal" style="display:flex;flex-direction:column;gap:10px;">
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)"><span>Milan cukup untuk modded server?</span><i class="fas fa-chevron-down chevron"></i></button>
+          <div class="faq-answer">Untuk <strong>light modded</strong> (kurang dari 50 mod) dengan 10-20 player, Milan sudah cukup. Kalau pakai large modpack seperti All The Mods atau Create, disarankan <a href="mc-genoa.html" style="color:var(--accent);text-decoration:underline;">Pro Genoa</a>.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)"><span>RAM bisa diupgrade?</span><i class="fas fa-chevron-down chevron"></i></button>
+          <div class="faq-answer">Bisa! Hubungi support via WhatsApp, kami naikkan RAM <strong>tanpa downtime</strong>. Data world tetap aman, selisih biaya dihitung prorata.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)"><span>Bisa migrasi ke Genoa nanti?</span><i class="fas fa-chevron-down chevron"></i></button>
+          <div class="faq-answer">Bisa, kami migrasikan ke node Genoa dengan <strong>minimal downtime</strong>. Kamu cukup bayar selisih harga per GB. Proses biasanya 1-2 jam.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)"><span>vCPU dihitung gimana?</span><i class="fas fa-chevron-down chevron"></i></button>
+          <div class="faq-answer">vCPU = <strong>ceil(RAM / 2)</strong>, minimal 1 vCPU. Contoh: 2GB→1 vCPU, 4GB→2 vCPU, 8GB→4 vCPU, dst. Core adalah dedicated, bukan shared.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer style="position:relative;z-index:2;border-top:1px solid var(--border);background:rgba(6,10,16,0.92);">
+    <div style="max-width:1200px;margin:0 auto;padding:40px 24px 28px;">
+      <div class="footer-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#00c4ff,#0090cc);display:flex;align-items:center;justify-content:center;font-weight:800;color:#060a10;font-size:.75rem;">H</div>
+            <span style="font-weight:700;">HyunkkCloud</span>
+          </div>
+          <p style="font-size:.85rem;color:var(--muted);line-height:1.7;max-width:280px;">Basic Minecraft hosting dengan AMD EPYC Milan. Murah, stabil, tanpa kompromi.</p>
+        </div>
+        <div>
+          <h4 style="font-weight:600;margin-bottom:12px;font-size:.9rem;">Menu</h4>
+          <a href="mc-hosting.html" class="footer-link">Semua Paket</a>
+          <a href="mc-genoa.html" class="footer-link">Pro (Genoa)</a>
+          <a href="store.html" class="footer-link">Store</a>
+        </div>
+        <div>
+          <h4 style="font-weight:600;margin-bottom:12px;font-size:.9rem;">Kontak</h4>
+          <p style="font-size:.85rem;color:var(--muted);line-height:2;">
+            <i class="fab fa-whatsapp" style="width:16px;color:var(--accent);font-size:.75rem;"></i> 082189822272
+          </p>
+        </div>
+      </div>
+      <div style="margin-top:32px;padding-top:18px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:.78rem;color:var(--muted);">&copy; 2026 HyunkkCloud</span>
+        <span class="font-mono" style="font-size:.68rem;color:rgba(90,106,128,0.5);">v2.1.0</span>
+      </div>
+    </div>
+  </footer>
+  <div class="toast" id="toast"></div>
+
+  <script>
+    let currentRam = 8;
+    const PER_GB = 5000, STOR_PER_GB = 10;
+
+    function selectRam(ram) {
+      currentRam = ram;
+      document.querySelectorAll('.ram-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.ram) === ram));
+      const vcpu = Math.max(1, Math.ceil(ram / 2));
+      const stor = ram * STOR_PER_GB;
+      const price = ram * PER_GB;
+      document.getElementById('specRam').textContent = ram + ' GB';
+      document.getElementById('specCpu').textContent = vcpu + ' vCPU';
+      document.getElementById('specStor').textContent = stor + ' GB';
+      const pe = document.getElementById('priceVal');
+      pe.textContent = price.toLocaleString('id-ID');
+      pe.classList.remove('price-pop'); void pe.offsetWidth; pe.classList.add('price-pop');
+      document.getElementById('priceNote').textContent = 'Rp ' + PER_GB.toLocaleString('id-ID') + '/GB \u00D7 ' + ram + ' GB';
+    }
+
+    function beli() {
+      const vcpu = Math.max(1, Math.ceil(currentRam / 2));
+      const stor = currentRam * STOR_PER_GB;
+      const price = currentRam * PER_GB;
+      const msg = `Halo, saya mau beli MC Basic (Milan)\n\nSpecs:\n- RAM: ${currentRam} GB\n- vCPU: ${vcpu}\n- Storage: ${stor} GB NVMe\n- Prosesor: AMD EPYC Milan\n\nHarga: Rp ${price.toLocaleString('id-ID')}/bln`;
+      showToast('Mengarahkan ke WhatsApp...');
+      setTimeout(() => window.open('https://wa.me/6282189822272?text=' + encodeURIComponent(msg), '_blank'), 600);
+    }
+
+    function toggleFaq(btn) { const item = btn.parentElement, was = item.classList.contains('open'); document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open')); if (!was) item.classList.add('open'); }
+    function showToast(m) { const t = document.getElementById('toast'); t.innerHTML = '<i class="fas fa-circle-notch fa-spin" style="margin-right:8px;color:var(--accent);"></i>' + m; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2500); }
+
+    // Particles
+    const canvas = document.getElementById('particles'), ctx = canvas.getContext('2d'); let pArr = [];
+    function rc() { canvas.width = innerWidth; canvas.height = innerHeight; } rc(); addEventListener('resize', rc);
+    for (let i = 0; i < 40; i++) pArr.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, s: Math.random() * 1.2 + .4, sx: (Math.random() - .5) * .2, sy: (Math.random() - .5) * .2, o: Math.random() * .3 + .08 });
+    function ap() { ctx.clearRect(0, 0, canvas.width, canvas.height); pArr.forEach(p => { p.x += p.sx; p.y += p.sy; if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0; if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0; ctx.beginPath(); ctx.arc(p.x, p.y, Math.max(.1, p.s), 0, Math.PI * 2); ctx.fillStyle = 'rgba(0,196,255,' + p.o + ')'; ctx.fill(); }); requestAnimationFrame(ap); } ap();
+    const mg = document.getElementById('mouseGlow'); document.addEventListener('mousemove', e => { mg.style.left = e.clientX + 'px'; mg.style.top = e.clientY + 'px'; });
+    const nb = document.getElementById('navbar'); addEventListener('scroll', () => nb.classList.toggle('scrolled', scrollY > 50));
+    const mb = document.getElementById('menuBtn'), mm = document.getElementById('mobileMenu'), mo = document.getElementById('menuIconOpen'), mc2 = document.getElementById('menuIconClose');
+    mb.addEventListener('click', () => { const o = mm.classList.toggle('open'); mo.style.display = o ? 'none' : 'inline'; mc2.style.display = o ? 'inline' : 'none'; });
+    const rO = new IntersectionObserver(e => e.forEach(en => { if (en.isIntersecting) en.target.classList.add('vis'); }), { threshold: .08 }); document.querySelectorAll('.reveal').forEach(el => rO.observe(el));
+  </script>
+  <script type="module">
+    import{initializeApp}from"https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+    import{getAuth,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+    const app=initializeApp({apiKey:"AIzaSyB2YKgC5EdKYFPaU-4uavFABtYEupvang4",authDomain:"loginpage-2e5aa.firebaseapp.com",projectId:"loginpage-2e5aa",appId:"1:676993662276:web:d8e12ca898fb4c0364eb11"});
+    onAuthStateChanged(getAuth(app),u=>{if(!u)location.href="login.html";});
+  </script>
+</body>
+</html>

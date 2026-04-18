@@ -29,22 +29,18 @@
     #particles{position:fixed;inset:0;z-index:0;pointer-events:none;}
     .mouse-glow{position:fixed;width:450px;height:450px;border-radius:50%;background:radial-gradient(circle,rgba(0,196,255,0.05),transparent 60%);pointer-events:none;z-index:1;transform:translate(-50%,-50%);transition:left .35s ease-out,top .35s ease-out;}
 
-    /* NAVBAR */
     .navbar{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px);background:rgba(6,10,16,0.82);border-bottom:1px solid var(--border);transition:box-shadow .3s;}
     .navbar.scrolled{box-shadow:0 4px 30px rgba(0,0,0,0.5);}
     .nav-link{position:relative;color:var(--muted);transition:color .3s;text-decoration:none;font-size:.9rem;}
     .nav-link:hover,.nav-link.active{color:var(--accent2);}
     .nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent2);transition:width .3s;}
     .nav-link:hover::after,.nav-link.active::after{width:100%;}
-    .btn-logout{border:1px solid rgba(248,113,113,0.3);color:var(--red);font-size:.82rem;padding:7px 16px;border-radius:10px;background:none;cursor:pointer;font-family:inherit;transition:all .3s;}
-    .btn-logout:hover{background:rgba(248,113,113,0.1);border-color:rgba(248,113,113,0.5);}
     .mobile-menu{display:none;padding:0 24px 16px;border-top:1px solid var(--border);}
     .mobile-menu.open{display:block;}
     .mobile-menu a{display:block;padding:10px 0;color:var(--muted);text-decoration:none;font-size:.9rem;transition:color .3s;border-bottom:1px solid rgba(255,255,255,0.03);}
     .mobile-menu a:last-child{border-bottom:none;}
     .mobile-menu a:hover,.mobile-menu a.active{color:var(--accent2);}
 
-    /* PROFILE HERO */
     .profile-hero{position:relative;text-align:center;padding:140px 24px 40px;}
     .profile-avatar{width:100px;height:100px;border-radius:24px;background:linear-gradient(135deg,var(--accent2),var(--purple));display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-weight:800;font-size:2.2rem;color:#060a10;position:relative;animation:floatAvatar 5s ease-in-out infinite;overflow:hidden;}
     .profile-avatar::after{content:'';position:absolute;inset:-3px;border-radius:27px;background:linear-gradient(135deg,var(--accent2),var(--purple));z-index:-1;opacity:0.3;filter:blur(10px);}
@@ -61,7 +57,6 @@
     .profile-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:12px;font-weight:600;font-size:.88rem;text-decoration:none;transition:all .3s;border:none;cursor:pointer;font-family:inherit;}
     .profile-btn:active{transform:scale(.97);}
 
-    /* SECTION */
     .cv-section{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:32px;transition:border-color .3s;}
     .cv-section:hover{border-color:rgba(255,255,255,0.06);}
     .section-label{font-family:'JetBrains Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--accent2);display:flex;align-items:center;gap:8px;margin-bottom:20px;}
@@ -69,7 +64,6 @@
     .section-title{font-size:1.3rem;font-weight:700;margin-bottom:6px;}
     .section-desc{color:var(--muted);font-size:.88rem;line-height:1.7;}
 
-    /* SKILL TAGS */
     .skill-category{margin-bottom:20px;}
     .skill-category:last-child{margin-bottom:0;}
     .skill-cat-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:10px;font-weight:500;}
@@ -82,7 +76,6 @@
     .skill-tag.tool i{color:var(--amber);}
     .skill-tag.lang i{color:var(--purple);}
 
-    /* TIMELINE */
     .timeline{position:relative;padding-left:28px;}
     .timeline::before{content:'';position:absolute;left:8px;top:4px;bottom:4px;width:1px;background:var(--border);}
     .timeline-item{position:relative;padding-bottom:28px;}
@@ -93,7 +86,6 @@
     .timeline-meta{font-size:.73rem;color:var(--muted);margin-top:2px;font-family:'JetBrains Mono',monospace;}
     .timeline-desc{font-size:.85rem;color:var(--muted);line-height:1.7;margin-top:8px;}
 
-    /* PROJECT CARDS */
     .project-card{background:rgba(0,0,0,0.2);border:1px solid var(--border);border-radius:14px;padding:24px;transition:all .35s;position:relative;overflow:hidden;}
     .project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--proj-bar,var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform .4s;}
     .project-card:hover::before{transform:scaleX(1);}
@@ -104,18 +96,15 @@
     .project-techs{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
     .project-tech{padding:3px 9px;border-radius:5px;font-size:.68rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);color:var(--muted);}
 
-    /* CONTACT */
     .contact-item{display:flex;align-items:center;gap:16px;padding:16px;border-radius:12px;background:rgba(0,0,0,0.2);border:1px solid var(--border);transition:all .3s;text-decoration:none;color:inherit;}
     .contact-item:hover{border-color:rgba(0,196,255,0.2);transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.2);}
     .contact-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
     .contact-label{font-size:.75rem;color:var(--muted);}
     .contact-value{font-size:.92rem;font-weight:500;margin-top:2px;}
 
-    /* FOOTER */
     .footer-link{color:var(--muted);text-decoration:none;font-size:.85rem;transition:color .3s;display:block;padding:3px 0;}
     .footer-link:hover{color:var(--accent2);}
 
-    /* REVEAL */
     .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease-out,transform .7s ease-out;}
     .reveal.vis{opacity:1;transform:translateY(0);}
 
@@ -144,7 +133,6 @@
 <div class="orb orb-3"></div>
 <div class="mouse-glow" id="mouseGlow"></div>
 
-<!-- Navbar -->
 <nav class="navbar" id="navbar">
   <div style="max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;">
     <a href="index.html" style="text-decoration:none;display:flex;align-items:center;gap:10px;">
@@ -160,7 +148,6 @@
         <a href="cv.html" class="nav-link active">CV</a>
         <a href="gallery.html" class="nav-link">Gallery</a>
       </div>
-      <button id="logoutBtn" class="btn-logout hidden md:inline-flex"><i class="fas fa-right-from-bracket" style="margin-right:6px;font-size:.75rem;"></i>Logout</button>
       <button id="menuBtn" class="md:hidden" style="background:none;border:none;color:var(--muted);cursor:pointer;padding:4px;" aria-label="Toggle menu">
         <i class="fas fa-bars" id="menuIconOpen" style="font-size:1.2rem;"></i>
         <i class="fas fa-xmark" id="menuIconClose" style="font-size:1.2rem;display:none;"></i>
@@ -173,16 +160,15 @@
     <a href="support.html">Support</a>
     <a href="contact.html">Contact</a>
     <a href="cv.html" class="active">CV</a>
-    <button id="logoutBtnMobile" class="btn-logout" style="width:100%;margin-top:8px;text-align:left;"><i class="fas fa-right-from-bracket" style="margin-right:6px;font-size:.75rem;"></i>Logout</button>
+    <a href="gallery.html">Gallery</a>
   </div>
 </nav>
 
 <main style="position:relative;z-index:2;">
 
-  <!-- Profile Hero -->
   <section class="profile-hero">
     <div class="reveal">
-      <div class="profile-avatar"><img src="images/profile.jpg" alt="Hyunk" onload="this.classList.add('loaded')" onerror="this.style.display='none'"><div class="avatar-fallback">H</div></div>
+      <div class="profile-avatar"><img src="images/profile.jpg" alt="Hyunk" onerror="this.style.display='none'"><div class="avatar-fallback">H</div></div>
       <h1 class="profile-name"><span class="accent">Hyunk</span></h1>
       <p class="profile-role">Web Developer & Server Specialist</p>
       <div class="profile-badges">
@@ -206,11 +192,9 @@
     </div>
   </section>
 
-  <!-- Content -->
   <section style="max-width:800px;margin:0 auto;padding:0 24px 80px;">
     <div style="display:flex;flex-direction:column;gap:20px;">
 
-      <!-- About -->
       <div class="cv-section reveal">
         <div class="section-label">Tentang</div>
         <h2 class="section-title">Tentang Saya</h2>
@@ -219,7 +203,6 @@
         </p>
       </div>
 
-      <!-- Skills -->
       <div class="cv-section reveal">
         <div class="section-label">Keahlian</div>
         <h2 class="section-title">Skill & Tools</h2>
@@ -265,7 +248,6 @@
         </div>
       </div>
 
-      <!-- Experience -->
       <div class="cv-section reveal">
         <div class="section-label">Pengalaman</div>
         <h2 class="section-title">Experience</h2>
@@ -298,7 +280,6 @@
         </div>
       </div>
 
-      <!-- Projects -->
       <div class="cv-section reveal">
         <div class="section-label">Portfolio</div>
         <h2 class="section-title">Project</h2>
@@ -353,7 +334,6 @@
         </div>
       </div>
 
-      <!-- Contact -->
       <div class="cv-section reveal">
         <div class="section-label">Kontak</div>
         <h2 class="section-title">Hubungi Saya</h2>
@@ -384,7 +364,6 @@
 
 </main>
 
-<!-- Footer -->
 <footer style="position:relative;z-index:2;border-top:1px solid var(--border);background:rgba(6,10,16,0.92);">
   <div style="max-width:1200px;margin:0 auto;padding:48px 24px 32px;">
     <div class="footer-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;">
@@ -418,7 +397,6 @@
 </footer>
 
 <script>
-  /* === PARTICLES === */
   const canvas=document.getElementById('particles'),ctx=canvas.getContext('2d');
   let pArr=[];
   function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
@@ -428,33 +406,17 @@
   function animP(){ctx.clearRect(0,0,canvas.width,canvas.height);pArr.forEach(p=>{p.x+=p.speedX;p.y+=p.speedY;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,Math.max(0.1,p.size),0,Math.PI*2);ctx.fillStyle=`rgba(0,196,255,${p.opacity})`;ctx.fill();});for(let i=0;i<pArr.length;i++)for(let j=i+1;j<pArr.length;j++){const dx=pArr[i].x-pArr[j].x,dy=pArr[i].y-pArr[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<100){ctx.beginPath();ctx.moveTo(pArr[i].x,pArr[i].y);ctx.lineTo(pArr[j].x,pArr[j].y);ctx.strokeStyle=`rgba(0,196,255,${0.03*(1-d/100)})`;ctx.lineWidth=0.5;ctx.stroke();}}requestAnimationFrame(animP);}
   animP();
 
-  /* === MOUSE GLOW === */
   const mg=document.getElementById('mouseGlow');
   document.addEventListener('mousemove',e=>{mg.style.left=e.clientX+'px';mg.style.top=e.clientY+'px';});
 
-  /* === NAVBAR === */
   const navbar=document.getElementById('navbar');
   window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>50));
 
-  /* === MOBILE MENU === */
   const menuBtn=document.getElementById('menuBtn'),mobileMenu=document.getElementById('mobileMenu'),mOpen=document.getElementById('menuIconOpen'),mClose=document.getElementById('menuIconClose');
   menuBtn.addEventListener('click',()=>{const o=mobileMenu.classList.toggle('open');mOpen.style.display=o?'none':'inline';mClose.style.display=o?'inline':'none';});
 
-  /* === SCROLL REVEAL === */
   const rObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('vis');}),{threshold:0.08});
   document.querySelectorAll('.reveal').forEach(el=>rObs.observe(el));
-</script>
-
-<!-- Firebase Auth -->
-<script type="module">
-  import{initializeApp}from"https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-  import{getAuth,onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
-  const firebaseConfig={apiKey:"AIzaSyB2YKgC5EdKYFPaU-4uavFABtYEupvang4",authDomain:"loginpage-2e5aa.firebaseapp.com",projectId:"loginpage-2e5aa",appId:"1:676993662276:web:d8e12ca898fb4c0364eb11"};
-  const app=initializeApp(firebaseConfig),auth=getAuth(app);
-  onAuthStateChanged(auth,(user)=>{if(!user)window.location.href="login.html";});
-  function handleLogout(){signOut(auth).then(()=>{window.location.href="login.html";}).catch(()=>{});}
-  document.getElementById('logoutBtn').addEventListener('click',handleLogout);
-  document.getElementById('logoutBtnMobile').addEventListener('click',handleLogout);
 </script>
 
 </body>

@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HYUNK — Portfolio</title>
+  <link rel="icon" type="image/png" href="images/icon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --bg:#060a10;--bg-card:#0c1220;--fg:#e8ecf2;--muted:#5a6a80;
+      --accent:#00e89d;--accent2:#00c4ff;--border:#152035;
+      --green:#00e89d;--cyan:#00c4ff;--purple:#a78bfa;
+      --amber:#fbbf24;--red:#f87171;--pink:#f472b6;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--fg);overflow-x:hidden;}
+    .font-mono{font-family:'JetBrains Mono',monospace;}
+
+    .grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(0,232,157,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,232,157,0.025) 1px,transparent 1px);background-size:60px 60px;z-index:0;pointer-events:none;}
+    .scanline{position:fixed;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px);}
+    .orb{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;animation:orbFloat 14s ease-in-out infinite alternate;}
+    .orb-1{width:420px;height:420px;background:radial-gradient(circle,rgba(0,196,255,0.1),transparent 70%);top:-130px;left:-100px;}
+    .orb-2{width:360px;height:360px;background:radial-gradient(circle,rgba(167,139,250,0.08),transparent 70%);bottom:5%;right:-80px;animation-delay:-5s;}
+    .orb-3{width:220px;height:220px;background:radial-gradient(circle,rgba(0,232,157,0.07),transparent 70%);top:50%;left:40%;animation-delay:-9s;}
+    @keyframes orbFloat{0%{transform:translate(0,0) scale(1);}50%{transform:translate(25px,-35px) scale(1.08);}100%{transform:translate(-15px,20px) scale(0.95);}}
+    #particles{position:fixed;inset:0;z-index:0;pointer-events:none;}
+    .mouse-glow{position:fixed;width:450px;height:450px;border-radius:50%;background:radial-gradient(circle,rgba(0,196,255,0.05),transparent 60%);pointer-events:none;z-index:1;transform:translate(-50%,-50%);transition:left .35s ease-out,top .35s ease-out;}
+
+    .navbar{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px);background:rgba(6,10,16,0.82);border-bottom:1px solid var(--border);transition:box-shadow .3s;}
+    .navbar.scrolled{box-shadow:0 4px 30px rgba(0,0,0,0.5);}
+    .nav-link{position:relative;color:var(--muted);transition:color .3s;text-decoration:none;font-size:.9rem;}
+    .nav-link:hover,.nav-link.active{color:var(--accent2);}
+    .nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent2);transition:width .3s;}
+    .nav-link:hover::after,.nav-link.active::after{width:100%;}
+    .mobile-menu{display:none;padding:0 24px 16px;border-top:1px solid var(--border);}
+    .mobile-menu.open{display:block;}
+    .mobile-menu a{display:block;padding:10px 0;color:var(--muted);text-decoration:none;font-size:.9rem;transition:color .3s;border-bottom:1px solid rgba(255,255,255,0.03);}
+    .mobile-menu a:last-child{border-bottom:none;}
+    .mobile-menu a:hover,.mobile-menu a.active{color:var(--accent2);}
+
+    /* Hero */
+    .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 24px 60px;text-align:center;}
+    .hero-tag{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:100px;background:rgba(0,196,255,0.06);border:1px solid rgba(0,196,255,0.12);font-size:.78rem;color:var(--accent2);margin-bottom:28px;animation:fadeInDown .8s ease-out;}
+    .hero-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.7);}}
+    .hero-title{font-size:clamp(2.6rem,7vw,4.5rem);font-weight:700;line-height:1.05;letter-spacing:-0.04em;animation:fadeInUp .8s ease-out;}
+    .hero-title .line{display:block;}
+    .hero-title .grad{background:linear-gradient(135deg,var(--accent2),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .hero-title .thin{font-weight:300;opacity:.7;}
+    .hero-sub{font-size:clamp(1rem,2.2vw,1.2rem);color:var(--muted);max-width:520px;margin:24px auto 0;line-height:1.7;animation:fadeInUp .8s ease-out .15s both;}
+    .hero-actions{display:flex;justify-content:center;gap:14px;margin-top:36px;flex-wrap:wrap;animation:fadeInUp .8s ease-out .3s both;}
+    .hero-btn{display:inline-flex;align-items:center;gap:9px;padding:14px 28px;border-radius:14px;font-weight:600;font-size:.9rem;text-decoration:none;transition:all .3s;border:none;cursor:pointer;font-family:inherit;}
+    .hero-btn:active{transform:scale(.96);}
+    .hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;animation:fadeInUp 1s ease-out .6s both;}
+    .hero-scroll .line{width:1px;height:40px;background:linear-gradient(to bottom,var(--muted),transparent);animation:scrollLine 2s ease-in-out infinite;}
+    @keyframes scrollLine{0%{opacity:0;transform:scaleY(0);transform-origin:top;}50%{opacity:1;transform:scaleY(1);transform-origin:top;}50.1%{transform-origin:bottom;}100%{opacity:0;transform:scaleY(0);transform-origin:bottom;}}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeInDown{from{opacity:0;transform:translateY(-16px);}to{opacity:1;transform:translateY(0);}}
+
+    /* Stats */
+    .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(12,18,32,0.5);backdrop-filter:blur(10px);}
+    .stat-item{text-align:center;padding:32px 16px;border-right:1px solid var(--border);transition:background .3s;}
+    .stat-item:last-child{border-right:none;}
+    .stat-item:hover{background:rgba(0,196,255,0.02);}
+    .stat-num{font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:700;background:linear-gradient(135deg,var(--accent2),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .stat-label{font-size:.78rem;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:.06em;}
+
+    /* Section */
+    .section-wrap{max-width:1100px;margin:0 auto;padding:100px 24px;}
+    .section-header{margin-bottom:48px;}
+    .section-tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--accent2);display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+    .section-tag::before{content:'';width:24px;height:1px;background:var(--accent2);}
+    .section-heading{font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:700;letter-spacing:-0.03em;}
+    .section-heading .thin{font-weight:300;color:var(--muted);}
+    .section-sub{color:var(--muted);font-size:.92rem;line-height:1.7;margin-top:10px;max-width:520px;}
+
+    /* Services */
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+    .service-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:32px 28px;transition:all .4s;position:relative;overflow:hidden;}
+    .service-card::after{content:'';position:absolute;inset:0;border-radius:20px;opacity:0;transition:opacity .4s;pointer-events:none;}
+    .service-card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,0.06);}
+    .service-card:hover::after{opacity:1;}
+    .service-card.s1::after{background:radial-gradient(ellipse at top left,rgba(0,196,255,0.04),transparent 60%);}
+    .service-card.s2::after{background:radial-gradient(ellipse at top left,rgba(0,232,157,0.04),transparent 60%);}
+    .service-card.s3::after{background:radial-gradient(ellipse at top left,rgba(167,139,250,0.04),transparent 60%);}
+    .service-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;margin-bottom:20px;position:relative;z-index:1;}
+    .service-card.s1 .service-icon{background:rgba(0,196,255,0.08);color:var(--accent2);}
+    .service-card.s2 .service-icon{background:rgba(0,232,157,0.08);color:var(--green);}
+    .service-card.s3 .service-icon{background:rgba(167,139,250,0.08);color:var(--purple);}
+    .service-name{font-size:1.08rem;font-weight:600;margin-bottom:10px;position:relative;z-index:1;}
+    .service-desc{font-size:.85rem;color:var(--muted);line-height:1.75;position:relative;z-index:1;}
+    .service-list{margin-top:16px;position:relative;z-index:1;}
+    .service-list li{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted);padding:5px 0;list-style:none;}
+    .service-list li i{font-size:.6rem;}
+
+    /* Projects */
+    .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+    .project-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all .4s;position:relative;}
+    .project-card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,0.06);box-shadow:0 20px 40px rgba(0,0,0,0.3);}
+    .project-card.featured{grid-column:1/-1;}
+    .project-cover{position:relative;height:200px;overflow:hidden;background:rgba(0,0,0,0.3);}
+    .project-card.featured .project-cover{height:280px;}
+    .project-cover img{width:100%;height:100%;object-fit:cover;transition:transform .6s;filter:brightness(0.7) saturate(0.8);}
+    .project-card:hover .project-cover img{transform:scale(1.05);filter:brightness(0.8) saturate(1);}
+    .project-cover-overlay{position:absolute;inset:0;background:linear-gradient(to top,var(--bg-card) 0%,transparent 60%);}
+    .project-cover-tag{position:absolute;top:16px;left:16px;display:flex;gap:8px;}
+    .project-cover-tag span{padding:5px 12px;border-radius:8px;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;backdrop-filter:blur(10px);}
+    .project-body{padding:24px 28px 28px;}
+    .project-name{font-size:1.15rem;font-weight:700;margin-bottom:8px;}
+    .project-desc{font-size:.85rem;color:var(--muted);line-height:1.75;}
+    .project-techs{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px;}
+    .project-tech{padding:5px 12px;border-radius:8px;font-size:.72rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);color:var(--muted);transition:all .3s;}
+    .project-tech:hover{border-color:rgba(0,196,255,0.15);color:var(--fg);}
+    .project-link{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:.85rem;font-weight:600;color:var(--accent2);text-decoration:none;transition:gap .3s;}
+    .project-link:hover{gap:12px;}
+    .project-link i{font-size:.7rem;transition:transform .3s;}
+    .project-link:hover i{transform:translateX(2px);}
+
+    /* Skills */
+    .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+    .skill-group{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:28px;transition:border-color .3s;}
+    .skill-group:hover{border-color:rgba(255,255,255,0.06);}
+    .skill-group-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.95rem;margin-bottom:16px;}
+    .skill-group-title{font-size:1rem;font-weight:600;margin-bottom:16px;}
+    .skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
+    .skill-tag{padding:8px 16px;border-radius:10px;font-size:.8rem;background:rgba(255,255,255,0.025);border:1px solid var(--border);color:var(--fg);transition:all .3s;cursor:default;display:flex;align-items:center;gap:7px;}
+    .skill-tag:hover{transform:translateY(-2px);border-color:rgba(0,196,255,0.18);box-shadow:0 4px 15px rgba(0,0,0,0.2);}
+    .skill-tag i{font-size:.7rem;}
+    .skill-tag.c1 i{color:var(--accent2);}
+    .skill-tag.c2 i{color:var(--green);}
+    .skill-tag.c3 i{color:var(--purple);}
+    .skill-tag.c4 i{color:var(--amber);}
+
+    /* Timeline */
+    .timeline{position:relative;padding-left:32px;}
+    .timeline::before{content:'';position:absolute;left:9px;top:6px;bottom:6px;width:1px;background:var(--border);}
+    .timeline-item{position:relative;padding-bottom:32px;}
+    .timeline-item:last-child{padding-bottom:0;}
+    .timeline-dot{position:absolute;left:-28px;top:7px;width:16px;height:16px;border-radius:50%;border:2px solid var(--accent2);background:var(--bg-card);z-index:1;transition:all .3s;}
+    .timeline-item:first-child .timeline-dot{background:var(--accent2);box-shadow:0 0 14px rgba(0,196,255,0.3);}
+    .timeline-item:hover .timeline-dot{border-color:var(--accent);box-shadow:0 0 10px rgba(0,232,157,0.2);}
+    .timeline-title{font-size:1rem;font-weight:600;}
+    .timeline-meta{font-size:.73rem;color:var(--muted);margin-top:3px;font-family:'JetBrains Mono',monospace;}
+    .timeline-desc{font-size:.85rem;color:var(--muted);line-height:1.75;margin-top:10px;}
+    .timeline-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+    .timeline-tags span{padding:3px 10px;border-radius:6px;font-size:.68rem;background:rgba(0,196,255,0.06);color:var(--accent2);border:1px solid rgba(0,196,255,0.08);}
+
+    /* Testimonial */
+    .testimonial-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:32px;position:relative;}
+    .testimonial-card::before{content:'\201C';position:absolute;top:20px;right:28px;font-size:4rem;font-weight:700;color:rgba(0,196,255,0.06);line-height:1;font-family:Georgia,serif;}
+    .testimonial-stars{display:flex;gap:3px;margin-bottom:14px;}
+    .testimonial-stars i{font-size:.75rem;color:var(--amber);}
+    .testimonial-text{font-size:.9rem;color:var(--muted);line-height:1.8;font-style:italic;}
+    .testimonial-author{display:flex;align-items:center;gap:14px;margin-top:20px;padding-top:18px;border-top:1px solid var(--border);}
+    .testimonial-avatar{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#060a10;}
+    .testimonial-name{font-size:.9rem;font-weight:600;}
+    .testimonial-role{font-size:.75rem;color:var(--muted);}
+
+    /* CTA */
+    .cta-section{background:var(--bg-card);border:1px solid var(--border);border-radius:28px;padding:60px 40px;text-align:center;position:relative;overflow:hidden;}
+    .cta-section::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 50% 80%,rgba(0,196,255,0.04),transparent 50%);pointer-events:none;}
+    .cta-title{font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:700;letter-spacing:-0.02em;position:relative;}
+    .cta-desc{color:var(--muted);font-size:.92rem;margin-top:12px;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.7;position:relative;}
+    .cta-actions{display:flex;justify-content:center;gap:14px;margin-top:32px;flex-wrap:wrap;position:relative;}
+
+    /* Contact items */
+    .contact-item{display:flex;align-items:center;gap:16px;padding:18px;border-radius:14px;background:rgba(0,0,0,0.2);border:1px solid var(--border);transition:all .3s;text-decoration:none;color:inherit;}
+    .contact-item:hover{border-color:rgba(0,196,255,0.2);transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.2);}
+    .contact-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0;}
+    .contact-label{font-size:.75rem;color:var(--muted);}
+    .contact-value{font-size:.92rem;font-weight:500;margin-top:2px;}
+
+    .footer-link{color:var(--muted);text-decoration:none;font-size:.85rem;transition:color .3s;display:block;padding:3px 0;}
+    .footer-link:hover{color:var(--accent2);}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease-out,transform .7s ease-out;}
+    .reveal.vis{opacity:1;transform:translateY(0);}
+    .reveal-d1{transition-delay:.1s;}
+    .reveal-d2{transition-delay:.2s;}
+    .reveal-d3{transition-delay:.3s;}
+    .reveal-d4{transition-delay:.4s;}
+
+    ::-webkit-scrollbar{width:6px;}
+    ::-webkit-scrollbar-track{background:var(--bg);}
+    ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+    @media(max-width:768px){
+      .stats-bar{grid-template-columns:repeat(2,1fr);}
+      .stat-item:nth-child(2){border-right:none;}
+      .stat-item:nth-child(1),.stat-item:nth-child(2){border-bottom:1px solid var(--border);}
+      .services-grid{grid-template-columns:1fr;}
+      .projects-grid{grid-template-columns:1fr;}
+      .skills-grid{grid-template-columns:1fr;}
+      .hero-btn{padding:12px 22px;font-size:.85rem;}
+      .cta-section{padding:40px 24px;}
+      .section-wrap{padding:70px 20px;}
+    }
+    @media(max-width:480px){
+      .stats-bar{grid-template-columns:1fr 1fr;gap:0;}
+      .stat-item{padding:22px 12px;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<canvas id="particles"></canvas>
+<div class="scanline"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+<div class="mouse-glow" id="mouseGlow"></div>
+
+<nav class="navbar" id="navbar">
+  <div style="max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;">
+    <a href="index.html" style="text-decoration:none;display:flex;align-items:center;gap:10px;">
+      <div style="width:36px;height:36px;border-radius:10px;overflow:hidden;"><img src="images/icon.png" style="width:100%;height:100%;object-fit:cover;" alt="Logo"></div>
+      <span style="font-weight:700;font-size:1.05rem;color:var(--fg);">HyunkStore</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:20px;">
+      <div class="hidden md:flex items-center gap-7">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="store.html" class="nav-link">Store</a>
+        <a href="support.html" class="nav-link">Support</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="cv.html" class="nav-link active">Portfolio</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+      </div>
+      <button id="menuBtn" class="md:hidden" style="background:none;border:none;color:var(--muted);cursor:pointer;padding:4px;" aria-label="Toggle menu">
+        <i class="fas fa-bars" id="menuIconOpen" style="font-size:1.2rem;"></i>
+        <i class="fas fa-xmark" id="menuIconClose" style="font-size:1.2rem;display:none;"></i>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="store.html">Store</a>
+    <a href="support.html">Support</a>
+    <a href="contact.html">Contact</a>
+    <a href="cv.html" class="active">Portfolio</a>
+    <a href="gallery.html">Gallery</a>
+  </div>
+</nav>
+
+<main style="position:relative;z-index:2;">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div style="max-width:800px;">
+      <div class="hero-tag"><span class="dot"></span> Available for projects</div>
+      <h1 class="hero-title">
+        <span class="line"><span class="thin">Saya</span> <span class="grad">Hyunk</span></span>
+        <span class="line"><span class="thin">membangun</span> digital</span>
+        <span class="line"><span class="thin">yang</span> bermakna.</span>
+      </h1>
+      <p class="hero-sub">Web developer & server specialist dari Indonesia. Menguasai pembuatan website modern, manajemen server, dan infrastruktur hosting yang stabil.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="hero-btn" style="background:linear-gradient(135deg,var(--accent2),#0090d4);color:#060a10;"
+           onmouseover="this.style.boxShadow='0 0 30px rgba(0,196,255,0.3)';this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.boxShadow='none';this.style.transform='translateY(0)'">
+          <i class="fas fa-arrow-down"></i> Lihat Karya
+        </a>
+        <a href="#contact" class="hero-btn" style="background:rgba(255,255,255,0.04);color:var(--fg);border:1px solid var(--border);"
+           onmouseover="this.style.borderColor='rgba(0,196,255,0.2)';this.style.background='rgba(0,196,255,0.04)'"
+           onmouseout="this.style.borderColor='var(--border)';this.style.background='rgba(255,255,255,0.04)'">
+          <i class="fas fa-paper-plane"></i> Hubungi
+        </a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="line"></div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-bar reveal">
+    <div class="stat-item">
+      <div class="stat-num" data-count="10">0+</div>
+      <div class="stat-label">Project Selesai</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" data-count="5">0+</div>
+      <div class="stat-label">Klien Aktif</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" data-count="3">0+</div>
+      <div class="stat-label">Server Dikelola</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" data-count="1">0+</div>
+      <div class="stat-label">Tahun Pengalaman</div>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <section class="section-wrap" id="services">
+    <div class="section-header reveal">
+      <div class="section-tag">Layanan</div>
+      <h2 class="section-heading">Apa yang saya <span class="thin">kerjakan</span></h2>
+      <p class="section-sub">Fokus utama saya ada di tiga area ini, membantu klien membangun dan mengelola produk digital mereka.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card s1 reveal reveal-d1">
+        <div class="service-icon"><i class="fas fa-code"></i></div>
+        <div class="service-name">Web Development</div>
+        <div class="service-desc">Membangun website modern, responsif, dan cepat dari konsep hingga deployment.</div>
+        <ul class="service-list">
+          <li><i class="fas fa-check" style="color:var(--accent2);"></i> Landing Page & Company Profile</li>
+          <li><i class="fas fa-check" style="color:var(--accent2);"></i> E-Commerce & Store Website</li>
+          <li><i class="fas fa-check" style="color:var(--accent2);"></i> Dashboard & Web Application</li>
+          <li><i class="fas fa-check" style="color:var(--accent2);"></i> UI/UX Design Implementation</li>
+        </ul>
+      </div>
+      <div class="service-card s2 reveal reveal-d2">
+        <div class="service-icon"><i class="fas fa-server"></i></div>
+        <div class="service-name">Server Management</div>
+        <div class="service-desc">Setup, konfigurasi, dan optimasi server untuk performa dan keamanan maksimal.</div>
+        <ul class="service-list">
+          <li><i class="fas fa-check" style="color:var(--green);"></i> VPS Setup & Hardening</li>
+          <li><i class="fas fa-check" style="color:var(--green);"></i> Pterodactyl Panel Installation</li>
+          <li><i class="fas fa-check" style="color:var(--green);"></i> Docker & Container Management</li>
+          <li><i class="fas fa-check" style="color:var(--green);"></i> Monitoring & Backup Automation</li>
+        </ul>
+      </div>
+      <div class="service-card s3 reveal reveal-d3">
+        <div class="service-icon"><i class="fas fa-gamepad"></i></div>
+        <div class="service-name">Game Server</div>
+        <div class="service-desc">Pengelolaan server game, khususnya Minecraft Java & Bedrock Edition.</div>
+        <ul class="service-list">
+          <li><i class="fas fa-check" style="color:var(--purple);"></i> Server Setup & Configuration</li>
+          <li><i class="fas fa-check" style="color:var(--purple);"></i> Plugin Installation & Setup</li>
+          <li><i class="fas fa-check" style="color:var(--purple);"></i> Performance Optimization</li>
+          <li><i class="fas fa-check" style="color:var(--purple);"></i> Anti-Cheat & Security</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="section-wrap" id="projects" style="padding-top:40px;">
+    <div class="section-header reveal">
+      <div class="section-tag">Portfolio</div>
+      <h2 class="section-heading">Karya <span class="thin">terpilih</span></h2>
+      <p class="section-sub">Beberapa project yang sudah saya kerjakan, dari website hingga infrastruktur server.</p>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card featured reveal">
+        <div class="project-cover">
+          <img src="images/project-hyunkcloud.jpg" alt="HyunkkCloud" onerror="this.src='https://picsum.photos/seed/hyunkcloud/1200/400.jpg'">
+          <div class="project-cover-overlay"></div>
+          <div class="project-cover-tag">
+            <span style="background:rgba(0,196,255,0.15);color:var(--accent2);backdrop-filter:blur(10px);">Featured</span>
+            <span style="background:rgba(0,232,157,0.15);color:var(--green);backdrop-filter:blur(10px);">Web + Server</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">HyunkkCloud Platform</div>
+          <div class="project-desc">Platform hosting lengkap dengan website multi-halaman, sistem login Firebase, halaman store produk digital, support center, dan backend server management. Dibangun dari nol dan dikelola sepenuhnya.</div>
+          <div class="project-techs">
+            <span class="project-tech">HTML5</span>
+            <span class="project-tech">Tailwind CSS</span>
+            <span class="project-tech">JavaScript</span>
+            <span class="project-tech">Firebase Auth</span>
+            <span class="project-tech">Pterodactyl</span>
+            <span class="project-tech">Linux</span>
+            <span class="project-tech">Docker</span>
+          </div>
+          <a href="index.html" class="project-link">Lihat Live Site <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-d1">
+        <div class="project-cover">
+          <img src="images/project-mcserver.jpg" alt="MC Server" onerror="this.src='https://picsum.photos/seed/mcserver/600/300.jpg'">
+          <div class="project-cover-overlay"></div>
+          <div class="project-cover-tag">
+            <span style="background:rgba(0,232,157,0.15);color:var(--green);backdrop-filter:blur(10px);">Game Server</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Minecraft Server Management</div>
+          <div class="project-desc">Pengelolaan server Minecraft dengan plugin economy, crate, anti-cheat, custom gameplay, dan optimasi performa untuk 50+ player.</div>
+          <div class="project-techs">
+            <span class="project-tech">Pterodactyl</span>
+            <span class="project-tech">Spigot/Paper</span>
+            <span class="project-tech">Linux</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-d2">
+        <div class="project-cover">
+          <img src="images/project-vps.jpg" alt="VPS Setup" onerror="this.src='https://picsum.photos/seed/vpsetup/600/300.jpg'">
+          <div class="project-cover-overlay"></div>
+          <div class="project-cover-tag">
+            <span style="background:rgba(167,139,250,0.15);color:var(--purple);backdrop-filter:blur(10px);">Infrastructure</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">VPS & Panel Infrastructure</div>
+          <div class="project-desc">Setup VPS Linux dari awal, instalasi Pterodactyl Panel, konfigurasi firewall UFW, SSL, dan optimasi resource untuk hosting multi-tenant.</div>
+          <div class="project-techs">
+            <span class="project-tech">Ubuntu</span>
+            <span class="project-tech">Docker</span>
+            <span class="project-tech">Nginx</span>
+            <span class="project-tech">UFW</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-d1">
+        <div class="project-cover">
+          <img src="images/project-appstore.jpg" alt="App Store" onerror="this.src='https://picsum.photos/seed/appstore/600/300.jpg'">
+          <div class="project-cover-overlay"></div>
+          <div class="project-cover-tag">
+            <span style="background:rgba(251,191,36,0.15);color:var(--amber);backdrop-filter:blur(10px);">E-Commerce</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Premium App Store</div>
+          <div class="project-desc">Platform penjualan akun premium original untuk berbagai layanan streaming, desain, dan produktivitas dengan integrasi WhatsApp ordering.</div>
+          <div class="project-techs">
+            <span class="project-tech">HTML</span>
+            <span class="project-tech">Tailwind</span>
+            <span class="project-tech">WhatsApp API</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-d2">
+        <div class="project-cover">
+          <img src="images/project-portfolio.jpg" alt="Portfolio" onerror="this.src='https://picsum.photos/seed/portfolio-hyunk/600/300.jpg'">
+          <div class="project-cover-overlay"></div>
+          <div class="project-cover-tag">
+            <span style="background:rgba(0,196,255,0.15);color:var(--accent2);backdrop-filter:blur(10px);">Web</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Personal Portfolio</div>
+          <div class="project-desc">Halaman portfolio interaktif dengan efek partikel, scroll animations, dan desain dark-theme cyber aesthetic.</div>
+          <div class="project-techs">
+            <span class="project-tech">HTML5</span>
+            <span class="project-tech">Tailwind CSS</span>
+            <span class="project-tech">Canvas API</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section-wrap" id="skills" style="padding-top:40px;">
+    <div class="section-header reveal">
+      <div class="section-tag">Keahlian</div>
+      <h2 class="section-heading">Tech <span class="thin">stack</span></h2>
+      <p class="section-sub">Tools dan teknologi yang saya gunakan sehari-hari dalam mengerjakan project.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group reveal reveal-d1">
+        <div class="skill-group-icon" style="background:rgba(0,196,255,0.08);color:var(--accent2);"><i class="fas fa-globe"></i></div>
+        <div class="skill-group-title">Frontend</div>
+        <div class="skill-tags">
+          <span class="skill-tag c1"><i class="fab fa-html5"></i>HTML5</span>
+          <span class="skill-tag c1"><i class="fab fa-css3-alt"></i>Tailwind CSS</span>
+          <span class="skill-tag c1"><i class="fab fa-js"></i>JavaScript</span>
+          <span class="skill-tag c1"><i class="fas fa-palette"></i>UI Design</span>
+          <span class="skill-tag c1"><i class="fas fa-mobile-alt"></i>Responsive</span>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-d2">
+        <div class="skill-group-icon" style="background:rgba(0,232,157,0.08);color:var(--green);"><i class="fas fa-terminal"></i></div>
+        <div class="skill-group-title">Backend & Server</div>
+        <div class="skill-tags">
+          <span class="skill-tag c2"><i class="fab fa-linux"></i>Linux</span>
+          <span class="skill-tag c2"><i class="fas fa-server"></i>VPS Management</span>
+          <span class="skill-tag c2"><i class="fas fa-shield-halved"></i>Security</span>
+          <span class="skill-tag c2"><i class="fas fa-network-wired"></i>Networking</span>
+          <span class="skill-tag c2"><i class="fab fa-docker"></i>Docker</span>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-d3">
+        <div class="skill-group-icon" style="background:rgba(167,139,250,0.08);color:var(--purple);"><i class="fas fa-cube"></i></div>
+        <div class="skill-group-title">Game Server</div>
+        <div class="skill-tags">
+          <span class="skill-tag c3"><i class="fas fa-cube"></i>Minecraft</span>
+          <span class="skill-tag c3"><i class="fas fa-gamepad"></i>Java & Bedrock</span>
+          <span class="skill-tag c3"><i class="fas fa-puzzle-piece"></i>Plugin Setup</span>
+          <span class="skill-tag c3"><i class="fas fa-gauge-high"></i>Optimasi</span>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-d4">
+        <div class="skill-group-icon" style="background:rgba(251,191,36,0.08);color:var(--amber);"><i class="fas fa-wrench"></i></div>
+        <div class="skill-group-title">Tools & Platform</div>
+        <div class="skill-tags">
+          <span class="skill-tag c4"><i class="fas fa-desktop"></i>Pterodactyl</span>
+          <span class="skill-tag c4"><i class="fas fa-fire"></i>Firebase</span>
+          <span class="skill-tag c4"><i class="fas fa-code-branch"></i>Git</span>
+          <span class="skill-tag c4"><i class="fas fa-pen-ruler"></i>Figma</span>
+          <span class="skill-tag c4"><i class="fas fa-chart-line"></i>Monitoring</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="section-wrap" id="experience" style="padding-top:40px;">
+    <div class="section-header reveal">
+      <div class="section-tag">Perjalanan</div>
+      <h2 class="section-heading">Pengalaman <span class="thin">kerja</span></h2>
+    </div>
+    <div style="max-width:680px;">
+      <div class="timeline reveal">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-title">Founder & Server Administrator</div>
+          <div class="timeline-meta">HyunkkCloud — 2024 - Sekarang</div>
+          <div class="timeline-desc">Mendirikan dan mengelola layanan hosting (Minecraft, VPS, Aplikasi Premium). Menangani setup server, konfigurasi panel, manajemen user, dan technical support.</div>
+          <div class="timeline-tags"><span>Leadership</span><span>Full-Stack</span><span>DevOps</span></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-title">Minecraft Server Administrator</div>
+          <div class="timeline-meta">Freelance — 2024 - Sekarang</div>
+          <div class="timeline-desc">Mengelola server Minecraft dengan plugin economy, crate, anti-cheat, custom plugin, dan optimasi performa untuk 50+ concurrent players.</div>
+          <div class="timeline-tags"><span>Game Server</span><span>Plugin Dev</span></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-title">Web Developer</div>
+          <div class="timeline-meta">Freelance — 2024 - Sekarang</div>
+          <div class="timeline-desc">Membangun website modern menggunakan HTML, Tailwind CSS, dan JavaScript. Fokus pada desain responsif, performa, dan user experience.</div>
+          <div class="timeline-tags"><span>Frontend</span><span>UI/UX</span></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-title">VPS & Panel Setup Specialist</div>
+          <div class="timeline-meta">Freelance — 2023</div>
+          <div class="timeline-desc">Setup VPS Linux dari awal, instalasi Pterodactyl Panel, konfigurasi firewall, dan optimasi resource untuk kebutuhan hosting.</div>
+          <div class="timeline-tags"><span>Linux</span><span>Infrastructure</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section-wrap" id="testimonials" style="padding-top:40px;">
+    <div class="section-header reveal">
+      <div class="section-tag">Testimoni</div>
+      <h2 class="section-heading">Kata <span class="thin">mereka</span></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;" class="testimonial-grid">
+      <div class="testimonial-card reveal reveal-d1">
+        <div class="testimonial-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <div class="testimonial-text">"Server Minecraft yang disetup sangat stabil dan performanya bagus. Plugin-plugin yang dipasang sesuai kebutuhan, response time cepat. Highly recommended!"</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background:linear-gradient(135deg,var(--accent2),var(--green));">R</div>
+          <div>
+            <div class="testimonial-name">Rizky P.</div>
+            <div class="testimonial-role">Minecraft Server Owner</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-d2">
+        <div class="testimonial-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <div class="testimonial-text">"Website store yang dibuatkan sangat keren dan profesional. Desainnya modern, loading cepat, dan mudah dikelola. Puas banget dengan hasilnya."</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background:linear-gradient(135deg,var(--purple),var(--pink));">A</div>
+          <div>
+            <div class="testimonial-name">Andi S.</div>
+            <div class="testimonial-role">Digital Store Owner</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-wrap" id="contact" style="padding-top:40px;padding-bottom:100px;">
+    <div class="cta-section reveal">
+      <h2 class="cta-title">Punya project idea?<br><span style="background:linear-gradient(135deg,var(--accent2),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Mari wujudkan bersama.</span></h2>
+      <p class="cta-desc">Saya selalu terbuka untuk diskusi project baru, kolaborasi, atau sekadar ngobrol soal teknologi.</p>
+      <div class="cta-actions">
+        <a href="mailto:cahyobagaskoro03@gmail.com" class="hero-btn" style="background:linear-gradient(135deg,var(--accent2),#0090d4);color:#060a10;"
+           onmouseover="this.style.boxShadow='0 0 30px rgba(0,196,255,0.3)';this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.boxShadow='none';this.style.transform='translateY(0)'">
+          <i class="fas fa-envelope"></i> Kirim Email
+        </a>
+        <a href="https://wa.me/6282189822272" target="_blank" class="hero-btn" style="background:rgba(0,232,157,0.1);color:var(--accent);border:1px solid rgba(0,232,157,0.2);"
+           onmouseover="this.style.background='rgba(0,232,157,0.18)';this.style.boxShadow='0 0 20px rgba(0,232,157,0.15)'"
+           onmouseout="this.style.background='rgba(0,232,157,0.1)';this.style.boxShadow='none'">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:36px;max-width:500px;margin-left:auto;margin-right:auto;" class="contact-grid-mini">
+        <a href="mailto:cahyobagaskoro03@gmail.com" class="contact-item">
+          <div class="contact-icon" style="background:rgba(0,196,255,0.08);color:var(--accent2);"><i class="fas fa-envelope"></i></div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value" style="font-size:.82rem;">cahyobagaskoro03@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://wa.me/6282189822272" target="_blank" class="contact-item">
+          <div class="contact-icon" style="background:rgba(0,232,157,0.08);color:var(--green);"><i class="fab fa-whatsapp"></i></div>
+          <div>
+            <div class="contact-label">WhatsApp</div>
+            <div class="contact-value">082189822272</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer style="position:relative;z-index:2;border-top:1px solid var(--border);background:rgba(6,10,16,0.92);">
+  <div style="max-width:1200px;margin:0 auto;padding:48px 24px 32px;">
+    <div class="footer-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+          <div style="width:32px;height:32px;border-radius:8px;overflow:hidden;"><img src="images/icon.png" style="width:100%;height:100%;object-fit:cover;" alt="Logo"></div>
+          <span style="font-weight:700;">HyunkkCloud</span>
+        </div>
+        <p style="font-size:.85rem;color:var(--muted);line-height:1.7;max-width:300px;">Hosting modern dengan performa tinggi dan support aktif 24/7.</p>
+      </div>
+      <div>
+        <h4 style="font-weight:600;margin-bottom:14px;font-size:.9rem;">Menu</h4>
+        <a href="store.html" class="footer-link">Store</a>
+        <a href="support.html" class="footer-link">Support</a>
+        <a href="contact.html" class="footer-link">Contact</a>
+        <a href="cv.html" class="footer-link">Portfolio</a>
+      </div>
+      <div>
+        <h4 style="font-weight:600;margin-bottom:14px;font-size:.9rem;">Kontak</h4>
+        <p style="font-size:.85rem;color:var(--muted);line-height:2;">
+          <i class="fas fa-envelope" style="width:16px;color:var(--accent2);font-size:.75rem;"></i> cahyobagaskoro03@gmail.com<br>
+          <i class="fab fa-whatsapp" style="width:16px;color:var(--accent2);font-size:.75rem;"></i> 082189822272<br>
+          <i class="fas fa-map-marker-alt" style="width:16px;color:var(--accent2);font-size:.75rem;"></i> Indonesia
+        </p>
+      </div>
+    </div>
+    <div style="margin-top:36px;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+      <span style="font-size:.78rem;color:var(--muted);">&copy; 2026 HyunkkCloud. All rights reserved.</span>
+      <span class="font-mono" style="font-size:.68rem;color:rgba(90,106,128,0.5);">v2.0.0</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const canvas=document.getElementById('particles'),ctx=canvas.getContext('2d');
+  let pArr=[];
+  function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  resizeCanvas();
+  window.addEventListener('resize',resizeCanvas);
+  for(let i=0;i<45;i++){pArr.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,size:Math.random()*1.2+0.3,speedX:(Math.random()-0.5)*0.2,speedY:(Math.random()-0.5)*0.2,opacity:Math.random()*0.3+0.08});}
+  function animP(){ctx.clearRect(0,0,canvas.width,canvas.height);pArr.forEach(p=>{p.x+=p.speedX;p.y+=p.speedY;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,Math.max(0.1,p.size),0,Math.PI*2);ctx.fillStyle=`rgba(0,196,255,${p.opacity})`;ctx.fill();});for(let i=0;i<pArr.length;i++)for(let j=i+1;j<pArr.length;j++){const dx=pArr[i].x-pArr[j].x,dy=pArr[i].y-pArr[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<100){ctx.beginPath();ctx.moveTo(pArr[i].x,pArr[i].y);ctx.lineTo(pArr[j].x,pArr[j].y);ctx.strokeStyle=`rgba(0,196,255,${0.03*(1-d/100)})`;ctx.lineWidth=0.5;ctx.stroke();}}requestAnimationFrame(animP);}
+  animP();
+
+  const mg=document.getElementById('mouseGlow');
+  document.addEventListener('mousemove',e=>{mg.style.left=e.clientX+'px';mg.style.top=e.clientY+'px';});
+
+  const navbar=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>50));
+
+  const menuBtn=document.getElementById('menuBtn'),mobileMenu=document.getElementById('mobileMenu'),mOpen=document.getElementById('menuIconOpen'),mClose=document.getElementById('menuIconClose');
+  menuBtn.addEventListener('click',()=>{const o=mobileMenu.classList.toggle('open');mOpen.style.display=o?'none':'inline';mClose.style.display=o?'inline':'none';});
+
+  const rObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('vis');}),{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el=>rObs.observe(el));
+
+  // Counter animation for stats
+  const counterObs=new IntersectionObserver(e=>e.forEach(en=>{
+    if(en.isIntersecting){
+      const el=en.target;
+      const target=parseInt(el.dataset.count);
+      let current=0;
+      const step=Math.max(1,Math.floor(target/40));
+      const interval=setInterval(()=>{
+        current+=step;
+        if(current>=target){current=target;clearInterval(interval);}
+        el.textContent=current+'+';
+      },35);
+      counterObs.unobserve(el);
+    }
+  }),{threshold:0.5});
+  document.querySelectorAll('.stat-num').forEach(el=>counterObs.observe(el));
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      const target=document.querySelector(a.getAttribute('href'));
+      if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+</script>
+
+</body>
+</html>
